@@ -1,0 +1,62 @@
+﻿@using Domain.Restaurant
+@model Domain.Restaurant.Queries.Models.RestaurantDetailsModel
+@{
+    ViewBag.Title = "Detail";
+}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<div ng-app="hucksterApp">
+    <h2>@Model.Restaurant.Name</h2>
+
+    <p>
+        @Model.Restaurant.Description
+    </p>
+
+    <img src="@Model.Restaurant.TileImageUrl" />
+
+    <div ng-controller="OrderFormController">
+        @foreach (var menu in Model.RestaurantMenu)
+        {
+            <div>
+                @menu.Title
+            </div>
+            <p>
+                @menu.Description
+            </p>
+            <ul>
+                @foreach (var menuItem in menu.MenuItems)
+                {
+                    <li ng-click="addmenuItem('@menuItem.Name', @menuItem.Price, 1)">
+                        <div>@menuItem.MenuGroup - @menuItem.Name </div>
+                        <p>
+                            @menuItem.Description
+                        </p>
+                        $ @menuItem.Price
+                    </li>
+                }
+            </ul>
+        }
+
+        <div>
+            <h2>Order</h2>
+            <select ng-model="order.DeliveryTime">
+                @foreach (var deliverTime in Model.DeliveryHours)
+                {
+                    <option value="@deliverTime.ToIsoString()">@deliverTime.ToTimeString()</option>
+                }
+            </select>
+            
+            <select ng-model="order.DeliverySuburbId">
+                @foreach (var suburb in Model.DeliverySuburbs)
+                {
+                    <option value="@suburb.Id">@suburb.Suburb</option>
+                }
+            </select>
+            <ul>
+                <li ng-repeat="orderItem in OrderItems">
+                    {{orderItem.Name}} : {{orderItem.Quantity}} x ${{orderItem.Price}} - ${{orderItem.Price * orderItem.Quantity}}
+                </li>
+            </ul>
+        </div>
+        <button ng-click="placeOrder()">Place Order</button>
+    </div>
+</div>

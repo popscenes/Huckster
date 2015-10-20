@@ -1,0 +1,25 @@
+﻿@model Domain.Order.Queries.Models.OrderDetailsViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Order</h2>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<div ng-app="hucksterApp">
+    <div ng-controller="OrderFinaliseController">
+        <input type="hidden" ng-model="orderId" ng-init="orderId='@Model.Order.AggregateRootId'"/>
+        <ul>
+            @foreach (var orderItem in Model.Order.OrderItems)
+            {
+                <li>@orderItem.Name @orderItem.Quantity @orderItem.Price</li>
+            }
+        </ul>
+
+        <span>Suburb: @Model.DeliverySuburb.Suburb</span>
+
+        <button ng-click="getToken()">Credit Card Payment</button>
+        <button ng-click="paypalPayment()">Paypal Payment</button>
+    </div>
+</div>

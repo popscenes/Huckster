@@ -1,0 +1,85 @@
+using System.Linq;
+using infrastructure.DataAccess;
+using infrastructure.Utility;
+using infrastructure.Utility.Infrastructure.Framework;
+
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebSite.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebSite.App_Start.NinjectWebCommon), "Stop")]
+
+namespace WebSite.App_Start
+{
+    using System;
+    using System.Web;
+
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+    using Ninject;
+    using Ninject.Web.Common;
+
+    public static class NinjectWebCommon 
+    {
+        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+
+        /// <summary>
+        /// Starts the application
+        /// </summary>
+        public static void Start() 
+        {
+            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
+            bootstrapper.Initialize(CreateKernel);
+            NinjectKernel.AppKernel.Bind<AdoContext>().ToMethod(_ => new AdoContext()
+            {
+                DatabaseName = "BootleggerSql"
+            });
+        }
+        
+        /// <summary>
+        /// Stops the application.
+        /// </summary>
+        public static void Stop()
+        {
+            bootstrapper.ShutDown();
+        }
+        
+        /// <summary>
+        /// Creates the kernel that will manage your application.
+        /// </summary>
+        /// <returns>The created kernel.</returns>
+        private static IKernel CreateKernel()
+        {
+            InitNinject(kernelInit =>
+            {
+                kernelInit.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                kernelInit.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                //                kernelInit.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
+                //                kernelInit.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
+            }, "Application.", "Infrastructure.", "Domain.");
+            return NinjectKernel.AppKernel;
+        }
+
+        /// <summary>
+        /// Load your modules or register your services here!
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
+        private static void RegisterServices(IKernel kernel)
+        {
+        }
+
+        public static IKernel InitNinject(Action<IKernel> preInit = null, params String[] defaultAssemblies)
+        {
+            AllAssemblies.DefaultAssemblyPrefixStrings = defaultAssemblies;
+            var assem = AllAssemblies.MatchingDefault()
+                .GetOrdered()
+                .ThenBy(assembly => assembly
+                    .GetName().Name
+                    .ToLower().Contains("infrastructure")
+                    ? 0
+                    : 1)
+                .ToList();
+
+            Ninject.IKernel kernel = NinjectKernel.CreateKernel(assem, true, preInit);
+            return kernel;
+        }
+    }
+}

@@ -38,8 +38,10 @@ namespace WebSite
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/normalize.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/style.css",
+                      "~/fonts/stylesheet.css"));
         }
     }
 }

@@ -1,4 +1,4 @@
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('200', 'Australian National University', 'ACT', -35.280, 149.120),
 ('221', 'Barton', 'ACT', -35.200, 149.100),
 ('800', 'Darwin', 'NT', -12.800, 130.960),
@@ -988,7 +988,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2112', 'Putney', 'NSW', -33.800, 151.100),
 ('2112', 'Ryde', 'NSW', -33.800, 151.100)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2113', 'Blenheim Road', 'NSW', -33.800, 151.130),
 ('2113', 'East Ryde', 'NSW', -33.800, 151.130),
 ('2113', 'Macquarie Centre', 'NSW', -33.800, 151.130),
@@ -1963,7 +1963,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2340', 'Piallamore', 'NSW', -30.960, 150.830),
 ('2340', 'Somerton', 'NSW', -30.960, 150.830)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2340', 'South Tamworth', 'NSW', -30.960, 150.830),
 ('2340', 'Taminda', 'NSW', -30.960, 150.830),
 ('2340', 'Tamworth', 'NSW', -30.960, 150.830),
@@ -2928,7 +2928,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2469', 'Ewingar', 'NSW', -29.340, 153.000),
 ('2469', 'Gibberagee', 'NSW', -29.340, 153.000)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2469', 'Goodwood Island', 'NSW', -29.340, 153.000),
 ('2469', 'Gorge Creek', 'NSW', -29.340, 153.000),
 ('2469', 'Haystack', 'NSW', -29.340, 153.000),
@@ -3928,7 +3928,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2583', 'Bigga', 'NSW', -34.080, 149.150),
 ('2583', 'Binda', 'NSW', -34.080, 149.150),
 ('2583', 'Crooked Corner', 'NSW', -34.080, 149.150)
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2583', 'Crookwell', 'NSW', -34.080, 149.150),
 ('2583', 'Fullerton', 'NSW', -34.080, 149.150),
 ('2583', 'Grabben Gullen', 'NSW', -34.080, 149.150),
@@ -3937,7 +3937,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2583', 'Limerick', 'NSW', -34.080, 149.150),
 ('2583', 'Lost River', 'NSW', -34.080, 149.150)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2583', 'Narrawa', 'NSW', -34.080, 149.150),
 ('2583', 'Peelwood', 'NSW', -34.080, 149.150),
 ('2583', 'Pejar', 'NSW', -34.080, 149.150),
@@ -4938,7 +4938,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2790', 'Hermitage Flat', 'NSW', -33.220, 150.020),
 ('2790', 'Jenolan', 'NSW', -33.220, 150.020)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('2790', 'Kanimbla', 'NSW', -33.220, 150.020),
 ('2790', 'Lidsdale', 'NSW', -33.220, 150.020),
 ('2790', 'Lithgow', 'NSW', -33.220, 150.020),
@@ -5927,7 +5927,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3145', 'Caulfield East', 'VIC', -37.880, 145.040),
 ('3145', 'Central Park', 'VIC', -37.880, 145.040)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3145', 'Darling', 'VIC', -37.880, 145.040),
 ('3145', 'Darling South', 'VIC', -37.880, 145.040),
 ('3145', 'Malvern East', 'VIC', -37.880, 145.040),
@@ -6917,7 +6917,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3418', 'Lorquon', 'VIC', -36.170, 141.330),
 ('3418', 'Netherby', 'VIC', -36.170, 141.330)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3418', 'Nhill', 'VIC', -36.170, 141.330),
 ('3418', 'Yanac', 'VIC', -36.170, 141.330),
 ('3419', 'Kaniva', 'VIC', -36.380, 141.240),
@@ -7919,7 +7919,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3701', 'Eskdale', 'VIC', -36.530, 147.500),
 ('3701', 'Granya', 'VIC', -36.530, 147.500)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3701', 'Mitta Mitta', 'VIC', -36.530, 147.500),
 ('3701', 'Old Tallangatta', 'VIC', -36.530, 147.500),
 ('3701', 'Shelley', 'VIC', -36.530, 147.500),
@@ -7935,7 +7935,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3707', 'Nariel Valley', 'VIC', -36.280, 148.030),
 ('3707', 'Thowgla Valley', 'VIC', -36.280, 148.030)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('3707', 'Tom Groggin', 'VIC', -36.280, 148.030),
 ('3707', 'Towong', 'VIC', -36.280, 148.030),
 ('3707', 'Towong Upper', 'VIC', -36.280, 148.030),
@@ -8936,7 +8936,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4068', 'Taringa', 'QLD', -27.510, 152.980),
 ('4069', 'Brookfield', 'QLD', -27.490, 152.900),
 ('4069', 'Chapel Hill', 'QLD', -27.490, 152.900)
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4069', 'Fig Tree Pocket', 'QLD', -27.490, 152.900),
 ('4069', 'Kenmore', 'QLD', -27.490, 152.900),
 ('4069', 'Kenmore DC', 'QLD', -27.490, 152.900),
@@ -8949,7 +8949,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4070', 'Bellbowrie', 'QLD', -27.550, 152.870),
 ('4070', 'Moggill', 'QLD', -27.550, 152.870)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4072', 'University Of Queensland', 'QLD', -27.550, 152.330),
 ('4073', 'Seventeen Mile Rocks', 'QLD', -27.550, 152.960),
 ('4073', 'Sinnamon Park', 'QLD', -27.550, 152.960),
@@ -9950,7 +9950,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4390', 'Goodar', 'QLD', -28.150, 150.290),
 ('4390', 'Goondiwindi', 'QLD', -28.150, 150.290),
 ('4390', 'Kindon', 'QLD', -28.150, 150.290)
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4390', 'Lundavra', 'QLD', -28.150, 150.290),
 ('4390', 'Wondalli', 'QLD', -28.150, 150.290),
 ('4390', 'Wyaga', 'QLD', -28.150, 150.290),
@@ -9990,7 +9990,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4405', 'Dalby', 'QLD', -27.190, 151.400),
 ('4405', 'Ducklo', 'QLD', -27.190, 151.400)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4405', 'Grassdale', 'QLD', -27.190, 151.400),
 ('4405', 'Marmadua', 'QLD', -27.190, 151.400),
 ('4405', 'Pirrinuan', 'QLD', -27.190, 151.400),
@@ -10951,7 +10951,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4671', 'Morganville', 'QLD', -25.080, 151.680),
 ('4671', 'Mount Perry', 'QLD', -25.080, 151.680)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4671', 'Mungy', 'QLD', -25.080, 151.680),
 ('4671', 'Nearum', 'QLD', -25.080, 151.680),
 ('4671', 'New Moonta', 'QLD', -25.080, 151.680),
@@ -11939,7 +11939,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4868', 'Mount Sheridan', 'QLD', -16.960, 145.730),
 ('4868', 'White Rock', 'QLD', -16.960, 145.730)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('4868', 'Woree', 'QLD', -16.960, 145.730),
 ('4869', 'Bentley Park', 'QLD', -17.000, 145.740),
 ('4869', 'Edmonton', 'QLD', -17.000, 145.740),
@@ -12928,7 +12928,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('5245', 'Paechtown', 'SA', -35.030, 138.810),
 ('5245', 'Verdun', 'SA', -35.030, 138.810)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('5246', 'Woodhouse', 'SA', -34.930, 138.680),
 ('5250', 'Blakiston', 'SA', -35.040, 138.880),
 ('5250', 'Littlehampton', 'SA', -35.040, 138.880),
@@ -13919,7 +13919,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('5680', 'Piednippie', 'SA', -32.360, 134.240),
 ('5680', 'Puntabie', 'SA', -32.360, 134.240)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('5680', 'Pureba', 'SA', -32.360, 134.240),
 ('5680', 'Sceale Bay', 'SA', -32.360, 134.240),
 ('5680', 'Smoky Bay', 'SA', -32.360, 134.240),
@@ -14920,7 +14920,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('6331', 'Albany DC', 'WA', 0.000, 0.000),
 ('6332', 'Albany Po', 'WA', -32.050, 115.970),
 ('6333', 'Bow Bridge', 'WA', -34.970, 116.950)
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('6333', 'Denmark', 'WA', -34.970, 116.950),
 ('6333', 'Hay', 'WA', -34.970, 116.950),
 ('6333', 'Hazelvale', 'WA', -34.970, 116.950),
@@ -14936,7 +14936,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('6333', 'Shadforth', 'WA', -34.970, 116.950),
 ('6333', 'Tingledale', 'WA', -34.970, 116.950)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('6333', 'Trent', 'WA', -34.970, 116.950),
 ('6333', 'William Bay', 'WA', -34.970, 116.950),
 ('6335', 'Gnowangerup', 'WA', -33.940, 118.010),
@@ -15899,7 +15899,7 @@ INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
 ('7000', 'West Hobart', 'TAS', -42.870, 147.330),
 ('7001', 'Hobart', 'TAS', -42.840, 147.510)
 
-INSERT INTO Suburb (postcode, suburb, state, latitude, longitude) VALUES
+INSERT INTO MasterSuburb (postcode, suburb, state, latitude, longitude) VALUES
 ('7002', 'North Hobart', 'TAS', -42.900, 147.450),
 ('7004', 'Battery Point', 'TAS', -42.890, 147.330),
 ('7004', 'South Hobart', 'TAS', -42.890, 147.330),

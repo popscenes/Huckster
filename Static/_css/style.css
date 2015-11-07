@@ -1,0 +1,269 @@
+/*CSS document*/
+
+/* =========================================*/
+/* == MOBILE DEVICES == (750px and below) ==*/
+/* =========================================*/
+	/** BODY **/
+	body {
+		font-family: 'globerlight', helvetica, arial, sans-serif;	
+	}
+	
+	/*** HEADER ***/
+	header {
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0 20px 0;
+	}
+	
+	.logo {
+		background-image: url(../_images/svg/logo-01.svg);
+		background-size: cover;
+		height: 40px;
+		width: 40px;
+		margin: 0 auto;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** GALLERY ***/
+	.gallery {
+		background-image: url(../_images/CCD_alleyway_01.2gray-edit.jpg);	
+		background-size: cover;
+		height: 160px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.gallery.purple {
+		background-image: url(../_images/CCD_alleyway_02purple-edit.jpg);	
+		background-size: cover;
+		background-position: 50% 80%;
+		height: 160px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** CONTENT ***/
+	.main-content {
+		margin: 0 auto;	
+		padding: 20px 0 20px 0;
+	}
+	
+	.logo-type {
+		background-image: url(../_images/svg/logo-03.svg);
+		background-size: cover;
+		width: 112px; /*140*/
+		height: 38px; /*48*/
+		margin: 0 auto;	
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+		
+	}
+	/*** FORM ***/
+	#huckstart {
+		width: 80%;	
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0 20px 0;
+	}
+	#huckstart input {
+		width: 90%;
+		height: 2.5em;
+		padding: 0 0.5em;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;	
+		border-radius: 5px;
+    	border: 1px solid #000;
+		text-align: center;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#huckstart input:focus {
+		outline: none;	
+	}
+	
+	#huckstart button {
+		width: 90%;
+		height: 2.5em;
+		padding: 0 0.5em;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;	
+		border-radius: 5px;
+    	border: 1px solid #000;
+		text-align: center;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-top: 15px;
+		background-color: #fff;
+		text-transform: uppercase;
+		
+		-webkit-transition: width 0.5s ease;
+		transition: width 0.5s ease;	
+		
+	}
+	#huckstart button:hover {
+		background-color: #000;
+		color: #fff;
+		
+		-webkit-transition: all 0.5s ease;
+		transition: all 0.5s ease;	
+	}
+	
+	
+/* == TABLET DEVICES == (750px and ABOVE) ==*/
+@media all and (min-width: 751px) and (max-width: 960px) {
+	
+	/*** HEADER ***/
+	header {
+		margin: 0 auto;
+		text-align: center;
+		padding: 30px 0 30px 0;
+	}
+	
+	.logo {
+		/*background-image: url(../_images/logo_109px.jpg);*/
+		background-size: cover;
+		height: 80px;
+		width: 80px;
+		margin: 0 auto;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	
+	/*** GALLERY ***/
+	.gallery {
+		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
+		background-size: cover;
+		height: 400px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.gallery.purple {
+		background-size: cover;
+		height: 400px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** CONTENT ***/
+	.logo-type {
+		/*background-image: url(../_images/logotype_280px.jpg);*/
+		background-size: cover;
+		width: 224px;
+		height: 76px;
+		margin: 0 auto;	
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+		
+	}
+	/*** FORM ***/
+	
+	#huckstart {
+		padding: 30px 0 30px 0;	
+	}
+	
+	#huckstart input {
+		width: 75%;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#huckstart button {
+		width: 75%;	
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+}
+/* == DESKTOP DEVICES == (960px and ABOVE) ==*/
+@media all and (min-width: 960px) {
+	
+	/*** HEADER ***/
+	header {
+		margin: 0 auto;
+		text-align: center;
+		padding: 30px 0 30px 0;
+	}
+	
+	.logo {
+		/*background-image: url(../_images/logo_109px.jpg);*/
+		background-size: cover;
+		height: 100px;
+		width: 100px;
+		margin: 0 auto;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	
+	/*** GALLERY ***/
+	.gallery {
+		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
+		background-size: cover;
+		background-position: center;
+		height: 460px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.gallery.purple {
+		background-size: cover;
+		height: 460px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** CONTENT ***/
+	.logo-type {
+		/*background-image: url(../_images/logotype_280px.jpg);*/
+		background-size: cover;
+		width: 280px;
+		height: 95px;
+		margin: 0 auto;	
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+		
+	}
+	
+	/*** FORM ***/
+	
+	#huckstart {
+		
+		padding: 20px 0 20px 0;
+	}
+	
+	#huckstart input {
+		width: 50%;
+		text-align: left;
+		height: 3em;
+		padding-left: 1em;
+		display: inline-block;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#huckstart button {
+		width: 20%;
+		display: inline-block;
+		margin-left: 1em;
+		height: 3em;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+}

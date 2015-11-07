@@ -1,5 +1,5 @@
-﻿USE [BootLegger]
-GO
+﻿--USE [BootLegger]
+--GO
 
 INSERT INTO [dbo].[Restaurant]
            ([AggregateRootId]
@@ -9,8 +9,8 @@ INSERT INTO [dbo].[Restaurant]
            ,[TileImageUrl])
      VALUES
            ('8DEE7B67-E126-4AFC-82F3-918E038AB3A3'
-           ,'Red Spice Road'
-           ,'Red Spice Road is an award-winning South East Asian-style dining experience in the heart of Melbourne.'
+           ,'Test Restaurant'
+           ,'Test Restaurant is an award-winning South East Asian-style dining experience in the heart of Melbourne.'
            ,'AUS Eastern Standard Time'
            ,'http://redspiceroad.com/rsr-mck/assets/images/restaurant/Red-Spice-Road-Bar-3.jpg')
 GO

@@ -50,7 +50,7 @@ namespace WebSite.Controllers
             var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = paymentModel.OrderId });
             var payment = await _stripeService.CreateCharge(paymentModel.PaymentToken, order.OrderItems.Sum(_ => _.Quantity*_.Price), "Huckster Order");
             await _commandDispatcher.DispatchAsync(new OrderPaymentSuccessCommand() {Order = order, Payment = payment});
-            return Ok(order.Id);
+            return Ok(order.AggregateRootId);
         }
 
         [HttpPost]

@@ -38,7 +38,7 @@
 
                 var token = response.id;
                 Restangular.all('Payment/Stripe').post({ PaymentToken: token, OrderId: $scope.orderId }).then(function (result) {
-                    alert(result);
+                    window.location = "/order/Complete/" + result;
                 });
             }
         }

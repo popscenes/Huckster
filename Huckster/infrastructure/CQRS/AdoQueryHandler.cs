@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using infrastructure.DataAccess;
+using NLog;
 
 namespace infrastructure.CQRS
 {
@@ -14,6 +15,7 @@ namespace infrastructure.CQRS
         where TSource : IQuery<TSource, TReturn>
     {
         private readonly AdoContext _adoContext;
+        private static Logger logger = LogManager.GetLogger("mail");
 
         protected AdoQueryHandler(AdoContext adoContext)
         {
@@ -22,11 +24,21 @@ namespace infrastructure.CQRS
 
         public async Task<TReturn> HandleAsync(TSource argument)
         {
-            
-            using (var cn = _adoContext.GetDbConnection())
+
+            try
             {
-                return await HandleSqlCommandAsync(cn, argument);
+                using (var cn = _adoContext.GetDbConnection())
+                {
+                    return await HandleSqlCommandAsync(cn, argument);
+                }
             }
+            catch (Exception e)
+            {
+
+                logger.Log(LogLevel.Error, "Exception");
+                throw e;
+            }
+            
         }
 
 

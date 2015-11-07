@@ -1,4 +1,4 @@
-USE [BootLegger]
+--USE [BootLegger]
 GO
 
 /****** Object:  Table [dbo].[MasterSuburb]    Script Date: 8/31/2015 7:39:25 PM ******/

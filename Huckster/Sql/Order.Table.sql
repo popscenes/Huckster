@@ -8,19 +8,25 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Customer'))
+IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Order'))
 BEGIN
-    CREATE TABLE [dbo].[Customer](
-		[Id] bigint PRIMARY KEY IDENTITY(1,1),
-        [AggregateRootId] uniqueidentifier NOT NULL,
-		Name nvarchar(MAX),
-		Mobile nvarchar(MAX),
-		Email  nvarchar(MAX)
+CREATE TABLE [dbo].[Order](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[AggregateRootId] [uniqueidentifier] NOT NULL,
+	[RestaurantId] [uniqueidentifier] NOT NULL,
+	[CustomerId] [uniqueidentifier] NOT NULL,
+	[DeliverySuburbId] [int] NOT NULL,
+	[DeliveryTime] [datetime2](7) NOT NULL,
+	[CustomerMobile] [nvarchar](64) NOT NULL,
+	[CustomerEmail] [nvarchar](256) NOT NULL,
+	[CreateDateTime] [datetime2](7) NOT NULL,
+	[LastModifiedDateTime] [datetime2](7) NOT NULL,
+	[Status] [nvarchar](64) NOT NULL
 
 ) --ON [PRIMARY]
 END
 ELSE
 BEGIN
-    PRINT 'Skipped create table [dbo].[Customer]'
+    PRINT 'Skipped create table [dbo].[Order]'
 END
 GO

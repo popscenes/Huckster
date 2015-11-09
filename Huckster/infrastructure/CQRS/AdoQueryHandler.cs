@@ -35,8 +35,8 @@ namespace infrastructure.CQRS
             catch (Exception e)
             {
 
-                logger.Log(LogLevel.Error, "Exception");
-                throw e;
+                //logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
             }
             
         }

@@ -81,6 +81,7 @@
     <Compile Include="Order\Commands\OrderPaymentFailCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentSuccessCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderCustomerAndAddress.cs" />
+    <Compile Include="Order\Messages\OrderCompleteMessage.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\Commands\PlaceOrderCommand.cs" />
     <Compile Include="Order\Queries\GetOrderByAggregateId.cs" />
@@ -106,6 +107,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

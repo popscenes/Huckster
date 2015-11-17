@@ -1,5 +1,7 @@
 using System.Linq;
 using infrastructure.DataAccess;
+using infrastructure.Messaging;
+using infrastructure.Messaging.Azure;
 using infrastructure.Utility;
 using infrastructure.Utility.Infrastructure.Framework;
 
@@ -32,6 +34,8 @@ namespace WebSite.App_Start
             {
                 DatabaseName = "BootleggerSql"
             });
+
+            NinjectKernel.AppKernel.Bind<IMessageBus>().To<WebJobMessageBus>();
         }
         
         /// <summary>

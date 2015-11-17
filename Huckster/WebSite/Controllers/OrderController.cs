@@ -9,11 +9,14 @@ using Domain.Customer;
 using Domain.Customer.Commands;
 using Domain.Customer.Queries;
 using Domain.Order.Commands;
+using Domain.Order.Messages;
 using Domain.Order.Queries;
 using Domain.Restaurant;
 using Domain.Restaurant.Queries;
 using Domain.Shared;
 using infrastructure.CQRS;
+using infrastructure.Messaging;
+using infrastructure.Messaging.Azure;
 using WebSite.Models;
 
 namespace WebSite.Controllers
@@ -23,12 +26,14 @@ namespace WebSite.Controllers
         // GET: Order
         private readonly IQueryChannel _queryChannel;
         private readonly ICommandDispatcher _commandDispatcher;
+        private readonly IMessageBus _messageBus;
         private readonly PaypalService _paypalService;
         // GET: Restaurant
-        public OrderController(IQueryChannel queryChannel, PaypalService paypalService, ICommandDispatcher commandDispatcher)
+        public OrderController(IQueryChannel queryChannel, PaypalService paypalService, ICommandDispatcher commandDispatcher, IMessageBus messageBus)
         {
             _queryChannel = queryChannel;
             _commandDispatcher = commandDispatcher;
+            _messageBus = messageBus;
             _paypalService = paypalService;
         }
 
@@ -104,7 +109,7 @@ namespace WebSite.Controllers
         {
             
             var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = aggregateid });
-            
+            _messageBus.SendMessage(new OrderCompleteMessage() { OrderAggregateRootId = aggregateid });
             return View(order);
         }
 

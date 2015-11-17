@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using infrastructure.Utility;
 
 namespace infrastructure.CQRS
 {
@@ -16,7 +17,8 @@ namespace infrastructure.CQRS
 
         public async Task<TReturn> QueryAsync<TQuery, TReturn>(IQuery<TQuery, TReturn> argument, TReturn defaultReturn = default(TReturn)) where TQuery : IQuery<TQuery, TReturn>
         {
-            var handler = ResolutionRoot.TryGet<IQueryHandler<TQuery, TReturn>>();
+            //var handler = ResolutionRoot.TryGet<IQueryHandler<TQuery, TReturn>>();
+            var handler = NinjectKernel.AppKernel.TryGet<IQueryHandler<TQuery, TReturn>>();
 
             if (handler == null)
                 throw new ArgumentException("no query found for " + argument.GetType().Name);

@@ -9,7 +9,7 @@ namespace Domain.Order.Messages
 {
     public class OrderCompleteMessage: IMessage
     {
-        public string OrderId { get; set; }
+        public Guid OrderAggregateRootId { get; set; }
 
         public string QueueName {
             get { return "ordercomplete"; }

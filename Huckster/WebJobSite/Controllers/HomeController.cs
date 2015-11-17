@@ -32,7 +32,7 @@ namespace WebJobSite.Controllers
         public ActionResult TestOrdrCompleteEmail()
         {
             var messageBus = new WebJobMessageBus();
-            messageBus.SendMessage(new OrderCompleteMessage() {OrderId = "1"});
+            //messageBus.SendMessage(new OrderCompleteMessage() {OrderAggregateRootId = "1"});
             return RedirectToAction("Index");
         }
     }

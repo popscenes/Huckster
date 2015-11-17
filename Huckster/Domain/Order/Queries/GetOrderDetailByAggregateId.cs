@@ -35,10 +35,14 @@ namespace Domain.Order.Queries
             var deliverySuburb = context.Query<DeliverySuburb>("Select * from [dbo].[DeliverySuburb] where Id = @DeliverySuburb",
                     new { DeliverySuburb = order.DeliverySuburbId }).FirstOrDefault();
 
+            var restaurant = context.Query<Restaurant.Restaurant>("Select * from [dbo].[Restaurant] where AggregateRootId = @AggregateRootId",
+                    new { AggregateRootId = order.RestaurantId }).FirstOrDefault();
+
             return new OrderDetailsViewModel()
             {
                 Order = order,
-                DeliverySuburb = deliverySuburb
+                DeliverySuburb = deliverySuburb,
+                Restaurant =  restaurant
             };
         }
     }

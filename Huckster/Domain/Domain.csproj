@@ -86,7 +86,9 @@
     <Compile Include="Order\Commands\PlaceOrderCommand.cs" />
     <Compile Include="Order\Queries\GetOrderByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderDetailByAggregateId.cs" />
+    <Compile Include="Order\Queries\GetOrderDetailsByStatusQuery.cs" />
     <Compile Include="Order\Queries\Models\OrderDetailsViewModel.cs" />
+    <Compile Include="Order\Queries\OrderQueryHelper.cs" />
     <Compile Include="Payment\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant\DeliveryHours.cs" />

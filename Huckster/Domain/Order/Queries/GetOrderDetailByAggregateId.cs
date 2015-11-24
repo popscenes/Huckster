@@ -28,22 +28,9 @@ namespace Domain.Order.Queries
             var order =
                 context.Query<Order>("Select * from [dbo].[Order] where [AggregateRootId] = @AggregateRootId",
                     new { AggregateRootId = argument.AggregateId }).FirstOrDefault();
-            order.OrderItems =
-                context.Query<OrderItem>("Select * from [dbo].[OrderItem] where ParentAggregateId = @ParentAggregateId",
-                    new { ParentAggregateId = argument.AggregateId }).ToList();
 
-            var deliverySuburb = context.Query<DeliverySuburb>("Select * from [dbo].[DeliverySuburb] where Id = @DeliverySuburb",
-                    new { DeliverySuburb = order.DeliverySuburbId }).FirstOrDefault();
-
-            var restaurant = context.Query<Restaurant.Restaurant>("Select * from [dbo].[Restaurant] where AggregateRootId = @AggregateRootId",
-                    new { AggregateRootId = order.RestaurantId }).FirstOrDefault();
-
-            return new OrderDetailsViewModel()
-            {
-                Order = order,
-                DeliverySuburb = deliverySuburb,
-                Restaurant =  restaurant
-            };
+            var orderDetails = OrderQueryHelper.FIllOrderDetails(context, order);
+            return orderDetails;
         }
     }
 }

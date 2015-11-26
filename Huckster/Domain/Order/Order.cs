@@ -13,7 +13,12 @@ namespace Domain.Order
     {
         Placed,
         PaymentSucccessful,
-        PaymentFailed
+        PaymentFailed,
+        RestaurantAccepted,
+        Canceled,
+        PickedUp,
+        Delivered,
+        Archived
     }
     public class Order: IEntity
     {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Domain.Order.Queries.Models;
 using Domain.Restaurant;
+using Domain.Shared;
 
 namespace Domain.Order.Queries
 {
@@ -21,7 +22,7 @@ namespace Domain.Order.Queries
             var deliverySuburb = context.Query<DeliverySuburb>("Select * from [dbo].[DeliverySuburb] where Id = @DeliverySuburb",
                     new { DeliverySuburb = order.DeliverySuburbId }).FirstOrDefault();
 
-            var deliverAddress = context.Query<DeliverySuburb>("Select * from [dbo].[Address] where ParentAggregateId = @ParentAggregateId",
+            var deliverAddress = context.Query<Address>("Select * from [dbo].[Address] where ParentAggregateId = @ParentAggregateId",
                     new { ParentAggregateId = order.AggregateRootId }).FirstOrDefault();
 
             var restaurant = context.Query<Restaurant.Restaurant>("Select * from [dbo].[Restaurant] where AggregateRootId = @AggregateRootId",
@@ -35,7 +36,8 @@ namespace Domain.Order.Queries
                 Order = order,
                 DeliverySuburb = deliverySuburb,
                 DeliverAddress = deliverAddress,
-                Restaurant = restaurant
+                Restaurant = restaurant,
+                Customer = customer
             };
         }
     }

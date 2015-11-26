@@ -1,7 +1,136 @@
-﻿@model dynamic
+﻿@using Domain.Order
+@model List<Domain.Order.Queries.Models.OrderDetailsViewModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-Orders Page
+<div class="container">
+    <h2>Order Work Queue</h2>
+    <div class="btn-group alert alert-sm alert-info">
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Placed.ToString() })">Placed</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentSucccessful.ToString()})">Payment Succcessful</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.RestaurantAccepted.ToString() })">Restaurant Accepted</a>
+    </div>
+    <div class="btn-group alert alert-sm alert-success">
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PickedUp.ToString() })">PickedUp</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Delivered.ToString() })">Delivered</a>
+    </div>
+    <div class="btn-group alert alert-sm alert-danger"> 
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Canceled.ToString() })">Canceled</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentFailed.ToString() })">Payment Failed</a>
+    </div>
+
+    <table class="table">
+
+        <tr>
+            <th>
+                Restaurant
+            </th>
+            <th>
+                Customer Email
+            </th>
+            <th>
+                Customer Mobile
+            </th>
+            <th>
+                Delivery Address
+            </th>
+            <th>
+                Delivery Time
+            </th>
+            <th>
+                Order Status
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @order.Restaurant.Name
+                </td>
+                <td>
+                    @{
+                        var customerEmail = "Not-Set";
+                        if (order.Customer != null)
+                        {
+                            customerEmail = order.Customer.Email;
+                        }
+                    }
+                    @customerEmail
+                </td>
+                <td>
+                    @{
+                        var customerMobile = "Not-Set";
+                        if (order.Customer != null)
+                        {
+                            customerMobile = order.Customer.Mobile;
+                        }
+                    }
+                    @customerMobile
+                </td>
+                <td>
+                    @{
+                        var deliverAddress = "Not-Set";
+                        if (order.DeliverAddress != null)
+                        {
+                            deliverAddress = order.DeliverAddress.ToString();
+                        }
+                    }
+                    @deliverAddress
+                </td>
+                <td>
+                    @order.Order.DeliveryTime.ToString()
+                </td>
+                <td>
+                    @order.Order.Status
+                </td>
+                <td>
+                    @{
+                        var nextAction = "";
+                        var actionDescription = "";
+                        var orderStatus = (OrderStatus)Enum.Parse(typeof (OrderStatus), order.Order.Status);
+                        switch (orderStatus)
+                        {
+                            case OrderStatus.Placed:
+                                break;
+                            case OrderStatus.PaymentSucccessful:
+                                nextAction = OrderStatus.RestaurantAccepted.ToString();
+                                actionDescription = "Restaurant Accepts Order";
+                                break;
+                            case OrderStatus.PaymentFailed:
+                                nextAction = OrderStatus.Archived.ToString();
+                                actionDescription = "Remove Order";
+                                break;
+                            case OrderStatus.RestaurantAccepted:
+                                nextAction = OrderStatus.PickedUp.ToString();
+                                actionDescription = "Order Picked Up";
+                                break;
+                            case OrderStatus.Canceled:
+                                nextAction = OrderStatus.Archived.ToString();
+                                actionDescription = "Refund Order";
+                                break;
+                            case OrderStatus.PickedUp:
+                                nextAction = OrderStatus.Delivered.ToString();
+                                actionDescription = "Order Delivered";
+                                break;
+                            case OrderStatus.Delivered:
+                                nextAction = OrderStatus.Archived.ToString();
+                                actionDescription = "Complete Order";
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
+                    @if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed)
+                    {
+                        <a class="btn btn-default" href="@Url.Action(nextAction, new {orderId = order.Order.AggregateRootId})">@actionDescription</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

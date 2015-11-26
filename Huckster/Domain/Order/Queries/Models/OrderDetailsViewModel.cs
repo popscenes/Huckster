@@ -1,4 +1,5 @@
 using Domain.Restaurant;
+using Domain.Shared;
 
 namespace Domain.Order.Queries.Models
 {
@@ -8,6 +9,6 @@ namespace Domain.Order.Queries.Models
         public DeliverySuburb DeliverySuburb { get; set; }
         public Restaurant.Restaurant Restaurant { get; set; }
         public Customer.Customer Customer { get; set; }
-        public DeliverySuburb DeliverAddress { get; set; }
+        public Address DeliverAddress { get; set; }
     }
 }

@@ -43,6 +43,9 @@
                 Order Status
             </th>
             <th>
+
+            </th>
+            <th>
                 
             </th>
         </tr>
@@ -92,7 +95,7 @@
                     @{
                         var nextAction = "";
                         var actionDescription = "";
-                        var orderStatus = (OrderStatus)Enum.Parse(typeof (OrderStatus), order.Order.Status);
+                        var orderStatus = (OrderStatus) Enum.Parse(typeof (OrderStatus), order.Order.Status);
                         switch (orderStatus)
                         {
                             case OrderStatus.Placed:
@@ -129,6 +132,11 @@
                     {
                         <a class="btn btn-default" href="@Url.Action(nextAction, new {orderId = order.Order.AggregateRootId})">@actionDescription</a>
                     }
+
+                    
+                </td>
+                <td>
+                    <a class="btn btn-default" href="@Url.Action("Detail", new {orderId = order.Order.AggregateRootId})">Detail</a>
                 </td>
             </tr>
         }

@@ -1,0 +1,113 @@
+﻿@using System.ComponentModel.Design
+@model Domain.Order.Queries.Models.OrderDetailsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Order Details</h2>
+    <table class="table">
+        
+
+        <tr>
+            <th>
+                Restaurant
+            </th>
+            <th>
+                Customer Email
+            </th>
+            <th>
+                Customer Mobile
+            </th>
+            <th>
+                Delivery Address
+            </th>
+            <th>
+                Delivery Time
+            </th>
+            <th>
+                Order Status
+            </th>
+            <th>
+
+            </th>
+        </tr><tr>
+            <td>
+                @Model.Restaurant.Name
+            </td>
+            <td>
+                @{
+                    var customerEmail = "Not-Set";
+                    if (Model.Customer != null)
+                    {
+                        customerEmail = Model.Customer.Email;
+                    }
+                }
+                @customerEmail
+            </td>
+            <td>
+                @{
+                    var customerMobile = "Not-Set";
+                    if (Model.Customer != null)
+                    {
+                        customerMobile = Model.Customer.Mobile;
+                    }
+                }
+                @customerMobile
+            </td>
+            <td>
+                @{
+                    var deliverAddress = "Not-Set";
+                    if (Model.DeliverAddress != null)
+                    {
+                        deliverAddress = Model.DeliverAddress.ToString();
+                    }
+                }
+                @deliverAddress
+            </td>
+            <td>
+                @Model.Order.DeliveryTime.ToString()
+            </td>
+        <td>
+            @Model.Order.Status
+        </td>
+        </tr>
+</table>
+    <br/>
+    <br/>
+    <table class="table">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var orderItem in Model.Order.OrderItems)
+        {
+            <tr>
+                <td>
+                    @orderItem.Name
+                </td>
+                <td>
+                    @orderItem.Quantity
+                </td>
+                <td>
+                    $@orderItem.Price
+                </td>
+                <td>
+                    @{
+                        var itemCost = orderItem.Price*orderItem.Quantity;
+                    }
+
+                    $@itemCost
+                </td>
+                <td>
+                    @orderItem.Notes
+                </td>
+            </tr>
+        }
+    </table>
+
+    Total Order Cost:$ @Model.Order.OrderItems.Sum(_ => _.Price*_.Quantity)
+</div>

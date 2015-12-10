@@ -1,0 +1,21 @@
+﻿@using Newtonsoft.Json
+@model List<Domain.Restaurant.Menu>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Menu Edit</h2>
+<div class="container" ng-app="hucksterAdminApp">
+    @{
+        var menuJSON = JsonConvert.SerializeObject(Model);
+    }
+    <div ng-controller="menuEditController">
+        <input id="menuJSON" type="hidden" value="@menuJSON"/>
+        <div>
+
+        </div>
+        {{menus[0].Title}}
+    </div>
+</div>

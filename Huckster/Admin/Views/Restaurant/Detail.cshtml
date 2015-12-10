@@ -1,0 +1,63 @@
+﻿@model Domain.Restaurant.Queries.Models.RestaurantDetailsModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="container">
+    <h2>Restaurant Detail</h2>
+
+    <h4>@Model.Restaurant.Name</h4>
+
+    <div>
+        <h4>Address</h4>
+        @Model.RestauranAddress.ToString()
+    </div>
+
+    <div>
+        <h4>Menu's</h4>
+
+        @foreach (var menu in Model.RestaurantMenu.OrderBy(_ => _.Order))
+        {
+            <h4>@menu.Title - @menu.Description</h4>
+            @Html.ActionLink("Edit Menu", "EditMenu", new {id = Model.Restaurant.Id})
+            foreach (var menuItem in menu.MenuItems.OrderBy(_ => _.Order))
+            {
+                <div>
+                    @menuItem.MenuGroup - @menuItem.Name : @menuItem.Description, @menuItem.Price    
+                </div>
+                
+                <br/>
+            }
+            <hr />
+
+        }
+
+        
+
+    </div>
+
+    <div>
+        <h4>Delivery Suburbs</h4>
+
+        @foreach (var suburb in Model.DeliverySuburbs)
+        {
+            <div>
+                @suburb.Suburb @suburb.Postcode @suburb.State
+            </div>
+        }
+    </div>
+
+    <div>
+        <h4>Delivery Times</h4>
+
+        @foreach (var deliveryTime in Model.DeliveryHours)
+        {
+            <div>
+                @deliveryTime.DayOfWeek.ToString() @deliveryTime.ServiceType.ToString() @deliveryTime.OpenTime.ToString() @deliveryTime.CloseTime.ToString()
+            </div>
+        }
+    </div>
+    
+</div>

@@ -23,6 +23,19 @@ namespace Admin
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angularJs").Include(
+            "~/Scripts/lodash.js",
+            "~/Scripts/angular.js",
+            "~/Scripts/ngRoute.js",
+            "~/Scripts/restangular.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/core")
+           .Include(
+           "~/Scripts/ngApp/hucksterAdminApp.js",
+           "~/Scripts/ngApp/huckster.menuEdit.js"
+           ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

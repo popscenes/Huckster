@@ -1,0 +1,25 @@
+﻿@model System.Collections.Generic.List<Domain.Restaurant.Restaurant>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div></div>
+<h2>Restaurants</h2>
+
+<table class="table">
+    @foreach (var restaurant in Model)
+    {
+        <tr>
+            <td>
+                @restaurant.Name
+            </td>
+            <td>
+                <a class="btn btn-default" href="@Url.Action("Detail", new {id = restaurant.Id })">Detail</a>
+                <a class="btn btn-default" href="@Url.Action("Edit", new {id = restaurant.Id})">Edit</a>
+            </td>
+        </tr>
+    }
+</table>

@@ -28,6 +28,9 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                     </ul>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
+                    </ul>
                 }
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,6 +45,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angularJs")
+    @Scripts.Render("~/bundles/core")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

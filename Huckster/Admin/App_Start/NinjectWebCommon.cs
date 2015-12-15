@@ -18,18 +18,19 @@ namespace Admin.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
-    public static class NinjectWebCommon
+    public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start()
+        public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
+
             NinjectKernel.AppKernel.Bind<AdoContext>().ToMethod(_ => new AdoContext()
             {
                 DatabaseName = "BootleggerSql"
@@ -37,7 +38,7 @@ namespace Admin.App_Start
 
             NinjectKernel.AppKernel.Bind<IMessageBus>().To<WebJobMessageBus>();
         }
-
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -45,21 +46,30 @@ namespace Admin.App_Start
         {
             bootstrapper.ShutDown();
         }
-
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            InitNinject(kernelInit =>
+            var kernel = new StandardKernel();
+            try
             {
-                kernelInit.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-                kernelInit.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-                //                kernelInit.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
-                //                kernelInit.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
-            }, "Application.", "Infrastructure.", "Domain.");
-            return NinjectKernel.AppKernel;
+                InitNinject(kernelInit =>
+                {
+                    kernelInit.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                    kernelInit.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                    //                kernelInit.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
+                    //                kernelInit.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
+                }, "Application.", "Infrastructure.", "Domain.");
+                return NinjectKernel.AppKernel;
+            }
+            catch
+            {
+                kernel.Dispose();
+                throw;
+            }
         }
 
         /// <summary>

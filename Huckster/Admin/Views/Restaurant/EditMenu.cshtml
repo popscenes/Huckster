@@ -12,10 +12,28 @@
         var menuJSON = JsonConvert.SerializeObject(Model);
     }
     <div ng-controller="menuEditController">
-        <input id="menuJSON" type="hidden" value="@menuJSON"/>
-        <div>
 
+        {{restaurantId}}
+        <input id="menuJSON" type="hidden" value="@menuJSON"/>
+        <input id="restaurantId" type="hidden" value="@ViewBag.RestaurantId"/>
+
+        <div>
+            {{currentMenu.Title}}
         </div>
-        {{menus[0].Title}}
+
+        <ul dnd-list="currentMenu.MenuItems">
+            <li ng-repeat="item in currentMenu.MenuItems"
+                dnd-draggable="item"
+                dnd-moved="currentMenu.MenuItems.splice($index, 1)"
+                dnd-effect-allowed="move">
+                Name: <input type="text" ng-model="item.Name"/>
+                MenuGroup: <input type="text" ng-model="item.MenuGroup"/>
+                Description:<input type="text" ng-model="item.Description"/>
+                Price:<input type="number" ng-model="item.Price"/>
+            </li>
+        </ul>
+
+        <a class="btn btn-primary" ng-click="saveMenus();">Save</a>
     </div>
 </div>
+

@@ -27,7 +27,8 @@ namespace Admin
             "~/Scripts/lodash.js",
             "~/Scripts/angular.js",
             "~/Scripts/ngRoute.js",
-            "~/Scripts/restangular.js"
+            "~/Scripts/restangular.js",
+            "~/Scripts/angular-drag-and-drop-lists.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/core")

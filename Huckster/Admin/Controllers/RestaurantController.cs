@@ -41,6 +41,7 @@ namespace Admin.Controllers
         public async Task<ActionResult> EditMenu(int id)
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
+            ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
             return View(restaurant.RestaurantMenu);
         }
     }

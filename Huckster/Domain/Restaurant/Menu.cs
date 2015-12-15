@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DapperExtensions.Mapper;
 using infrastructure.Domain;
 
 namespace Domain.Restaurant
@@ -28,5 +29,15 @@ namespace Domain.Restaurant
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int    Order { get; set; }
+    }
+
+    public class MenuMapper : ClassMapper<Menu>
+    {
+        public MenuMapper()
+        {
+            Table("Menu");
+            Map(m => m.MenuItems).Ignore();
+            AutoMap();
+        }
     }
 }

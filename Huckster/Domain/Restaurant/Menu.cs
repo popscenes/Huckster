@@ -22,13 +22,13 @@ namespace Domain.Restaurant
 
     public class MenuItem
     {
-        public int Id { get; set; }
-        public int   MenuId { get; set; }
-        public string Name { get; set; }
-        public string MenuGroup { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public int    Order { get; set; }
+        public int      Id { get; set; }
+        public int      MenuId { get; set; }
+        public string   Name { get; set; }
+        public string   MenuGroup { get; set; }
+        public string   Description { get; set; }
+        public decimal  Price { get; set; }
+        public int      Order { get; set; }
     }
 
     public class MenuMapper : ClassMapper<Menu>

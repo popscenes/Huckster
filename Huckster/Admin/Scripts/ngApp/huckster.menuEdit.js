@@ -25,6 +25,19 @@
                 alert(error);
             });
         }
+
+        $scope.removeMenuItem = function (index) {
+            $scope.currentMenu.MenuItems.splice(index, 1);
+        };
+
+        $scope.addMenu = function() {
+            $scope.menus.push({ Title: "", Description: "", Order: "", Id: "", ParentAggregateId: $scope.restaurantId, MenuItems: [] });
+        }
+
+
+        $scope.addmenuItem = function() {
+            $scope.currentMenu.MenuItems.push({Id: "", MenuId:"", Name:"", MenuGroup:"", Description:"", Price:"", Order:""});
+        }
     };
 
 }).call(this);

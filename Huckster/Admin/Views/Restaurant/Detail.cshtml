@@ -50,6 +50,15 @@
     </div>
 
     <div>
+        <h4>Tile Image</h4>
+            <div>
+                <img src="@Model.Restaurant.FullTileImageUrl"/>
+            </div>
+        @Html.ActionLink("Edit Tile Image", "EditTileImage", new { id = Model.Restaurant.Id })
+    </div>
+
+
+    <div>
         <h4>Delivery Times</h4>
 
         @foreach (var deliveryTime in Model.DeliveryHours)

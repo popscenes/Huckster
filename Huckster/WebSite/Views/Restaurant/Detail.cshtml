@@ -14,7 +14,7 @@
                     @Model.Restaurant.Description
                 </p>
 
-                <img src="@Model.Restaurant.TileImageUrl" style="max-width: 80%" />
+                <img src="@Model.Restaurant.FullTileImageUrl" style="max-width: 80%" />
             </div>
             <div class="col-md-6" >
                 <h2>Order</h2>
@@ -34,7 +34,7 @@
                     }
                 </select>
                 <ul>
-                    <li ng-repeat="orderItem in OrderItems">
+                    <li ng-repeat="orderItem iClass1.csn OrderItems">
                         {{orderItem.Name}} : {{orderItem.Quantity}} x ${{orderItem.Price}} - ${{orderItem.Price * orderItem.Quantity}}
                     </li>
                 </ul>

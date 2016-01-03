@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Domain.Restaurant;
 using Domain.Restaurant.Commands;
+using Domain.Restaurant.Queries;
 using infrastructure.CQRS;
 
 namespace Admin.Controllers
@@ -30,6 +31,17 @@ namespace Admin.Controllers
             await _commandDispatcher.DispatchAsync(new UpdateMenuCommand() {Id = id, Menus = model.menus});
             return Ok();
         }
+
+        [HttpGet]
+        [Route("api/restaurant/suburbs")]
+        [Authorize]
+        public async Task<IHttpActionResult> Suburbs([FromUri] string searchText)
+        {
+            await _queryChannel.QueryAsync(new MasterSuburbSearchQuery() {Searchtext = searchText });
+            return Ok();
+        }
+
+        
 
         public class UpdateMenuVieModel
         {

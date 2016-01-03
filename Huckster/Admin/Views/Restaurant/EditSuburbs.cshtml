@@ -1,0 +1,30 @@
+﻿@using Newtonsoft.Json
+@model List<Domain.Restaurant.DeliverySuburb>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Menu Edit</h2>
+<div class="container" ng-app="hucksterAdminApp">
+    @{
+        var menuJSON = JsonConvert.SerializeObject(Model);
+    }
+    <div ng-controller="suburbEditController">
+
+
+        <input id="suburbsJSON" type="hidden" value="@menuJSON"/>
+        <input id="restaurantId" type="hidden" value="@ViewBag.RestaurantId"/>
+
+        <div>
+            <h3>Add Suburb</h3>
+            <input type="text" class="form-control" ng-model="searchText"/>
+            <button ng-click="suburbSearch();">Search Suburbs</button>
+        </div>
+
+        <ul class="list-group">
+            <li ng-repeat="suburb in deliverySuburbs" class="list-group-item">{{suburb.Suburb}} ({{suburb.Postcode}})</li>
+        </ul>
+    </div>
+</div>

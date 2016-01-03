@@ -34,7 +34,8 @@ namespace Admin
             bundles.Add(new ScriptBundle("~/bundles/core")
            .Include(
            "~/Scripts/ngApp/hucksterAdminApp.js",
-           "~/Scripts/ngApp/huckster.menuEdit.js"
+           "~/Scripts/ngApp/huckster.menuEdit.js",
+           "~/Scripts/ngApp/huckster.suburbEdit.js"
            ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

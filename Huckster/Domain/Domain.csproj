@@ -97,6 +97,7 @@
     <Compile Include="Restaurant\DeliveryHours.cs" />
     <Compile Include="Restaurant\DeliverySuburb.cs" />
     <Compile Include="Restaurant\Queries\GetRestaurantDetailByIdQuery.cs" />
+    <Compile Include="Restaurant\Queries\MasterSuburbSearchQuery.cs" />
     <Compile Include="Restaurant\Queries\Models\RestaurantDetailsModel.cs" />
     <Compile Include="Shared\Address.cs" />
     <Compile Include="Restaurant\Commands\AddRestaurantCommand.cs" />

@@ -19,12 +19,27 @@
         $scope.suburbSearch = function() {
             var searchText = $scope.searchText;
             Restangular.all("suburbs").getList({ searchText: searchText }).then(function (result) {
-                alert(result);
+                $scope.searchResults = result;
             }, function (error) {
                 alert(error);
             });
         }
 
+        $scope.addSuburb = function(deliverySuburb) {
+            $scope.deliverySuburbs.push(deliverySuburb);
+        };
+
+        $scope.removeSuburb = function (index) {
+            $scope.deliverySuburbs.splice(index, 1);
+        };
+
+        $scope.updateSuburb = function () {
+            Restangular.all($scope.restaurantId + '/update-suburbs').post({ suburbs: $scope.deliverySuburbs }).then(function (result) {
+                alert("suburbs saved");
+            }, function (error) {
+                alert(error);
+            });
+        };
     };
 
 }).call(this);

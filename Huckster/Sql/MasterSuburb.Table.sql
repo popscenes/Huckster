@@ -12,7 +12,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[MasterSuburb](
-	[id] [int] IDENTITY(1,1) NOT NULL,
+	[SuburbId] [int] IDENTITY(1,1) NOT NULL,
 	[postcode] [varchar](5) NULL,
 	[suburb] [varchar](100) NULL,
 	[state] [varchar](4) NULL,
@@ -20,7 +20,7 @@ CREATE TABLE [dbo].[MasterSuburb](
 	[longitude] [decimal](6, 3) NULL DEFAULT (NULL),
 PRIMARY KEY CLUSTERED 
 (
-	[id] ASC
+	[SuburbId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 

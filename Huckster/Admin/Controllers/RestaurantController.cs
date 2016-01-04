@@ -67,6 +67,14 @@ namespace Admin.Controllers
             return View(restaurant.DeliverySuburbs);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> EditDeliveryTimes(int id)
+        {
+            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
+            ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            return View(restaurant.DeliveryHours);
+        }
+
         [HttpPost]
         public async Task<ActionResult> EditTileImage(int id, HttpPostedFileBase tileImage)
         {

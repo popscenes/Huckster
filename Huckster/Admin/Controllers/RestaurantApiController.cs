@@ -32,20 +32,34 @@ namespace Admin.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("api/restaurant/{id}/update-suburbs")]
+        [Authorize]
+        public async Task<IHttpActionResult> UpdateSuburbs([FromUri] Guid id, [FromBody] UpdateSuburbVieModel model)
+        {
+            await _commandDispatcher.DispatchAsync(new UpdateSuburbCommand() { Id = id, Suburbs = model.suburbs });
+            return Ok();
+        }
+
         [HttpGet]
         [Route("api/restaurant/suburbs")]
         [Authorize]
         public async Task<IHttpActionResult> Suburbs([FromUri] string searchText)
         {
-            await _queryChannel.QueryAsync(new MasterSuburbSearchQuery() {Searchtext = searchText });
-            return Ok();
+            var suburbs = await _queryChannel.QueryAsync(new MasterSuburbSearchQuery() {Searchtext = searchText });
+            return Ok(suburbs);
         }
 
-        
+
 
         public class UpdateMenuVieModel
         {
             public List<Menu> menus { get; set; }
+        }
+
+        public class UpdateSuburbVieModel
+        {
+            public List<DeliverySuburb> suburbs { get; set; }
         }
     }
 }

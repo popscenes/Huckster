@@ -28,6 +28,8 @@ namespace WebSite.Controllers
             {
                 Id = id
             });
+
+            restaurantDetail.DeliveryHours = restaurantDetail.ValidDeliveryHours(DateTime.Now.DayOfWeek, DateTime.Now.AddMinutes(30).TimeOfDay);
             return View(restaurantDetail);
         }
     }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions.Mapper;
 using infrastructure.Domain;
+using Omu.ValueInjecter;
 
 namespace Domain.Restaurant
 {
@@ -13,11 +14,6 @@ namespace Domain.Restaurant
     {
         public Restaurant()
         {
-        }
-
-        public List<DeliveryHours> GetValidDeliveryHours(List<DeliveryHours> deliveryHours, DayOfWeek dayOfWeek, TimeSpan startTime)
-        {
-            return deliveryHours.Where(_ => _.DayOfWeek == dayOfWeek && _.OpenTime > startTime.Add(new TimeSpan(0,30,0))).ToList();
         }
 
         public int Id { get; set; }

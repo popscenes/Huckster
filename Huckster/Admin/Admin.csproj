@@ -290,6 +290,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ngApp\huckster.deliveryHoursEdit.js" />
     <Content Include="Scripts\ngApp\huckster.suburbEdit.js" />
     <Content Include="Scripts\ngApp\huckster.menuEdit.js" />
     <Content Include="Scripts\ngApp\hucksterAdminApp.js" />
@@ -340,6 +341,7 @@
     <Content Include="Views\Restaurant\EditMenu.cshtml" />
     <Content Include="Views\Restaurant\EditTileImage.cshtml" />
     <Content Include="Views\Restaurant\EditSuburbs.cshtml" />
+    <Content Include="Views\Restaurant\EditDeliveryTimes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

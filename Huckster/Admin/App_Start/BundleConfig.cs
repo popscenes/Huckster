@@ -28,14 +28,16 @@ namespace Admin
             "~/Scripts/angular.js",
             "~/Scripts/ngRoute.js",
             "~/Scripts/restangular.js",
-            "~/Scripts/angular-drag-and-drop-lists.js"
+            "~/Scripts/angular-drag-and-drop-lists.js",
+            "~/Scripts/ui-bootstrap-custom-0.14.3.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/core")
            .Include(
            "~/Scripts/ngApp/hucksterAdminApp.js",
            "~/Scripts/ngApp/huckster.menuEdit.js",
-           "~/Scripts/ngApp/huckster.suburbEdit.js"
+           "~/Scripts/ngApp/huckster.suburbEdit.js",
+           "~/Scripts/ngApp/huckster.deliveryHoursEdit.js"
            ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

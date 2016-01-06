@@ -26,7 +26,7 @@ namespace Admin.Controllers
         [HttpPost]
         [Route("api/restaurant/{id}/update-menu")]
         [Authorize]
-        public async Task<IHttpActionResult> UpdateMenu([FromUri] Guid id, [FromBody] UpdateMenuVieModel model)
+        public async Task<IHttpActionResult> UpdateMenu([FromUri] Guid id, [FromBody] UpdateMenuViewModel model)
         {
             await _commandDispatcher.DispatchAsync(new UpdateMenuCommand() {Id = id, Menus = model.menus});
             return Ok();
@@ -35,9 +35,18 @@ namespace Admin.Controllers
         [HttpPost]
         [Route("api/restaurant/{id}/update-suburbs")]
         [Authorize]
-        public async Task<IHttpActionResult> UpdateSuburbs([FromUri] Guid id, [FromBody] UpdateSuburbVieModel model)
+        public async Task<IHttpActionResult> UpdateSuburbs([FromUri] Guid id, [FromBody] UpdateSuburbViewModel model)
         {
             await _commandDispatcher.DispatchAsync(new UpdateSuburbCommand() { Id = id, Suburbs = model.suburbs });
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/restaurant/{id}/update-delivery-hours")]
+        [Authorize]
+        public async Task<IHttpActionResult> UpdateDeliveryHours([FromUri] Guid id, [FromBody] UpdateDeliveryHoursViewModel model)
+        {
+            await _commandDispatcher.DispatchAsync(new UpdateDeliveryHoursCommand() { Id = id, DeliveryHours = model.deliveryHours });
             return Ok();
         }
 
@@ -52,14 +61,19 @@ namespace Admin.Controllers
 
 
 
-        public class UpdateMenuVieModel
+        public class UpdateMenuViewModel
         {
             public List<Menu> menus { get; set; }
         }
 
-        public class UpdateSuburbVieModel
+        public class UpdateSuburbViewModel
         {
             public List<DeliverySuburb> suburbs { get; set; }
+        }
+
+        public class UpdateDeliveryHoursViewModel
+        {
+            public List<DeliveryHours> deliveryHours { get; set; }
         }
     }
 }

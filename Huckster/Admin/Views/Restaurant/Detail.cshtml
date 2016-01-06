@@ -61,7 +61,7 @@
 
     <div>
         <h4>Delivery Times</h4>
-
+        @Html.ActionLink("Edit Delivery Times", "EditDeliveryTimes", new { id = Model.Restaurant.Id })
         @foreach (var deliveryTime in Model.DeliveryHours)
         {
             <div>

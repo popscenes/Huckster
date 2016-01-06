@@ -1,4 +1,6 @@
-﻿@model System.Collections.Generic.List<Domain.Restaurant.DeliveryHours>
+﻿@using Domain.Restaurant
+@using Newtonsoft.Json
+@model System.Collections.Generic.List<Domain.Restaurant.DeliveryHours>
 
 @{
     ViewBag.Title = "title";
@@ -7,3 +9,46 @@
 }
 
 <h2>Delivery Hours</h2>
+
+<h2>Delivery Suburbs</h2>
+<div class="container" ng-app="hucksterAdminApp">
+    @{
+        var menuJSON = JsonConvert.SerializeObject(Model);
+    }
+    <div ng-controller="deliveryHoursEditController">
+
+
+        <input id="deliveryTimesJSON" type="hidden" value="@menuJSON"/>
+        <input id="restaurantId" type="hidden" value="@ViewBag.RestaurantId"/>
+
+        <ul class="list-group">
+            <li ng-repeat="deliveryTime in deliveryHours" class="list-group-item">
+                <select ng-model="deliveryTime.ServiceType" convert-to-number>
+                    @foreach (ServiceType serviceType in Enum.GetValues(typeof (ServiceType)))
+                    {
+                        var intValue = (int) serviceType;
+                        <option value="@intValue">@serviceType.ToString()</option>
+                    }
+                </select>
+                <select ng-model="deliveryTime.DayOfWeek" convert-to-number>
+                    @foreach (DayOfWeek dayofWeek in Enum.GetValues(typeof (DayOfWeek)))
+                    {
+                        var intValue = (int) dayofWeek;
+                        <option value="@intValue">@dayofWeek.ToString()</option>
+                    }
+                </select>
+                <uib-timepicker ng-model="deliveryTime.UnformattedOpenTime" ng-init="InitUnformattedOpenTime(deliveryTime, deliveryTime.OpenTime)" ng-change="updateOpenTime(deliveryTime, deliveryTime.UnformattedOpenTime)" show-meridian="true"></uib-timepicker>
+
+                <uib-timepicker ng-model="deliveryTime.UnformattedCloseTime" ng-init="InitUnformattedCloseTime(deliveryTime, deliveryTime.CloseTime)" ng-change="updateCloseTime(deliveryTime, deliveryTime.UnformattedCloseTime)" show-meridian="true"></uib-timepicker>
+                
+
+                {{deliveryTime.TimeZoneId}}
+
+                <button class="btn btn-danger" ng-click="removeDeliveryHours($index);">Remove Delivery Hours</button>
+
+            </li>
+        </ul>
+        <button class="btn btn-success" ng-click="addDeliveryHours();">Add Delivery Hours</button>
+        <button class="btn btn-success" ng-click="updateDeliveryHours();">Update Delivery Hours</button>
+    </div>
+</div>

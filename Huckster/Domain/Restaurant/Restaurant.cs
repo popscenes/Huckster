@@ -44,7 +44,7 @@ namespace Domain.Restaurant
     }
     public enum ServiceType
     {
-        Breakfast,
+        Breakfast = 0,
         Lunch,
         Dinner
     }

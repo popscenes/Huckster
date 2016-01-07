@@ -31,7 +31,9 @@
         };
 
         $scope.addMenu = function() {
-            $scope.menus.push({ Title: "", Description: "", Order: "", Id: "", ParentAggregateId: $scope.restaurantId, MenuItems: [] });
+            var newMenu = { Title: "New Menu", Description: "", Order: "", Id: "", ParentAggregateId: $scope.restaurantId, MenuItems: [] }
+            $scope.menus.push(newMenu);
+            $scope.currentMenu = newMenu;
         }
 
 

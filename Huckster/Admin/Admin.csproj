@@ -343,6 +343,9 @@
     <Content Include="Views\Restaurant\EditTileImage.cshtml" />
     <Content Include="Views\Restaurant\EditSuburbs.cshtml" />
     <Content Include="Views\Restaurant\EditDeliveryTimes.cshtml" />
+    <Content Include="Views\Restaurant\EditAddress.cshtml" />
+    <Content Include="Views\Restaurant\EditDetails.cshtml" />
+    <Content Include="Views\Restaurant\NewRestaurant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

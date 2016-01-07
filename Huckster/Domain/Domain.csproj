@@ -92,8 +92,12 @@
     <Compile Include="Order\Queries\OrderQueryHelper.cs" />
     <Compile Include="Payment\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurant\Commands\AddRestaurantAddressCommand.cs" />
+    <Compile Include="Restaurant\Commands\NewRestaurantCommand.cs" />
     <Compile Include="Restaurant\Commands\UpdateDeliveryHoursCommand.cs" />
     <Compile Include="Restaurant\Commands\UpdateMenuCommand.cs" />
+    <Compile Include="Restaurant\Commands\UpdateRestaurantAddressCommand.cs" />
+    <Compile Include="Restaurant\Commands\UpdateRestaurantDetailsCommand.cs" />
     <Compile Include="Restaurant\Commands\UpdateRestaurantTileImage.cs" />
     <Compile Include="Restaurant\Commands\UpdateSuburbCommand.cs" />
     <Compile Include="Restaurant\DeliveryHours.cs" />

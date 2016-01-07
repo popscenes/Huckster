@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Application.Azure;
+using Domain.Restaurant;
 using Domain.Restaurant.Commands;
 using Domain.Restaurant.Queries;
+using Domain.Shared;
 using infrastructure.CQRS;
 
 namespace Admin.Controllers
@@ -60,6 +62,48 @@ namespace Admin.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult> EditAddress(int id)
+        {
+            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
+            ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            return View(restaurant.RestauranAddress);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> EditDetails(int id)
+        {
+            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
+            ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            return View(restaurant.Restaurant);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditDetails(int id, Restaurant restaurant)
+        {
+
+            await _commandDispatcher.DispatchAsync(new UpdateRestaurantDetailsCommand() { Id = id, Restaurant = restaurant });
+            return RedirectToAction("Detail", new {id = id});
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditAddress(int id, Address restaurantAddress)
+        {
+            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
+            if (restaurant.RestauranAddress == null)
+            {
+                restaurantAddress.ParentAggregateId = restaurant.Restaurant.AggregateRootId;
+                await _commandDispatcher.DispatchAsync(new AddRestaurantAddressCommand() { Id = id, Address = restaurantAddress });
+            }
+            else
+            {
+                await _commandDispatcher.DispatchAsync(new UpdateRestaurantAddressCommand() { Id = id, Address = restaurantAddress });
+            }
+
+            return RedirectToAction("Detail", new { id = id });
+
+        }
+
+        [HttpGet]
         public async Task<ActionResult> EditSuburbs(int id)
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
@@ -95,6 +139,20 @@ namespace Admin.Controllers
             }
 
             return View(restaurant);
+        }
+
+        [HttpGet]
+        public ActionResult NewRestaurant()
+        {
+            return View(new Restaurant() {TimeZoneId = "AUS Eastern Standard Time" });
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> NewRestaurant(Restaurant restaurant)
+        {
+            await _commandDispatcher.DispatchAsync(new NewRestaurantCommand() { Restaurant = restaurant });
+            return View(new Restaurant());
         }
     }
 }

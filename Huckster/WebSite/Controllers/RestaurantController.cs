@@ -28,8 +28,9 @@ namespace WebSite.Controllers
             {
                 Id = id
             });
-
-            restaurantDetail.DeliveryHours = restaurantDetail.ValidDeliveryHours(DateTime.Now.DayOfWeek, DateTime.Now.AddMinutes(30).TimeOfDay);
+            var localDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
+                TimeZoneInfo.FindSystemTimeZoneById(restaurantDetail.Restaurant.TimeZoneId));
+            restaurantDetail.DeliveryHours = restaurantDetail.ValidDeliveryHours(localDateTime.DayOfWeek, localDateTime.AddMinutes(30).TimeOfDay);
             return View(restaurantDetail);
         }
     }

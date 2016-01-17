@@ -5,30 +5,75 @@
 /* =========================================*/
 	/** BODY **/
 	body {
-		font-family: 'globerlight', helvetica, arial, sans-serif;	
+		font-family: 'glober_regular', helvetica, arial, sans-serif;	
+		letter-spacing: 0.03em;
 	}
-	
+	a, a:visited {
+		color: #333;
+		text-decoration: none;
+	}
+	.mobile-lines {
+		width: 100%;
+		border-top: 1px solid #bbb;
+		position: absolute;
+		left: 0;
+		margin-top: 1em;	
+	}
+	input:focus {
+		outline: none;	
+	}
+	textarea:focus {
+		outline: none;
+	}	
+	/*** TYPOGRAPHY ***/
+	h1,h2,h3,h4,h5,h6 {
+		font-family: globerlight, helvetica, sans-serif;	
+	}
+	.bold {
+		font-family: glober_heavy, helvetica, sans-serif;
+		font-weight: bold;	
+	}
+	.checkout-h4 {
+		padding-bottom: 1em;	
+		text-align: center;
+	}
+	.checkout-h5 {
+		font-family: glober_regular, helvetica, sans-serif;	
+		text-align: center;
+	}
 	/*** HEADER ***/
 	header {
 		margin: 0 auto;
 		text-align: center;
 		padding: 20px 0 20px 0;
+		border-bottom: 1px solid #bbb;
 	}
-	
+	.header-width {
+		
+	}
 	.logo {
 		background-image: url(../images/svg/logo-01.svg);
 		background-size: cover;
 		height: 40px;
 		width: 40px;
-		margin: 0 auto;
+		margin: 0 auto; /*Comment this line when no longer needed logo centered. */
 		
 		-webkit-transition: all 0.8s ease;
 		transition: all 0.8s ease;
+	}
+	.logo.mobile {
+		display: inline-block;	
+	}
+	.logo-type.mobile {
+		display: inline-block;	
+		height: 40px;
+		background-position: 0px -2px;
 	}
 	/*** GALLERY ***/
 	.gallery {
 		background-image: url(../images/CCD_alleyway_01.2gray-edit.jpg);	
 		background-size: cover;
+		background-position: 50% 80%;
 		height: 160px;
 		
 		-webkit-transition: all 0.8s ease;
@@ -47,6 +92,33 @@
 	.main-content {
 		margin: 0 auto;	
 		padding: 20px 0 20px 0;
+		text-align: center;
+	}
+	
+	.main-content.search  {
+		padding: 0;	
+	}
+	.main-content-header {
+		position: relative;
+		color: #333;
+		background-color: #ddd;
+		width: 100%;
+		padding: 5px;
+		border-bottom: 1px solid #bbb;
+		margin-top: -20px;
+	}
+	.main-content-header.header-top-line {
+		border-top: 1px solid #bbb;	
+	}
+	
+	.main-content-header h2 {
+		text-transform: uppercase;	
+		font-size: 1.4em;
+	}
+	.out-content {
+		display: block;
+		position: relative;	
+		border-top: 1px solid #bbb;
 	}
 	
 	.logo-type {
@@ -60,6 +132,202 @@
 		transition: all 0.8s ease;
 		
 	}
+	
+	#results-list {
+		margin: 0;	
+		padding: 0;
+	}
+	
+	#results-list .list {
+		/*height: auto;*/
+		border-bottom: 1px solid #333;
+		list-style: none;
+		overflow: hidden;
+		
+	}
+	.list .list-image {
+		float: left;
+		width: 110px;
+		min-height: 110px;
+		height: 100%;
+		background: url(../images/image-placeholder.jpg);
+		background-size: contain;
+		margin-right: 1em;
+	}
+	
+	.list .list-title {
+		font-size: 1.4em;
+		padding-top: 0.2em;	
+		margin: 0;
+	}
+	
+	.list .list-city {
+		
+	}
+	
+	.list .list-dash {
+		display: inline-block;
+		margin: 0;
+		padding: 0 0.5em;
+		font-size: 1.2em;
+		
+	}
+	
+	.list .list-postcode {
+		
+	}
+	
+	.list .list-order {
+		display: block;
+		text-transform: uppercase;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		background-color: #fff;
+		border: 1px solid #333;
+		margin: 8px 0px;
+		padding: 3px 24px;
+	}
+	
+	/*** RESTAURANT LISTING ***/
+	.rest {
+		display: block;	
+	}
+	.rest-bio {
+		text-align: center;	
+		padding-bottom: 1em;
+		float: none;
+	}
+	
+	.rest-bio h2 {
+		margin-top: -20px;
+		margin-bottom: 0.5em;
+		text-transform: uppercase;
+		background-color: #ddd;
+		padding: 1em;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		border-bottom: 1px solid #bbb;
+	}
+	
+	.rest-bio img {
+		width: 90%;	
+		border: 1px solid #bbb;
+		padding: 1em;
+	}
+	
+	.rest-text {
+		width: 80%;
+		margin: 0 auto;	
+		padding-bottom: 1em;
+		padding-top: 93px;
+	}
+	
+	.out-content-inner {
+		text-align: center;	
+		margin: 1em 0;
+		padding: 1em 0;
+		float: none;
+		height: 100%;
+	}
+	
+	.out-header h2 {
+		margin: 0;
+		margin-bottom: 0.5em;
+	}
+	
+	.out-content-inner label {
+		display: block;	
+		font-weight: normal;
+		font-family: glober_heavy, helvetica, sans-serif;
+	}
+	
+	.out-content-inner select {
+		margin-bottom: 40px;	
+	}
+	
+	.out-content-inner .list-order {
+		
+		text-transform: uppercase;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		background-color: #fff;
+		border: 1px solid #333;
+		
+		padding: 3px 24px;
+	}
+	.list-description {
+		text-align: left;	
+		display: table-cell;
+		width: 80%;
+	}
+	.list-price {
+		display: table-cell;
+		width: 10%;
+		vertical-align: middle;
+	}
+	.list-add {
+		display: table-cell;
+		width: 10%;
+		vertical-align: middle;
+	}
+	.list-add button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		background: url(../images/svg/select-add-outline-graysprite.svg) no-repeat right;
+		width: 30px;
+		height: 30px;
+		border: none;
+		background-color: #fff;
+		background-size: 200%;
+		background-position: 0% 0%;
+		-webkit-transition: background-position 0.3s ease;
+		-moz-transition: background-position 0.3s ease;
+		transition: background-position 0.3s ease;	
+	}
+	.rest-menu .list-add button:hover {
+		background-position: 100% 0%;	
+		
+		-webkit-transition: background-position 0.3s ease;
+		-moz-transition: background-position 0.3s ease;
+		transition: background-position 0.3s ease;
+	}
+	.rest-menu {
+		text-align: center;
+		margin-top: 2em;
+	}
+	
+	.rest-menu h2 {
+		font-family: globerlight, helvetica, sans-serif;	
+		margin: 0;
+		margin-bottom: 0.5em;
+	}
+	
+	.rest-menu ul li {
+		list-style: none;
+		border-bottom: 1px solid #333;
+		margin-bottom: 1em;
+		padding: 1.5em 0;	
+		display: table;
+		width: 100%;
+		
+		-webkit-transition: background 0.3s ease;
+		transition: background 0.3s ease;
+	}
+	.rest-menu ul li:hover {
+		background: #ddd;	
+		-webkit-transition: background 0.3s ease;
+		transition: background 0.3s ease;
+	}
+	.rest ul {
+		list-style: none;
+		padding: 0;
+		width: 90%;	
+		margin: 0 auto;
+	}
+	
 	/*** FORM ***/
 	#huckstart {
 		width: 80%;	
@@ -74,7 +342,7 @@
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;	
 		border-radius: 5px;
-    	border: 1px solid #000;
+    	border: 1px solid #333;
 		text-align: center;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -95,7 +363,7 @@
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;	
 		border-radius: 5px;
-    	border: 1px solid #000;
+    	border: 1px solid #333;
 		text-align: center;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -109,14 +377,292 @@
 		
 	}
 	#huckstart button:hover {
-		background-color: #000;
+		background-color: #333;
 		color: #fff;
 		
 		-webkit-transition: all 0.5s ease;
 		transition: all 0.5s ease;	
 	}
+	/* SEARCH RESULTS */
+	#search-results {
+		height: 70px;
+		background: url(../images/CCD_alleyway_01gray-edit.jpg);
+		background-position: center;	
+		background-size: 100%;
+		text-align: center;
+	}
+	#search-results input {
+		width: 75%;
+		height: 2em;
+		position: relative;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		text-align: center;
+		margin-top: 16px;
+		border: none;
+	}
+	.list-order:hover {
+		background-color: #333;
+		color: #fff;
+		
+		-webkit-transition: all 0.5s ease;
+		transition: all 0.5s ease;	
+	}
+	#list-01 .list-image {
+		background: url(../images/_fonda/MENU-2.jpg);
+		background-size: cover;
+	}
+	.order-main table tr {
+		height: 4em;	
+	}
+	.order-item-hover {
+		display: none;	
+	}
+	.order-item-quantity {
+		width: 12%;	
+	}
+	.order-item-description {
+		width: 75%;
+			
+	}
+	/*** CHECKOUT PAGE ***/
+	.out-content-inner {
+		width: 80%;
+		margin: 0 auto;
+		padding: 0;
+	}
+	.out-header {
+		border-bottom: 1px solid #bbb;
+		background: #ddd;
+		padding-top: 1em;
+		margin: 0;
+		position: absolute;
+		width: 100%;
+		left: 0;
+		clear: both;
+		top: 0;
+	}
+	.order-main {
+		margin-top: 80px;
+		position: relative;
+		padding-bottom: 4em;
+	}
 	
+	.checkout-input {
+		height: 4em;	
+		width: 100%;
+		padding: 1em;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 25px;
+		display: block;
+		border: 1px solid #bbb;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		
+	}
+	.checkout-input:focus {
+		border: 1px solid #000;	
+	}
+	.small-input {
+		
+	}
+	.middle-input {
+		
+	}
+	.large-input {
+		
+	}
+	.end-margin {
+		margin: 0;
+	}
+	.checkout-input.end-margin {
+		margin-left:0;	
+		margin-top: 25px;
+	}
+	.delivery-instructions {
+		width: 80%;
+		height: 10em;
+		padding: 1em;
+		margin-top: 2em;
+		border: 1px solid #bbb;
+		resize: none;	
+		
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+	.delivery-instructions:focus {
+		border: 1px solid #000;	
+	}
+	.checkout-continue-btn {
+		color: #333;
+		text-transform: uppercase;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		background-color: #fff;
+		border: 1px solid #333;
+		padding: 3px 24px;
+		clear: both;
+		height: 3em;
+   		margin-top: 2em;
+		
+		-moz-transition: all 1s ease;	
+		-webkit-transition: all 1s ease;	
+		transition: all 1s ease;	
+	}
+	.checkout-continue-btn:hover {
+		background-color: #333;
+		color: #fff;
+		
+		-moz-transition: all 1s ease;	
+		-webkit-transition: all 1s ease;	
+		transition: all 1s ease;	
+	}
+	.checkout-continue-btn {
+		outline: none;	
+	}
+	.form-section {
+		border-top: 1px solid #bbb;	
+	}
+	.select-order {
+		border: 1px solid #bbb;
+		font-size: 1em;
+		background-color: #fff;
+		background: url(../images/svg/select-arrow-gray.svg) no-repeat right;
+		min-width: 140px;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		padding: 5px 50px 5px 5px;
+		margin: 0 auto;
+		display: block;
+		margin-bottom: 2em;
+	}
+	.select-order:focus {
+		outline: none;	
+	}
+	.checkout-btn {
+		height: 100px;
+		width: 200px;
+		border: 1px solid #bbb;	
+		display: block;	
+		text-align: center;
+		padding: 1em;
+		margin: 0 auto;
+		margin-bottom: 2em;
+	}
+	.checkout-btn:hover {
+		border: 1px solid #333;
+		cursor: pointer;
+		
+		-moz-transition: border 0.5s ease;	
+		-webkit-transition: border 0.5s ease;	
+		transition: border 0.5s ease;	
+	}
 	
+	.checkout-btn i {
+		font-size: 2em;
+		display: block;	
+	}
+	.checkout-btn p {
+		margin-top: 1em;	
+	}
+	.checkout-btn.end-margin i {
+		float: left;
+		margin-left: 15px;	
+	}
+	.section-line {
+		margin-top: 2em;
+		border-top: 1px solid #bbb;	
+	}
+	#step-one {
+		padding-bottom: 2em;
+	}
+	#step-two {
+		
+		padding-bottom: 2em;
+		height: auto;
+		max-height: 9999px;
+	}
+	#step-three {
+		
+		padding-bottom: 2em;
+		height: auto;
+		max-height: 9999px;
+	}
+	.unstep {
+		display: none;
+		max-height: 0px;	
+	}
+	.order-item-price {
+		position: relative;	
+	}
+	.order-item-delete {
+		width: 20px;
+		position: absolute;
+		top: 18px;
+		right: 8px;	
+		display: none;
+	}
+	tfoot tr td:first-child {
+		text-align: left;	
+	}
+	.order-main table tfoot tr:last-child {
+		font-family: glober_heavy, helvetica, sans-serif;
+		text-transform: uppercase;	
+	}
+	.order-main table tfoot {
+		border-top: 1px solid #333;
+	}
+	.order-main table tfoot .dfee {
+		color: #999;
+	}
+	.checkout-form a {
+	
+	}
+	.checkout-form a:hover {
+		color: #000000;
+	}
+	.form-row {
+		position: relative;	
+		clear: both;
+	}
+	.form-column {
+		position: relative;	
+		float: none;
+	}
+	.default-length {
+		width: 80%;	
+		margin: 0 auto;
+	}
+	.small-length {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	.middle-length {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	.large-length {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	.error {
+		display: block;
+		clear: both;
+		bottom: 0px;
+		background-color: #FF3333;
+		color: #ffffff;
+		padding: 5px;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border: 1px solid #C30E0E;
+		border-top: none;
+	}
+	.input-error {
+		border: 1px solid #C30E0E;
+	}
 /* == TABLET DEVICES == (750px and ABOVE) ==*/
 @media all and (min-width: 751px) and (max-width: 960px) {
 	
@@ -124,7 +670,7 @@
 	header {
 		margin: 0 auto;
 		text-align: center;
-		padding: 30px 0 30px 0;
+		padding: 20px 0 20px 0;
 	}
 	
 	.logo {
@@ -138,6 +684,19 @@
 		transition: all 0.8s ease;
 	}
 	
+	.logo.mobile {
+		display: block;	
+		
+	}
+	
+	.logo-type.mobile {
+		display: block;	
+		width: 85px;
+		background-size: contain;
+		background-position: center;
+		height: 35px;
+		
+	}
 	/*** GALLERY ***/
 	.gallery {
 		/*background-image: url(../images/CCD_alleyway_01gray-edit.jpg);	*/
@@ -186,33 +745,189 @@
 		transition: width 0.8s ease;
 	}
 	
+	#search-results {
+		height: 100px;	
+	}
+	
+	#search-results input {
+		width: 65%;
+		height: 2em;
+		margin-top: 26px;
+		font-size: 1.4em;
+	}
+
+	.list .list-image {
+		width: 140px;
+		min-height: 140px;	
+	}
+	
+	.list .list-title {
+		font-size: 1.4em;
+		padding-top: 1.6em;	
+	}
+	
+	.list .list-order {
+		float: right;
+		margin-right: 2em;	
+		margin-top: -25px;
+	}
+	
+	/*** RESTAURANT LISTINGS ***/
+	.out-content-inner {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	
+	.rest-menu {
+		margin-top: 2em;
+	}
+	
+	.rest ul {
+		width: 80%;
+		margin: 0 auto;
+		padding: 0;	
+	}
+	.list-desecription {
+		text-align: left;	
+	}
+	.rest-bio img {
+		width: 80%;	
+	}
+	/*** CHEKOUT PAGE ***/
+	
+	.flex-row {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	.small-input {
+		
+	}
+	.middle-input {
+		
+	}
+	.middle-length {
+		width: 49%;
+		display: block;
+		float: left;
+	}
+	.large-input {
+		
+	}
+	.large-length {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	.end-margin {
+		margin-left: 2%;
+	}
+	.checkout-input.end-margin {
+		margin-left:0;	
+		margin-top: 25px;
+	}
+	.checkout-btn {
+		display: inline-block;
+	}
+	.select-order {
+		display: inline-block;
+		margin-right: 2%;	
+	}
+	.order-main table {
+		width: 100%;	
+	}
+	
 }
 /* == DESKTOP DEVICES == (960px and ABOVE) ==*/
 @media all and (min-width: 960px) {
-	
-	/*** HEADER ***/
-	header {
-		margin: 0 auto;
-		text-align: center;
-		padding: 30px 0 30px 0;
+	/*** CONTENT WIDTHS***/
+	.main-bar {
+		position: fixed;
+		z-index: 999;
+		background: #fff;	
 	}
 	
+	.main-content {
+		margin: 0;
+		width: 75%;
+		padding: 25px;
+		float: left;
+		text-align: left;
+		
+	}
+	.hckstr-modal {
+		margin: 0;
+		float: left;
+	}
+	.main-content-info {
+		padding: 25px;	
+	}
+	.out-content {
+		display: block;
+		width: 25%;
+		position: fixed;
+		padding: 0;
+		margin: 0;
+		right: 0;
+		border-left: 1px solid #bbb;
+		height: 100%;	
+		border-top: none;
+	}
+	.container {
+		width: 100%;	
+	}
+	.main-bar-main {
+		padding: 0;
+		margin-top: 111px;
+	}
+	.main-content-header {
+		position: relative;
+		color: #333;
+		background-color: #ddd;
+		width: 100%;
+		padding: 25px;
+		border-bottom: 1px solid #bbb;
+		margin-top: 0px;
+	}
+	.main-content-header h2 {
+		text-transform: uppercase;	
+	}
+	/*** HEADER ***/
+	header {
+		margin: 0;
+		text-align: left;
+		border-bottom: 1px solid #bbb;
+		
+	}
+	.header-width {
+		
+	}
 	.logo {
 		/*background-image: url(../images/logo_109px.jpg);*/
 		background-size: cover;
-		height: 100px;
-		width: 100px;
-		margin: 0 auto;
+		height: 60px;
+		width: 60px;
+		margin: 0;
 		
 		-webkit-transition: all 0.8s ease;
 		transition: all 0.8s ease;
 	}
-	
+	.logo.mobile {
+		display: block;	
+		height: 140px;
+		width: 140px;
+	}
+	.logo-type.mobile {
+		display: block;	
+		width: 160px;
+		height: 55px;
+	}
+	.mobile-lines {
+		display: none;	
+	}
 	/*** GALLERY ***/
 	.gallery {
 		/*background-image: url(../images/CCD_alleyway_01gray-edit.jpg);	*/
 		background-size: cover;
-		background-position: center;
+		
 		height: 460px;
 		
 		-webkit-transition: all 0.8s ease;
@@ -235,8 +950,9 @@
 		
 		-webkit-transition: all 0.8s ease;
 		transition: all 0.8s ease;
-		
 	}
+	
+	
 	
 	/*** FORM ***/
 	
@@ -266,4 +982,438 @@
 		transition: width 0.8s ease;
 	}
 	
+	#search-results {
+		height: 148px;	
+	}
+	
+	#search-results input {
+		font-size: 1.8em;
+		width: 45%;
+		margin-top: 45px;	
+	}
+	
+	#results-list {
+		width: 80%;
+		margin: 0 auto;
+		padding: 3em;
+	}
+	
+	#results-list .list:first-child {
+		border-top: 1px solid #333;	
+	}
+	
+	#results-list .list {
+		border-bottom: 1px solid #333;
+		border-left: 1px solid #333;
+		border-right: 1px solid #333;	
+	}
+	
+	.list .list-image {
+		width: 150px;
+		height: 150px;	
+	}
+
+	.list .list-title {
+		font-size: 1.6em;
+		padding-top: 1.6em;
+	}
+	
+	.list .list-order {
+		float: right;
+		margin-right: 2em;
+		margin-top: -25px;
+	}
+	
+	/*** RESTAURANTS LISTINGS ***/
+	
+	
+	.rest {
+		display: flex;	
+	}
+	.rest-bio {
+		text-align: left;
+		padding: 0;
+		position: relative;
+		width: 100%;
+	}
+	
+	.rest-info {
+		position: absolute;
+		width: 33%;
+		/*color: #fff;
+		background: rgba(0,0,0,0.85);*/
+		padding: 25px;
+		left: 0;
+		height: 100%;
+		border-right: 1px solid #bbb;
+		border-bottom: 1px solid #bbb;
+		overflow: hidden;
+	}
+	.rest-info h2 {
+		position: relative;
+		color: #333;
+		background-color: #ddd;
+		margin-top: -1em;
+		margin-left: -1em;
+		width: 130%;
+		padding: 1em;
+		border-bottom: 1px solid #bbb;
+	}
+	.rest-bio img {
+		width: 67.1%;	
+		margin-left: 33%;
+		border: none; /*clears styles from previous media query*/
+		border-bottom: 1px solid #bbb;
+		padding: 1em;
+	}
+	
+	.rest-text {
+		text-align: left;
+		margin: 0;	
+		width: 100%;
+		margin-top: 2em;
+		padding-top: 0;
+	}
+	.out-content-inner {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 0;
+		width: 100%;
+		
+	}
+	
+	.out-header {
+		padding: 25px;
+		color: #333;
+		height: 111px;
+		text-align: left;
+		background: #ddd;	
+		border-bottom: 1px solid #bbb;
+		margin-bottom: 25px;
+		position: relative;
+	}
+	.order-main {
+		padding: 25px;	
+		text-align: left;
+		margin-top: 0;
+	}
+	.order-main ul {
+		padding: 0;	
+	}
+	.order-main table {
+		margin-bottom: 40px;
+		border-collapse: collapse;
+	}
+	.order-main table tr {
+		list-style: none;
+		background: #fff;
+		height: 3em;
+	}
+	.order-main tr:nth-child(even) {
+		/*background: #ddd;*/
+	}
+	.order-main table tr td {
+		vertical-align: middle;
+		padding: 5px;
+		min-width: 40px;
+		position: relative;
+	}
+	.order-item-hover {
+		position: absolute;
+		background: url(../images/svg/quantity-bg-vert.svg) no-repeat;
+		background-size: contain;
+		width: 36px;
+		height: 44px;
+		display: none;
+		cursor: pointer;
+		
+		margin: auto;
+		top: 0; 
+		left: 0; 
+		bottom: 0; 
+		right: 0;
+		
+		left: -70px;
+
+	}
+	.order-item:hover div.order-item-hover {
+		display: block;	
+	}
+	.order-item-subtract {
+		font-size: 1.6em;
+		background: #ddd;
+		padding: -3px;
+		border-radius: 2px;
+		margin: 4px;
+		margin-top: 0;
+		display: block;
+		width: 16px;
+		text-align: center;
+		height: 16px;
+		line-height: 12px;
+		float: left;
+	}
+	.order-item-add {
+		font-size: 1.6em;
+		background: #ddd;
+		padding: -3px;
+		border-radius: 2px;
+		margin: 4px;
+		display: block;
+		width: 16px;
+		text-align: center;
+		height: 16px;
+		line-height: 12px;
+		float: left;
+		
+	}
+	.order-item-subtract:hover {
+		background: #333;
+		color: #fff;	
+	}
+	.order-item-add:hover {
+		background: #333;
+		color: #fff;	
+	}
+	.order-item-delete {
+		position: absolute;
+		color: #777;
+		margin: auto;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 25px;
+		height: 25px;
+		right: -40px;
+		line-height: 24px;
+		display: none;
+		font-size: 1.2em;
+	}
+	.order-item:hover .order-item-delete {
+		display: block;	
+	}
+	.order-item-delete:hover {
+		color: #FF0004;	
+	}
+	.order-item-quantity {
+		width: 40px;
+	}
+	.order-item-description {
+		width: 70%;
+	}
+	.order-item-price {
+	}
+	
+	.order-main table tfoot tr {
+		
+		color: #333;
+		height: 2em;
+	}
+	
+	.order-main .order-main-submit {
+		font-size: 1.2em;
+		background-color: #ddd;
+		color: #333;
+		outline: none;
+	}
+	.order-main .order-main-submit:hover {
+		background-color: #333;
+		color: #fff;
+		outline: none;	
+	}
+	.out-header h2 {
+		line-height: 61px;	
+		text-transform: uppercase;
+		margin: 0;
+	}
+	.rest-menu {
+		display: block;
+		margin: 0;
+		text-align: left;
+		padding: 1em;
+	}
+	.rest-menu li {
+		display: table-row;	
+	}
+	.rest-menu .list-description {
+		display: table-cell;
+		width: 75%;
+	}
+	.rest-menu .list-price {
+		display: table-cell;
+		width: 8%;
+	}
+	.rest-menu .list-quantity {
+		display: table-cell;
+		width: 8%;
+	}
+	.rest-menu .list-add {
+		display: table-cell;
+		width: 8%;
+		vertical-align: middle;
+	}
+	.rest-menu .list-add button {
+		
+	}
+	
+	.rest-menu .select-qty {
+		padding: 5px;
+		min-width: 61px;
+		font-size: 1em;
+	}
+	.rest ul {
+		width: 100%;
+		text-align: left;
+	}
+	.select-order {
+		border: 1px solid #bbb;
+		font-size: 1em;
+		background-color: #fff;
+		background: url(../images/svg/select-arrow-gray.svg) no-repeat right;
+		min-width: 140px;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		padding: 5px 50px 5px 5px;
+		margin-right: 0;
+	}
+	.select-order:focus {
+		outline: none;	
+	}
+	
+	/*** CHECKOUT PAGE ***/
+	.checkout-h4 {
+		text-align: left;
+	}
+	.checkout-h5 {
+		text-align: left;
+		
+	}
+	.main-content-header {
+		position: relative;
+		color: #333;
+		background-color: #ddd;
+		width: 100%;
+		padding: 25px;
+		border-bottom: 1px solid #bbb;
+		margin-top: -20px;
+	}
+	.main-content-header h2 {
+		text-transform: uppercase;	
+		font-size: 2em;
+	}
+	.main-content-info-row {
+		margin-bottom: 2em;	
+		clear: both;
+	}
+	.confirm-order {
+		height: 4em;
+		width: 45%;	
+	}
+	.form-row {
+		
+	}
+	.form-column {
+		float: left;	
+	}
+	.checkout-input {
+		height: 4em;	
+		width: 100%;
+		padding: 1em;
+		margin-top: 25px;
+		display: block;
+		float: left;
+		text-align: left;
+	}
+	.default-length {
+		margin: 0;	
+	}
+	.small-input {
+		
+	}
+	.small-length {
+		width: 8%;
+		margin: 0;
+		margin-left: 2%;	
+	}
+	.middle-input {
+		
+	}
+	.middle-length {
+		width: 44%;	
+		margin: 0;
+	}
+	.large-input {
+		
+	}
+	.large-length {
+		width: 90%;
+		margin: 0;	
+	}
+	
+	.end-margin {
+		margin-left: 2%;	
+	}
+	.checkout-input.end-margin {
+		margin-left: 0;
+		
+	}
+	.delivery-instructions {
+		width: 90%;
+		height: 10em;
+		padding: 1em;
+		margin-top: 2em;
+		border: 1px solid #bbb;
+		resize: none;	
+	}
+	.select-order {
+		display: inline-block;
+		margin: 0;	
+	}
+	.main-content-info-row-confirm-button {
+		width: 90%;
+	}
+	.checkout-continue-btn {
+		float: right;
+		height: 3em;
+		margin-top: 0;
+	}
+	.section-line {
+		margin-top: 2em;
+		border-top: 1px solid #bbb;	
+	}
+	.checkout-btn {
+		height: 100px;
+		width: 200px;
+		border: 1px solid #bbb;	
+		display: block;	
+		float: left;
+		text-align: center;
+		padding: 1em;
+	}
+	.checkout-btn:hover {
+		border: 1px solid #333;
+		cursor: pointer;
+		
+		-moz-transition: border 0.5s ease;	
+		-webkit-transition: border 0.5s ease;	
+		transition: border 0.5s ease;	
+	}
+	.checkout-btn i {
+		font-size: 2em;
+		display: block;	
+	}
+	.checkout-btn p {
+		margin-top: 1em;	
+	}
+	.checkout-btn.end-margin i {
+		float: left;
+		margin-left: 15px;	
+	}
+	.section-payment {
+		min-height: 500px;
+		margin-bottom: 4em;	
+	}
 }
+
+

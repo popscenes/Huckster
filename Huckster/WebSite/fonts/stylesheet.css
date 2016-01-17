@@ -3,6 +3,30 @@
 
 
 @font-face {
+    font-family: 'glober_heavy';
+    src: url('glober_heavy-webfont.eot');
+    src: url('glober_heavy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('glober_heavy-webfont.woff') format('woff'),
+         url('glober_heavy-webfont.ttf') format('truetype'),
+         url('glober_heavy-webfont.svg#globerheavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'glober_regular';
+    src: url('glober_regular-webfont.eot');
+    src: url('glober_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('glober_regular-webfont.woff') format('woff'),
+         url('glober_regular-webfont.ttf') format('truetype'),
+         url('glober_regular-webfont.svg#glober_regularregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
     font-family: 'globerlight';
     src: url('glober_light-webfont.eot');
     src: url('glober_light-webfont.eot?#iefix') format('embedded-opentype'),

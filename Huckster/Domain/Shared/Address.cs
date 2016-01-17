@@ -3,7 +3,7 @@ using infrastructure.Domain;
 
 namespace Domain.Shared
 {
-    public class Address: IValueObject
+    public class Address: IValueObject, IEquatable<Address>
     {
         public Address()
         {
@@ -22,6 +22,16 @@ namespace Domain.Shared
 
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        public bool Equals(Address other)
+        {
+            return (this.Number.ToLower().Equals(other.Number.ToLower())) &&
+                   (this.Street.ToLower().Equals(other.Street.ToLower())) &&
+                   (this.Suburb.ToLower().Equals(other.Suburb.ToLower())) &&
+                   (this.Postcode.ToLower().Equals(other.Postcode.ToLower())) &&
+                   (this.City.ToLower().Equals(other.City.ToLower())) &&
+                   (this.State.ToLower().Equals(other.State.ToLower()));
+        }
 
         public override string ToString()
         {

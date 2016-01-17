@@ -4,68 +4,142 @@
     ViewBag.Title = "Detail";
 }
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<header class="main-content main-bar">
+    <div class="container">
+        <a href="#">
+            <div class="logo"></div>
+        </a>
+
+        <div></div>
+    </div>
+</header>
 <div ng-app="hucksterApp">
-    <div class="container" ng-controller="OrderFormController">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>@Model.Restaurant.Name</h2>
+    <div ng-controller="OrderFormController">
+        <input id="restaurantId" type="hidden" value="@Model.Restaurant.AggregateRootId"/>
+        <section class="main-content main-bar-main">
+            <div class="row rest">
+                <div class="rest-bio">
 
-                <p>
-                    @Model.Restaurant.Description
-                </p>
+                    <div class="rest-info">
+                        <h2>@Model.Restaurant.Name</h2>
 
-                <img src="@Model.Restaurant.FullTileImageUrl" style="max-width: 80%" />
+                        <p class="rest-text">
+                            @Model.Restaurant.Description
+                        </p>
+                    </div>
+
+                    <img src="@Model.Restaurant.FullTileImageUrl" alt="@Model.Restaurant.Name">
+
+                </div>
+
+
             </div>
-            <div class="col-md-6" >
-                <h2>Order</h2>
-                <label>Delivery Time</label>
-                <select ng-model="order.DeliveryTime">
-                    @foreach (var deliverTime in Model.DeliveryHours)
-                    {
-                        <option value="@deliverTime.ToIsoString()">@deliverTime.ToTimeString()</option>
-                    }
-                </select>
 
-                <label>Delivery Suburb</label>
-                <select ng-model="order.DeliverySuburbId">
-                    @foreach (var suburb in Model.DeliverySuburbs)
-                    {
-                        <option value="@suburb.Id">@suburb.Suburb</option>
-                    }
-                </select>
-                <ul>
-                    <li ng-repeat="orderItem iClass1.csn OrderItems">
-                        {{orderItem.Name}} : {{orderItem.Quantity}} x ${{orderItem.Price}} - ${{orderItem.Price * orderItem.Quantity}}
-                    </li>
-                </ul>
-                <button ng-click="placeOrder()">Place Order</button>
-                
-            </div>
-        </div>
+            <div class="mobile-lines"></div>
 
-        <div class="row">
             @foreach (var menu in Model.RestaurantMenu)
             {
-                <div>
-                    @menu.Title
-                </div>
+                <div class="row rest rest-menu">
+                    <div>
+                        <h2>@menu.Title</h2>
+                    </div>
                     <p>
-                        @menu.Description
-                    </p>
-                    <ul>
-                        @foreach (var menuItem in menu.MenuItems)
-                        {
-                            <li ng-click="addmenuItem('@menuItem.Name', @menuItem.Price, 1)">
-                                <div>@menuItem.MenuGroup - @menuItem.Name </div>
-                                <p>
-                                    @menuItem.Description
-                                </p>
-                                $ @menuItem.Price
-                            </li>
-                        }
-                    </ul>
-            }
-        </div>
 
+                    </p>
+
+                    <form class="rest-menu-form">
+                        <ul>
+                            @foreach (var menuItem in menu.MenuItems)
+                            {
+                                <li ng-click="addmenuItem(@menuItem.Id, '@menuItem.Name', @menuItem.Price, 1)">
+                                    <div class="list-description">@menuItem.MenuGroup - @menuItem.Name </div>
+                                    <div class="list-price">$ @menuItem.Price</div>
+                                    <div class="list-add"><button></button></div>
+
+                                </li>
+                            }
+                        </ul>
+                    </form><!-- .rest-menu-form -->
+                </div>
+            }
+
+
+            =
+        </section><!-- end main-content -->
+        <section class="out-content">
+            <div class="col-md-6 out-content-inner">
+                <div class="out-header">
+                    <h2>Order</h2>
+                </div>
+                <div class="order-main">
+                    <label>Delivery Time</label>
+                    <select ng-model="order.DeliveryTime" class="select-order">
+                        @foreach (var deliverTime in Model.DeliveryHours)
+                        {
+                            <option value="@deliverTime.ToIsoString()">@deliverTime.ToTimeString()</option>
+                        }
+                    </select>
+
+                    <label>Delivery Suburb</label>
+                    <select class="select-order" ng-model="order.DeliverySuburbId">
+                        @foreach (var suburb in Model.DeliverySuburbs)
+                        {
+                            <option value="@suburb.Id">@suburb.Suburb</option>
+                        }
+                    </select>
+                    <label>Your Order</label>
+                    <table>
+
+                        <tbody>
+
+                            <tr class="order-item" ng-repeat="orderItem in OrderItems">
+
+
+                                <td class="order-item-quantity">
+                                    {{orderItem.Quantity}} x
+                                    <div class="order-item-hover">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                    </div>
+                                </td>
+                                <td class="order-item-description">{{orderItem.Name}}</td>
+                                <td class="order-item-price">
+                                    ${{orderItem.Price * orderItem.Quantity}}
+                                    <div class="order-item-delete" ng-click="deleteMenuItem($index);">delete<i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">Subtotal</td>
+                                <td>${{subTotal()}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Minimum Order</td>
+                                <td>${{minimumOrder}}</td>
+                            </tr>
+                            <tr class="dfee">
+                                <td colspan="2">Delivery Fee</td>
+                                <td>${{deliveryFee}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td>${{total()}}</td>
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+                    <button class="list-order order-main-submit" ng-click="placeOrder()">Place Order</button>
+
+                </div><!-- order-main -->
+
+            </div><!-- .rest-order -->
+
+        </section>
     </div>
 </div>

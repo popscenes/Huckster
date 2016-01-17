@@ -25,7 +25,8 @@ namespace WebSite
                .Include(
                "~/Scripts/ngApp/hucksterApp.js",
                "~/Scripts/ngApp/huckster.orderForm.js",
-               "~/Scripts/ngApp/huckster.orderFinalise.js"
+               "~/Scripts/ngApp/huckster.orderFinalise.js",
+               "~/Scripts/ngApp/huckster.checkout.js"
                ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -38,8 +39,8 @@ namespace WebSite
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/normalize.css",
                       "~/Content/bootstrap.css",
+                      "~/Content/normalize.css",
                       "~/Content/style.css",
                       "~/fonts/stylesheet.css"));
         }

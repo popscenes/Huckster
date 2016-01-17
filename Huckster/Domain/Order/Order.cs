@@ -35,7 +35,7 @@ namespace Domain.Order
         
         public Guid AggregateRootId { get; set; }
         public String Status { get; set; }
-        public Address Address { get; set; }
+        //public Address Address { get; set; }
         public List<OrderItem> OrderItems { get; set; }
     }
 
@@ -54,7 +54,7 @@ namespace Domain.Order
         public PersonMapper()
         {
             Table("Order");
-            Map(m => m.Address).Ignore();
+            //Map(m => m.Address).Ignore();
             Map(m => m.OrderItems).Ignore();
             AutoMap();
         }

@@ -1,0 +1,347 @@
+﻿@using Newtonsoft.Json
+@model Domain.Order.Queries.Models.OrderDetailsViewModel
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<header class="main-content main-bar">
+    <div class="container">
+        <a href="#">
+            <div class="logo"></div>
+        </a>
+
+        <div></div>
+    </div>
+</header>
+
+<div ng-app="hucksterApp">
+    <div ng-controller="CheckoutController">
+        @{
+            var orderJSON = JsonConvert.SerializeObject(Model);
+        }
+        <input id="orderData" type="hidden" value="@orderJSON"/>
+        <section class="main-content main-bar-main" id="step-one">
+
+            <div class="main-content-header">
+                <h2>Confirm Details</h2>
+            </div>
+
+            <div class="main-content-info">
+
+                <form class="checkout-form" id="one" method="post" action="/checkout" name="checkout">
+                    <!-- replace action with script page that handles submit -->
+
+                    <h4 class="bold checkout-h4">1. Delivery Details</h4>
+
+                    @*<div class="main-content-info-row">
+
+                            <h5 class="checkout-h5">Delivery Time</h5>
+
+                            <select class="select-order confirm-order" ng-model="order.DeliveryTime" name="date">
+                                <option value="2015-11-02T18:30:00.0000000">Tue 1 Dec</option>
+                                <option value="2015-11-02T19:00:00.0000000">Wed 2 Dec</option>
+                                <option value="2015-11-02T19:30:00.0000000">Thu 3 Dec</option>
+                                <option value="2015-11-02T20:00:00.0000000">Fri 4 Dec</option>
+                                <option value="2015-11-02T20:30:00.0000000">Sat 5 Dec</option>
+                            </select>
+
+                            <select class="select-order confirm-order" name="time">
+                                <option value="2015-11-02T18:30:00.0000000">06:30 PM</option>
+                                <option value="2015-11-02T19:00:00.0000000">07:00 PM</option>
+                                <option value="2015-11-02T19:30:00.0000000">07:30 PM</option>
+                                <option value="2015-11-02T20:00:00.0000000">08:00 PM</option>
+                                <option value="2015-11-02T20:30:00.0000000">08:30 PM</option>
+                            </select>
+
+                        </div>*@<!-- .main-content-info-row -->
+
+                    <div class="main-content-info-row">
+
+                        <h5 class="checkout-h5">Delivery Address</h5>
+                        <div class="form-row">
+                            <div class="form-column default-length">
+                                <input class="checkout-input" type="text" placeholder="Your address..." required name="address" id="address" ng-model="deliveryDetails.Street" />
+                            </div>
+
+                            <div class="form-column small-length">
+                                <input class="checkout-input" type="text" placeholder="No." name="street-number" id="street-number" ng-model="deliveryDetails.Number" />
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-row flex-row">
+                            <div class="form-column middle-length">
+                                <input readonly="readonly" class="checkout-input" type="text" placeholder="State" required name="state" id="state" ng-model="deliveryDetails.State"/>
+                            </div>
+
+                            <div class="form-column middle-length end-margin">
+                                <input readonly="readonly" class="checkout-input" type="text" placeholder="suburb" name="suburb" required id="suburb" ng-model="deliveryDetails.Suburb"/>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    <input type="hidden" ng-model="deliveryDetails.Postcode"/>
+
+                        @*<div class="form-row large-length">
+                                <input class="checkout-input" type="text" placeholder="(Optional) Company" name="company" id="company" />
+                            </div>
+
+                            <div class="form-row">
+                                <textarea class="delivery-instructions" placeholder="(Optional) Delivery Instructions" name="delivery-instructions" id="delivery-instructions"></textarea>
+                            </div>*@
+
+                    </div><!-- .main-content-info-row -->
+
+                    <div class="main-content-info-row">
+
+                        <div class="main-content-info-row-confirm-button">
+
+                            <button class="checkout-continue-btn" id="chkBtnOne" type="button" ng-click="setDeliveryDetails();">Continue</button>
+
+                        </div>
+
+                    </div><!-- .main-content-info-row -->
+
+                </form><!-- #one -->
+
+            </div><!-- .main-content-info -->
+
+        </section><!-- .main-content -->
+
+        <section class="main-content main-bar-main section-line" id="step-two">
+
+            <div class="main-content-info">
+
+                <form class="checkout-form" id="two" method="post" action="/checkout" name="checkoutTwo">
+                    <!-- replace action with script page that handles submit -->
+
+                    <h4 class="bold checkout-h4">2. Personal Details</h4>
+
+                    <div class="main-content-info-row">
+
+                        <div class="form-row flex-row">
+
+                            <div class="form-column middle-length">
+                                <input class="checkout-input" type="text" placeholder="First Name" name="first-name" required id="first-name" ng-model="personalDetails.FirstName" />
+                            </div>
+
+                            <div class="form-column middle-length end-margin">
+                                <input class="checkout-input" type="text" placeholder="Last Name" name="last-name" required id="last-name" ng-model="personalDetails.LastName" />
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </div>
+
+                        <div class="form-row flex-row">
+
+                            <div class="form-column middle-length">
+                                <input class="checkout-input" type="email" placeholder="Email" name="email" id="email" ng-model="personalDetails.Email" required />
+                            </div>
+
+                            <div class="form-column middle-length end-margin">
+                                <input class="checkout-input" type="text" placeholder="Mobile Number" name="mobile-name" id="mobile-name" ng-model="personalDetails.Mobile" required />
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </div>
+
+
+                    </div><!-- .main-content-info-row -->
+
+                    <div class="main-content-info-row">
+
+                        <div class="main-content-info-row-confirm-button">
+
+                            <button class="checkout-continue-btn" id="chkBtnTwo" type="button" ng-click="setPersonalDetails();">Continue</button>
+
+                        </div>
+
+                    </div><!-- .main-content-info-row -->
+
+                </form><!-- two -->
+
+
+
+
+
+            </div><!-- .main-content-info -->
+
+        </section><!-- .main-content -->
+
+        <section class="main-content main-bar-main section-payment" id="step-three">
+
+            <div class="main-content-header header-top-line">
+                <h2>Payment Details</h2>
+            </div>
+
+            <div class="main-content-info">
+                <form class="checkout-form" method="post" action="" name="register">
+                    <!-- replace action with script page that handles submit -->
+
+                    <h4 class="bold checkout-h4">3. Payment</h4>
+
+                    <div class="main-content-info-row">
+                        <a href="#">
+                            <div class="checkout-btn">
+                                <i class="fa fa-paypal"></i>
+                                <p>Paypal</p>
+                            </div>
+                        </a>
+
+                        <a href="#">
+                            <div class="checkout-btn end-margin">
+                                <i class="fa fa-cc-amex"></i>
+                                <i class="fa fa-cc-mastercard"></i>
+                                <i class="fa fa-cc-visa"></i>
+                                <div class="clearfix"></div>
+                                <p>Credit Card</p>
+                            </div>
+                        </a>
+
+
+                        <div class="main-content-info-row">
+                            <div class="form-column large-length">
+                                <input class="checkout-input" type="text" placeholder="Name on card" name="card-name" required id="card-name" />
+                            </div>
+                        </div>
+
+                        <div class="main-content-info-row">
+                            <div class="form-column large-length">
+                                <input class="checkout-input large-input" type="text" placeholder="Card Number" name="card-number" required id="card-number" />
+                            </div>
+                        </div>
+
+                        <div class="form-row flex-row">
+
+                            <div class="form-column middle-length">
+                                <input class="checkout-input" type="text" placeholder="MM / YY" name="card-expiry" required id="card-expiry" />
+                            </div>
+
+                            <div class="form-column middle-length end-margin">
+                                <input class="checkout-input" type="text" placeholder="CVC" name="card-cvc" required id="card-cvc" />
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                    </div><!-- .main-content-info-row -->
+                </form>
+            </div>
+
+        </section><!-- .main-content -->
+
+        <section class="out-content">
+
+            <div class="out-content-inner">
+                <div class="out-header">
+                    <h2>Order</h2>
+                </div>
+                <div class="order-main">
+
+                    <label>Your Order</label>
+                    <table>
+
+                        <tbody>
+
+                            <tr ng-repeat="orderItem in OrderItems">
+
+
+                                <td class="order-item-quantity">
+                                    2 x
+                                    <div class="order-item-hover">
+                                        <span class="order-item-add">+</span>
+                                        <span class="order-item-subtract">-</span>
+                                    </div>
+                                </td>
+                                <td class="order-item-description">Small Bites - Duck relish, watermelon</td>
+                                <td class="order-item-price">
+                                    $12
+                                    <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="order-item-quantity">
+                                    1 x
+                                    <div class="order-item-hover">
+                                        <span class="order-item-add">+</span>
+                                        <span class="order-item-subtract">-</span>
+                                    </div>
+                                </td>
+                                <td class="order-item-description">Small Bites - Betel leaf, smashed prawn, coconut, chilli, lime leaf</td>
+                                <td class="order-item-price">
+                                    $7
+                                    <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="order-item-quantity">
+                                    1 x
+                                    <div class="order-item-hover">
+                                        <span class="order-item-add">+</span>
+                                        <span class="order-item-subtract">-</span>
+                                    </div>
+                                </td>
+                                <td class="order-item-description">Large Plates - Local fried sea bream, yellow curry, capsicum, gailan</td>
+                                <td class="order-item-price">
+                                    $36
+                                    <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="order-item-quantity">
+                                    1 x
+                                    <div class="order-item-hover">
+                                        <span class="order-item-add">+</span>
+                                        <span class="order-item-subtract">-</span>
+                                    </div>
+                                </td>
+                                <td class="order-item-description">Large Plates - Steamed Jasmine Rice</td>
+                                <td class="order-item-price">
+                                    $2
+                                    <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">Subtotal</td>
+                                <td>$57</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Minimum Order</td>
+                                <td>$20</td>
+                            </tr>
+                            <tr class="dfee">
+                                <td colspan="2">Delivery Fee</td>
+                                <td>$5</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td>$62</td>
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+                </div><!-- .order-main -->
+            </div>
+        </section><!-- end out-content -->
+    </div>
+</div>

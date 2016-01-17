@@ -8,10 +8,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Application.Payment;
+using Domain.Customer;
+using Domain.Customer.Commands;
+using Domain.Customer.Queries;
 using Domain.Order;
 using Domain.Order.Commands;
 using Domain.Order.Queries;
+using Domain.Shared;
 using infrastructure.CQRS;
+using Omu.ValueInjecter;
 
 namespace WebSite.Controllers
 {
@@ -29,6 +34,74 @@ namespace WebSite.Controllers
             _stripeService = stripeService;
             _paypalService = paypalService;
         }
+
+        
+        [HttpPost]
+        [Route("api/Order/DeliveryDetails")]
+        public async Task<IHttpActionResult> DeliveryDetails(DeliveryDetailsVieModel viewModel)
+        {
+            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = viewModel.OrderId });
+            var address = order.DeliverAddress;
+            if (address == null)
+            {
+                address = new Address();
+            }
+            address.InjectFrom(viewModel);
+            address.City = "Melbourne";
+            await _commandDispatcher.DispatchAsync(new AddOrderAddressCommand()
+            {
+                OrderId = order.Order.Id,
+                Address = address
+            });
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/Order/PersonalDetails")]
+        public async Task<IHttpActionResult> PersonalDetails(PersonalDetailsVieModel viewModel)
+        {
+            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = viewModel.OrderId });
+            var customer = await _queryChannel.QueryAsync(new GetCustomerByEmailorMobile()
+            {
+                Email = viewModel.Email,
+                Mobile = viewModel.Mobile,
+            });
+            if (customer == null)
+            {
+                var newCustomer = new Customer()
+                {
+                    AggregateRootId = Guid.NewGuid(),
+                    Email = viewModel.Email,
+                    Mobile = viewModel.Mobile,
+                    Name = viewModel.FirstName + " " + viewModel.LastName
+                };
+                await _commandDispatcher.DispatchAsync(new CreateCustomerCommand()
+                {
+                    NewCustomer = newCustomer,
+                    Address = order.DeliverAddress
+                });
+                customer = newCustomer;
+            }
+            else
+            {
+                await _commandDispatcher.DispatchAsync(new UpdateCustomerAddress()
+                {
+                    Customer = customer,
+                    Address = order.DeliverAddress
+                });
+            }
+
+            await _commandDispatcher.DispatchAsync(new UpdateOrderCustomer()
+            {
+                Customer = customer,
+                Order = order.Order
+            });
+
+
+            return Ok();
+        }
+
+        
 
         [HttpPost]
         [Route("api/Order/PlaceOrder")]
@@ -71,6 +144,26 @@ namespace WebSite.Controllers
     {
         public Order order { get; set; }
         public List<OrderItem> orderItems { get; set; }
+    }
+
+
+    public class DeliveryDetailsVieModel
+    {
+        public Guid OrderId { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string Suburb  { get; set; }
+        public string State   { get; set; }
+        public string Postcode{ get; set; }
+    }
+
+    public class PersonalDetailsVieModel
+    {
+        public Guid OrderId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Mobile { get; set; }
     }
 
     public class PaypalPaymentVieModel

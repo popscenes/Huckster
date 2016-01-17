@@ -19,7 +19,7 @@ namespace Domain.Restaurant.Queries.Models
 
         public List<DeliveryHours> ValidDeliveryHours(DayOfWeek dayOfWeek, TimeSpan startTime)
         {
-            var validhours = DeliveryHours.Where(_ => _.DayOfWeek == dayOfWeek && _.OpenTime > startTime.Add(new TimeSpan(0, 30, 0))).ToList();
+            var validhours = DeliveryHours.Where(_ => _.DayOfWeek == dayOfWeek && _.CloseTime > startTime.Add(new TimeSpan(0, 30, 0))).ToList();
             var result = new List<DeliveryHours>();
 
             foreach (var deliveryPeriod in validhours)

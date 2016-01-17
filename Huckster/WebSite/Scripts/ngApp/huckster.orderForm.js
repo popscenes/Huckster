@@ -16,15 +16,42 @@
 
 
     function OrderForm($scope, Restangular, $window) {
-        $scope.test = "testy";
+        $scope.deliveryFee = 5;
+        $scope.minimumOrder = 20;
+        $scope.restaurantId = $("#restaurantId").val();
         $scope.OrderItems = [];
         $scope.order = {
             CustomerMobile: '',
             CustomerEmail: '',
-            RestaurantId: '8DEE7B67-E126-4AFC-82F3-918E038AB3A3'
+            RestaurantId: $scope.restaurantId
+    };
+
+        $scope.removeMenuItemQuantity = function(index) {
+            $scope.OrderItems[index].Quantity--;
+            if ($scope.OrderItems[index].Quantity <= 0) {
+                $scope.OrderItems.splice(index, 1);
+            }
+        }
+        $scope.addMenuItemQuantity = function(index) {
+            $scope.OrderItems[index].Quantity++;
+        }
+        $scope.deleteMenuItem = function (index) {
+            $scope.OrderItems.splice(index, 1);
+        }
+
+        $scope.subTotal = function() {
+            var result = 0;
+            for (var index = 0; index < $scope.OrderItems.length; index++) {
+                result += $scope.OrderItems[index].Quantity * $scope.OrderItems[index].Price;
+            }
+            return result;
         };
 
-        $scope.addmenuItem = function(name, price, quantity) {
+        $scope.total = function () {
+            return $scope.subTotal() + $scope.deliveryFee;
+        };
+
+        $scope.addmenuItem = function (id, name, price, quantity) {
             var found = false;
             for (var index = 0; index < $scope.OrderItems.length; index++) {
                 if ($scope.OrderItems[index].Name === name) {
@@ -34,13 +61,16 @@
                 }
             }
             if(!found)
-                $scope.OrderItems.push({ Name: name, Price: price, Quantity: quantity });
+                $scope.OrderItems.push({Id:id, Name: name, Price: price, Quantity: quantity });
         }
 
         $scope.placeOrder = function() {
             Restangular.all('PlaceOrder').post({order : $scope.order, orderItems: $scope.OrderItems }).then(function (result) {
-                window.location = "/order/customerdetails/" + result;
-            });
+                window.location = "/order/checkout/" + result;
+            },
+                function(error) {
+                    alert("error occured");
+                });
         }
     };
 

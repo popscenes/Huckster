@@ -44,7 +44,7 @@ namespace WebSite.Controllers
         {
 
             var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId { AggregateId = aggregateid });
-            var model = new OrderCustomerDetails();
+            var model = new OrderCheckout();
             model.Id = order.Order.Id;
             model.Address = new Address
             {
@@ -56,40 +56,49 @@ namespace WebSite.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Route("order/checkout/{aggregateid}")]
+        public async Task<ActionResult> Checkout(Guid aggregateid)
+        {
+
+            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId { AggregateId = aggregateid });
+            return View(order);
+        }
+
         [HttpPost]
         [Route("order/customerdetails/{aggregateid}")]
-        public async Task<ActionResult> CustomerDetails(Guid aggregateid, OrderCustomerDetails orderCustomerDetails)
+        public async Task<ActionResult> CustomerDetails(Guid aggregateid, OrderCheckout orderCheckout)
         {
             //hack for now
-            orderCustomerDetails.Address.City = "Melbourne";
+            orderCheckout.Address.City = "Melbourne";
 
             var customer = await _queryChannel.QueryAsync(new GetCustomerByEmailorMobile()
             {
-                Email = orderCustomerDetails.CustomerEmail,
-                Mobile = orderCustomerDetails.CustomerMobile,
+                Email = orderCheckout.CustomerEmail,
+                Mobile = orderCheckout.CustomerMobile,
             });
             if (customer == null)
             {
                 var newCustomer = new Customer()
                 {
                     AggregateRootId = Guid.NewGuid(),
-                    Email = orderCustomerDetails.CustomerEmail,
-                    Mobile = orderCustomerDetails.CustomerMobile,
+                    Email = orderCheckout.CustomerEmail,
+                    Mobile = orderCheckout.CustomerMobile,
                     Name = ""                   
                 };
                 await _commandDispatcher.DispatchAsync(new CreateCustomerCommand()
                 {
                     NewCustomer = newCustomer,
-                    Address = orderCustomerDetails.Address
+                    Address = orderCheckout.Address
                 });
                 customer = newCustomer;
             }
 
             await _commandDispatcher.DispatchAsync(new UpdateOrderCustomerAndAddress()
             {
-                OrderId = orderCustomerDetails.Id,
+                OrderId = orderCheckout.Id,
                 Customer = customer,
-                Address = orderCustomerDetails.Address
+                Address = orderCheckout.Address
             });
             return RedirectToAction("Finalise");
         }

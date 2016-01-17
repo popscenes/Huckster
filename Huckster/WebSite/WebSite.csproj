@@ -228,7 +228,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\OrderCustomerDetails.cs" />
+    <Compile Include="Models\OrderCheckout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -238,7 +238,9 @@
     <Content Include="Content\normalize.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glober_heavy-webfont.svg" />
     <Content Include="fonts\glober_light-webfont.svg" />
+    <Content Include="fonts\glober_regular-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\stylesheet.css" />
     <Content Include="Global.asax" />
@@ -249,6 +251,16 @@
     <Content Include="Images\logo_109px.jpg" />
     <Content Include="Images\svg\logo-01.svg" />
     <Content Include="Images\svg\logo-03.svg" />
+    <Content Include="Images\svg\quantity-bg-vert.svg" />
+    <Content Include="Images\svg\quantity-bg.svg" />
+    <Content Include="Images\svg\select-add %281%29.svg" />
+    <Content Include="Images\svg\select-add-outline-gray.svg" />
+    <Content Include="Images\svg\select-add-outline-graysprite.svg" />
+    <Content Include="Images\svg\select-add-outline.svg" />
+    <Content Include="Images\svg\select-add.svg" />
+    <Content Include="Images\svg\select-arrow-2.svg" />
+    <Content Include="Images\svg\select-arrow-gray.svg" />
+    <Content Include="Images\svg\select-arrow.svg" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -261,11 +273,19 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\glober_heavy-webfont.eot" />
+    <Content Include="fonts\glober_heavy-webfont.ttf" />
+    <Content Include="fonts\glober_heavy-webfont.woff" />
+    <Content Include="fonts\glober_regular-webfont.eot" />
+    <Content Include="fonts\glober_regular-webfont.ttf" />
+    <Content Include="fonts\glober_regular-webfont.woff" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\huckster.pubxml" />
+    <None Include="Properties\PublishProfiles\hucksterlive - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hucksterlive - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\hucksterlive - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hucksterlive - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -277,6 +297,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ngApp\huckster.checkout.js" />
     <Content Include="Scripts\ngApp\huckster.orderFinalise.js" />
     <Content Include="Scripts\ngApp\huckster.orderForm.js" />
     <Content Include="Scripts\ngApp\hucksterApp.js" />
@@ -325,6 +346,7 @@
     <Content Include="Views\Order\Finalise.cshtml" />
     <Content Include="Views\Order\Complete.cshtml" />
     <Content Include="Views\Order\CustomerDetails.cshtml" />
+    <Content Include="Views\Order\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

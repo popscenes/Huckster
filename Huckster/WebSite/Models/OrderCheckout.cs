@@ -6,7 +6,7 @@ using Domain.Shared;
 
 namespace WebSite.Models
 {
-    public class OrderCustomerDetails
+    public class OrderCheckout
     {
         public Address Address { get; set; }
         public int Id { get; set; }

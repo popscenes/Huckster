@@ -2,7 +2,7 @@
     //var servicabilityApp = angular.module('directMoney.Servicability', ['restangular', 'ngSanitize', 'angular-loading-bar', 'ngAnimate']);
 
 
-
+    //jQuery.noConflict();
 
     var module = angular.module('module.checkout', []);
 
@@ -17,6 +17,25 @@
 
     function Checkout($scope, Restangular, $window) {
         $scope.orderData = angular.fromJson($("#orderData").val());
+
+        $scope.paymentPaypal = false;
+        $scope.paymentCC = true;
+        $scope.deliveryFee = 5;
+
+        //$scope.showPersonalDetails = false;
+        //$scope.showPaymentDetails = false;
+
+        Stripe.setPublishableKey('pk_test_e9OAHJzcasWjjnNbMNNQlMlL');
+
+        $scope.showPayPal = function() {
+            $scope.paymentPaypal = true;
+            $scope.paymentCC = false;
+        };
+
+        $scope.showCC = function () {
+            $scope.paymentPaypal = false;
+            $scope.paymentCC = true;
+        };
 
         $scope.deliveryDetails = {
             OrderId: $scope.orderData.Order.AggregateRootId,
@@ -37,7 +56,9 @@
 
         $scope.setPersonalDetails = function () {
             Restangular.all('PersonalDetails').post($scope.personalDetails).then(function (result) {
-                $(window).scrollTo($('#chkBtnThree'), { duration: 800 });
+                //$scope.showPaymentDetails = true;
+                $('#step-three').removeClass('unstep');
+                $(window).scrollTo($('#step-three'), { duration: 800 });
             },
             function (error) {
                 alert("error occured");
@@ -46,11 +67,52 @@
 
         $scope.setDeliveryDetails = function () {
             Restangular.all('DeliveryDetails').post($scope.deliveryDetails).then(function (result) {
-                    $(window).scrollTo($('#chkBtnTwo'), { duration: 800 });
+                    //$scope.showPersonalDetails = true;
+                $('#step-two').removeClass('unstep');
+                $(window).scrollTo($('#step-two'), { duration: 800 });
                 },
             function(error) {
                 alert("error occured");
             });
+        };
+
+        $scope.getStripeToken = function () {
+            Stripe.card.createToken({
+                number: $scope.creditCard.number,
+                cvc: $scope.creditCard.cvc,
+                exp_month: $scope.creditCard.expiryMonth,
+                exp_year: $scope.creditCard.expiryYear
+            }, $scope.stripeResponseHandler);
+        }
+
+        $scope.paypalPayment = function () {
+            Restangular.all('Payment/paypal-redirect').post({ OrderId: $scope.orderData.Order.AggregateRootId }).then(function (result) {
+                window.location = result;
+            });
+        };
+
+        $scope.stripeResponseHandler = function (status, response) {
+            if (response.error) {
+                alert(response.error.message);
+            } else {
+
+                var token = response.id;
+                Restangular.all('Payment/Stripe').post({ PaymentToken: token, OrderId: $scope.orderData.Order.AggregateRootId }).then(function (result) {
+                    window.location = "/order/Complete/" + result;
+                });
+            }
+        }
+
+        $scope.subTotal = function () {
+            var result = 0;
+            for (var index = 0; index < $scope.orderData.Order.OrderItems.length; index++) {
+                result += $scope.orderData.Order.OrderItems[index].Quantity * $scope.orderData.Order.OrderItems[index].Price;
+            }
+            return result;
+        };
+
+        $scope.total = function () {
+            return $scope.subTotal() + $scope.deliveryFee;
         };
     };
 

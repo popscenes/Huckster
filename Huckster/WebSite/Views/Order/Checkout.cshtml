@@ -31,7 +31,7 @@
 
             <div class="main-content-info">
 
-                <form class="checkout-form" id="one" method="post" action="/checkout" name="checkout">
+                <form name="deliverDetailsForm" class="checkout-form" id="one" method="post" action="/checkout" name="checkout" novalidate>
                     <!-- replace action with script page that handles submit -->
 
                     <h4 class="bold checkout-h4">1. Delivery Details</h4>
@@ -63,11 +63,13 @@
                         <h5 class="checkout-h5">Delivery Address</h5>
                         <div class="form-row">
                             <div class="form-column default-length">
-                                <input class="checkout-input" type="text" placeholder="Your address..." required name="address" id="address" ng-model="deliveryDetails.Street" />
+                                <input ng-class="{'input-error': deliveryDetailsSubmitted && deliverDetailsForm.address.$invalid}" class="checkout-input" type="text" placeholder="Your address..." required name="address" id="address" ng-model="deliveryDetails.Street"/>
+                                <span class="error" ng-show="deliveryDetailsSubmitted && deliverDetailsForm.address.$invalid">This field is required</span>
                             </div>
 
                             <div class="form-column small-length">
-                                <input class="checkout-input" type="text" placeholder="No." name="street-number" id="street-number" ng-model="deliveryDetails.Number" />
+                                <input ng-class="{'input-error': deliveryDetailsSubmitted && deliverDetailsForm.streetnumber.$invalid}" class="checkout-input" type="text" placeholder="No." name="streetnumber" id="street-number" ng-model="deliveryDetails.Number" required/>
+                                <span class="error" ng-show="deliveryDetailsSubmitted && deliverDetailsForm.streetnumber.$invalid">This field is required</span>
                             </div>
 
 
@@ -126,7 +128,8 @@
                         <div class="form-row flex-row">
 
                             <div class="form-column middle-length">
-                                <input class="checkout-input" type="text" placeholder="First Name" name="first-name" required id="first-name" ng-model="personalDetails.FirstName" />
+                                <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.firstname.$invalid}" class="checkout-input" type="text" placeholder="First Name" name="firstname" required id="first-name" ng-model="personalDetails.FirstName"/>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.firstname.$invalid">This field is required</span>
                             </div>
 
                             <div class="form-column middle-length end-margin">

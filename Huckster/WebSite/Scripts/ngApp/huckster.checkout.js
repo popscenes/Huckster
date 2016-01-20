@@ -22,6 +22,10 @@
         $scope.paymentCC = true;
         $scope.deliveryFee = 5;
 
+        $scope.deliveryDetailsSubmitted = false;
+        $scope.personalDetailsSubmitted = false;
+        $scope.paymentDetailsSubmitted = false;
+
         //$scope.showPersonalDetails = false;
         //$scope.showPaymentDetails = false;
 
@@ -55,6 +59,7 @@
         };
 
         $scope.setPersonalDetails = function () {
+            $scope.personalDetailsSubmitted = true;
             Restangular.all('PersonalDetails').post($scope.personalDetails).then(function (result) {
                 //$scope.showPaymentDetails = true;
                 $('#step-three').removeClass('unstep');
@@ -66,6 +71,11 @@
         };
 
         $scope.setDeliveryDetails = function () {
+            $scope.deliveryDetailsSubmitted = true;
+            if (!$scope.deliverDetailsForm.$valid) {
+                return;
+            }
+
             Restangular.all('DeliveryDetails').post($scope.deliveryDetails).then(function (result) {
                     //$scope.showPersonalDetails = true;
                 $('#step-two').removeClass('unstep');

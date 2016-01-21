@@ -1,0 +1,617 @@
+/*CSS document*/
+
+/* =========================================*/
+/* == MOBILE DEVICES == (750px and below) ==*/
+/* =========================================*/
+	/** BODY **/
+	body {
+		font-family: 'globerlight', helvetica, arial, sans-serif;	
+	}
+	a, a:visited {
+		color: #000;
+		text-decoration: none;
+	}
+	/*** HEADER ***/
+	header {
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0 20px 0;
+	}
+	
+	.logo {
+		background-image: url(../_images/svg/logo-01.svg);
+		background-size: cover;
+		height: 40px;
+		width: 40px;
+		margin: 0 auto;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.logo.mobile {
+		display: inline-block;	
+	}
+	.logo-type.mobile {
+		display: inline-block;	
+		height: 40px;
+		background-position: 0px -2px;
+	}
+	/*** GALLERY ***/
+	.gallery {
+		background-image: url(../_images/CCD_alleyway_01.2gray-edit.jpg);	
+		background-size: cover;
+		background-position: 50% 80%;
+		height: 160px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.gallery.purple {
+		background-image: url(../_images/CCD_alleyway_02purple-edit.jpg);	
+		background-size: cover;
+		background-position: 50% 80%;
+		height: 160px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** CONTENT ***/
+	.main-content {
+		margin: 0 auto;	
+		padding: 20px 0 20px 0;
+	}
+	
+	.main-content.search  {
+		padding: 0;	
+	}
+	
+	
+	.logo-type {
+		background-image: url(../_images/svg/logo-03.svg);
+		background-size: cover;
+		width: 112px; /*140*/
+		height: 38px; /*48*/
+		margin: 0 auto;	
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+		
+	}
+	
+	#results-list {
+		margin: 0;	
+		padding: 0;
+	}
+	
+	#results-list .list {
+		/*height: auto;*/
+		border-bottom: 1px solid #000;
+		list-style: none;
+		overflow: hidden;
+		
+	}
+	.list .list-image {
+		float: left;
+		width: 110px;
+		min-height: 110px;
+		height: 100%;
+		background: url(../_images/image-placeholder.jpg);
+		background-size: contain;
+		margin-right: 1em;
+	}
+	
+	.list .list-title {
+		font-size: 1.4em;
+		padding-top: 0.2em;	
+		margin: 0;
+	}
+	
+	.list .list-city {
+		
+	}
+	
+	.list .list-dash {
+		display: inline-block;
+		margin: 0;
+		padding: 0 0.5em;
+		font-size: 1.2em;
+		
+	}
+	
+	.list .list-postcode {
+		
+	}
+	
+	.list .list-order {
+		display: block;
+		text-transform: uppercase;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		background-color: #fff;
+		border: 1px solid #000;
+		margin: 8px 0px;
+		padding: 3px 24px;
+	}
+	
+	/*** RESTAURANT LISTING ***/
+	.rest {
+		display: block;	
+	}
+	.rest-bio {
+		text-align: center;	
+		padding-bottom: 1em;
+		float: none;
+	}
+	
+	.rest-bio h2 {
+		font-family: globerlight, helvetica, sans-serif;	
+		margin: 0;
+		margin-bottom: 0.5em;
+	}
+	
+	.rest-bio img {
+		width: 80%;	
+	}
+	
+	.rest-text {
+		width: 80%;
+		margin: 0 auto;	
+		padding-bottom: 1em;
+	}
+	
+	.rest-order {
+		text-align: center;	
+		background-color: #ddd;
+		margin: 1em 0;
+		padding: 1em 0;
+		float: none;
+	}
+	
+	.rest-order h2 {
+		font-family: globerlight, helvetica, sans-serif;	
+		margin: 0;
+		margin-bottom: 0.5em;
+	}
+	
+	.rest-order label {
+		display: block;	
+	}
+	
+	.rest-order select {
+		margin-bottom: 1em;	
+	}
+	
+	.rest-order .list-order {
+		
+		text-transform: uppercase;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		background-color: #fff;
+		border: 1px solid #000;
+		
+		padding: 3px 24px;
+	}
+	
+	.rest-menu {
+		text-align: center;
+	}
+	
+	.rest-menu h2 {
+		font-family: globerlight, helvetica, sans-serif;	
+		margin: 0;
+		margin-bottom: 0.5em;
+	}
+	
+	.rest-menu ul li {
+		list-style: none;
+		list-style: none;
+		border-bottom: 1px solid #000;
+		margin-bottom: 1em;
+		padding-bottom: 0.5em;	
+	}
+	
+	.rest ul {
+		list-style: none;
+		padding: 2em;	
+	}
+	
+	/*** FORM ***/
+	#huckstart {
+		width: 80%;	
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0 20px 0;
+	}
+	#huckstart input {
+		width: 90%;
+		height: 2.5em;
+		padding: 0 0.5em;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;	
+		border-radius: 5px;
+    	border: 1px solid #000;
+		text-align: center;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#huckstart input:focus {
+		outline: none;	
+	}
+	
+	#huckstart button {
+		width: 90%;
+		height: 2.5em;
+		padding: 0 0.5em;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;	
+		border-radius: 5px;
+    	border: 1px solid #000;
+		text-align: center;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-top: 15px;
+		background-color: #fff;
+		text-transform: uppercase;
+		
+		-webkit-transition: width 0.5s ease;
+		transition: width 0.5s ease;	
+		
+	}
+	#huckstart button:hover {
+		background-color: #000;
+		color: #fff;
+		
+		-webkit-transition: all 0.5s ease;
+		transition: all 0.5s ease;	
+	}
+	/* SEARCH RESULTS */
+	#search-results {
+		height: 70px;
+		background: url(../_images/CCD_alleyway_01gray-edit.jpg);
+		background-position: center;	
+		background-size: 100%;
+		text-align: center;
+	}
+	#search-results input {
+		width: 75%;
+		height: 2em;
+		position: relative;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		text-align: center;
+		margin-top: 16px;
+		border: none;
+	}
+	.list-order:hover {
+		background-color: #000;
+		color: #fff;
+		
+		-webkit-transition: all 0.5s ease;
+		transition: all 0.5s ease;	
+	}
+	#list-01 .list-image {
+		background: url(../_images/_fonda/MENU-2.jpg);
+		background-size: cover;
+	}
+	
+/* == TABLET DEVICES == (750px and ABOVE) ==*/
+@media all and (min-width: 751px) and (max-width: 960px) {
+	
+	/*** HEADER ***/
+	header {
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0 20px 0;
+	}
+	
+	.logo {
+		/*background-image: url(../_images/logo_109px.jpg);*/
+		background-size: cover;
+		height: 80px;
+		width: 80px;
+		margin: 0 auto;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	
+	.logo.mobile {
+		display: block;	
+		
+	}
+	
+	.logo-type.mobile {
+		display: block;	
+		width: 85px;
+		background-size: contain;
+		background-position: center;
+		height: 35px;
+		
+	}
+	/*** GALLERY ***/
+	.gallery {
+		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
+		background-size: cover;
+		height: 400px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.gallery.purple {
+		background-size: cover;
+		height: 400px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** CONTENT ***/
+	.logo-type {
+		/*background-image: url(../_images/logotype_280px.jpg);*/
+		background-size: cover;
+		width: 224px;
+		height: 76px;
+		margin: 0 auto;	
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+		
+	}
+	/*** FORM ***/
+	
+	#huckstart {
+		padding: 30px 0 30px 0;	
+	}
+	
+	#huckstart input {
+		width: 75%;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#huckstart button {
+		width: 75%;	
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#search-results {
+		height: 100px;	
+	}
+	
+	#search-results input {
+		width: 65%;
+		height: 2em;
+		margin-top: 26px;
+		font-size: 1.4em;
+	}
+
+	.list .list-image {
+		width: 140px;
+		min-height: 140px;	
+	}
+	
+	.list .list-title {
+		font-size: 1.4em;
+		padding-top: 1.6em;	
+	}
+	
+	.list .list-order {
+		float: right;
+		margin-right: 2em;	
+		margin-top: -25px;
+	}
+	
+	/*** RESTAURANT LISTINGS ***/
+	.rest-order {
+		width: 80%;
+		margin: 0 auto;	
+	}
+	
+	.rest-menu {
+		margin-top: 1em;
+	}
+	
+	.rest ul {
+		width: 80%;
+		margin: 0 auto;
+		padding: 0;	
+	}
+}
+/* == DESKTOP DEVICES == (960px and ABOVE) ==*/
+@media all and (min-width: 960px) {
+	
+	/*** HEADER ***/
+	header {
+		margin: 0 auto;
+		text-align: center;
+		padding: 30px 0 30px 0;
+	}
+	
+	.logo {
+		/*background-image: url(../_images/logo_109px.jpg);*/
+		background-size: cover;
+		height: 100px;
+		width: 100px;
+		margin: 0 auto;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.logo.mobile {
+		display: block;	
+		height: 140px;
+		width: 140px;
+	}
+	.logo-type.mobile {
+		display: block;	
+		width: 160px;
+		height: 55px;
+	}
+	
+	/*** GALLERY ***/
+	.gallery {
+		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
+		background-size: cover;
+		
+		height: 460px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.gallery.purple {
+		background-size: cover;
+		height: 460px;
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	/*** CONTENT ***/
+	.logo-type {
+		/*background-image: url(../_images/logotype_280px.jpg);*/
+		background-size: cover;
+		width: 280px;
+		height: 95px;
+		margin: 0 auto;	
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	
+	
+	
+	/*** FORM ***/
+	
+	#huckstart {
+		
+		padding: 20px 0 20px 0;
+	}
+	
+	#huckstart input {
+		width: 50%;
+		text-align: left;
+		height: 3em;
+		padding-left: 1em;
+		display: inline-block;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#huckstart button {
+		width: 20%;
+		display: inline-block;
+		margin-left: 1em;
+		height: 3em;
+		
+		-webkit-transition: width 0.8s ease;
+		transition: width 0.8s ease;
+	}
+	
+	#search-results {
+		height: 148px;	
+	}
+	
+	#search-results input {
+		font-size: 1.8em;
+		width: 45%;
+		margin-top: 45px;	
+	}
+	
+	#results-list {
+		width: 80%;
+		margin: 0 auto;
+		padding: 3em;
+	}
+	
+	#results-list .list:first-child {
+		border-top: 1px solid #000;	
+	}
+	
+	#results-list .list {
+		border-bottom: 1px solid #000;
+		border-left: 1px solid #000;
+		border-right: 1px solid #000;	
+	}
+	
+	.list .list-image {
+		width: 150px;
+		height: 150px;	
+	}
+
+	.list .list-title {
+		font-size: 1.6em;
+		padding-top: 1.6em;
+	}
+	
+	.list .list-order {
+		float: right;
+		margin-right: 2em;
+		margin-top: -25px;
+	}
+	
+	/*** RESTAURANTS LISTINGS ***/
+	.rest {
+		display: flex;	
+	}
+	.rest-bio {
+		text-align: left;
+		width: 60%;
+		float: left;
+		border: 1px solid #000;
+		padding: 1em;
+		
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	
+	.rest-bio img {
+		width: 100%;	
+	}
+	
+	.rest-text {
+		text-align: left;
+		margin: 0;	
+	}
+	
+	.rest-order {
+		float: left;
+		width: 	38%;
+		margin-left: 1.9%;
+		margin-top: 0;
+		margin-bottom: 0;
+		
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		
+	}
+	
+	.rest-menu {
+		display: block;
+		margin-top: 1.2em;
+		text-align: left;
+		border: 1px solid #000;
+		padding: 1em;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	
+	.rest ul {
+		width: 100%;
+		text-align: left;
+	}
+	
+}

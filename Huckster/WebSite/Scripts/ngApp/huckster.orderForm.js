@@ -23,8 +23,11 @@
         $scope.order = {
             CustomerMobile: '',
             CustomerEmail: '',
-            RestaurantId: $scope.restaurantId
+            RestaurantId: $scope.restaurantId,
+            DeliveryTime: '',
+            DeliverySuburbId: ''
     };
+        
 
         $scope.removeMenuItemQuantity = function(index) {
             $scope.OrderItems[index].Quantity--;

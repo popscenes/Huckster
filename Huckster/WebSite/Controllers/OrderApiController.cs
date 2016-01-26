@@ -14,6 +14,8 @@ using Domain.Customer.Queries;
 using Domain.Order;
 using Domain.Order.Commands;
 using Domain.Order.Queries;
+using Domain.Order.Queries.Models;
+using Domain.Restaurant.Queries;
 using Domain.Shared;
 using infrastructure.CQRS;
 using Omu.ValueInjecter;
@@ -48,11 +50,20 @@ namespace WebSite.Controllers
             }
             address.InjectFrom(viewModel);
             address.City = "Melbourne";
-            await _commandDispatcher.DispatchAsync(new AddOrderAddressCommand()
+            await _commandDispatcher.DispatchAsync(new UpdateOrderAddressCommand()
             {
                 OrderId = order.Order.Id,
                 Address = address
             });
+
+            if (order.Customer != null)
+            {
+                await _commandDispatcher.DispatchAsync(new UpdateCustomerAddress()
+                {
+                    Customer = order.Customer,
+                    Address = address
+                });
+            }
             return Ok();
         }
 
@@ -61,11 +72,26 @@ namespace WebSite.Controllers
         public async Task<IHttpActionResult> PersonalDetails(PersonalDetailsVieModel viewModel)
         {
             var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = viewModel.OrderId });
-            var customer = await _queryChannel.QueryAsync(new GetCustomerByEmailorMobile()
+            var customer = order.Customer ?? await _queryChannel.QueryAsync(new GetCustomerByEmailorMobile()
             {
                 Email = viewModel.Email,
                 Mobile = viewModel.Mobile,
             });
+
+            customer = await UpdateCustomer(customer, viewModel, order);
+
+            await _commandDispatcher.DispatchAsync(new UpdateOrderCustomer()
+            {
+                Customer = customer,
+                Order = order.Order
+            });
+
+
+            return Ok();
+        }
+
+        private async Task<Customer> UpdateCustomer(Customer customer, PersonalDetailsVieModel viewModel, OrderDetailsViewModel order)
+        {
             if (customer == null)
             {
                 var newCustomer = new Customer()
@@ -84,30 +110,38 @@ namespace WebSite.Controllers
             }
             else
             {
+                customer.Email = viewModel.Email;
+                customer.Mobile = viewModel.Mobile;
+                customer.Name = viewModel.FirstName + " " + viewModel.LastName;
+
+                await _commandDispatcher.DispatchAsync(new UpdateCustomer()
+                {
+                    Customer = customer
+                });
+
                 await _commandDispatcher.DispatchAsync(new UpdateCustomerAddress()
                 {
                     Customer = customer,
                     Address = order.DeliverAddress
                 });
             }
-
-            await _commandDispatcher.DispatchAsync(new UpdateOrderCustomer()
-            {
-                Customer = customer,
-                Order = order.Order
-            });
-
-
-            return Ok();
+            return customer;
         }
 
-        
 
         [HttpPost]
         [Route("api/Order/PlaceOrder")]
         public async Task<IHttpActionResult> PlaceOrder(PlaceOrderVieModel viewModel)
         {
+            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByAggregateRootIdQuery() {AggregateRootId = viewModel.order.RestaurantId});
             viewModel.order.AggregateRootId = Guid.NewGuid();
+
+            var menuItems = restaurant.RestaurantMenu.SelectMany(_ => _.MenuItems);
+
+            // re assign price from server... to avoid client side hacking
+            viewModel.orderItems.ForEach((oi) => { oi.Price = menuItems.FirstOrDefault(mi => mi.Id == oi.Id).Price; });
+
+
             await _commandDispatcher.DispatchAsync(new PlaceOrderCommand()
             {
                 Order = viewModel.order,

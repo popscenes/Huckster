@@ -74,6 +74,8 @@
                 <div class="order-main">
                     <label>Delivery Time</label>
                     <select ng-model="order.DeliveryTime" class="select-order">
+                        <option value="">Please select time...</option>
+
                         @foreach (var deliverTime in Model.DeliveryHours)
                         {
                             <option value="@deliverTime.ToIsoString()">@deliverTime.ToTimeString()</option>
@@ -81,7 +83,9 @@
                     </select>
 
                     <label>Delivery Suburb</label>
+
                     <select class="select-order" ng-model="order.DeliverySuburbId">
+                        <option value="">Please select suburb...</option>
                         @foreach (var suburb in Model.DeliverySuburbs)
                         {
                             <option value="@suburb.Id">@suburb.Suburb</option>
@@ -134,7 +138,10 @@
                         </tfoot>
 
                     </table>
-                    <button class="list-order order-main-submit" ng-click="placeOrder()">Place Order</button>
+                    <button class="list-order order-main-submit" ng-click="placeOrder()" ng-disabled="order.DeliveryTime=='' || order.DeliverySuburbId==''">Place Order</button>
+
+                    <span class="error" ng-show="order.DeliveryTime==''">Delivery Time is required</span>
+                    <span class="error" ng-show="order.DeliverySuburbId==''">Delivery Suburb is required</span>
 
                 </div><!-- order-main -->
 

@@ -133,7 +133,8 @@
                             </div>
 
                             <div class="form-column middle-length end-margin">
-                                <input class="checkout-input" type="text" placeholder="Last Name" name="last-name" required id="last-name" ng-model="personalDetails.LastName" />
+                                <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.lastname.$invalid}" class="checkout-input" type="text" placeholder="Last Name" name="lastname" required id="last-name" ng-model="personalDetails.LastName"/>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.lastname.$invalid">This field is required</span>
                             </div>
 
                             <div class="clearfix"></div>
@@ -143,11 +144,13 @@
                         <div class="form-row flex-row">
 
                             <div class="form-column middle-length">
-                                <input class="checkout-input" type="email" placeholder="Email" name="email" id="email" ng-model="personalDetails.Email" required />
+                                <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.email.$invalid}" class="checkout-input" type="email" placeholder="Email" name="email" id="email" ng-model="personalDetails.Email" required/>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.email.$invalid">This field is required</span>
                             </div>
 
                             <div class="form-column middle-length end-margin">
-                                <input class="checkout-input" type="text" placeholder="Mobile Number" name="mobile-name" id="mobile-name" ng-model="personalDetails.Mobile" required />
+                                <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.mobile.$invalid}" class="checkout-input" type="text" placeholder="Mobile Number" name="mobile" id="mobile-name" ng-model="personalDetails.Mobile" required/>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.mobile.$invalid">This field is required</span>
                             </div>
 
                             <div class="clearfix"></div>
@@ -184,7 +187,7 @@
             </div>
 
             <div class="main-content-info">
-                <form class="checkout-form" method="post" action="" name="register">
+                <form class="checkout-form" method="post" action="" name="paymentForm">
                     <!-- replace action with script page that handles submit -->
 
                     <h4 class="bold checkout-h4">3. Payment</h4>
@@ -214,7 +217,7 @@
 
                                 <div class="main-content-info-row-confirm-button">
 
-                                    <button class="checkout-continue-btn" id="chkBtnThree" type="button" ng-click="paypalPayment();">Paypal</button>
+                                    <button class="checkout-continue-btn" id="chkBtnThreePayPal" type="button" ng-click="paypalPayment();">Paypal</button>
 
                                 </div>
 
@@ -223,28 +226,26 @@
                         <div ng-show="paymentCC">
                             <div class="main-content-info-row">
                                 <div class="form-column large-length">
-                                    <input class="checkout-input" type="text" placeholder="Name on card" name="card-name" required id="card-name" ng-model="creditCard.name" />
-                                </div>
-                            </div>
-
-                            <div class="main-content-info-row">
-                                <div class="form-column large-length">
-                                    <input class="checkout-input large-input" type="text" placeholder="Card Number" name="card-number" required id="card-number" ng-model="creditCard.number" />
+                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardnumber.$invalid}" class="checkout-input large-input" type="text" placeholder="Card Number" name="cardnumber" required id="card-number" ng-model="creditCard.number"/>
+                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardnumber.$invalid">This field is required</span>
                                 </div>
                             </div>
 
                             <div class="form-row flex-row">
 
                                 <div class="form-column middle-length">
-                                    <input class="checkout-input" type="text" placeholder="YYYY" name="card-expiry" required id="card-expiry-year" ng-model="creditCard.expiryYear"/>
+                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardexpiryYear.$invalid}" class="checkout-input" type="text" placeholder="YYYY" name="cardexpiryYear" required id="card-expiry-year" ng-model="creditCard.expiryYear"/>
+                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardexpiryYear.$invalid">This field is required</span>
                                 </div>
 
                                 <div class="form-column middle-length end-margin">
-                                    <input class="checkout-input" type="text" placeholder="MM" name="card-expiry" required id="card-expiry-month" ng-model="creditCard.expiryMonth" />
+                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardexpiryMonth.$invalid}" class="checkout-input" type="text" placeholder="MM" name="cardexpiryMonth" required id="card-expiry-month" ng-model="creditCard.expiryMonth"/>
+                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardexpiryMonth.$invalid">This field is required</span>
                                 </div>
 
                                 <div class="form-column middle-length">
-                                    <input class="checkout-input" type="text" placeholder="CVC" name="card-cvc" required id="card-cvc" ng-model="creditCard.cvc" />
+                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardcvc.$invalid}" class="checkout-input" type="text" placeholder="CVC" name="cardcvc" required id="card-cvc" ng-model="creditCard.cvc"/>
+                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardcvc.$invalid">This field is required</span>
                                 </div>
 
                                 <div class="clearfix"></div>

@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer\Commands\CreateCustomerCommand.cs" />
+    <Compile Include="Customer\Commands\OrderApiController.cs" />
     <Compile Include="Customer\Commands\UpdateCustomerAddress.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\Queries\GetCustomerByEmailorMobile.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Order\Commands\OrderPaymentFailCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentSuccessCommand.cs" />
     <Compile Include="Order\Commands\SetOrderStatusCommand.cs" />
-    <Compile Include="Order\Commands\AddOrderAddressCommand.cs" />
+    <Compile Include="Order\Commands\UpdateOrderAddressCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderCustomer.cs" />
     <Compile Include="Order\Commands\UpdateOrderCustomerAndAddress.cs" />
     <Compile Include="Order\Messages\OrderCompleteMessage.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Restaurant\Queries\GetRestaurantDetailByIdQuery.cs" />
     <Compile Include="Restaurant\Queries\MasterSuburbSearchQuery.cs" />
     <Compile Include="Restaurant\Queries\Models\RestaurantDetailsModel.cs" />
+    <Compile Include="Restaurant\Queries\RestaurantQueryHelper.cs" />
     <Compile Include="Shared\Address.cs" />
     <Compile Include="Restaurant\Commands\AddRestaurantCommand.cs" />
     <Compile Include="Restaurant\Menu.cs" />

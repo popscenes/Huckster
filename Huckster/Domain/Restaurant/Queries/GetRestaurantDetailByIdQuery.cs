@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,27 @@ using infrastructure.DataAccess;
 
 namespace Domain.Restaurant.Queries
 {
+    public class GetRestaurantDetailByAggregateRootIdQuery : IQuery<GetRestaurantDetailByAggregateRootIdQuery, RestaurantDetailsModel>
+    {
+        public Guid AggregateRootId { get; set; }
+    }
+
+    public class GetRestaurantDetailByAggregateRootIdQueryHandler :
+        AdoQueryHandler<GetRestaurantDetailByAggregateRootIdQuery, RestaurantDetailsModel>
+    {
+        public GetRestaurantDetailByAggregateRootIdQueryHandler(AdoContext adoContext) : base(adoContext)
+        {
+        }
+
+        protected async override Task<RestaurantDetailsModel> HandleSqlCommandAsync(IDbConnection context, GetRestaurantDetailByAggregateRootIdQuery argument)
+        {
+            var restaurant =
+                context.Query<Restaurant>("Select * from [dbo].[Restaurant] where [AggregateRootId] = @AggregateRootId",
+                    new { AggregateRootId = argument.AggregateRootId }).FirstOrDefault();
+            return RestaurantQueryHelper.GetRestaurantDetails(context, restaurant);
+        }
+    }
+
     public class GetRestaurantDetailByIdQuery : IQuery<GetRestaurantDetailByIdQuery, RestaurantDetailsModel>
     {
         public int Id { get; set; }
@@ -27,26 +49,9 @@ namespace Domain.Restaurant.Queries
             GetRestaurantDetailByIdQuery argument)
         {
             var restaurant = context.Get<Restaurant>(argument.Id);
-            var address = context.Query<Address>("Select * from [dbo].[Address] where ParentAggregateId = @ParentAggregateId", new { ParentAggregateId = restaurant.AggregateRootId}).FirstOrDefault();
-            var menus = context.Query<Menu>("Select * from [dbo].[Menu] where ParentAggregateId = @ParentAggregateId", new { ParentAggregateId = restaurant.AggregateRootId }).ToList();
-            var deliverySuburbs = context.Query<DeliverySuburb>("Select * from [dbo].[DeliverySuburb] where ParentAggregateId = @ParentAggregateId", new { ParentAggregateId = restaurant.AggregateRootId }).ToList();
-
-            var deliveryHours = context.Query<DeliveryHours>("Select * from [dbo].[DeliveryHours] where ParentAggregateId = @ParentAggregateId", new { ParentAggregateId = restaurant.AggregateRootId }).ToList();
-
-            foreach (var menu in menus)
-            {
-                menu.MenuItems = context.Query<MenuItem>("Select * from [dbo].[MenuItem] where MenuId = @MenuId", new { MenuId = menu.Id }).ToList();
-            }
-
-            return new RestaurantDetailsModel()
-            {
-                Restaurant = restaurant,
-                RestauranAddress = address,
-                RestaurantMenu = menus.ToList(),
-                DeliverySuburbs = deliverySuburbs,
-                DeliveryHours = deliveryHours
-            };
-
+            return RestaurantQueryHelper.GetRestaurantDetails(context, restaurant);
         }
+
+        
     }
 }

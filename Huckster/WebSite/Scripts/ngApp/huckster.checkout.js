@@ -60,6 +60,10 @@
 
         $scope.setPersonalDetails = function () {
             $scope.personalDetailsSubmitted = true;
+            if (!$scope.checkoutTwo.$valid) {
+                return;
+            }
+
             Restangular.all('PersonalDetails').post($scope.personalDetails).then(function (result) {
                 //$scope.showPaymentDetails = true;
                 $('#step-three').removeClass('unstep');
@@ -87,6 +91,11 @@
         };
 
         $scope.getStripeToken = function () {
+            $scope.paymentDetailsSubmitted = true;
+            if (!$scope.paymentForm.$valid) {
+                return;
+            }
+
             Stripe.card.createToken({
                 number: $scope.creditCard.number,
                 cvc: $scope.creditCard.cvc,

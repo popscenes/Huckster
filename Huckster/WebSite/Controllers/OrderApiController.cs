@@ -43,18 +43,23 @@ namespace WebSite.Controllers
         public async Task<IHttpActionResult> DeliveryDetails(DeliveryDetailsVieModel viewModel)
         {
             var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = viewModel.OrderId });
-            var address = order.DeliverAddress;
-            if (address == null)
+            order.Order.InjectFrom(viewModel);
+            await _commandDispatcher.DispatchAsync(new UpdateOrderCommand()
             {
-                address = new Address();
-            }
+                OrderId = order.Order.Id,
+                Order = order.Order
+            });
+
+
+            var address = order.DeliverAddress ?? new Address();
             address.InjectFrom(viewModel);
             address.City = "Melbourne";
             await _commandDispatcher.DispatchAsync(new UpdateOrderAddressCommand()
             {
-                OrderId = order.Order.Id,
+                OrderAggregateRootId = order.Order.AggregateRootId,
                 Address = address
             });
+
 
             if (order.Customer != null)
             {
@@ -189,6 +194,9 @@ namespace WebSite.Controllers
         public string Suburb  { get; set; }
         public string State   { get; set; }
         public string Postcode{ get; set; }
+
+        public string CompanyName { get; set; }
+        public string Instructions { get; set; }
     }
 
     public class PersonalDetailsVieModel

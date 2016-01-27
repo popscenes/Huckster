@@ -21,12 +21,23 @@ CREATE TABLE [dbo].[Order](
 	[CustomerEmail] [nvarchar](256) NOT NULL,
 	[CreateDateTime] [datetime2](7) NOT NULL,
 	[LastModifiedDateTime] [datetime2](7) NOT NULL,
-	[Status] [nvarchar](64) NOT NULL
+	[Status] [nvarchar](64) NOT NULL,
+	[CompanyName] nvarchar(256) NULL,
+	[Instructions] nvarchar(MAX) NULL 
 
 ) --ON [PRIMARY]
 END
 ELSE
 BEGIN
     PRINT 'Skipped create table [dbo].[Order]'
+END
+GO
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'Order' and column_name = 'CompanyName')
+BEGIN
+    ALTER TABLE [Order] ADD [CompanyName] nvarchar(256) NULL 
+	PRINT 'created column [CompanyName] on table [dbo].[Order]'
+
+	ALTER TABLE [Order] ADD [Instructions] nvarchar(MAX) NULL 
+	PRINT 'created column [Instructions] on table [dbo].[Order]'
 END
 GO

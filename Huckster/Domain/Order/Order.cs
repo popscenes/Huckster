@@ -29,6 +29,10 @@ namespace Domain.Order
 
         public string CustomerMobile { get; set; }
         public string CustomerEmail { get; set; }
+
+        public string CompanyName { get; set; }
+        public string Instructions { get; set; }
+
         public DateTime CreateDateTime { get; set; }
         public DateTime LastModifiedDateTime { get; set; }
         public int Id { get; set; }

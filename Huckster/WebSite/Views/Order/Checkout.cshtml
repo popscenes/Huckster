@@ -89,11 +89,11 @@
                     <input type="hidden" ng-model="deliveryDetails.Postcode"/>
 
                         <div class="form-row large-length">
-                                <input class="checkout-input" type="text" placeholder="(Optional) Company" name="company" id="company" />
+                                <input class="checkout-input" type="text" placeholder="(Optional) Company" name="company" id="company" ng-model="deliveryDetails.CompanyName" />
                             </div>
 
                             <div class="form-row">
-                                <textarea class="delivery-instructions" placeholder="(Optional) Delivery Instructions" name="delivery-instructions" id="delivery-instructions"></textarea>
+                                <textarea class="delivery-instructions" placeholder="(Optional) Delivery Instructions" name="delivery-instructions" id="delivery-instructions" ng-model="deliveryDetails.Instructions"></textarea>
                             </div>
 
                     </div><!-- .main-content-info-row -->

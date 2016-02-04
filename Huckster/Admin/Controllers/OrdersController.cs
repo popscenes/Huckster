@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Application.Payment;
 using Domain.Order;
 using Domain.Order.Commands;
 using Domain.Order.Queries;
@@ -33,6 +34,7 @@ namespace Admin.Controllers
                 orders = new List<OrderDetailsViewModel>();
             }
             ViewBag.OrderStatus = orderStatus;
+
             return View(orders);
         }
 
@@ -42,8 +44,26 @@ namespace Admin.Controllers
             return View(order);
         }
 
-        
-        public async Task<ActionResult> PickedUp(Guid orderId)
+        public async Task<ActionResult>  Cancelled(Guid orderId, bool redirectToDetailPage = false)
+        {
+            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = orderId });
+            await _commandDispatcher.DispatchAsync(new SetOrderStatusCommand()
+                {
+                    OrderId = order.Order.Id,
+                    OrderStatus = OrderStatus.Cancelled
+                });
+
+            await _commandDispatcher.DispatchAsync(new RefundOrderCommand() {OrderId = order.Order.Id, OrderAggregateRootId = order.Order.AggregateRootId});
+
+            if (redirectToDetailPage)
+            {
+                return RedirectToAction("Detail", new { orderId = order.Order.AggregateRootId });
+            }
+            return RedirectToAction("Index", new { orderStatus = OrderStatus.PaymentSucccessful });
+        }
+
+
+        public async Task<ActionResult> PickedUp(Guid orderId, bool redirectToDetailPage = false)
         {
             var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = orderId });
             await
@@ -52,10 +72,15 @@ namespace Admin.Controllers
                     OrderId = order.Order.Id,
                     OrderStatus = OrderStatus.PickedUp
                 });
-            return RedirectToAction("Index", new { orderStatus = OrderStatus.PickedUp });
+
+            if (redirectToDetailPage)
+            {
+                return RedirectToAction("Detail", new { orderId = order.Order.AggregateRootId });
+            }
+            return RedirectToAction("Index", new { orderStatus = OrderStatus.RestaurantAccepted });
         }
 
-        public async Task<ActionResult> Delivered(Guid orderId)
+        public async Task<ActionResult> Delivered(Guid orderId, bool redirectToDetailPage = false)
         {
             var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = orderId });
             await
@@ -64,12 +89,17 @@ namespace Admin.Controllers
                     OrderId = order.Order.Id,
                     OrderStatus = OrderStatus.Delivered
                 });
-            return RedirectToAction("Index", new { orderStatus = OrderStatus.Delivered });
+
+            if (redirectToDetailPage)
+            {
+                return RedirectToAction("Detail", new { orderId = order.Order.AggregateRootId });
+            }
+            return RedirectToAction("Index", new { orderStatus = OrderStatus.PickedUp });
         }
 
         
 
-        public async Task<ActionResult> RestaurantAccepted(Guid orderId)
+        public async Task<ActionResult> RestaurantAccepted(Guid orderId, bool redirectToDetailPage = false)
         {
             var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() {AggregateId = orderId});
             await
@@ -78,7 +108,12 @@ namespace Admin.Controllers
                     OrderId = order.Order.Id,
                     OrderStatus = OrderStatus.RestaurantAccepted
                 });
-            return RedirectToAction("Index", new {orderStatus = OrderStatus.RestaurantAccepted});
+
+            if (redirectToDetailPage)
+            {
+                return RedirectToAction("Detail", new {orderId = order.Order.AggregateRootId});
+            }
+            return RedirectToAction("Index", new {orderStatus = OrderStatus.PaymentSucccessful});
         }
         
     }

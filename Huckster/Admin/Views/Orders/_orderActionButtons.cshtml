@@ -1,0 +1,51 @@
+﻿@using Domain.Order
+@model Domain.Order.Queries.Models.OrderDetailsViewModel
+
+@{
+    var nextAction = "";
+    var actionDescription = "";
+    var orderStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), Model.Order.Status);
+    var redirectToDetailPage = (ViewData["DetailPage"] != null && ((bool)ViewData["DetailPage"]) == true);
+
+
+    switch (orderStatus)
+    {
+        case OrderStatus.Placed:
+            break;
+        case OrderStatus.PaymentSucccessful:
+            nextAction = OrderStatus.RestaurantAccepted.ToString();
+            actionDescription = "Accepted";
+            break;
+        case OrderStatus.PaymentFailed:
+            nextAction = OrderStatus.Archived.ToString();
+            actionDescription = "Remove Order";
+            break;
+        case OrderStatus.RestaurantAccepted:
+            nextAction = OrderStatus.PickedUp.ToString();
+            actionDescription = "Picked Up";
+            break;
+        case OrderStatus.Cancelled:
+            nextAction = OrderStatus.Archived.ToString();
+            actionDescription = "Refund Order";
+            break;
+        case OrderStatus.PickedUp:
+            nextAction = OrderStatus.Delivered.ToString();
+            actionDescription = "Delivered";
+            break;
+        case OrderStatus.Delivered:
+            nextAction = OrderStatus.Archived.ToString();
+            actionDescription = "Complete Order";
+            break;
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+}
+
+@if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed)
+{
+    <a class="btn btn-default btn-success" href="@Url.Action(nextAction, new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">@actionDescription</a>
+}
+@if (orderStatus == OrderStatus.PaymentSucccessful)
+{
+    <a class="btn btn-default btn-danger" href="@Url.Action(OrderStatus.Cancelled.ToString(), new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">Cancel</a>
+}

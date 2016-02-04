@@ -15,7 +15,7 @@ namespace Domain.Order
         PaymentSucccessful,
         PaymentFailed,
         RestaurantAccepted,
-        Canceled,
+        Cancelled,
         PickedUp,
         Delivered,
         Archived

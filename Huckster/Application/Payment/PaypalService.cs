@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Domain.Payment;
@@ -58,7 +59,7 @@ namespace Application.Payment
 
                 return new PaymentEvent()
                 {
-                    ExternalId = paymentID,
+                    ExternalId = response.transactions.First().related_resources.First().sale.id,
                     Gateway = "Paypal",
                     PaymentDateTime = DateTime.UtcNow,
                     Type = "ExecutePayment",
@@ -109,12 +110,66 @@ namespace Application.Payment
                 return response.links[1].href;
             }
         }
+
+        public async Task<PaymentEvent> Refund(string externalId)
+        {
+            var token = await GetAccessToken();
+            using (var httpClient = new HttpClient())
+            {
+                var response = await
+                    httpClient.PostJsonAsync<PaypalRefundResponse, PaypalRefundRequest>(
+                        PaypalEndpoint + $"/v1/payments/sale/{externalId}/refund", new PaypalRefundRequest(), "Bearer", token);
+
+
+                return new PaymentEvent()
+                {
+                    ExternalId = response.id,
+                    Gateway = "Paypal",
+                    PaymentDateTime = DateTime.UtcNow,
+                    Type = "Refund",
+                    Status = response.state,
+                    TransactionSuccess = response.state.Equals("completed"),
+                    ExtraInfo = JsonConvert.SerializeObject(response)
+                };
+            }
+        }
     }
 
     public class ExecuteRequest
     {
         public string payer_id { get; set; }
     }
+
+    public class PaypalRefundRequest
+    {
+        
+    }
+
+    public class PaypalRefundResponse
+    {
+        public string id { get; set; }
+        public DateTime create_time { get; set; }
+        public DateTime update_time { get; set; }
+        public string state { get; set; }
+        public Amount amount { get; set; }
+        public string sale_id { get; set; }
+        public string parent_payment { get; set; }
+        public Link[] links { get; set; }
+    }
+
+    public class Amount
+    {
+        public string total { get; set; }
+        public string currency { get; set; }
+    }
+
+    public class Link
+    {
+        public string href { get; set; }
+        public string rel { get; set; }
+        public string method { get; set; }
+    }
+
 
 
     public class ExecuteResponse

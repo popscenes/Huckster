@@ -6,6 +6,15 @@
 }
 <div class="container">
     <h2>Order Details</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Order Actions</div>
+        <div class="panel-body">
+            @Html.Partial("_orderActionButtons", Model, new ViewDataDictionary { { "DetailPage", true } })
+        </div>
+    </div>
+    
+
     <table class="table">
         
 

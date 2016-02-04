@@ -37,9 +37,55 @@ namespace Application.Payment
                 return result;
             }
 
+
+        }
+
+        public async Task<PaymentEvent> Refund(string externalId)
+        {
+            var nvc = new List<KeyValuePair<string, string>>();
+            nvc.Add(new KeyValuePair<string, string>("charge", externalId));
+            HttpContent content = new FormUrlEncodedContent(nvc);
+            using (var httpClient = new HttpClient())
+            {
+                var response =
+                    await
+                        httpClient.DoPostFormEncodedAsync<RefundResponse>("https://api.stripe.com/v1/refunds", content,
+                            "Basic", key);
+
+
+                var result = new PaymentEvent()
+                {
+                    PaymentDateTime = DateTime.UtcNow,
+                    ExternalId = response.id,
+                    Gateway = "Stripe",
+                    Status = "",
+                    TransactionSuccess = true,
+                    Type =response.@object,
+                    ExtraInfo = response.charge
+                };
+
+                return result;
+            }
+
             
         }
     }
+
+
+    public class RefundResponse
+    {
+        public string id { get; set; }
+        public string @object { get; set; }
+        public int amount { get; set; }
+        public object balance_transaction { get; set; }
+        public string charge { get; set; }
+        public int created { get; set; }
+        public string currency { get; set; }
+        public Metadata metadata { get; set; }
+        public object reason { get; set; }
+        public object receipt_number { get; set; }
+    }
+
 
     public class CreateCharge
     {

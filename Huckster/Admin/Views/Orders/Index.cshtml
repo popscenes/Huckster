@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="">
     <h2>Order Work Queue</h2>
     <div class="btn-group alert alert-sm alert-info">
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Placed.ToString() })">Placed</a>
         <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentSucccessful.ToString()})">Payment Succcessful</a>
         <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.RestaurantAccepted.ToString() })">Restaurant Accepted</a>
     </div>
@@ -17,7 +16,7 @@
         <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Delivered.ToString() })">Delivered</a>
     </div>
     <div class="btn-group alert alert-sm alert-danger"> 
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Canceled.ToString() })">Canceled</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Cancelled.ToString() })">Cancelled</a>
         <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentFailed.ToString() })">Payment Failed</a>
     </div>
 
@@ -92,51 +91,8 @@
                     @order.Order.Status
                 </td>
                 <td>
-                    @{
-                        var nextAction = "";
-                        var actionDescription = "";
-                        var orderStatus = (OrderStatus) Enum.Parse(typeof (OrderStatus), order.Order.Status);
-                        switch (orderStatus)
-                        {
-                            case OrderStatus.Placed:
-                                break;
-                            case OrderStatus.PaymentSucccessful:
-                                nextAction = OrderStatus.RestaurantAccepted.ToString();
-                                actionDescription = "Restaurant Accepts Order";
-                                break;
-                            case OrderStatus.PaymentFailed:
-                                nextAction = OrderStatus.Archived.ToString();
-                                actionDescription = "Remove Order";
-                                break;
-                            case OrderStatus.RestaurantAccepted:
-                                nextAction = OrderStatus.PickedUp.ToString();
-                                actionDescription = "Order Picked Up";
-                                break;
-                            case OrderStatus.Canceled:
-                                nextAction = OrderStatus.Archived.ToString();
-                                actionDescription = "Refund Order";
-                                break;
-                            case OrderStatus.PickedUp:
-                                nextAction = OrderStatus.Delivered.ToString();
-                                actionDescription = "Order Delivered";
-                                break;
-                            case OrderStatus.Delivered:
-                                nextAction = OrderStatus.Archived.ToString();
-                                actionDescription = "Complete Order";
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                    }
-                    @if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed)
-                    {
-                        <a class="btn btn-default" href="@Url.Action(nextAction, new {orderId = order.Order.AggregateRootId})">@actionDescription</a>
-                    }
-
-                    
-                </td>
-                <td>
-                    <a class="btn btn-default" href="@Url.Action("Detail", new {orderId = order.Order.AggregateRootId})">Detail</a>
+                    @Html.Partial("_orderActionButtons", order)
+                    <a class="btn btn-default btn-primary" href="@Url.Action("Detail", new {orderId = order.Order.AggregateRootId})">Detail</a>
                 </td>
             </tr>
         }

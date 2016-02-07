@@ -28,6 +28,9 @@ namespace Domain.Order.Queries
             var restaurant = context.Query<Restaurant.Restaurant>("Select * from [dbo].[Restaurant] where AggregateRootId = @AggregateRootId",
                     new { AggregateRootId = order.RestaurantId }).FirstOrDefault();
 
+            var restaurantAddress = context.Query<Address>("Select * from [dbo].[Address] where ParentAggregateId = @ParentAggregateId",
+                    new { ParentAggregateId = restaurant.AggregateRootId }).FirstOrDefault();
+
             var customer = context.Query<Customer.Customer>("Select * from [dbo].[Customer] where AggregateRootId = @AggregateRootId",
                     new { AggregateRootId = order.CustomerId }).FirstOrDefault();
 
@@ -37,7 +40,8 @@ namespace Domain.Order.Queries
                 DeliverySuburb = deliverySuburb,
                 DeliverAddress = deliverAddress,
                 Restaurant = restaurant,
-                Customer = customer
+                Customer = customer,
+                RestaurantAddress = restaurantAddress
             };
         }
     }

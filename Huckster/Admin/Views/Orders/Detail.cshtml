@@ -10,110 +10,141 @@
     <div class="panel panel-default">
         <div class="panel-heading">Order Actions</div>
         <div class="panel-body">
-            @Html.Partial("_orderActionButtons", Model, new ViewDataDictionary { { "DetailPage", true } })
+            @Html.Partial("_orderActionButtons", Model, new ViewDataDictionary {{"DetailPage", true}})
         </div>
     </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Order Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Orser Status <small>- @Model.Order.Status</small></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Requested Delivery Time <small>- @Model.Order.DeliveryTime.ToString()</small></h3>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Price</th>
+                            <th>Notes</th>
+                        </tr>
+                        @foreach (var orderItem in Model.Order.OrderItems)
+                        {
+                            <tr>
+                                <td>
+                                    @orderItem.Name
+                                </td>
+                                <td>
+                                    @orderItem.Quantity
+                                </td>
+                                <td>
+                                    $@orderItem.Price
+                                </td>
+                                <td>
+                                    @{
+                                        var itemCost = orderItem.Price * orderItem.Quantity;
+                                    }
+
+                                    $@itemCost
+                                </td>
+                                <td>
+                                    @orderItem.Notes
+                                </td>
+                            </tr>
+                                        }
+                    </table>
+
+                    Total Order Cost:$ @Model.Order.OrderItems.Sum(_ => _.Price * _.Quantity)
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
     
 
-    <table class="table">
-        
+    <div class="panel panel-default">
+        <div class="panel-heading">Restaurant Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>@Model.Restaurant.Name</h3>
+                </div>
+            </div>
 
-        <tr>
-            <th>
-                Restaurant
-            </th>
-            <th>
-                Customer Email
-            </th>
-            <th>
-                Customer Mobile
-            </th>
-            <th>
-                Delivery Address
-            </th>
-            <th>
-                Delivery Time
-            </th>
-            <th>
-                Order Status
-            </th>
-        </tr><tr>
-            <td>
-                @Model.Restaurant.Name
-            </td>
-            <td>
-                @{
-                    var customerEmail = "Not-Set";
-                    if (Model.Customer != null)
-                    {
-                        customerEmail = Model.Customer.Email;
-                    }
-                }
-                @customerEmail
-            </td>
-            <td>
-                @{
-                    var customerMobile = "Not-Set";
-                    if (Model.Customer != null)
-                    {
-                        customerMobile = Model.Customer.Mobile;
-                    }
-                }
-                @customerMobile
-            </td>
-            <td>
-                @{
-                    var deliverAddress = "Not-Set";
-                    if (Model.DeliverAddress != null)
-                    {
-                        deliverAddress = Model.DeliverAddress.ToString();
-                    }
-                }
-                @deliverAddress
-            </td>
-            <td>
-                @Model.Order.DeliveryTime.ToString()
-            </td>
-        <td>
-            @Model.Order.Status
-        </td>
-        </tr>
-</table>
-    <br/>
-    <br/>
-    <table class="table">
-        <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total Price</th>
-            <th>Notes</th>
-        </tr>
-        @foreach (var orderItem in Model.Order.OrderItems)
-        {
-            <tr>
-                <td>
-                    @orderItem.Name
-                </td>
-                <td>
-                    @orderItem.Quantity
-                </td>
-                <td>
-                    $@orderItem.Price
-                </td>
-                <td>
+            <div class="row">
+                <div class="col-sm-12">
+                    @Model.RestaurantAddress.ToString()
+                </div>
+            </div>
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?q=@Model.RestaurantAddress.ToString()&zoom=16&key=AIzaSyAVLLAV_zf143Dm_6YrPzXq3_RBjnJ1uMc"></iframe>
+            </div>
+                   
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Customer Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
                     @{
-                        var itemCost = orderItem.Price*orderItem.Quantity;
+                        var customerEmail = "Not-Set";
+                        if (Model.Customer != null)
+                        {
+                            customerEmail = Model.Customer.Email;
+                        }
+
+                        var customerMobile = "Not-Set";
+                        if (Model.Customer != null)
+                        {
+                            customerMobile = Model.Customer.Mobile;
+                        }
                     }
 
-                    $@itemCost
-                </td>
-                <td>
-                    @orderItem.Notes
-                </td>
-            </tr>
-        }
-    </table>
+                    @customerEmail - @customerMobile
+                </div>
+            </div>
 
-    Total Order Cost:$ @Model.Order.OrderItems.Sum(_ => _.Price*_.Quantity)
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @{
+                        var deliverAddress = "Not-Set";
+                        if (Model.DeliverAddress != null)
+                        {
+                            deliverAddress = Model.DeliverAddress.ToString();
+                        }
+                    }
+                    @deliverAddress
+                </div>
+            </div>
+            @if (Model.DeliverAddress != null)
+            {
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?q=@deliverAddress&zoom=16&key=AIzaSyAVLLAV_zf143Dm_6YrPzXq3_RBjnJ1uMc"></iframe>
+                </div>
+            }
+        </div>
+    </div>
+
+    
+    
+
+
+
 </div>

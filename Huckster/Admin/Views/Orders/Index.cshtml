@@ -6,18 +6,18 @@
 }
 
 <div class="">
-    <h2>Order Work Queue</h2>
+    <h2>Order Work Queue <small>@ViewBag.OrderStatus</small></h2>
     <div class="btn-group alert alert-sm alert-info">
         <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentSucccessful.ToString()})">Payment Succcessful</a>
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.RestaurantAccepted.ToString() })">Restaurant Accepted</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.RestaurantAccepted.ToString()})">Restaurant Accepted</a>
     </div>
     <div class="btn-group alert alert-sm alert-success">
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PickedUp.ToString() })">PickedUp</a>
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Delivered.ToString() })">Delivered</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PickedUp.ToString()})">PickedUp</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Delivered.ToString()})">Delivered</a>
     </div>
-    <div class="btn-group alert alert-sm alert-danger"> 
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Cancelled.ToString() })">Cancelled</a>
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentFailed.ToString() })">Payment Failed</a>
+    <div class="btn-group alert alert-sm alert-danger">
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Cancelled.ToString()})">Cancelled</a>
+        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentFailed.ToString()})">Payment Failed</a>
     </div>
 
     <table class="table">
@@ -45,7 +45,7 @@
 
             </th>
             <th>
-                
+
             </th>
         </tr>
         @foreach (var order in Model)
@@ -91,10 +91,16 @@
                     @order.Order.Status
                 </td>
                 <td>
-                    @Html.Partial("_orderActionButtons", order)
+                    @*@Html.Partial("_orderActionButtons", order)*@
                     <a class="btn btn-default btn-primary" href="@Url.Action("Detail", new {orderId = order.Order.AggregateRootId})">Detail</a>
                 </td>
             </tr>
         }
     </table>
 </div>
+
+<script type="text/javascript">
+    setTimeout(function () {
+        window.location.reload(1);
+    }, 5000);
+</script>

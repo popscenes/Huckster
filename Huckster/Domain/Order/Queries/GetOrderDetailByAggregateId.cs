@@ -17,6 +17,8 @@ namespace Domain.Order.Queries
         public Guid AggregateId { get; set; }
     }
 
+
+
     public class GetOrderDetailByAggregateIdHandler : AdoQueryHandler<GetOrderDetailByAggregateId, OrderDetailsViewModel>
     {
         public GetOrderDetailByAggregateIdHandler(AdoContext adoContext) : base(adoContext)

@@ -25,6 +25,9 @@ namespace Domain.Restaurant
         public string TimeZoneId { get; set; }
         public string TileImageUrl { get; set; }
 
+        public string ContactPhone { get; set; }
+        public string Email { get; set; }
+
         public string FullTileImageUrl {
             get
             {

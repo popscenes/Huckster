@@ -90,6 +90,7 @@
     <Compile Include="Order\Messages\OrderCompleteMessage.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\Commands\PlaceOrderCommand.cs" />
+    <Compile Include="Order\Queries\GetOrderAdminDetailByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderDetailByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderDetailsByStatusQuery.cs" />

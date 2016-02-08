@@ -1,5 +1,5 @@
 ﻿@using Domain.Order
-@model Domain.Order.Queries.Models.OrderDetailsViewModel
+@model Domain.Order.Queries.Models.OrderAdminDetailsViewModel
 
 @{
     var nextAction = "";
@@ -41,11 +41,48 @@
     }
 }
 
-@if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed)
+@if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed && orderStatus != OrderStatus.Cancelled)
 {
-    <a class="btn btn-default btn-success" href="@Url.Action(nextAction, new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">@actionDescription</a>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#actionModal">@actionDescription</button>
 }
-@if (orderStatus == OrderStatus.PaymentSucccessful)
+@if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed && orderStatus != OrderStatus.Cancelled)
 {
-    <a class="btn btn-default btn-danger" href="@Url.Action(OrderStatus.Cancelled.ToString(), new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">Cancel</a>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel</button>
 }
+
+
+
+
+<div id="actionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                Confirm Action
+            </div>
+            <div class="modal-body">
+                Confirm Order is @actionDescription
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-default btn-success" href="@Url.Action(nextAction, new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cancelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                Confirm Action
+            </div>
+            <div class="modal-body">
+                Are you sure you wish to cancel this order? The orde will be refunded on cancelation.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-default btn-danger" href="@Url.Action(OrderStatus.Cancelled.ToString(), new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>

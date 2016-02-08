@@ -40,7 +40,7 @@ namespace Admin.Controllers
 
         public async Task<ActionResult> Detail(Guid orderId)
         {
-            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = orderId });
+            var order = await _queryChannel.QueryAsync(new GetOrderAdminDetailByAggregateId() { AggregateId = orderId });
             return View(order);
         }
 

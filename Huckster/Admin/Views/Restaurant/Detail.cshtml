@@ -25,6 +25,12 @@
             <p>
                 @Model.Restaurant.Description
             </p>
+            <p>
+                @Model.Restaurant.ContactPhone
+            </p>
+            <p>
+                @Model.Restaurant.Email
+            </p>
             @Html.ActionLink("Edit Details", "EditDetails", new {id = Model.Restaurant.Id}, new {@class="btn btn-primary"})
         </div>
         <div role="tabpanel" class="tab-pane" id="Address">

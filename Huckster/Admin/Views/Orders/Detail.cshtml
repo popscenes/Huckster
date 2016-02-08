@@ -1,5 +1,5 @@
 ﻿@using System.ComponentModel.Design
-@model Domain.Order.Queries.Models.OrderDetailsViewModel
+@model Domain.Order.Queries.Models.OrderAdminDetailsViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,7 +20,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3>Orser Status <small>- @Model.Order.Status</small></h3>
+                    <h3>Order Status <small>- @Model.Order.Status</small></h3>
                 </div>
             </div>
             <div class="row">
@@ -38,7 +38,7 @@
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Total Price</th>
-                            <th>Notes</th>
+
                         </tr>
                         @foreach (var orderItem in Model.Order.OrderItems)
                         {
@@ -54,12 +54,15 @@
                                 </td>
                                 <td>
                                     @{
-                                        var itemCost = orderItem.Price * orderItem.Quantity;
+                                        var itemCost = orderItem.Price*orderItem.Quantity;
                                     }
 
                                     $@itemCost
                                 </td>
-                                <td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="5">
                                     @orderItem.Notes
                                 </td>
                             </tr>
@@ -87,6 +90,18 @@
             <div class="row">
                 <div class="col-sm-12">
                     @Model.RestaurantAddress.ToString()
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @Model.Restaurant.ContactPhone
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @Model.Restaurant.Email
                 </div>
             </div>
 
@@ -142,7 +157,51 @@
         </div>
     </div>
 
-    
+    <div class="panel panel-default">
+        <div class="panel-heading">Payment Events</div>
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        DateTime
+                    </th>
+                    <th>
+                        Gateway
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th class="hidden-xs">
+                        ExternalId
+                    </th>
+                </tr>
+                @foreach (var paymentEvent in Model.PaymentEvents)
+                {
+                    <tr>
+                        <td>
+                            @paymentEvent.PaymentDateTime.ToShortDateString() - @paymentEvent.PaymentDateTime.ToShortTimeString()
+                        </td>
+                        <td>
+                            @paymentEvent.Gateway
+                        </td>
+                        <td>
+                            @paymentEvent.Type
+                        </td>
+                        <td>
+                            @paymentEvent.Status
+                        </td>
+                        <td class="hidden-xs">
+                            @paymentEvent.ExternalId
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
     
 
 

@@ -14,7 +14,7 @@ using infrastructure.CQRS;
 
 namespace Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class RestaurantController : Controller
     {
         private readonly IQueryChannel _queryChannel;

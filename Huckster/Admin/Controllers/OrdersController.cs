@@ -13,7 +13,7 @@ using infrastructure.CQRS;
 
 namespace Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Delivery,Admin")]
     public class OrdersController : Controller
     {
         private readonly IQueryChannel _queryChannel;

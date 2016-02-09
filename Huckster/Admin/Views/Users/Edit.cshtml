@@ -1,0 +1,60 @@
+﻿@model Admin.Controllers.UserEditViewModel
+
+<h2>User Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <fieldset class="form-horizontal">
+        <legend>Edit a user.</legend>
+        <div class="control-group">
+            @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+
+        @*<div class="control-group">
+                @Html.LabelFor(m => m.HomeTown, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.HomeTown)
+                </div>
+            </div>*@
+
+        <div class="control-group">
+            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+            <div class="controls">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <h4>Roles</h4>
+        <div class="checkbox">
+            @for (int i = 0; i < ViewBag.AllRoles.Count; i++)
+            {
+                string role = ViewBag.AllRoles[i];
+                bool isSelected = ViewBag.SelectedRoles.Contains(role);
+                <label>
+                    <input type="checkbox" name="roles" id="@role" checked="@(isSelected ? "checked" : null)" value="@role" />
+                    @role
+                </label><br />
+            }
+        </div>
+
+        <div class="red">
+            @Html.ValidationSummary()
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save Changes" class="btn btn-primary" />
+        </div>
+    </fieldset>
+}

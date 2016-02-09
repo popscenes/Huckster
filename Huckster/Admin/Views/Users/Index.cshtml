@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework
+@model List<Admin.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Users</h2>
+
+<a class="btn btn-primary" href="@Url.Action("New")">New User</a>
+
+<table class="table">
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Email
+        </td>
+        <td>
+            Roles
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @user.UserName
+            </td>
+            <td>
+                @user.Email
+            </td>
+            <td>
+                @{
+                    var roleNames = ((List<IdentityRole>) ViewBag.Roles).Where(_ => user.Roles.Select(r => r.RoleId).Contains(_.Id)).Select(_ => _.Name);
+                }
+                @String.Join(", ", roleNames)
+            </td>
+            <td>
+            @Html.ActionLink("Edit", "Edit", new {id = user.Id}) |
+        </td>
+    </tr>
+    }
+</table>

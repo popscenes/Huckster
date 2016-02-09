@@ -87,6 +87,7 @@ namespace Admin
             }
 
             EnsureRoleExists("Admin", context);
+            EnsureRoleExists("Delivery", context);
 
             string username = "huckster";
             string email = "development@huckster.com.au";

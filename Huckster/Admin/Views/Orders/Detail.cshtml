@@ -1,0 +1,209 @@
+﻿@using System.ComponentModel.Design
+@model Domain.Order.Queries.Models.OrderAdminDetailsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Order Details</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Order Actions</div>
+        <div class="panel-body">
+            @Html.Partial("_orderActionButtons", Model, new ViewDataDictionary {{"DetailPage", true}})
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Order Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Order Status <small>- @Model.Order.Status</small></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Requested Delivery Time <small>- @Model.Order.DeliveryTime.ToString()</small></h3>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Price</th>
+
+                        </tr>
+                        @foreach (var orderItem in Model.Order.OrderItems)
+                        {
+                            <tr>
+                                <td>
+                                    @orderItem.Name
+                                </td>
+                                <td>
+                                    @orderItem.Quantity
+                                </td>
+                                <td>
+                                    $@orderItem.Price
+                                </td>
+                                <td>
+                                    @{
+                                        var itemCost = orderItem.Price*orderItem.Quantity;
+                                    }
+
+                                    $@itemCost
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    @orderItem.Notes
+                                </td>
+                            </tr>
+                                        }
+                    </table>
+
+                    Total Order Cost:$ @Model.Order.OrderItems.Sum(_ => _.Price * _.Quantity)
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Restaurant Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>@Model.Restaurant.Name</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @Model.RestaurantAddress.ToString()
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @Model.Restaurant.ContactPhone
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @Model.Restaurant.Email
+                </div>
+            </div>
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?q=@Model.RestaurantAddress.ToString()&zoom=16&key=AIzaSyAVLLAV_zf143Dm_6YrPzXq3_RBjnJ1uMc"></iframe>
+            </div>
+                   
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Customer Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    @{
+                        var customerEmail = "Not-Set";
+                        if (Model.Customer != null)
+                        {
+                            customerEmail = Model.Customer.Email;
+                        }
+
+                        var customerMobile = "Not-Set";
+                        if (Model.Customer != null)
+                        {
+                            customerMobile = Model.Customer.Mobile;
+                        }
+                    }
+
+                    @customerEmail - @customerMobile
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @{
+                        var deliverAddress = "Not-Set";
+                        if (Model.DeliverAddress != null)
+                        {
+                            deliverAddress = Model.DeliverAddress.ToString();
+                        }
+                    }
+                    @deliverAddress
+                </div>
+            </div>
+            @if (Model.DeliverAddress != null)
+            {
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?q=@deliverAddress&zoom=16&key=AIzaSyAVLLAV_zf143Dm_6YrPzXq3_RBjnJ1uMc"></iframe>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Payment Events</div>
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        DateTime
+                    </th>
+                    <th>
+                        Gateway
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th class="hidden-xs">
+                        ExternalId
+                    </th>
+                </tr>
+                @foreach (var paymentEvent in Model.PaymentEvents)
+                {
+                    <tr>
+                        <td>
+                            @paymentEvent.PaymentDateTime.ToShortDateString() - @paymentEvent.PaymentDateTime.ToShortTimeString()
+                        </td>
+                        <td>
+                            @paymentEvent.Gateway
+                        </td>
+                        <td>
+                            @paymentEvent.Type
+                        </td>
+                        <td>
+                            @paymentEvent.Status
+                        </td>
+                        <td class="hidden-xs">
+                            @paymentEvent.ExternalId
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+    
+
+
+
+</div>

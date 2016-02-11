@@ -1,0 +1,88 @@
+﻿@using Domain.Order
+@model Domain.Order.Queries.Models.OrderAdminDetailsViewModel
+
+@{
+    var nextAction = "";
+    var actionDescription = "";
+    var orderStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), Model.Order.Status);
+    var redirectToDetailPage = (ViewData["DetailPage"] != null && ((bool)ViewData["DetailPage"]) == true);
+
+
+    switch (orderStatus)
+    {
+        case OrderStatus.Placed:
+            break;
+        case OrderStatus.PaymentSucccessful:
+            nextAction = OrderStatus.RestaurantAccepted.ToString();
+            actionDescription = "Accepted";
+            break;
+        case OrderStatus.PaymentFailed:
+            nextAction = OrderStatus.Archived.ToString();
+            actionDescription = "Remove Order";
+            break;
+        case OrderStatus.RestaurantAccepted:
+            nextAction = OrderStatus.PickedUp.ToString();
+            actionDescription = "Picked Up";
+            break;
+        case OrderStatus.Cancelled:
+            nextAction = OrderStatus.Archived.ToString();
+            actionDescription = "Refund Order";
+            break;
+        case OrderStatus.PickedUp:
+            nextAction = OrderStatus.Delivered.ToString();
+            actionDescription = "Delivered";
+            break;
+        case OrderStatus.Delivered:
+            nextAction = OrderStatus.Archived.ToString();
+            actionDescription = "Complete Order";
+            break;
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+}
+
+@if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed && orderStatus != OrderStatus.Cancelled)
+{
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#actionModal">@actionDescription</button>
+}
+@if (orderStatus != OrderStatus.Delivered && orderStatus != OrderStatus.Placed && orderStatus != OrderStatus.Cancelled)
+{
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Cancel</button>
+}
+
+
+
+
+<div id="actionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                Confirm Action
+            </div>
+            <div class="modal-body">
+                Confirm Order is @actionDescription
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-default btn-success" href="@Url.Action(nextAction, new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cancelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                Confirm Action
+            </div>
+            <div class="modal-body">
+                Are you sure you wish to cancel this order? The orde will be refunded on cancelation.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-default btn-danger" href="@Url.Action(OrderStatus.Cancelled.ToString(), new {orderId = Model.Order.AggregateRootId, redirectToDetailPage})">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>

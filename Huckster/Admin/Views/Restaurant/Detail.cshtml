@@ -1,0 +1,93 @@
+﻿@model Domain.Restaurant.Queries.Models.RestaurantDetailsModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="container">
+    <h2>Restaurant Detail - @Model.Restaurant.Name</h2>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#Details" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
+        <li role="presentation" class=""><a href="#Address" aria-controls="home" role="tab" data-toggle="tab">Address</a></li>
+        <li role="presentation"><a href="#Menus" aria-controls="profile" role="tab" data-toggle="tab">Menus</a></li>
+        <li role="presentation"><a href="#Suburbs" aria-controls="messages" role="tab" data-toggle="tab">Suburbs</a></li>
+        <li role="presentation"><a href="#Image" aria-controls="settings" role="tab" data-toggle="tab">Image</a></li>
+        <li role="presentation"><a href="#Times" aria-controls="settings" role="tab" data-toggle="tab">Times</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="Details">
+            <h4>Restaurant Details</h4>
+            <p>@Model.Restaurant.Name</p>
+            <p>
+                @Model.Restaurant.Description
+            </p>
+            <p>
+                @Model.Restaurant.ContactPhone
+            </p>
+            <p>
+                @Model.Restaurant.Email
+            </p>
+            @Html.ActionLink("Edit Details", "EditDetails", new {id = Model.Restaurant.Id}, new {@class="btn btn-primary"})
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Address">
+            <div>
+                <h4>Address</h4>
+                <div>
+                    @if (Model.RestauranAddress != null)
+                    {
+                        @Model.RestauranAddress.ToString()
+                    }
+                </div>
+                @Html.ActionLink("Edit Address", "EditAddress", new { id = Model.Restaurant.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Menus">
+            <div>
+                <h4>Menu's</h4>
+                @foreach (var menu in Model.RestaurantMenu.OrderBy(_ => _.Order))
+                {
+                    <h4>@menu.Title - @menu.Description</h4>
+                }
+                @Html.ActionLink("Edit Menus", "EditMenu", new { id = Model.Restaurant.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Suburbs">
+            <div>
+                <h4>Delivery Suburbs</h4>
+
+                @foreach (var suburb in Model.DeliverySuburbs)
+                {
+                    <div>
+                        @suburb.Suburb @suburb.Postcode @suburb.State
+                    </div>
+                }
+                @Html.ActionLink("Edit Delivery Suburbs", "EditSuburbs", new { id = Model.Restaurant.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Image">
+            <div>
+                <h4>Tile Image</h4>
+                <div>
+                    <img src="@Model.Restaurant.FullTileImageUrl" />
+                </div>
+                @Html.ActionLink("Edit Tile Image", "EditTileImage", new { id = Model.Restaurant.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Times">
+            <div>
+                <h4>Delivery Times</h4>
+                @foreach (var deliveryTime in Model.DeliveryHours)
+                {
+                    <div>
+                        @deliveryTime.DayOfWeek.ToString() @deliveryTime.ServiceType.ToString() @deliveryTime.OpenTime.ToString() @deliveryTime.CloseTime.ToString()
+                    </div>
+                }
+                @Html.ActionLink("Edit Delivery Times", "EditDeliveryTimes", new { id = Model.Restaurant.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</div>

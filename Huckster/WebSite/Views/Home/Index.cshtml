@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<header>
+
+    <div class="logo"></div>
+
+</header>
+<div class="gallery purple">
+
+</div>
+<section class="main-content">
+    <div class="logo-type"></div>
+
+    <form id="huckstart">
+
+        <input type="text" name="address" placeholder="Enter address, e.g. 55 Huckster Street, Hucksterville">
+
+        <button type="submit" form="huckstart" value="Submit">Get Food</button>
+
+        <a href="@Url.Action("Detail", "Restaurant", new {id = 1})">Test Restaurant</a>
+
+    </form>
+</section>

@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net46": {
+      "wrappedProject": "../../Domain/Domain.csproj",
+      "bin": {
+        "assembly": "../../Domain/obj/{configuration}/Domain.dll",
+        "pdb": "../../Domain/obj/{configuration}/Domain.pdb"
+      },
+      "dependencies": {
+        "Dapper": "1.42",
+        "DapperExtensions": "1.4.4",
+        "Newtonsoft.Json": "7.0.1",
+        "Ninject": "3.2.2.0",
+        "Ninject.Extensions.Conventions": "3.2.0.0",
+        "infrastructure": "1.0.0-*"
+      }
+    }
+  }
+}

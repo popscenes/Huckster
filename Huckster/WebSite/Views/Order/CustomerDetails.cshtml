@@ -1,0 +1,66 @@
+﻿@model WebSite.Models.OrderCheckout
+@{
+    ViewBag.Title = "CustomerDetails";
+}
+
+<h2>CustomerDetails</h2>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(o => o.Id)
+        <div class="form-group">
+            <label>
+                Mobile Number
+            </label>
+            @Html.EditorFor(o => o.CustomerMobile)
+        </div>
+        
+        <div class="form-group">
+            <label>
+                Email
+            </label>
+            @Html.EditorFor(o => o.CustomerEmail)
+        </div>
+
+
+        <div class="form-group">
+            <label>
+                Number
+            </label>
+            @Html.EditorFor(o => o.Address.Number)
+        </div>
+
+        <div class="form-group">
+            <label>
+                Street
+            </label>
+            @Html.EditorFor(o => o.Address.Street)
+        </div>
+
+        <div class="form-group">
+            <label>
+                Suburb
+            </label>
+            @Html.EditorFor(o => o.Address.Suburb)
+        </div>
+
+        <div class="form-group">
+            <label>
+                State
+            </label>
+            @Html.EditorFor(o => o.Address.State)
+        </div>
+
+        <div class="form-group">
+            <label>
+                Postcode
+            </label>
+            @Html.EditorFor(o => o.Address.Postcode)
+        </div>
+
+        <input type="submit" value="Submit"/>
+    }
+
+</div>
+

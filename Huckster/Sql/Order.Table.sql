@@ -23,7 +23,9 @@ CREATE TABLE [dbo].[Order](
 	[LastModifiedDateTime] [datetime2](7) NOT NULL,
 	[Status] [nvarchar](64) NOT NULL,
 	[CompanyName] nvarchar(256) NULL,
-	[Instructions] nvarchar(MAX) NULL 
+	[Instructions] nvarchar(MAX) NULL,
+	[PickUpTime] [datetime2](7) NULL,
+	[DeliveryUserId] nvarchar(128) NULL
 
 ) --ON [PRIMARY]
 END
@@ -41,3 +43,12 @@ BEGIN
 	PRINT 'created column [Instructions] on table [dbo].[Order]'
 END
 GO
+
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'Order' and column_name = 'PickUpTime')
+BEGIN
+    ALTER TABLE [Order] ADD [PickUpTime] [datetime2](7) NULL 
+	PRINT 'created column [PickUpTime] on table [dbo].[Order]'
+
+	ALTER TABLE [Order] ADD [DeliveryUserId] nvarchar(128) NULL
+	PRINT 'created column [DeliveryUserId] on table [dbo].[Order]'
+END

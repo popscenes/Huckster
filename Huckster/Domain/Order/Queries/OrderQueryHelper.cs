@@ -38,6 +38,9 @@ namespace Domain.Order.Queries
             var paymentEvents = context.Query<PaymentEvent>("Select * from [dbo].[PaymentEvent] where ParentAggregateId = @ParentAggregateId",
                     new { ParentAggregateId = order.AggregateRootId }).ToList();
 
+            var deliveryUser = context.Query<DeliveryUser>("Select * from [dbo].[AspNetUsers] where Id = @Id",
+                    new { Id = order.DeliveryUserId }).FirstOrDefault();
+
             return new OrderAdminDetailsViewModel()
             {
                 Order = order,
@@ -46,7 +49,8 @@ namespace Domain.Order.Queries
                 Restaurant = restaurant,
                 Customer = customer,
                 RestaurantAddress = restaurantAddress,
-                PaymentEvents = paymentEvents
+                PaymentEvents = paymentEvents,
+                DeliveryUser = deliveryUser
             };
         }
 

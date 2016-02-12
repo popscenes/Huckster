@@ -36,11 +36,21 @@ namespace Domain.Order
         public DateTime CreateDateTime { get; set; }
         public DateTime LastModifiedDateTime { get; set; }
         public int Id { get; set; }
-        
+
+        public DateTime? PickUpTime { get; set; }
+        public String DeliveryUserId { get; set; }
+
         public Guid AggregateRootId { get; set; }
         public String Status { get; set; }
         //public Address Address { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+    }
+
+    public class DeliveryUser
+    {
+        public string Id { get; set; }
+        public String Email { get; set; }
+        public String UserName { get; set; }
     }
 
     public class OrderItem : IValueObject

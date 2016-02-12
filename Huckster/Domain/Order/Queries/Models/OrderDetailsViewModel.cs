@@ -24,5 +24,6 @@ namespace Domain.Order.Queries.Models
         public Address DeliverAddress { get; set; }
         public Address RestaurantAddress { get; set; }
         public List<PaymentEvent> PaymentEvents { get; set; }
+        public DeliveryUser DeliveryUser { get; set; }
     }
 }

@@ -124,7 +124,7 @@
 	
 	/*** HOMEPAGE GALLERY ***/
 	.front-image {
-		background-image: url(../_images/_backgrounds/CCD_alleyway_home.jpg);
+		background-image: url(../_images/_backgrounds/home.jpg);
 		background-size: cover;
 		background-position: center;
 		position: absolute;

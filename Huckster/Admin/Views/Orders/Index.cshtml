@@ -1,5 +1,5 @@
 ﻿@using Domain.Order
-@model List<Domain.Order.Queries.Models.OrderDetailsViewModel>
+@model List<Domain.Order.Queries.Models.OrderAdminDetailsViewModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,13 +27,13 @@
                 Restaurant
             </th>
             <th>
-                Customer Email
+                Assigned To
             </th>
             <th>
-                Customer Mobile
+                PickUp Time
             </th>
             <th>
-                Delivery Address
+                Delivery Suburb
             </th>
             <th>
                 Delivery Time
@@ -56,30 +56,30 @@
                 </td>
                 <td>
                     @{
-                        var customerEmail = "Not-Set";
-                        if (order.Customer != null)
+                        var deliveryUser = "Not-Assinged";
+                        if (order.DeliveryUser != null)
                         {
-                            customerEmail = order.Customer.Email;
+                            deliveryUser = order.DeliveryUser.UserName;
                         }
                     }
-                    @customerEmail
+                    @deliveryUser
                 </td>
                 <td>
                     @{
-                        var customerMobile = "Not-Set";
-                        if (order.Customer != null)
+                        var pickUpTime = "Not-Set";
+                        if (order.Order.PickUpTime != null)
                         {
-                            customerMobile = order.Customer.Mobile;
+                            pickUpTime = order.Order.PickUpTime.ToString();
                         }
                     }
-                    @customerMobile
+                    @pickUpTime
                 </td>
                 <td>
                     @{
                         var deliverAddress = "Not-Set";
                         if (order.DeliverAddress != null)
                         {
-                            deliverAddress = order.DeliverAddress.ToString();
+                            deliverAddress = order.DeliverAddress.Suburb;
                         }
                     }
                     @deliverAddress

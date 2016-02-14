@@ -36,7 +36,7 @@ namespace Admin.Controllers
             var orders = await _queryChannel.QueryAsync(new GetOrderDetailsByStatusQuery() {Status = orderStatus});
             if (orders == null)
             {
-                orders = new List<OrderDetailsViewModel>();
+                orders = new List<OrderAdminDetailsViewModel>();
             }
             ViewBag.OrderStatus = orderStatus;
 

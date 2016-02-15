@@ -3,10 +3,13 @@ using Ninject;
 using Ninject.Syntax;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 using infrastructure.Utility;
+using NLog;
 
 namespace infrastructure.CQRS
 {
@@ -15,15 +18,44 @@ namespace infrastructure.CQRS
         [Inject]
         private IResolutionRoot ResolutionRoot { get; set; }
 
-        public async Task<TReturn> QueryAsync<TQuery, TReturn>(IQuery<TQuery, TReturn> argument, TReturn defaultReturn = default(TReturn)) where TQuery : IQuery<TQuery, TReturn>
+        [Inject]
+        public ObjectCache ObjectCache { get; set; }
+
+        private static Logger logger = LogManager.GetLogger("mail");
+        public async Task<TReturn> QueryAsync<TQuery, TReturn>(IQuery<TQuery, TReturn> argument, CacheOptions cacheOptions = null, TReturn defaultReturn = default(TReturn)) where TQuery : IQuery<TQuery, TReturn>
         {
-            //var handler = ResolutionRoot.TryGet<IQueryHandler<TQuery, TReturn>>();
-            var handler = NinjectKernel.AppKernel.TryGet<IQueryHandler<TQuery, TReturn>>();
+            try
+            {
 
-            if (handler == null)
-                throw new ArgumentException("no query found for " + argument.GetType().Name);
+                if (cacheOptions != null && cacheOptions.CacheKey.IsNotNullOrWhiteSpace())
+                {
+                    var result = (TReturn)ObjectCache[cacheOptions.CacheKey];
+                    if (result != null)
+                    {
+                        return result;
+                    }
+                }
+                var handler = NinjectKernel.AppKernel.TryGet<IQueryHandler<TQuery, TReturn>>();
 
-            return await handler.HandleAsync((TQuery)argument);
+                if (handler == null)
+                    throw new ArgumentException("no query found for " + argument.GetType().Name);
+
+                var queryResult = await handler.HandleAsync((TQuery)argument);
+
+                if (cacheOptions != null && cacheOptions.CacheKey.IsNotNullOrWhiteSpace())
+                {
+                    ObjectCache.Add(cacheOptions.CacheKey, queryResult,
+                        DateTimeOffset.Now.AddMinutes(cacheOptions.CacheForMinutes));
+                }
+
+                return queryResult;
+            }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
+            }
+            
         }
     }
 }

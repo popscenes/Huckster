@@ -8,7 +8,7 @@ namespace infrastructure.CQRS
 {
     public interface IQueryChannel
     {
-        Task<TReturn> QueryAsync<TQuery, TReturn>(IQuery<TQuery, TReturn> argument, TReturn defaultReturn = default(TReturn))
+        Task<TReturn> QueryAsync<TQuery, TReturn>(IQuery<TQuery, TReturn> argument, CacheOptions cacheOptions = null, TReturn defaultReturn = default(TReturn))
              where TQuery : IQuery<TQuery, TReturn>;
     }
 }

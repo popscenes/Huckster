@@ -27,6 +27,10 @@ namespace WebSite.Controllers
             var restaurantDetail = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery()
             {
                 Id = id
+            }, new CacheOptions()
+            {
+                CacheKey = $"GetRestaurantDetailByIdQuery{id}",
+                CacheForMinutes = 1
             });
             var localDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
                 TimeZoneInfo.FindSystemTimeZoneById(restaurantDetail.Restaurant.TimeZoneId));

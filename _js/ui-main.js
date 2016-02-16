@@ -19,7 +19,7 @@ jQuery.noConflict();
 		
 		// if sPage = the restaurant listing page do something else do nothing.
 		// change this value to suit the url string for whatever page the restaurant listing ends up on.
-		if (sPage === 'restaurant-listing-two.html' ) {
+		if (sPage === 'restaurant-listing.html' ) {
 			
 			list.on('mouseover', function(){
 		

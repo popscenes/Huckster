@@ -819,14 +819,22 @@
 		display: block;
 		clear: both;
 		bottom: 0px;
-		background-color: #FF3333;
-		color: #ffffff;
+		background-color: #FCC;
+		color: #C30E0E;
 		padding: 5px;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 		border: 1px solid #C30E0E;
 		border-top: none;
 	}
+	.error .fa {
+		margin-right: 0.4em;	
+	}
+	.error-order {
+		border: 1px solid #c30E0E;
+		border-radius: 0;
+		margin-top: 0.4em;	}
+	
 	.input-error {
 		border: 1px solid #C30E0E;
 	}
@@ -1515,9 +1523,9 @@
 		position: relative;
 	}
 	.order-main {
-		padding: 25px;	
 		text-align: left;
 		margin-top: 0;
+		margin: 25px;
 	}
 	.order-main ul {
 		padding: 0;	
@@ -1525,6 +1533,9 @@
 	.order-main table {
 		margin-bottom: 40px;
 		border-collapse: collapse;
+	}
+	.order-main tbody {
+		
 	}
 	.order-main table tr {
 		list-style: none;

@@ -203,6 +203,19 @@
 		position: relative;	
 		border-top: 1px solid #bbb;
 	}
+	.main-content-info {
+		padding: 25px;	
+	}
+	.block-text {
+		display: block;	
+	}
+	.inline-text {
+		display: inline-block;	
+	}
+	.ref-number {
+		display: inline-block;
+		font-family: glober_heavy, helvetica, sans-serif;	
+	}
 	/*** LOADERS ***/
 	.loader {
 		background: url(../_images/loaders/ring-alt.gif);

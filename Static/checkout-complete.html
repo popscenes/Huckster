@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huckster — Melbourne.Delivered. — Confirm Details</title>
+<!-- CSS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="_css/normalize.css">
+<link rel="stylesheet" type="text/css" href="_css/style.css">
+<!-- FONTS -->
+<link rel="stylesheet" href="_fonts/glober_light/stylesheet.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="_fonts/Glober Regular/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="_fonts/Glober Heavy/stylesheet.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- SCRIPTS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
+<script src="_js/ui-main.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<header class="main-content main-bar">
+		<div class="container">
+        	<a href="#">
+            	<div class="logo"></div>
+            </a>
+            
+			 <div></div>
+        </div>    
+</header>
+
+<section class="main-content main-bar-main" id="step-one">    
+
+    <div class="main-content-header">
+        <h2>Success</h2>
+    </div>   
+    
+    <div class="main-content-info">
+    
+        <div class="main-content-info-row">
+        	<div class="block-text">Thank you! Your order has successfully been received. </div>
+            <div class="inline-text">You will receive a confirmation email. Your reference number is:</div>
+            <div class="ref-number">####</div>
+        </div>
+        
+    </div><!-- .main-content-info -->
+
+</section><!-- .main-content -->
+	
+
+<section class="out-content">
+
+	<div class="out-content-inner">
+    	<div class="out-header">
+               <h2>Order</h2>
+        </div>
+    	<div class="order-main">
+            
+            <label>Your Order</label>
+                <table>
+                
+                    <tbody>
+                    
+                        <tr ng-repeat="orderItem in OrderItems">
+                            
+                           
+                            <td class="order-item-quantity">
+                            2 x
+                            <div class="order-item-hover" >
+                                <span class="order-item-add">+</span>
+                                <span class="order-item-subtract">-</span>
+                            </div>
+                            </td>
+                            <td class="order-item-description">Small Bites - Duck relish, watermelon</td>
+                            <td class="order-item-price">
+                            $12
+                                <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                            </td>
+                           
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td class="order-item-quantity">
+                            1 x
+                            <div class="order-item-hover" >
+                                <span class="order-item-add">+</span>
+                                <span class="order-item-subtract">-</span>
+                            </div>
+                            </td>
+                            <td class="order-item-description">Small Bites - Betel leaf, smashed prawn, coconut, chilli, lime leaf</td>
+                            <td class="order-item-price">
+                            $7
+                                <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                            </td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td class="order-item-quantity">
+                            1 x
+                            <div class="order-item-hover" >
+                                <span class="order-item-add">+</span>
+                                <span class="order-item-subtract">-</span>
+                            </div>
+                            </td>
+                            <td class="order-item-description">Large Plates - Local fried sea bream, yellow curry, capsicum, gailan</td>
+                            <td class="order-item-price">
+                            $36
+                                 <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                            </td>
+                           
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td class="order-item-quantity">1 x
+                            <div class="order-item-hover" >
+                                <span class="order-item-add">+</span>
+                                <span class="order-item-subtract">-</span>
+                            </div>
+                            </td>
+                            <td class="order-item-description">Large Plates - Steamed Jasmine Rice</td>
+                            <td class="order-item-price">
+                            $2
+                                 <div class="order-item-delete"><i class="fa fa-times-circle"></i></div>
+                            </td>
+                          
+                        </tr>
+                        
+                    </tbody>
+                    
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Subtotal</td>
+                            <td>$57</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Minimum Order</td>
+                            <td>$20</td>
+                        </tr>
+                        <tr class="dfee">
+                            <td colspan="2">Delivery Fee</td>
+                            <td>$5</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>$62</td>
+                        </tr>
+                        
+                    </tfoot>
+                    
+                </table>
+        </div><!-- .order-main -->
+    </div>
+</section><!-- end out-content -->
+
+</body>
+</html>

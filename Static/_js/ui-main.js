@@ -47,12 +47,16 @@ jQuery.noConflict();
 				
 				var two = $('#step-two');
 				var three = $('#step-three');
+				var four = $('.credit-container');
 				var btnOne = $('#chkBtnOne');
 				var btnTwo = $('#chkBtnTwo');
+				var btnPaypal = $('#paypal-btn');
+				var btnCredit = $('#credit-btn');
 		
-		// make steps 2 + 3 disappear
+		// make steps 2 + 3 + 4 disappear
 				two.addClass('unstep');
 				three.addClass('unstep');
+				four.addClass('unstep');
 				
 				// make step 2 appear
 				btnOne.on('click', function(e) {
@@ -69,6 +73,15 @@ jQuery.noConflict();
 					three.removeClass('unstep');
 					$(window).scrollTo(three, {duration: 800}); //scroll to this section on the page
 				});
+				
+				// make step 4 appear
+				btnCredit.on('click', function(e) {
+					e.preventDefault(); 
+					four.removeClass('unstep');
+					$(window).scrollTo(four, {duration: 800}); //scroll to this section on the page
+					btnCredit.addClass('clicked');
+				});
+				
 				
 	
 	});

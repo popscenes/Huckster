@@ -9,7 +9,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="_css/normalize.css">
-<link rel="stylesheet" type="text/css" href="_css/style-two.css">
+<link rel="stylesheet" type="text/css" href="_css/style.css">
 <!-- FONTS -->
 <link rel="stylesheet" href="_fonts/glober_light/stylesheet.css" type="text/css" charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="_fonts/Glober Regular/stylesheet.css">
@@ -77,21 +77,24 @@
                 <h5 class="checkout-h5">Delivery Address</h5>
                 <div class="form-row">
                 	<div class="form-column default-length">
-                        <input class="checkout-input" type="text" value="Swanston St" placeholder="Your address..." required name="address" id="address"/> 
-                        
+                        <input class="checkout-input input-error" type="text" value="Swanston St" placeholder="Your address..." required name="address" id="address"/> 
+                        <span class="error">This field is required</span>
                     </div>
                     <div class="form-column small-length">
-                        <input class="checkout-input" type="text" value="37" placeholder="No." name="street-number" id="street-number" />
+                        <input class="checkout-input input-error" type="text" value="37" placeholder="No." name="street-number" id="street-number" />
+                        <span class="error">Required</span>
                     </div>
                 </div>
                 
                 <div class="form-row flex-row">
                 	<div class="form-column middle-length">
-                        <input class="checkout-input" type="text" value="VIC" placeholder="State" required name="state" id="state" />
+                        <input class="checkout-input input-error" type="text" value="VIC" placeholder="State" required name="state" id="state" />
+                        <span class="error">This field is required</span>
                		</div>
                     
                     <div class="form-column middle-length end-margin">
-                        <input class="checkout-input" type="text" value="Melbourne" placeholder="City" name="city" required id="city"/>
+                        <input class="checkout-input input-error" type="text" value="Melbourne" placeholder="City" name="city" required id="city"/>
+                        <span class="error">This field is required</span>
                 	</div>
                     <div class="clearfix"></div>
                 </div>
@@ -135,11 +138,13 @@
                     <div class="form-row flex-row">
                     
                     	<div class="form-column middle-length">
-                    		<input class="checkout-input" type="text" placeholder="First Name" name="first-name" required id="first-name"/>
+                    		<input class="checkout-input input-error" type="text" placeholder="First Name" name="first-name" required id="first-name"/>
+                            <span class="error">This field is required</span>
                         </div>
                         
                         <div class="form-column middle-length end-margin">
-                    		<input class="checkout-input" type="text" placeholder="Last Name" name="last-name" required id="last-name" />
+                    		<input class="checkout-input input-error" type="text" placeholder="Last Name" name="last-name" required id="last-name" />
+                            <span class="error">This field is required</span>
                         </div>
                         
                         <div class="clearfix"></div>    
@@ -149,11 +154,13 @@
                     <div class="form-row flex-row">
                     
                     	<div class="form-column middle-length">
-                    		<input class="checkout-input" type="email" placeholder="Email" name="email" id="email" required />
+                    		<input class="checkout-input input-error" type="email" placeholder="Email" name="email" id="email" required />
+                            <span class="error">This field is required</span>
                         </div>    
                    
                     	<div class="form-column middle-length end-margin">
-                    		<input class="checkout-input" type="text" placeholder="Mobile Number" name="mobile-name" id="mobile-name" required />
+                    		<input class="checkout-input input-error" type="text" placeholder="Mobile Number" name="mobile-name" id="mobile-name" required />
+                            <span class="error">This field is required</span>
                         </div>
                     	
                         <div class="clearfix"></div>    
@@ -215,24 +222,28 @@
                  
                 <div class="main-content-info-row">
                 	<div class="form-column large-length">
-                		<input class="checkout-input" type="text" placeholder="Name on card" name="card-name" required id="card-name"/>
+                		<input class="checkout-input input-error" type="text" placeholder="Name on card" name="card-name" required id="card-name"/>
+                        <span class="error">This field is required</span>
                     </div>
                 </div>
                 
                 <div class="main-content-info-row">
                 	<div class="form-column large-length">
-                		<input class="checkout-input large-input" type="text" placeholder="Card Number" name="card-number" required id="card-number" />
+                		<input class="checkout-input large-input input-error" type="text" placeholder="Card Number" name="card-number" required id="card-number" />
+                        <span class="error">This field is required</span>
                     </div>
                 </div>
                 
                 <div class="form-row flex-row">
                 	
                     <div class="form-column middle-length">
-                    	<input class="checkout-input" type="text" placeholder="MM / YY" name="card-expiry" required id="card-expiry" />
+                    	<input class="checkout-input input-error" type="text" placeholder="MM / YY" name="card-expiry" required id="card-expiry" />
+                        <span class="error">This field is required</span>
                     </div>
                     
                     <div class="form-column middle-length end-margin">    
-                    	<input class="checkout-input" type="text" placeholder="CVC" name="card-cvc" required id="card-cvc" />
+                    	<input class="checkout-input input-error" type="text" placeholder="CVC" name="card-cvc" required id="card-cvc" />
+                        <span class="error">This field is required</span>
                     </div>
                     
                     <div class="clearfix"></div>

@@ -484,13 +484,19 @@
 	.rest-menu ul li {
 		list-style: none;
 		border-bottom: 1px solid #333;
-		margin-bottom: 1em;
-		padding: 1.5em 0;	
+		
+		padding: 1.5em 0 1em 0;
 		display: table;
 		width: 100%;
 		
 		-webkit-transition: background 0.3s ease;
 		transition: background 0.3s ease;
+	}
+	.rest-menu ul li.rest-menu-heading {
+		font-family: glober_heavy, helvetica, sans-serif;
+		font-size: 1.2em;
+		background: #ddd;
+		padding: 1.5em;	
 	}
 	.rest-menu ul li:hover {
 		background: #ddd;	

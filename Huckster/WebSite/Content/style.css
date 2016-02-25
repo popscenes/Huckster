@@ -447,6 +447,8 @@
 		margin-top: 80px;
 		position: relative;
 		padding-bottom: 4em;
+	    overflow-y: auto;
+	    height: 85%;
 	}
 	
 	.checkout-input {
@@ -1096,6 +1098,8 @@
 		padding: 25px;	
 		text-align: left;
 		margin-top: 0;
+        overflow-y: auto;
+	    height: 85%;
 	}
 	.order-main ul {
 		padding: 0;	

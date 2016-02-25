@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Order.Messages;
 using Domain.Order.Queries;
+using Domain.Shared;
 using infrastructure.CQRS;
 using Microsoft.Azure.WebJobs;
 using RazorEngine;
@@ -19,17 +20,75 @@ namespace EmailWebJob
 {
     public class EmailMessageHandler
     {
+        public static async void OrderAssignedMessageHandler([QueueTrigger("orderassigned")] OrderAssignedMessage message, TextWriter log)
+        {
+            var queryChannel = new SimpleQueryChannel();
+            var order = await queryChannel.QueryAsync(new GetOrderAdminDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+            var assignedUser = order.DeliveryUser;
+
+            var result =
+                Engine.Razor.Run("OrderAssigned", null, new
+                {
+                    Time = order.Order.DeliveryTime.ToString(),
+                    Restaurant = order.Restaurant.Name,
+                    RestaurantAddress = order.RestaurantAddress.ToString(),
+                    Address = order.DeliverAddress.ToString(),
+                    PickupTime = order.Order.PickUpTime.ToString()
+                });
+
+            await SendGridEmail(assignedUser.Email, "Assigned Delivery", result);
+        }
+
+        public static async void OrderDeclinedMessageHandler([QueueTrigger("orderdeclined")] OrderDeclinedMessage message, TextWriter log)
+        {
+            var queryChannel = new SimpleQueryChannel();
+            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+
+            var result =
+                Engine.Razor.Run("OrderDeclined", null, new
+                {
+                    Time = order.Order.DeliveryTime.ToString(),
+                    Restaurant = order.Restaurant.Name,
+                    Address = ""
+                });
+
+            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Declined", result);
+        }
+
+        public static async void OrderPickUpMessageHandler([QueueTrigger("orderpickup")] OrderPickUpMessage message, TextWriter log)
+        {
+            var queryChannel = new SimpleQueryChannel();
+            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+
+            var result =
+                Engine.Razor.Run("OrderPickUp", null, new
+                {
+                    Time = order.Order.DeliveryTime.ToString(),
+                    Restaurant = order.Restaurant.Name,
+                    Address = ""
+                });
+
+            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Picked Up", result);
+        }
+
+        public static async void OrderAcceptedMessageHandler([QueueTrigger("orderaccepted")] OrderAcceptedMessage message, TextWriter log)
+        {
+            var queryChannel = new SimpleQueryChannel();
+            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+
+            var result =
+                Engine.Razor.Run("OrderAccepted", null, new
+                {
+                    Time = order.Order.DeliveryTime.ToString(),
+                    Restaurant = order.Restaurant.Name,
+                    Address = ""
+                });
+
+            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Accepted", result);
+        }
+
         public async static void OrderCompleteMessageHandler([QueueTrigger("ordercomplete")] OrderCompleteMessage message, TextWriter log)
         {
-            //var config = new TemplateServiceConfiguration();
-            //config.TemplateManager = new ResolvePathTemplateManager(new List<String>() {".\\EmailTemplates"});
-            //var service = RazorEngineService.Create(config);
-            //Engine.Razor = service;
-            //Engine.Razor.AddTemplate("OrderComplete", "OrderComplete.cshtml");
-            //string template = "Hello @Model.Name, welcome to RazorEngine!";
-
-
-
             var queryChannel = new SimpleQueryChannel();
             var order =  await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() {AggregateId = message.OrderAggregateRootId});
 
@@ -41,10 +100,15 @@ namespace EmailWebJob
                     Address = ""
                 });
 
-            var mail = new SendGridMessage {From = new MailAddress("no-reply@huckster.com.aum")};
-            mail.AddTo(order.Order.CustomerEmail);
-            mail.Subject = "Huckster Order Complete";
-            mail.Html = result;
+            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Completed", result);
+        }
+
+        protected static async Task SendGridEmail(string to, string subject, string body)
+        {
+            var mail = new SendGridMessage { From = new MailAddress("no-reply@huckster.com.aum") };
+            mail.AddTo(to);
+            mail.Subject = subject;
+            mail.Html = body;
             var credentials = new NetworkCredential("azure_02d8849bebc2a0f9cddbbc630249d6c6@azure.com", "0g888JHePRKZ5dN");
             var transportWeb = new Web(credentials);
             await transportWeb.DeliverAsync(mail);

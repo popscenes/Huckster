@@ -108,7 +108,7 @@ namespace Admin.Controllers
                 var role = await RoleManager.FindByNameAsync(roleName);
                 var result = await UserManager.AddToRoleAsync(id, role.Name);
             }
-
+            await UserManager.UpdateAsync(user);
             return RedirectToAction("Index");   
         }
 

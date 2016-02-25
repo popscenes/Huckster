@@ -26,19 +26,26 @@ namespace EmailWebJob
         static void Main()
         {
             var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ConnectionString);
+
             var queueClient = storageAccount.CreateCloudQueueClient();
             var queue = queueClient.GetQueueReference("ordercomplete");
             queue.CreateIfNotExists();
+            queue = queueClient.GetQueueReference("orderaccepted");
+            queue.CreateIfNotExists();
+            queue = queueClient.GetQueueReference("orderdeclined");
+            queue.CreateIfNotExists();
+            queue = queueClient.GetQueueReference("orderpickup");
+            queue.CreateIfNotExists();
+            queue = queueClient.GetQueueReference("orderassigned");
+            queue.CreateIfNotExists();
 
-            var host = new JobHost();
+            CompileRazorView("EmailTemplates", "OrderComplete.cshtml", "OrderComplete");
+            CompileRazorView("EmailTemplates", "OrderAccepted.cshtml", "OrderAccepted");
+            CompileRazorView("EmailTemplates", "OrderDeclined.cshtml", "OrderDeclined");
+            CompileRazorView("EmailTemplates", "OrderPickup.cshtml", "OrderPickUp");
+            CompileRazorView("EmailTemplates", "OrderAssigned.cshtml", "OrderAssigned");
 
-            string path = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "EmailTemplates", "OrderComplete.cshtml");
-            var source = File.ReadAllText(path, System.Text.Encoding.Default);
-            Engine.Razor.Compile(source, "OrderComplete");
-
-            path = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "EmailTemplates", "Layout.cshtml");
-            source = File.ReadAllText(path, System.Text.Encoding.Default);
-            Engine.Razor.Compile(source, "Layout.cshtml");
+            CompileRazorView("EmailTemplates", "Layout.cshtml", "Layout.cshtml");
 
             InitNinject("Application.", "Infrastructure.", "Domain.");
             NinjectKernel.AppKernel.Bind<AdoContext>().ToMethod(_ => new AdoContext()
@@ -47,7 +54,15 @@ namespace EmailWebJob
             });
 
             // The following code ensures that the WebJob will be running continuously
+            var host = new JobHost();
             host.RunAndBlock();
+        }
+
+        protected static void CompileRazorView(string filePath, string filename, string templatename)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, filePath, filename);
+            var source = File.ReadAllText(path, System.Text.Encoding.Default);
+            Engine.Razor.Compile(source, templatename);
         }
 
 

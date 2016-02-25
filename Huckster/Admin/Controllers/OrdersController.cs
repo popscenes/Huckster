@@ -9,9 +9,11 @@ using Admin.Models;
 using Application.Payment;
 using Domain.Order;
 using Domain.Order.Commands;
+using Domain.Order.Messages;
 using Domain.Order.Queries;
 using Domain.Order.Queries.Models;
 using infrastructure.CQRS;
+using infrastructure.Messaging;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -23,11 +25,13 @@ namespace Admin.Controllers
     {
         private readonly IQueryChannel _queryChannel;
         private readonly ICommandDispatcher _commandDispatcher;
+        private readonly IMessageBus _messageBus;
 
-        public OrdersController(IQueryChannel queryChannel, ICommandDispatcher commandDispatcher)
+        public OrdersController(IQueryChannel queryChannel, ICommandDispatcher commandDispatcher, IMessageBus messageBus)
         {
             _queryChannel = queryChannel;
             _commandDispatcher = commandDispatcher;
+            _messageBus = messageBus;
         }
 
         // GET: Orders
@@ -74,6 +78,8 @@ namespace Admin.Controllers
                     PickUpDateTime = pickUpdatetime,
                     DeliveryUserId = deliveryUser
                 });
+                _messageBus.SendMessage(new OrderAssignedMessage() { OrderAggregateRootId = order.Order.AggregateRootId, AssignedUserId =  deliveryUser});
+                Audit(order.Order.AggregateRootId, "SetDeliveryDetails");
             }
             catch (Exception e)
             {
@@ -95,6 +101,10 @@ namespace Admin.Controllers
 
             await _commandDispatcher.DispatchAsync(new RefundOrderCommand() {OrderId = order.Order.Id, OrderAggregateRootId = order.Order.AggregateRootId});
 
+            Audit(order.Order.AggregateRootId, "Cancelled");
+            _messageBus.SendMessage(new OrderDeclinedMessage() { OrderAggregateRootId = order.Order.AggregateRootId });
+
+
             if (redirectToDetailPage)
             {
                 return RedirectToAction("Detail", new { orderId = order.Order.AggregateRootId });
@@ -113,6 +123,10 @@ namespace Admin.Controllers
                     OrderStatus = OrderStatus.PickedUp
                 });
 
+            Audit(order.Order.AggregateRootId, "PickedUp");
+            _messageBus.SendMessage(new OrderPickUpMessage() { OrderAggregateRootId = order.Order.AggregateRootId });
+
+
             if (redirectToDetailPage)
             {
                 return RedirectToAction("Detail", new { orderId = order.Order.AggregateRootId });
@@ -129,6 +143,8 @@ namespace Admin.Controllers
                     OrderId = order.Order.Id,
                     OrderStatus = OrderStatus.Delivered
                 });
+
+            Audit(order.Order.AggregateRootId, "Delivered");
 
             if (redirectToDetailPage)
             {
@@ -149,11 +165,26 @@ namespace Admin.Controllers
                     OrderStatus = OrderStatus.RestaurantAccepted
                 });
 
+                Audit(order.Order.AggregateRootId, "RestaurantAccepted");
+             _messageBus.SendMessage(new OrderAcceptedMessage() { OrderAggregateRootId = order.Order.AggregateRootId });
+
             if (redirectToDetailPage)
             {
                 return RedirectToAction("Detail", new {orderId = order.Order.AggregateRootId});
             }
             return RedirectToAction("Index", new {orderStatus = OrderStatus.PaymentSucccessful});
+        }
+
+        private async void Audit(Guid orderId, string action)
+        {
+            var userName = this.HttpContext.User.Identity.Name;
+            await
+                _commandDispatcher.DispatchAsync(new InsertOrderAuditCommand()
+                {
+                    Action = action,
+                    UserName = action,
+                    OrderAggregateRoot = orderId
+                });
         }
         
     }

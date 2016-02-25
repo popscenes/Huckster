@@ -7,12 +7,14 @@ using Domain.Order.Queries.Models;
 using Domain.Restaurant;
 using infrastructure.CQRS;
 using infrastructure.DataAccess;
+using infrastructure.Utility;
 
 namespace Domain.Order.Queries
 {
     public class GetOrderDetailsByStatusQuery: IQuery<GetOrderDetailsByStatusQuery, List<OrderAdminDetailsViewModel>>
     {
         public string Status { get; set; }
+        public string DeliveryUserId { get; set; }
     }
 
 
@@ -26,6 +28,11 @@ namespace Domain.Order.Queries
         {
             var orders = context.Query<Order>("Select * from [dbo].[Order] where [Status] = @Status",
                 new {Status = argument.Status});
+
+            if (argument.DeliveryUserId.IsNotNullOrWhiteSpace())
+            {
+                orders = orders.Where(_ => _.DeliveryUserId != null && _.DeliveryUserId.Equals(argument.DeliveryUserId));
+            }
 
             if (!orders.Any())
                 return null;

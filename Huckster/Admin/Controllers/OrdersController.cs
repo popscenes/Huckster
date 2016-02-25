@@ -35,29 +35,32 @@ namespace Admin.Controllers
         }
 
         // GET: Orders
-        public async Task<ActionResult> Index(string orderStatus = "PaymentSucccessful")
+        public async Task<ActionResult> Index(string orderStatus = "PaymentSucccessful", string deliveryUser = "")
         {
-            var orders = await _queryChannel.QueryAsync(new GetOrderDetailsByStatusQuery() {Status = orderStatus});
-            if (orders == null)
-            {
-                orders = new List<OrderAdminDetailsViewModel>();
-            }
+            var orders = await _queryChannel.QueryAsync(new GetOrderDetailsByStatusQuery() {Status = orderStatus, DeliveryUserId = deliveryUser}) ??
+                         new List<OrderAdminDetailsViewModel>();
+
+            ViewBag.DeliveryUsers = GetDeliveryUsers();
             ViewBag.OrderStatus = orderStatus;
 
             return View(orders);
         }
 
-        public async Task<ActionResult> Detail(Guid orderId)
+        protected List<SelectListItem> GetDeliveryUsers()
         {
             var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(HttpContext.GetOwinContext().Get<ApplicationDbContext>()));
 
             var deliveryRole = _roleManager.Roles.FirstOrDefault(_ => _.Name.Equals("Delivery"));
             var deliveryUsers = userManager.Users.Where(_ => _.Roles.Select(r => r.RoleId).Contains(deliveryRole.Id));
-            var deliverSelectList = deliveryUsers.Select(_ => new SelectListItem() {Text = _.UserName, Value = _.Id});
+            var deliverSelectList = deliveryUsers.Select(_ => new SelectListItem() { Text = _.UserName, Value = _.Id });
 
-            ViewBag.DeliveryUsers = deliverSelectList.ToList();
+            return deliverSelectList.ToList();
+        }
 
+        public async Task<ActionResult> Detail(Guid orderId)
+        {
+            ViewBag.DeliveryUsers = GetDeliveryUsers();
             var order = await _queryChannel.QueryAsync(new GetOrderAdminDetailByAggregateId() { AggregateId = orderId });
             return View(order);
         }

@@ -5,20 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="">
     <h2>Order Work Queue <small>@ViewBag.OrderStatus</small></h2>
-    <div class="btn-group alert alert-sm alert-info">
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentSucccessful.ToString()})">Payment Succcessful</a>
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.RestaurantAccepted.ToString()})">Restaurant Accepted</a>
-    </div>
-    <div class="btn-group alert alert-sm alert-success">
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PickedUp.ToString()})">PickedUp</a>
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Delivered.ToString()})">Delivered</a>
-    </div>
-    <div class="btn-group alert alert-sm alert-danger">
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Cancelled.ToString()})">Cancelled</a>
-        <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentFailed.ToString()})">Payment Failed</a>
-    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="btn-group alert alert-sm alert-info">
+                <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentSucccessful.ToString()})">Payment Succcessful</a>
+                <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.RestaurantAccepted.ToString()})">Restaurant Accepted</a>
+            </div>
+            <div class="btn-group alert alert-sm alert-success">
+                <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PickedUp.ToString()})">PickedUp</a>
+                <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Delivered.ToString()})">Delivered</a>
+            </div>
+            <div class="btn-group alert alert-sm alert-danger">
+                <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.Cancelled.ToString()})">Cancelled</a>
+                <a class="btn btn-default" href="@Url.Action("Index", new {orderStatus = OrderStatus.PaymentFailed.ToString()})">Payment Failed</a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Filter By Assigned</label>
+                            @Html.Hidden("orderStatus", (string)ViewBag.OrderStatus)
+                            @Html.DropDownList("deliveryUser", (List<SelectListItem>)ViewBag.DeliveryUsers, "Select", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <a class="btn btn-primary" href="@Url.Action("Index", new {orderStatus = @ViewBag.OrderStatus})">Clear Filter</a>
+                    </div>
+                    </div>
+                
+            }
+        </div>
+        </div>
+
+
+
+    
 
     <table class="table">
 

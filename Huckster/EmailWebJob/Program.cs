@@ -25,6 +25,15 @@ namespace EmailWebJob
         // AzureWebJobsDashboard and AzureWebJobsStorage
         static void Main()
         {
+            var webJobDisabled = ConfigurationManager.AppSettings["WebJobDisabled"];
+
+            if (webJobDisabled.IsNotNullOrWhiteSpace() &&
+                webJobDisabled.Equals("true", StringComparison.CurrentCultureIgnoreCase))
+            {
+                DiableWebJob();
+            }
+
+
             var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ConnectionString);
 
             var queueClient = storageAccount.CreateCloudQueueClient();
@@ -56,6 +65,15 @@ namespace EmailWebJob
             // The following code ensures that the WebJob will be running continuously
             var host = new JobHost();
             host.RunAndBlock();
+        }
+
+        private static void DiableWebJob()
+        {
+            Console.WriteLine("WebJobDisabled.....");
+            while (true)
+            {
+                System.Threading.Thread.Sleep(int.MaxValue);
+            }
         }
 
         protected static void CompileRazorView(string filePath, string filename, string templatename)

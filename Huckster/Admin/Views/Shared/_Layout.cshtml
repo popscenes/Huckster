@@ -28,12 +28,16 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                     </ul>
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
-                    </ul>
+
 
                     if (User.IsInRole("Admin"))
-                     {
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
+                        </ul>
                          <ul class="nav navbar-nav">
                              <li>@Html.ActionLink("Users", "Index", "Users")</li>
                          </ul>

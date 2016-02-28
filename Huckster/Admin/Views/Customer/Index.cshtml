@@ -1,0 +1,37 @@
+﻿@using Omu.ValueInjecter
+@model List<Domain.Customer.Customer>
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h2>Customer List</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Email
+        </td>
+        <td>
+            Phone
+        </td>
+    </tr>
+
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>
+                @customer.Name
+            </td>
+            <td>
+                @customer.Email
+            </td>
+            <td>
+                @customer.Mobile
+            </td>
+        </tr>
+    }
+</table>

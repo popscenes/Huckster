@@ -7,6 +7,23 @@
 }
 <h2>Customer List</h2>
 
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Filter By Name/Email/Mobile</label>
+                @Html.TextBox("searchText", (string)ViewBag.SearchText)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a class="btn btn-primary" href="@Url.Action("Index", new {searchText = ""})">Clear Filter</a>
+        </div>
+    </div>
+}
+
 <table class="table">
     <tr>
         <td>
@@ -17,6 +34,9 @@
         </td>
         <td>
             Phone
+        </td>
+        <td>
+            Details
         </td>
     </tr>
 
@@ -31,6 +51,9 @@
             </td>
             <td>
                 @customer.Mobile
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new {id = customer.AggregateRootId})
             </td>
         </tr>
     }

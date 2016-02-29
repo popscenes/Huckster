@@ -25,11 +25,22 @@ namespace Admin.Controllers
         // GET: Customer
         public async Task<ActionResult> Index(string searchText = "")
         {
+            ViewBag.SearchText = searchText;
             var customers = await _queryChannel.QueryAsync(new GetCustomersQuery()
             {
                 Searchtext = searchText
             });
             return View(customers);
+        }
+
+        public async Task<ActionResult> Details(Guid id)
+        {
+            var customerDetail = await _queryChannel.QueryAsync(new GetCustomerDetilQuery()
+            {
+                AggregateRootId = id
+            });
+
+            return View(customerDetail);
         }
     }
 }

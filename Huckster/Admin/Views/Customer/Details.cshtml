@@ -1,0 +1,70 @@
+﻿@model Domain.Customer.Queries.Models.CustomerDetailViewModel
+
+@{
+    ViewBag.Title = "Customer Detail";
+}
+<h2>Customer Details</h2>
+<br/>
+<div class="panel panel-default">
+    <div class="panel-heading">Customer Details</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>@Model.Customer.Name</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                @Model.Customer.Email
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                @Model.Customer.Mobile
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Customer Address's</div>
+    <div class="panel-body">
+        @foreach (var address in Model.CustomerAddress)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>@address.ToString()</h4>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Customer Order's</div>
+    <div class="panel-body">
+        <table>
+            @foreach (var order in Model.CustomerOrders)
+            {
+                <tr>
+                    <td>
+                        @order.DeliveryTime.ToString("D")
+                    </td>
+                    <td>
+                        @order.Status
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detail", "Detail", "Orders", new { orderId = order.AggregateRootId }, null)   
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>

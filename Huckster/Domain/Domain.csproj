@@ -79,7 +79,9 @@
     <Compile Include="Customer\Commands\UpdateCustomerAddress.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\Queries\GetCustomerByEmailorMobile.cs" />
+    <Compile Include="Customer\Queries\GetCustomerDetilQuery.cs" />
     <Compile Include="Customer\Queries\GetCustomersQuery.cs" />
+    <Compile Include="Customer\Queries\Models\CustomerDetailViewModel.cs" />
     <Compile Include="DomainNinjectModule.cs" />
     <Compile Include="Order\Commands\InsertOrderAuditCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentFailCommand.cs" />

@@ -145,12 +145,14 @@
 
                             <div class="form-column middle-length">
                                 <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.email.$invalid}" class="checkout-input" type="email" placeholder="Email" name="email" id="email" ng-model="personalDetails.Email" required/>
-                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.email.$invalid">This field is required</span>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.email.$error.required">This field is required</span>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.email.$error.email">Not valid email!</span>
                             </div>
 
                             <div class="form-column middle-length end-margin">
-                                <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.mobile.$invalid}" class="checkout-input" type="text" placeholder="Mobile Number" name="mobile" id="mobile-name" ng-model="personalDetails.Mobile" required/>
-                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.mobile.$invalid">This field is required</span>
+                                <input ng-class="{'input-error': personalDetailsSubmitted && checkoutTwo.mobile.$invalid}" ng-pattern="/^\d{9,10}(\.\d{9,10})?$/" class="checkout-input" type="text" placeholder="Mobile Number" name="mobile" id="mobile-name" ng-model="personalDetails.Mobile" required/>
+                                <span class="error" ng-show="personalDetailsSubmitted && checkoutTwo.mobile.$error.required">This field is required</span>
+                                <span class="error" ng-show="personalDetailsSubmitted && !checkoutTwo.mobile.$error.required && checkoutTwo.mobile.$invalid">Not Valid Mobile Phone</span>
                             </div>
 
                             <div class="clearfix"></div>

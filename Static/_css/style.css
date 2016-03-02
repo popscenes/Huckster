@@ -377,6 +377,7 @@
 		position: absolute;
 		left: 0;
 		border-bottom: 1px solid #bbb;
+		font-size: 20px;
 	}
 	
 	.rest-bio img {
@@ -433,15 +434,16 @@
 		background-color: #ddd;
 		color: #333;
 		outline: none;
+		margin-top: 1em;
 	}
 	.list-description {
 		text-align: left;	
 		display: table-cell;
-		width: 80%;
+		width: 70%;
 	}
 	.list-price {
 		display: table-cell;
-		width: 10%;
+		width: 20%;
 		vertical-align: middle;
 	}
 	.list-add {
@@ -479,6 +481,7 @@
 		font-family: globerlight, helvetica, sans-serif;	
 		margin: 0;
 		margin-bottom: 0.5em;
+		font-size: 20px;
 	}
 	
 	.rest-menu ul li {
@@ -598,7 +601,10 @@
 		background-size: cover;
 	}
 	.order-main table tr {
-		height: 4em;	
+		min-height: 4em;	
+	}
+	.order-main table tfoot tr {
+		
 	}
 	.order-item-hover {
 		display: none;	
@@ -630,7 +636,7 @@
 	.order-main {
 		position: relative;
 		padding-bottom: 4em;
-		width: 80%;
+		width: 88%;
 		margin: 0 auto;
 		margin-top: 40px;
 	}
@@ -784,12 +790,60 @@
 	.order-item-price {
 		position: relative;	
 	}
+	.order-item-math {
+		display: block;
+		width: 6em;
+		text-align: left;
+	}
+	.order-item-add {
+		/*font-size: 1.6em;*/
+		background: #ddd;
+		/*padding: -3px;*/
+		border-radius: 2px;
+		margin: 4px;
+		/*display: block;*/
+		/*width: 16px;*/
+		text-align: center;
+		/*height: 16px;*/
+		line-height: 12px;
+		/*float: left;*/
+		cursor: pointer;
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+	}
+	.order-item-subtract {
+		/*font-size: 1.6em;*/
+		background: #ddd;
+		/*padding: -3px;*/
+		border-radius: 2px;
+		margin: 4px;
+		margin-top: 0;
+		/*display: block;*/
+		/*width: 16px;*/
+		text-align: center;
+		/*height: 16px;*/
+		line-height: 12px;
+		/*float: left;*/
+		cursor: pointer;
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+		margin-left: 0px;
+	}
 	.order-item-delete {
 		width: 20px;
-		position: absolute;
+		/*position: absolute;*/
 		top: 18px;
 		right: 8px;	
-		display: none;
+		/*display: none;*/
+		cursor: pointer;
 	}
 	tfoot tr td:first-child {
 		text-align: left;	
@@ -1056,6 +1110,7 @@
 	}
 	
 	/*** RESTAURANT LISTINGS ***/
+	
 	.out-content-inner {
 		width: 100%;
 		margin: 0 auto;	
@@ -1077,12 +1132,42 @@
 		margin: 0 auto;
 		padding: 0;	
 	}
-	.list-desecription {
+	
+	.list-description {
 		text-align: left;	
+		width: 80%;
+	}
+	.list-price { 
+		width: 10%;
+	}
+	.rest-bio h2 {
+		font-size: 30px;	
 	}
 	.rest-bio img {
 		width: 80%;	
 	}
+	.order-item-math {
+		width: 6em;
+		display: block;
+		text-align: left;
+	}
+	.order-item-add {
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+	}
+	.order-item-subtract {
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+	}
+	
 	/*** CHEKOUT PAGE ***/
 	
 	.flex-row {
@@ -1126,6 +1211,8 @@
 	}
 	
 }
+
+
 /* == DESKTOP DEVICES == (960px and ABOVE) ==*/
 @media all and (min-width: 960px) {
 	/*** HEADER ***/
@@ -1495,7 +1582,8 @@
 		height: 100%;
 		border-right: 1px solid #bbb;
 		border-bottom: 1px solid #bbb;
-		overflow: hidden;
+		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 	.rest-info h2 {
 		position: relative;
@@ -1506,6 +1594,7 @@
 		width: 130%;
 		padding: 1em;
 		border-bottom: 1px solid #bbb;
+		font-size: 30px;
 	}
 	.rest-bio img {
 		width: 67.1%;	
@@ -1554,12 +1643,18 @@
 		border-collapse: collapse;
 	}
 	.order-main tbody {
-		
+			max-height: 220px;
+		display: block;
+		/* background: red; */
+		overflow-y: scroll;
+		width: 100%;
+		margin: 0;
+		padding: 0;
 	}
 	.order-main table tr {
 		list-style: none;
-		background: #fff;
-		height: 3em;
+		display: block;
+		margin-bottom: 1px;
 	}
 	.order-main tr:nth-child(even) {
 		/*background: #ddd;*/
@@ -1591,6 +1686,9 @@
 	.order-item-hover.show {
 		display: block;	
 	}
+	.order-item-math {
+		display: table-cell;
+	}
 	.order-item-subtract {
 		font-size: 1.6em;
 		background: #ddd;
@@ -1604,6 +1702,7 @@
 		height: 16px;
 		line-height: 12px;
 		float: left;
+		padding: 0;
 	}
 	.order-item-add {
 		font-size: 1.6em;
@@ -1617,6 +1716,7 @@
 		height: 16px;
 		line-height: 12px;
 		float: left;
+		padding: 0;
 		
 	}
 	.order-item-subtract:hover {
@@ -1628,7 +1728,7 @@
 		color: #fff;	
 	}
 	.order-item-delete {
-		position: absolute;
+		/*position: absolute;*/
 		color: #777;
 		margin: auto;
 		top: 0;
@@ -1639,7 +1739,7 @@
 		height: 25px;
 		right: -40px;
 		line-height: 24px;
-		display: none;
+		/*display: none;*/
 		font-size: 1.2em;
 	}
 	.order-item-delete.show {
@@ -1658,9 +1758,8 @@
 	}
 	
 	.order-main table tfoot tr {
-		
 		color: #333;
-		height: 2em;
+		min-height: 1.5em;
 	}
 	
 	.order-main .order-main-submit {
@@ -1668,6 +1767,7 @@
 		background-color: #ddd;
 		color: #333;
 		outline: none;
+		margin-top: 0;
 	}
 	.order-main .order-main-submit:hover {
 		background-color: #333;
@@ -1718,6 +1818,9 @@
 	.rest ul {
 		width: 100%;
 		text-align: left;
+	}
+	.rest-menu h2 {
+		font-size: 30px;	
 	}
 	.select-order {
 		border: 1px solid #bbb;
@@ -1876,5 +1979,22 @@
 		margin-bottom: 4em;	
 	}
 }
+/* === TABLET DEVICE LANDSCAPE=== */
+/* ----------- iPad 3 and 4 ----------- */
+@media screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+	.main-content {
+		width: 65%;
+	}
+	.out-content {
+		width: 35%;	
+	}
+	.rest-info h2 {
+		width: 135%;	
+	}
 
+}
 

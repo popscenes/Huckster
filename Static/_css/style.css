@@ -1892,6 +1892,10 @@
 		margin: 0;
 		margin-left: 2%;	
 	}
+	.first-small {
+		margin-left: 0;
+		margin-right: 2%;	
+	}
 	.middle-input {
 		
 	}

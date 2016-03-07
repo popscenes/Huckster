@@ -40,6 +40,8 @@ namespace Domain.Order
         public DateTime? PickUpTime { get; set; }
         public String DeliveryUserId { get; set; }
 
+        public int SurgePct { get; set; }
+
         public Guid AggregateRootId { get; set; }
         public String Status { get; set; }
         //public Address Address { get; set; }

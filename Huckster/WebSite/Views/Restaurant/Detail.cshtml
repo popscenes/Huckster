@@ -16,6 +16,8 @@
 <div ng-app="hucksterApp">
     <div ng-controller="OrderFormController">
         <input id="restaurantId" type="hidden" value="@Model.Restaurant.AggregateRootId"/>
+        <input id="surgePct" type="hidden" value="@Model.Restaurant.SurgeVal"/>
+
         <section class="main-content main-bar-main">
             <div class="row rest">
                 <div class="rest-bio">
@@ -53,7 +55,13 @@
                             {
                                 <li ng-click="addmenuItem(@menuItem.Id, '@menuItem.Name', @menuItem.Price, 1)">
                                     <div class="list-description">@menuItem.MenuGroup - @menuItem.Name </div>
-                                    <div class="list-price">$ @menuItem.Price</div>
+                                    <div class="list-price">$ @menuItem.Price
+                                    @if (menuItem.UseEach)
+                                    {
+                                        <span>Each</span>
+                                    }
+
+                                    </div>
                                     <div class="list-add"><button></button></div>
 
                                 </li>
@@ -126,6 +134,15 @@
                                 <td colspan="2">Minimum Order</td>
                                 <td>${{minimumOrder}}</td>
                             </tr>
+                            @if (Model.Restaurant.Surge)
+                            {
+                                var pct = (decimal)Model.Restaurant.SurgePct/100;
+
+                                <tr class="dfee">
+                                    <td colspan="2">Surge Addition</td>
+                                    <td>{{subTotal()*@pct | currency:"$":0}}</td>
+                                </tr>
+                            }
                             <tr class="dfee">
                                 <td colspan="2">Delivery Fee</td>
                                 <td>${{deliveryFee}}</td>

@@ -18,11 +18,19 @@ BEGIN
 		[Description] nvarchar(max) null,
 		[Price]  decimal not null,
 		[Order] int null,
+		[UseEach] bit not null default(0)
 
 ) --ON [PRIMARY]
 END
 ELSE
 BEGIN
     PRINT 'Skipped create table [dbo].[MenuItem]'
+END
+GO
+
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'MenuItem' and column_name = 'UseEach')
+BEGIN
+    ALTER TABLE [MenuItem] ADD [UseEach] bit not null default(0)
+	PRINT 'created column [UseEach] on table [dbo].[MenuItem]'
 END
 GO

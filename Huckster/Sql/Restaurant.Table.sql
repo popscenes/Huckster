@@ -36,3 +36,13 @@ BEGIN
 	PRINT 'created column [Email] on table [dbo].[Restaurant]'
 END
 GO
+
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'Restaurant' and column_name = 'Surge')
+BEGIN
+    ALTER TABLE Restaurant ADD [Surge] bit NOT NULL DEFAULT(0)
+	PRINT 'created column [Surge] on table [dbo].[Restaurant]'
+
+	ALTER TABLE Restaurant ADD [SurgePct] int NOT NULL DEFAULT(0)
+	PRINT 'created column [SurgePct] on table [dbo].[Restaurant]'
+END
+GO

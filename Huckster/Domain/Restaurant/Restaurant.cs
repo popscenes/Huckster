@@ -28,6 +28,11 @@ namespace Domain.Restaurant
         public string ContactPhone { get; set; }
         public string Email { get; set; }
 
+        public int SurgePct { get; set; }
+        public bool Surge { get; set; }
+
+        public decimal SurgeVal => Surge ? (decimal) SurgePct/100 : 0;
+
         public string FullTileImageUrl {
             get
             {
@@ -42,6 +47,8 @@ namespace Domain.Restaurant
         {
             Table("Restaurant");
             Map(m => m.FullTileImageUrl).Ignore();
+            Map(m => m.SurgeVal).Ignore();
+            
             AutoMap();
         }
     }

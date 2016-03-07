@@ -29,6 +29,7 @@ namespace Domain.Restaurant
         public string   Description { get; set; }
         public decimal  Price { get; set; }
         public int      Order { get; set; }
+        public bool     UseEach { get; set; }
     }
 
     public class MenuMapper : ClassMapper<Menu>

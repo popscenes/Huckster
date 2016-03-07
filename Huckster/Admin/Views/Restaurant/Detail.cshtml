@@ -31,6 +31,12 @@
             <p>
                 @Model.Restaurant.Email
             </p>
+            <p>
+                Surge On: @Model.Restaurant.Surge
+            </p>
+            <p>
+                Surge Pct: @Model.Restaurant.SurgePct
+            </p>
             @Html.ActionLink("Edit Details", "EditDetails", new {id = Model.Restaurant.Id}, new {@class="btn btn-primary"})
         </div>
         <div role="tabpanel" class="tab-pane" id="Address">

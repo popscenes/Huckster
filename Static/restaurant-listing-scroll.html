@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Huckster — Melbourne.Delivered.</title>
+
+<!-- This part of the head section differs from http://hucksterlive.azurewebsites.net/Restaurant/1 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="_css/normalize.css">
+<link rel="stylesheet" type="text/css" href="_css/style.css">
+<!-- FONTS -->
+<link rel="stylesheet" href="_fonts/glober_light/stylesheet.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="_fonts/Glober Regular/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="_fonts/Glober Heavy/stylesheet.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- SCRIPTS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="_js/ui-main.js"></script>
+
+</head>
+
+<body>
+
+        
+
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<header class="main-content main-bar">
+
+    <div class="container">
+
+        <a href="#">
+
+            <div class="logo"></div>
+
+        </a>
+
+
+
+        <div></div>
+
+    </div>
+
+</header>
+
+<div ng-app="hucksterApp">
+
+    <div ng-controller="OrderFormController">
+
+        <input id="restaurantId" type="hidden" value="8dee7b67-e126-4afc-82f3-918e038ab3a3"/>
+
+        <section class="main-content main-bar-main">
+        
+        <!-- ### This is the new html below -->
+        <div class="container">
+		<!-- ### This is the new html above-->
+        
+            <div class="row rest">
+
+                <div class="rest-bio">
+
+
+
+                    <div class="rest-info">
+
+                        <h2>The Smith Prahran</h2>
+
+
+
+                        <p class="rest-text">
+
+                            The Smith Restaurant &amp; Bar is a global eatery located at the Windsor end of Prahran in Melbourne Victoria.
+
+Elegantly relaxed not flashy; smart yet casual. The Smith is perfect for all occasions planned or spontaneous. 
+
+                        </p>
+
+                    </div>
+
+
+
+                    <img src=" https://huckster.blob.core.windows.net/restaurant/1/TileImage.jpg" alt="The Smith Prahran">
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+            <div class="mobile-lines"></div>
+
+
+
+                <div class="row rest rest-menu">
+
+                    <div>
+
+                        <h2></h2>
+
+                    </div>
+
+                    <p>
+
+
+
+                    </p>
+
+
+
+                    <form class="rest-menu-form">
+
+                        <ul>
+
+                        </ul>
+
+                    </form><!-- .rest-menu-form -->
+
+                </div>
+
+                <div class="row rest rest-menu">
+
+                    <div>
+
+                        <h2>Menu - High Street</h2>
+
+                    </div>
+
+                    <p>
+
+
+
+                    </p>
+
+
+
+                    <form class="rest-menu-form">
+
+                        <ul>
+								
+                                <li class="rest-menu-heading">
+                                	Entree
+                                </li>
+                                
+                                <li ng-click="addmenuItem(256, 'Freshly shucked oysters natural, with ponzu or kimchi &amp; bacon', 4, 1)">
+
+                                    <div class="list-description"> - Freshly shucked oysters natural, with ponzu or kimchi &amp; bacon </div>
+
+                                    <div class="list-price">$ 4</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(257, 'Organic silken tofu with Asian mushrooms &amp; chili oil', 7, 1)">
+
+                                    <div class="list-description"> - Organic silken tofu with Asian mushrooms &amp; chili oil </div>
+
+                                    <div class="list-price">$ 7</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+								
+                                <li class="rest-menu-heading">
+                                	Mains
+                                </li>
+                                
+                                <li ng-click="addmenuItem(258, 'Flinders Island lamb ribs with cumin, sesame, chili &amp; Kewpie', 16, 1)">
+
+                                    <div class="list-description"> - Flinders Island lamb ribs with cumin, sesame, chili &amp; Kewpie </div>
+
+                                    <div class="list-price">$ 16</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(259, 'Heirloom tomato &amp; purple shiso salad with tahini tofu &amp; black bean', 14, 1)">
+
+                                    <div class="list-description"> - Heirloom tomato &amp; purple shiso salad with tahini tofu &amp; black bean </div>
+
+                                    <div class="list-price">$ 14</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(260, 'Kingfish sashimi with green chili, mango &amp; coconut', 17, 1)">
+
+                                    <div class="list-description"> - Kingfish sashimi with green chili, mango &amp; coconut </div>
+
+                                    <div class="list-price">$ 17</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(261, 'Asian steak tartare with nahm prik &amp; cassava crackers', 16, 1)">
+
+                                    <div class="list-description"> - Asian steak tartare with nahm prik &amp; cassava crackers </div>
+
+                                    <div class="list-price">$ 16</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(262, 'Lemon &amp; black pepper chicken ribs with hot ‘n’ sour dressing', 12, 1)">
+
+                                    <div class="list-description"> - Lemon &amp; black pepper chicken ribs with hot ‘n’ sour dressing </div>
+
+                                    <div class="list-price">$ 12</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(263, 'Crispy eggplant with sweet ‘n’ sour fish sauce', 9, 1)">
+
+                                    <div class="list-description"> - Crispy eggplant with sweet ‘n’ sour fish sauce </div>
+
+                                    <div class="list-price">$ 9</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(264, 'Yellow fin tuna with avocado, spring onion, ginger &amp; soy', 18, 1)">
+
+                                    <div class="list-description"> - Yellow fin tuna with avocado, spring onion, ginger &amp; soy </div>
+
+                                    <div class="list-price">$ 18</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(265, 'Thai green papaya salad with peanut, dried shrimps &amp; red chili', 15, 1)">
+
+                                    <div class="list-description"> - Thai green papaya salad with peanut, dried shrimps &amp; red chili </div>
+
+                                    <div class="list-price">$ 15</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(266, 'Caramelised sticky pork with Vietnamese herbs &amp; duck egg salad', 18, 1)">
+
+                                    <div class="list-description"> - Caramelised sticky pork with Vietnamese herbs &amp; duck egg salad </div>
+
+                                    <div class="list-price">$ 18</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(267, 'Wok seared calamari with young ginger, hot mint &amp; red nam jim', 17, 1)">
+
+                                    <div class="list-description"> - Wok seared calamari with young ginger, hot mint &amp; red nam jim </div>
+
+                                    <div class="list-price">$ 17</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(268, 'Bang bang chicken salad with chili &amp; sesame dressing', 14, 1)">
+
+                                    <div class="list-description"> - Bang bang chicken salad with chili &amp; sesame dressing </div>
+
+                                    <div class="list-price">$ 14</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                        </ul>
+
+                    </form><!-- .rest-menu-form -->
+
+                </div>
+
+                <div class="row rest rest-menu">
+
+                    <div>
+
+                        <h2></h2>
+
+                    </div>
+
+                    <p>
+
+
+
+                    </p>
+
+
+
+                    <form class="rest-menu-form">
+
+                        <ul>
+
+                        </ul>
+
+                    </form><!-- .rest-menu-form -->
+
+                </div>
+
+                <div class="row rest rest-menu">
+
+                    
+
+
+
+                    <form class="rest-menu-form">
+
+                        <ul>
+								<li class="rest-menu-heading">
+                                	Chef's Selection
+                                </li>
+                                
+                                <li ng-click="addmenuItem(269, '5 Plates', 55, 1)">
+
+                                    <div class="list-description"> - 5 Plates </div>
+
+                                    <div class="list-price">$ 55</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                                <li ng-click="addmenuItem(270, '7 Plates', 65, 1)">
+
+                                    <div class="list-description"> - 7 Plates </div>
+
+                                    <div class="list-price">$ 65</div>
+
+                                    <div class="list-add"><button></button></div>
+
+
+
+                                </li>
+
+                        </ul>
+
+                    </form><!-- .rest-menu-form -->
+
+                </div>
+
+                <div class="row rest rest-menu">
+
+                    <div>
+
+                        <h2></h2>
+
+                    </div>
+
+                    <p>
+
+
+
+                    </p>
+
+
+
+                    <form class="rest-menu-form">
+
+                        <ul>
+
+                        </ul>
+
+                    </form><!-- .rest-menu-form -->
+
+                </div>
+
+
+
+
+
+            
+             <!-- ### This is the new html below -->
+			</div> <!-- end .container -->
+             <!-- ### This is the new html above -->
+             
+        </section><!-- end main-content -->
+
+        <section class="out-content">
+
+            <div class="col-md-6 out-content-inner">
+
+                <div class="out-header">
+
+                    <h2>Order</h2>
+
+                </div>
+
+                <div class="order-main">
+
+                    <label>Delivery Time</label>
+
+                    <select ng-model="order.DeliveryTime" class="select-order">
+
+                        <option value="">Please select time...</option>
+
+
+
+                            <option value="2016-02-16T17:00:00.0000000">05:00 PM</option>
+
+                            <option value="2016-02-16T17:30:00.0000000">05:30 PM</option>
+
+                            <option value="2016-02-16T18:00:00.0000000">06:00 PM</option>
+
+                            <option value="2016-02-16T18:30:00.0000000">06:30 PM</option>
+
+                            <option value="2016-02-16T19:00:00.0000000">07:00 PM</option>
+
+                            <option value="2016-02-16T19:30:00.0000000">07:30 PM</option>
+
+                            <option value="2016-02-16T20:00:00.0000000">08:00 PM</option>
+
+                            <option value="2016-02-16T20:30:00.0000000">08:30 PM</option>
+
+                            <option value="2016-02-16T21:00:00.0000000">09:00 PM</option>
+
+                    </select>
+
+
+
+                    <label>Delivery Suburb</label>
+
+
+
+                    <select class="select-order" ng-model="order.DeliverySuburbId">
+
+                        <option value="">Please select suburb...</option>
+
+                            <option value="6">Prahran</option>
+
+                            <option value="7">Prahran East</option>
+
+                            <option value="8">Toorak</option>
+
+                            <option value="9">South Yarra</option>
+
+                            <option value="10">Windsor</option>
+
+                            <option value="11">Malvern</option>
+
+                    </select>
+
+                    <label>Your Order</label>
+
+                    <table>
+
+
+
+                        <tbody>
+
+                            <!-- ngRepeat: orderItem in OrderItems -->
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+
+								<td class="order-item-math">
+                                	<!-- <div class="order-item-hover"> -->
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                    <!-- </div> -->
+                                </td>
+                                    
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                    
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Organic silken tofu with Asian mushrooms &amp; chili oil</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $7
+                                    
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                           
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+								
+                                <td class="order-item-math">
+                                	
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                   
+                                </td>
+
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                    
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Heirloom tomato &amp; purple shiso salad with tahini tofu &amp; black bean</td>
+                                <td class="order-item-price ng-binding">
+                                    $14
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                            
+                            	 <td class="order-item-math">
+                                	
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                   
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Lemon &amp; black pepper chicken ribs with hot ‘n’ sour dressing</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $12
+                                </td>
+                                
+								<td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                <td class="order-item-math">
+                                	
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                   
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Crispy eggplant with sweet ‘n’ sour fish sauce</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $9
+                                </td>
+								
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                
+                                <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    2 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Yellow fin tuna with avocado, spring onion, ginger &amp; soy</td>
+                               
+                                <td class="order-item-price ng-binding">
+                                    $36
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                             
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                            
+                            	 <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    2 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Thai green papaya salad with peanut, dried shrimps &amp; red chili</td>
+                                <td class="order-item-price ng-binding">
+                                    $30
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                
+                                 <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Caramelised sticky pork with Vietnamese herbs &amp; duck egg salad</td>
+                                <td class="order-item-price ng-binding">
+                                    $18
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                
+                                 <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Wok seared calamari with young ginger, hot mint &amp; red nam jim</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $17
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+
+
+                        </tbody>
+
+
+
+                        <tfoot>
+
+                            <tr>
+                                <td colspan="3">Subtotal</td>
+                                <td class="ng-binding">$143</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Minimum Order</td>
+                                <td class="ng-binding">$20</td>
+                            </tr>
+                            <tr class="dfee">
+                                <td colspan="3">Delivery Fee</td>
+                                <td class="ng-binding">$5</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Total</td>
+                                <td class="ng-binding">$148</td>
+                            </tr>
+
+
+                        </tfoot>
+
+
+
+                    </table>
+
+                    <button class="list-order order-main-submit" ng-click="placeOrder()" ng-disabled="order.DeliveryTime=='' || order.DeliverySuburbId==''">Place Order</button>
+
+
+
+                    <span class="error error-order" ng-show="order.DeliveryTime==''"><i class="fa fa-times-circle"></i>Delivery Time is required</span>
+                            <span class="error error-order" ng-show="order.DeliverySuburbId==''"><i class="fa fa-times-circle"></i>Delivery Suburb is required</span>
+
+
+
+                </div><!-- order-main -->
+
+
+
+            </div><!-- .rest-order -->
+
+
+
+        </section>
+
+    </div>
+
+</div>
+
+
+
+<script src="/bundles/jquery?v=D74xBryE0xyv-mkSxb096xWOar3NUyrSOzWcAgoy27c1"></script>
+
+
+
+<script src="/bundles/angularJs?v=hHe2GdlwLk5ynM_Qs8mjowyh38RrFrklrknJUKWWrHU1"></script>
+
+
+
+<script src="/bundles/core?v=7KwzIv0KrRjOJeG_Q9CHqGgjxeVlBAyMqarkduP-Xx01"></script>
+
+
+
+<script src="/bundles/bootstrap?v=gaS8ksF0U8YYRyqGHTWvkSNiIzbtTYXNIS5RdRDV8O01"></script>
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.js"></script>
+
+</body>
+
+</html>
+

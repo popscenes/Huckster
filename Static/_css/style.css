@@ -229,7 +229,7 @@
 		margin-top: -81px;
 	}
 	.main-bar-main {
-		margin-top: 81px;	
+		margin-top: 101px;	
 		padding-top: 0;
 	}
 	.sub-content {
@@ -240,8 +240,11 @@
 	}
 	.main-content-header {
 		position: relative;
-		color: #333;
-		background-color: #ddd;
+		/*color: #333;*/
+		background: url(../_images/_backgrounds/heading-bg-3.jpg);
+		background-size: cover;
+		background-position: center;
+		color: #fff;
 		width: 100%;
 		padding: 5px;
 		border-bottom: 1px solid #bbb;
@@ -1398,8 +1401,6 @@
 	}
 	.main-content-header {
 		position: relative;
-		color: #333;
-		background-color: #ddd;
 		width: 100%;
 		padding: 25px;
 		border-bottom: 1px solid #bbb;
@@ -1979,12 +1980,9 @@
 	}
 	.main-content-header {
 		position: relative;
-		color: #333;
-		background-color: #ddd;
 		width: 100%;
 		padding: 25px;
 		border-bottom: 1px solid #bbb;
-		margin-top: -20px;
 	}
 	.main-content-header h2 {
 		text-transform: uppercase;	

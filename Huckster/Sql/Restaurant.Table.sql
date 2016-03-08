@@ -44,5 +44,11 @@ BEGIN
 
 	ALTER TABLE Restaurant ADD [SurgePct] int NOT NULL DEFAULT(0)
 	PRINT 'created column [SurgePct] on table [dbo].[Restaurant]'
+
+	ALTER TABLE Restaurant ADD [MinimumOrder] int NOT NULL DEFAULT(0)
+	PRINT 'created column [MinimumOrder] on table [dbo].[Restaurant]'
+
+	ALTER TABLE Restaurant ADD [DeliveryFee] int NOT NULL DEFAULT(0)
+	PRINT 'created column [DeliveryFee] on table [dbo].[Restaurant]'
 END
 GO

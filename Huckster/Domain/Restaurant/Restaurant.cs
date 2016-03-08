@@ -31,6 +31,9 @@ namespace Domain.Restaurant
         public int SurgePct { get; set; }
         public bool Surge { get; set; }
 
+        public int MinimumOrder { get; set; }
+        public int DeliveryFee { get; set; }
+
         public decimal SurgeVal => Surge ? (decimal) SurgePct/100 : 0;
 
         public string FullTileImageUrl {

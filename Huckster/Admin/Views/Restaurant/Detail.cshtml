@@ -37,6 +37,12 @@
             <p>
                 Surge Pct: @Model.Restaurant.SurgePct
             </p>
+            <p>
+                Delivery Fee: @Model.Restaurant.DeliveryFee
+            </p>
+            <p>
+                Minimum Order: @Model.Restaurant.MinimumOrder
+            </p>
             @Html.ActionLink("Edit Details", "EditDetails", new {id = Model.Restaurant.Id}, new {@class="btn btn-primary"})
         </div>
         <div role="tabpanel" class="tab-pane" id="Address">

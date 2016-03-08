@@ -16,9 +16,10 @@
 
 
     function OrderForm($scope, Restangular, $window) {
-        $scope.deliveryFee = 5;
-        $scope.minimumOrder = 20;
+        $scope.deliveryFee = $("#deliveryFee").val();
+        $scope.minimumOrder = $("#minimumOrder").val();
         $scope.restaurantId = $("#restaurantId").val();
+
         $scope.OrderItems = [];
         $scope.order = {
             CustomerMobile: '',
@@ -51,7 +52,7 @@
         };
 
         $scope.total = function () {
-            return $scope.subTotal() + $scope.deliveryFee;
+            return $scope.subTotal() + parseInt($scope.deliveryFee);
         };
 
         $scope.addmenuItem = function (id, name, price, quantity) {

@@ -6,11 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Huckster — Melbourne.Delivered.</title>
 <!-- CSS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="_css/normalize.css">
 <link rel="stylesheet" type="text/css" href="_css/style.css">
 <!-- FONTS -->
 <link rel="stylesheet" href="_fonts/glober_light/stylesheet.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="_fonts/Glober Regular/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="_fonts/Glober Heavy/stylesheet.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- SCRIPTS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="_js/ui-main.js"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -18,81 +25,160 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
 <body>
-    <header>
-    	
-        <div class="logo mobile"></div>
-        <div class="logo-type mobile" ></div>
+
+    <header class="main-content main-bar hckstr-modal search-header">
+		<div class="container">
+        	<a href="#">
+            	<div class="logo logo-modal" ></div>
+            </a>
+        </div>    
         
-       
-    
+        <div class="search-form-container">
+        	<div class="container">
+                <form class="search-form">
+                    <span><i class="s-icon"></i></span><input type="text" name="search" placeholder="Search Again" />
+                </form>
+            </div>
+        </div>
     </header>
-     
-    <section class="main-content search">
-    	
-         <form class="search" id="search-results">
-         	
-            		<input type="text" name="search" placeholder="Search again...">
-        
-        </form>
     
-    	<ul class="search" id="results-list">
-        	
-            <li class="list" id="list-01">
+    <section class="search-content hckstr-modal">       
+        <div ng-app="hucksterApp">
+            <div class="container" ng-controller="OrderFormController">
+                <div class="row search">
+                   
+                    <ul class="search-ul">
+                    	<li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/_fonda/MENU-2.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Fonda Mexican</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 02</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        
+                        <li class="search-list">
+                            <a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 03</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 04</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant5 05</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 06</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 07</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>
+                        
+                        <li class="search-list">
+                            <a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 08</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>	
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 09</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>	
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 10</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>	
+                        
+                        <li class="search-list">
+                            <a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 11</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>	
+                        
+                        <li class="search-list">
+                        	<a href="#">
+                        	<div class="search-list-img" style="background-image: url(_images/image-placeholder-rect.jpg)"></div>
+                            <div class="search-list-info">
+                            	<h4 class="search-list-info-heading">Restaurant 12</h4>
+                                <button class="search-list-order">Order Now</button>
+                            </div>
+                            </a>
+                        </li>	
+                    </ul>
+                   
+                </div>
+            </div><!-- .container -->
             
-                    <div class="list-image"></div>
-                    
-                    <h4 class="list-title">Fonda Mexican</h4>
-                    
-                    <span class="list-city">Melbourne</span><p class="list-dash">-</p><span class="list-postcode">3000</span>
-                    
-                    <a href="/restaurant-listing.html"><button class="list-order">Order Now</button></a>
-                
-            </li>
-            
-            <li class="list" id="list-02" >
-            
-            		<div class="list-image"></div>
-                    
-                    <h4 class="list-title">Awesome Restaurant</h4>
-                    
-                    <span class="list-city">Melbourne</span><p class="list-dash">-</p><span class="list-postcode">3000</span>
-                    
-                    <button class="list-order">Order Now</button>
-            
-            </li>
-            
-            <li class="list" id="list-03" >
-            
-                    <div class="list-image"></div>
-                    
-                    <h4 class="list-title">Richmond Restaurant</h4>
-                    
-                    <span class="list-city">Richmond</span><p class="list-dash">-</p><span class="list-postcode">3121</span>
-                    
-                    <button class="list-order">Order Now</button>
-            
-            </li>
-            
-            <li class="list" id="list-04" >
-            
-                    <div class="list-image"></div>
-                    
-                    <h4 class="list-title">South Melbourne Restaurant</h4>
-                    
-                    <span class="list-city">South Melbourne</span><p class="list-dash">-</p><span class="list-postcode">3205</span>
-                    
-                    <button class="list-order">Order Now</button>
-            
-            </li>
-            
-        </ul>
-    	
+        </div><!-- ng-app="hucksterApp" -->
         
-        
-    	
-    </section>
+    </section><!-- end main-content -->
+    
+
+
+
 
 </body>
 </html>

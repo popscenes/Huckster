@@ -298,6 +298,10 @@
 		background-size: 100%;
 		background-position: center;
 		background-image: url(../_images/_backgrounds/CCD_alleyway_home.jpg);
+		margin-top: -128px;
+	}
+	.search-content {
+		margin-top: 128px;
 	}
 	#results-list {
 		margin: 0;	
@@ -1156,6 +1160,12 @@
 		margin-top: -25px;
 	}
 	/*** SEARCH RESULTS PAGE ***/
+	.search-header {
+		margin-top: -184px;	
+	}
+	.search-content {
+		margin-top: 184px;
+	}
 	#search-results {
 		height: 100px;	
 	}

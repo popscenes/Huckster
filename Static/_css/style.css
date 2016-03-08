@@ -15,6 +15,9 @@
 	.full-width {
 		padding-bottom: 100px;
 	}
+	.clearfix {
+		clear: both;	
+	}
 	/*** LINKS ***/
 	a, a:visited, a:focus {
 		text-decoration: none;
@@ -122,7 +125,7 @@
 		text-transform: uppercase;
 	}
 	
-	/*** HOMEPAGE GALLERY ***/
+	/*** HOMEPAGE ***/
 	.front-image {
 		background-image: url(../_images/_backgrounds/home.jpg);
 		background-size: cover;
@@ -164,7 +167,46 @@
 	#home-line-bottom {
 		margin-top: 30px;
 	}
+	.sub-content-button {
+		min-height: 200px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		text-align: center;
+		margin-top: 30px;
+		font-family: globerlight, helvetica, sans-serif;
+		color: #fff;
+		padding-bottom: 25px;
+	}
+	.sub-content-button h3 {
+		font-size: 2.5em;
+		text-transform: uppercase;
+		padding: 0.5em;	
+		font-weight: normal;
+	}
+	#restaurants-wanted {
+		
+		background: url(../_images/_buttons/restaurant.jpg) no-repeat;
+		background-size: cover;
+		background-position: bottom right;
+		
+	}
 	
+	#riders-wanted {
+		background: url(../_images/_buttons/riders.jpg) no-repeat;
+		background-size: cover;
+		background-position: bottom;
+		
+	}
+	.join {
+		background: #E9C100;
+		border: none;
+		border-radius: 5px;
+		padding: 0.5em;
+		width: 100px;
+		font-family: glober_regular;
+		text-transform: uppercase;
+	}
 	/*** CONTENT ***/
 	.home-content {
 		margin: 0 auto;	
@@ -177,7 +219,9 @@
 		padding: 20px 0 20px 0;
 		text-align: center;
 	}
-	
+	.sub-content {
+		padding: 20px;	
+	}
 	.main-content.search  {
 		padding: 0;	
 	}
@@ -980,7 +1024,7 @@
 		text-transform: uppercase;
 	}
 	
-	/*** HOMEPAGE GALLERY ***/
+	/*** HOMEPAGE ***/
 	.gallery {
 		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
 		background-size: cover;
@@ -1006,6 +1050,27 @@
 	}
 	#home-line-bottom {
     	margin-top: 50px;
+	}
+	.sub-content-button h3 {
+		font-size: 2.8em;
+		padding: 0.2em;	
+	}
+	#restaurants-wanted {
+		min-height: 250px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-top: 40px;
+	}
+	
+	#riders-wanted {
+		min-height: 250px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-left: 2%;
+		margin-top: 40px;
+	
 	}
 
 	/*** FORM ***/
@@ -1257,6 +1322,11 @@
 		text-align: left;
 		
 	}
+	.sub-content {
+		padding: 0;
+		margin: 0 auto;
+		float: none;
+	}
 	#home-main-content {
 		float: none;
 		text-align: inherit;	
@@ -1341,7 +1411,7 @@
 		font-size: 4em;	
 	}
 	
-	/*** HOMEPAGE GALLERY ***/
+	/*** HOMEPAGE ***/
 	.gallery {
 		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
 		background-size: cover;
@@ -1360,6 +1430,27 @@
 	}
 	#home-line-bottom {
 		margin-top: 50px;	
+	}
+	.sub-content-button h3 {
+		margin: 0;
+		font-size: 3em;
+		padding: 1em 0.2em 0.4em 0.2em;
+	}
+	#restaurants-wanted {
+		min-height: 300px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-top: 30px;
+	}
+	
+	#riders-wanted {
+		min-height: 300px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-left: 2%;
+	
 	}
 	/*** FORM ***/
 	

@@ -74,7 +74,7 @@
 
                     <div class="rest-info">
 
-                        <h2>The Smith Prahran</h2>
+                        <h2>The Hellenic Republic</h2>
 
 
 
@@ -89,9 +89,9 @@ Elegantly relaxed not flashy; smart yet casual. The Smith is perfect for all occ
                     </div>
 
 
-
-                    <img src=" https://huckster.blob.core.windows.net/restaurant/1/TileImage.jpg" alt="The Smith Prahran">
-
+					<div class="rest-img">
+                    	<img src="_images/_restaurants/hellenic-republic.jpg" alt="Hellenic Republic">
+					</div>
 
 
                 </div>
@@ -502,44 +502,208 @@ Elegantly relaxed not flashy; smart yet casual. The Smith is perfect for all occ
 
                         <tbody>
 
+                            <!-- ngRepeat: orderItem in OrderItems -->
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
 
-
-                            <tr class="order-item" ng-repeat="orderItem in OrderItems">
-
-
-
-
-
-                                <td class="order-item-quantity">
-
-                                    {{orderItem.Quantity}} x
-
-                                    <div class="order-item-hover">
-
+								<td class="order-item-math">
+                                	<!-- <div class="order-item-hover"> -->
                                         <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
-
                                         <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
-
-                                    </div>
-
+                                    <!-- </div> -->
+                                </td>
+                                    
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                    
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Organic silken tofu with Asian mushrooms &amp; chili oil</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $7
+                                    
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
                                 </td>
 
-                                <td class="order-item-description">{{orderItem.Name}}</td>
 
-                                <td class="order-item-price">
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                           
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+								
+                                <td class="order-item-math">
+                                	
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                   
+                                </td>
 
-                                    ${{orderItem.Price * orderItem.Quantity}}
-
-                                    <div class="order-item-delete" ng-click="deleteMenuItem($index);">delete<i class="fa fa-times-circle"></i></div>
-
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                    
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Heirloom tomato &amp; purple shiso salad with tahini tofu &amp; black bean</td>
+                                <td class="order-item-price ng-binding">
+                                    $14
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
                                 </td>
 
 
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                            
+                            	 <td class="order-item-math">
+                                	
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                   
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Lemon &amp; black pepper chicken ribs with hot ‘n’ sour dressing</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $12
+                                </td>
+                                
+								<td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                <td class="order-item-math">
+                                	
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                   
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Crispy eggplant with sweet ‘n’ sour fish sauce</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $9
+                                </td>
+								
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                
+                                <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    2 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Yellow fin tuna with avocado, spring onion, ginger &amp; soy</td>
+                               
+                                <td class="order-item-price ng-binding">
+                                    $36
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                             
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                            
+                            	 <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    2 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Thai green papaya salad with peanut, dried shrimps &amp; red chili</td>
+                                <td class="order-item-price ng-binding">
+                                    $30
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
 
 
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                
+                                 <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Caramelised sticky pork with Vietnamese herbs &amp; duck egg salad</td>
+                                <td class="order-item-price ng-binding">
+                                    $18
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
 
-                            </tr>
 
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
+                            
+                            
+                            <tr class="order-item ng-scope" ng-repeat="orderItem in OrderItems">
+                                
+                                 <td class="order-item-math">
+                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                </td>
+                                
+                                <td class="order-item-quantity ng-binding">
+                                    1 x
+                                </td>
+                                
+                                <td class="order-item-description ng-binding">Wok seared calamari with young ginger, hot mint &amp; red nam jim</td>
+                                
+                                <td class="order-item-price ng-binding">
+                                    $17
+                                </td>
+                                
+                                <td>
+                                	<div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
+
+
+                            </tr><!-- end ngRepeat: orderItem in OrderItems -->
 
 
                         </tbody>
@@ -549,37 +713,21 @@ Elegantly relaxed not flashy; smart yet casual. The Smith is perfect for all occ
                         <tfoot>
 
                             <tr>
-
-                                <td colspan="2">Subtotal</td>
-
-                                <td>${{subTotal()}}</td>
-
+                                <td colspan="3">Subtotal</td>
+                                <td class="ng-binding">$143</td>
                             </tr>
-
                             <tr>
-
-                                <td colspan="2">Minimum Order</td>
-
-                                <td>${{minimumOrder}}</td>
-
+                                <td colspan="3">Minimum Order</td>
+                                <td class="ng-binding">$20</td>
                             </tr>
-
                             <tr class="dfee">
-
-                                <td colspan="2">Delivery Fee</td>
-
-                                <td>${{deliveryFee}}</td>
-
+                                <td colspan="3">Delivery Fee</td>
+                                <td class="ng-binding">$5</td>
                             </tr>
-
                             <tr>
-
-                                <td colspan="2">Total</td>
-
-                                <td>${{total()}}</td>
-
+                                <td colspan="3">Total</td>
+                                <td class="ng-binding">$148</td>
                             </tr>
-
 
 
                         </tfoot>

@@ -85,7 +85,7 @@
 	}
 	
 	.logo {
-		background-image: url(../_images/svg/logo-01.svg);
+		background-image: url(../_images/svg/logo-white.svg);
 		background-size: cover;
 		height: 40px;
 		width: 40px;
@@ -108,7 +108,7 @@
 		background-image: url(../_images/svg/logo/white/HUC_branding-logo-white-06.svg);
 		background-size: cover;
 		width: 112px;
-		height: 38px;
+		height: 40px;
 		margin: 0 auto;
 		top: -15px;
 		-webkit-transition: all 0.8s ease;
@@ -218,6 +218,19 @@
 		margin: 0 auto;	
 		padding: 20px 0 20px 0;
 		text-align: center;
+	}
+	.main-bar {
+		background: url(../_images/_backgrounds/home.jpg);
+		background-position: center;
+		background-size: cover;	
+		position: fixed;
+		width: 100%;
+		z-index: 99;
+		margin-top: -81px;
+	}
+	.main-bar-main {
+		margin-top: 81px;	
+		padding-top: 0;
 	}
 	.sub-content {
 		padding: 20px;	
@@ -412,29 +425,36 @@
 	}
 	
 	.rest-bio h2 {
-		margin-top: -20px;
+		margin-top: 0px;
 		margin-bottom: 0.5em;
 		text-transform: uppercase;
 		background-color: #ddd;
+		background: url(../_images/_backgrounds/heading-bg-3.jpg);
+		background-size: cover;
+		background-position: center;
 		padding: 1em;
 		width: 100%;
 		position: absolute;
 		left: 0;
 		border-bottom: 1px solid #bbb;
 		font-size: 20px;
+		color: #fff;
 	}
 	
-	.rest-bio img {
+	.rest-bio .rest-img{
 		width: 90%;	
 		border: 1px solid #bbb;
 		padding: 1em;
+		margin: 0 auto;
 	}
-	
+	.rest-bio .rest-img img {
+		width: 100%;	
+	}
 	.rest-text {
 		width: 80%;
 		margin: 0 auto;	
 		padding-bottom: 1em;
-		padding-top: 93px;
+		padding-top: 105px;
 	}
 	
 	.out-content-inner {
@@ -447,9 +467,10 @@
 	
 	.out-header h2 {
 		margin: 0;
-		margin-bottom: 0.5em;
+		
 		text-transform: uppercase;
-		font-size: 1.4em;
+		font-size: 20px;
+		padding: 1em;
 	}
 	
 	.out-content-inner label {
@@ -540,10 +561,12 @@
 		transition: background 0.3s ease;
 	}
 	.rest-menu ul li.rest-menu-heading {
-		font-family: glober_heavy, helvetica, sans-serif;
+		font-family: glober_regular, helvetica, sans-serif;
 		font-size: 1.2em;
-		background: #ddd;
+		background: #05BBAB;
 		padding: 1.5em;	
+		color: #fff;
+		text-transform: uppercase;
 	}
 	.rest-menu ul li:hover {
 		background: #ddd;	
@@ -556,7 +579,9 @@
 		width: 90%;	
 		margin: 0 auto;
 	}
-	
+	.rest-menu ul li.rest-menu-heading:hover {
+		background: #05BBAB;
+	}
 	/*** FORM ***/
 	#huckstart {
 		width: 80%;	
@@ -668,7 +693,10 @@
 	}
 	.out-header {
 		border-bottom: 1px solid #bbb;
-		background: #ddd;
+		background: url(../_images/_backgrounds/heading-bg-3.jpg);
+		background-size: cover;
+		background-position: center;
+		color: #fff;
 		padding-top: 1em;
 		margin: 0;
 		position: relative;
@@ -1023,7 +1051,13 @@
 		padding-top: 85px;
 		text-transform: uppercase;
 	}
-	
+	.main-bar { 
+		margin-top: -121px;
+	}
+	.main-bar-main {
+		padding: 0;
+		margin-top: 121px;
+	}
 	/*** HOMEPAGE ***/
 	.gallery {
 		/*background-image: url(../_images/CCD_alleyway_01gray-edit.jpg);	*/
@@ -1208,8 +1242,11 @@
 	.rest-bio h2 {
 		font-size: 30px;	
 	}
-	.rest-bio img {
+	.rest-bio .rest-img{
 		width: 80%;	
+	}
+	.rest-bio .rest-img img {
+		width: 100%;	
 	}
 	.order-item-math {
 		width: 6em;
@@ -1232,7 +1269,9 @@
 		width: 30px;
 		padding-top: 8px;
 	}
-	
+	.out-header h2 {
+		font-size: 30px;	
+	}
 	/*** CHEKOUT PAGE ***/
 	
 	.flex-row {
@@ -1304,7 +1343,7 @@
 	.main-bar {
 		position: fixed;
 		z-index: 999;
-		background: #fff;	
+		
 	}
 	.home-content {
 		margin: 0;
@@ -1678,7 +1717,7 @@
 	}
 	.rest-info h2 {
 		position: relative;
-		color: #333;
+		
 		background-color: #ddd;
 		margin-top: -1em;
 		margin-left: -1em;
@@ -1687,14 +1726,17 @@
 		border-bottom: 1px solid #bbb;
 		font-size: 30px;
 	}
-	.rest-bio img {
+	.rest-bio .rest-img{
 		width: 67.1%;	
 		margin-left: 33%;
 		border: none; /*clears styles from previous media query*/
 		border-bottom: 1px solid #bbb;
 		padding: 1em;
+		min-height: 280px;
 	}
-	
+	.rest-bio .rest-img img {
+		width: 100%;	
+	}
 	.rest-text {
 		text-align: left;
 		margin: 0;	
@@ -1713,10 +1755,8 @@
 	
 	.out-header {
 		padding: 25px;
-		color: #333;
 		height: 111px;
 		text-align: left;
-		background: #ddd;	
 		border-bottom: 1px solid #bbb;
 		margin-bottom: 25px;
 		position: relative;
@@ -1869,6 +1909,7 @@
 		line-height: 61px;	
 		text-transform: uppercase;
 		margin: 0;
+		margin-top: -20px;
 		font-size: 2em;
 	}
 	.rest-menu {
@@ -2090,6 +2131,8 @@
 	.rest-info h2 {
 		width: 135%;	
 	}
-
+	.sub-content {
+		width: 75%;	
+	}
 }
 

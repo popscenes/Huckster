@@ -115,6 +115,7 @@
 
                 </div>
         </section><!-- end main-content -->
+
         <section class="out-content">
             <div class="col-md-6 out-content-inner">
                 <div class="out-header">
@@ -148,19 +149,22 @@
                             <tr class="order-item" ng-repeat="orderItem in OrderItems">
 
 
+                                <td class="order-item-math">
+                                    <!-- <div class="order-item-hover"> -->
+                                    <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
+                                    <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
+                                    <!-- </div> -->
+                                </td>
                                 <td class="order-item-quantity">
                                     {{orderItem.Quantity}} x
-                                    <div class="order-item-hover">
-                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
-                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
-                                    </div>
                                 </td>
                                 <td class="order-item-description">{{orderItem.Name}}</td>
                                 <td class="order-item-price">
-                                    ${{orderItem.Price * orderItem.Quantity}}
-                                    <div class="order-item-delete" ng-click="deleteMenuItem($index);">delete<i class="fa fa-times-circle"></i></div>
+                                    ${{orderItem.Price * orderItem.Quantity}}                                    
                                 </td>
-
+                                <td>
+                                    <div class="order-item-delete" ng-click="deleteMenuItem($index);"><i class="fa fa-times-circle"></i></div>
+                                </td>
 
                             </tr>
 
@@ -198,8 +202,8 @@
                     </table>
                     <button class="list-order order-main-submit" ng-click="placeOrder()" ng-disabled="order.DeliveryTime=='' || order.DeliverySuburbId==''">Place Order</button>
 
-                    <span class="error" ng-show="order.DeliveryTime==''">Delivery Time is required</span>
-                    <span class="error" ng-show="order.DeliverySuburbId==''">Delivery Suburb is required</span>
+                    <span class="error error-order" ng-show="order.DeliveryTime==''">Delivery Time is required</span>
+                    <span class="error error-order" ng-show="order.DeliverySuburbId==''">Delivery Suburb is required</span>
 
                 </div><!-- order-main -->
 

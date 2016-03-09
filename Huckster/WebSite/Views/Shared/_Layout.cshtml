@@ -5,16 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huckster — Melbourne.Delivered.</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/cssWithBS")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-        @RenderBody()
+    <header class="main-content main-bar">
+
+        <div class="container">
+
+            <a href="#">
+                <div class="logo"></div>
+            </a>
+            <div></div>
+
+        </div>
+    </header>
+@RenderBody()
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/angularJs")
 @Scripts.Render("~/bundles/core")
-@Scripts.Render("~/bundles/bootstrap")
+@*@Scripts.Render("~/bundles/bootstrap")*@
 @RenderSection("scripts", required: false)
 <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.js"></script>
 </body>

@@ -15,66 +15,105 @@
 </header>
 <div ng-app="hucksterApp">
     <div ng-controller="OrderFormController">
-        <input id="restaurantId" type="hidden" value="@Model.Restaurant.AggregateRootId"/>
-        <input id="surgePct" type="hidden" value="@Model.Restaurant.SurgeVal"/>
-        <input id="deliveryFee" type="hidden" value="@Model.Restaurant.DeliveryFee"/>
+        <input id="restaurantId" type="hidden" value="@Model.Restaurant.AggregateRootId" />
+        <input id="surgePct" type="hidden" value="@Model.Restaurant.SurgeVal" />
+        <input id="deliveryFee" type="hidden" value="@Model.Restaurant.DeliveryFee" />
         <input id="minimumOrder" type="hidden" value="@Model.Restaurant.MinimumOrder" />
+        
+            <section class="main-content main-bar-main">
+                <div class="container">
+                    <div class="row rest">
+                        <div class="rest-bio">
 
-        <section class="main-content main-bar-main">
-            <div class="row rest">
-                <div class="rest-bio">
+                            <div class="rest-info">
+                                <h2>@Model.Restaurant.Name</h2>
 
-                    <div class="rest-info">
-                        <h2>@Model.Restaurant.Name</h2>
+                                <p class="rest-text">
+                                    @Model.Restaurant.Description
+                                </p>
+                            </div>
 
-                        <p class="rest-text">
-                            @Model.Restaurant.Description
+                            <div class="rest-img">
+                                <img src="@Model.Restaurant.FullTileImageUrl" alt="@Model.Restaurant.Name">
+                            </div>
+                            </div>
+
+
+                    </div>
+
+                    <div class="mobile-lines"></div>
+                    <div class="row rest rest-menu">
+
+                        <div>
+
+                            <h2></h2>
+
+                        </div>
+
+                        <p>
+
+
+
                         </p>
+
+
+
+                        <form class="rest-menu-form">
+
+                            <ul></ul>
+
+                        </form><!-- .rest-menu-form -->
+
                     </div>
 
-                    <img src="@Model.Restaurant.FullTileImageUrl" alt="@Model.Restaurant.Name">
-
-                </div>
-
-
-            </div>
-
-            <div class="mobile-lines"></div>
-
-            @foreach (var menu in Model.RestaurantMenu)
+                    @foreach (var menu in Model.RestaurantMenu)
             {
-                <div class="row rest rest-menu">
-                    <div>
-                        <h2>@menu.Title</h2>
-                    </div>
-                    <p>
+                        <div class="row rest rest-menu">
+                            <div>
+                                <h2>@menu.Title</h2>
+                            </div>
+                            <p>
 
-                    </p>
+                            </p>
 
-                    <form class="rest-menu-form">
-                        <ul>
-                            @foreach (var menuItem in menu.MenuItems)
-                            {
-                                <li ng-click="addmenuItem(@menuItem.Id, '@menuItem.Name', @menuItem.Price, 1)">
-                                    <div class="list-description">@menuItem.MenuGroup - @menuItem.Name </div>
-                                    <div class="list-price">$ @menuItem.Price
-                                    @if (menuItem.UseEach)
-                                    {
-                                        <span>Each</span>
+                            <form class="rest-menu-form">
+                                <ul>
+                                    @{
+                                        var currentGroup = "";
                                     }
+                                    @foreach (var menuItem in menu.MenuItems)
+                                    {
 
-                                    </div>
-                                    <div class="list-add"><button></button></div>
+                                        if (!currentGroup.Equals(menuItem.MenuGroup))
+                                        {
+                                            <li class="rest-menu-heading">
+                                                @menuItem.MenuGroup
+                                            </li>
+                                        }
+                                        currentGroup = menuItem.MenuGroup;
 
-                                </li>
-                            }
-                        </ul>
-                    </form><!-- .rest-menu-form -->
+                                        <li ng-click="addmenuItem(@menuItem.Id, '@menuItem.Name', @menuItem.Price, 1)">
+                                            <div class="list-description"> - @menuItem.Name </div>
+                                            <div class="list-price">
+                                                $ @menuItem.Price
+                                                @if (menuItem.UseEach)
+                                                {
+                                                    <span>Each</span>
+                                                }
+
+                                            </div>
+                                            <div class="list-add"><button></button>
+                                            </div>
+
+                                        </li>
+                                    }
+                                </ul>
+                            </form><!-- .rest-menu-form -->
+                        </div>
+                    }
+
+
                 </div>
-            }
-
-
-            =
         </section><!-- end main-content -->
         <section class="out-content">
             <div class="col-md-6 out-content-inner">
@@ -138,7 +177,7 @@
                             </tr>
                             @if (Model.Restaurant.Surge)
                             {
-                                var pct = (decimal)Model.Restaurant.SurgePct/100;
+                                var pct = (decimal)Model.Restaurant.SurgePct / 100;
 
                                 <tr class="dfee">
                                     <td colspan="2">Surge Addition</td>

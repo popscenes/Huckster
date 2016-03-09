@@ -3,15 +3,31 @@
 /* =========================================*/
 /* == MOBILE DEVICES == (750px and below) ==*/
 /* =========================================*/
-	/** BODY **/
+	/*** BODY ***/
 	body {
 		font-family: 'glober_regular', helvetica, arial, sans-serif;	
 		letter-spacing: 0.03em;
 	}
-	a, a:visited {
-		color: #333;
-		text-decoration: none;
+	section {
+		position: relative;
+		z-index: 10;
 	}
+	.full-width {
+		padding-bottom: 100px;
+	}
+	.clearfix {
+		clear: both;	
+	}
+	/*** LINKS ***/
+	a, a:visited, a:focus {
+		text-decoration: none;
+		color: #222;
+	}
+	 a:hover, a:hover > *, a:hover > * > *, a:hover > * > * > * {
+		text-decoration: none;	 
+		color: #222;
+	 }
+	 
 	.mobile-lines {
 		width: 100%;
 		border-top: 1px solid #bbb;
@@ -48,11 +64,28 @@
 		padding: 20px 0 20px 0;
 		border-bottom: 1px solid #bbb;
 	}
-	.header-width {
-		
+	.header-home {
+		position: relative;
+		z-index: 15;
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0 10px 0;
+		border-bottom: none;
 	}
+	.logo-home {
+		display: inline-block;
+		background-image: url(../images/svg/logo/white/HUC_branding-logo-white-07.svg);
+		background-size: cover;
+		height: 55px;
+		width: 55px;
+		margin: 0 auto; /*Comment this line when no longer needed logo centered. */
+		
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	
 	.logo {
-		background-image: url(../images/svg/logo-01.svg);
+		background-image: url(../images/svg/logo-white.svg);
 		background-size: cover;
 		height: 40px;
 		width: 40px;
@@ -69,7 +102,43 @@
 		height: 40px;
 		background-position: 0px -2px;
 	}
-	/*** GALLERY ***/
+	.logo-type {
+		display: inline-block;
+		position: relative;
+		background-image: url(../images/svg/logo/white/HUC_branding-logo-white-06.svg);
+		background-size: cover;
+		width: 112px;
+		height: 40px;
+		margin: 0 auto;
+		top: -15px;
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;	
+	}
+	.heading-large {
+		width: 75%;
+		margin: 0 auto;
+		text-align: center;
+		font-family: globerlight, helvetica, sans-serif;
+		font-weight: 100;
+		font-size: 2em;
+		padding-top: 1em;
+		text-transform: uppercase;
+	}
+	
+	/*** HOMEPAGE ***/
+	.front-image {
+		background-image: url(../images/_backgrounds/home.jpg);
+		background-size: cover;
+		background-position: center;
+		position: absolute;
+		height: 315px;
+		width: 100%;
+		top: 0;
+		z-index: 5;
+		-moz-transition: height 1s ease;
+		-webkit-transition: height 1s ease;
+		transition: height 1s ease;
+	}
 	.gallery {
 		background-image: url(../images/CCD_alleyway_01.2gray-edit.jpg);	
 		background-size: cover;
@@ -88,20 +157,94 @@
 		-webkit-transition: all 0.8s ease;
 		transition: all 0.8s ease;
 	}
+	.white-line {
+		background-color: #fff;
+		height: 3px;
+		width: 170px;
+		margin: 0 auto;
+		margin-bottom: 20px;	
+	}
+	#home-line-bottom {
+		margin-top: 30px;
+	}
+	.sub-content-button {
+		min-height: 200px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		text-align: center;
+		margin-top: 30px;
+		font-family: globerlight, helvetica, sans-serif;
+		color: #fff;
+		padding-bottom: 25px;
+	}
+	.sub-content-button h3 {
+		font-size: 2.5em;
+		text-transform: uppercase;
+		padding: 0.5em;	
+		font-weight: normal;
+	}
+	#restaurants-wanted {
+		
+		background: url(../images/_buttons/restaurant.jpg) no-repeat;
+		background-size: cover;
+		background-position: bottom right;
+		
+	}
+	
+	#riders-wanted {
+		background: url(../images/_buttons/riders.jpg) no-repeat;
+		background-size: cover;
+		background-position: bottom;
+		
+	}
+	.join {
+		background: #E9C100;
+		border: none;
+		border-radius: 5px;
+		padding: 0.5em;
+		width: 100px;
+		font-family: glober_regular;
+		text-transform: uppercase;
+	}
 	/*** CONTENT ***/
-	.main-content {
+	.home-content {
 		margin: 0 auto;	
 		padding: 20px 0 20px 0;
 		text-align: center;
 	}
 	
+	.main-content {
+		margin: 0 auto;	
+		padding: 20px 0 20px 0;
+		text-align: center;
+	}
+	.main-bar {
+		background: url(../images/_backgrounds/home.jpg);
+		background-position: center;
+		background-size: cover;	
+		position: fixed;
+		width: 100%;
+		z-index: 99;
+		margin-top: -81px;
+	}
+	.main-bar-main {
+		margin-top: 101px;	
+		padding-top: 0;
+	}
+	.sub-content {
+		padding: 20px;	
+	}
 	.main-content.search  {
 		padding: 0;	
 	}
 	.main-content-header {
 		position: relative;
-		color: #333;
-		background-color: #ddd;
+		/*color: #333;*/
+		background: url(../images/_backgrounds/heading-bg-3.jpg);
+		background-size: cover;
+		background-position: center;
+		color: #fff;
 		width: 100%;
 		padding: 5px;
 		border-bottom: 1px solid #bbb;
@@ -120,19 +263,46 @@
 		position: relative;	
 		border-top: 1px solid #bbb;
 	}
-	
-	.logo-type {
-		background-image: url(../images/svg/logo-03.svg);
-		background-size: cover;
-		width: 112px; /*140*/
-		height: 38px; /*48*/
-		margin: 0 auto;	
-		
-		-webkit-transition: all 0.8s ease;
-		transition: all 0.8s ease;
-		
+	.main-content-info {
+		padding: 25px;	
+	}
+	.block-text {
+		display: block;	
+	}
+	.inline-text {
+		display: inline-block;	
+	}
+	.ref-number {
+		display: inline-block;
+		font-family: glober_heavy, helvetica, sans-serif;	
+	}
+	/*** LOADERS ***/
+	.loader {
+		background: url(../images/loaders/ring-alt.gif);
+		background-size: contain;
+		height: 28px;
+		width: 28px;	
+		display: none;
+	}
+	#rest-order-loader {
+		float: right;	
+	}
+	/* Class triggered by javascript */
+	.loading {
+		display: block;	
 	}
 	
+	/*** SEARCH RESULTS PAGE***/
+	.search-header {
+		width: 100%;
+		background-size: 100%;
+		background-position: center;
+		background-image: url(../images/_backgrounds/CCD_alleyway_home.jpg);
+		margin-top: -128px;
+	}
+	.search-content {
+		margin-top: 128px;
+	}
 	#results-list {
 		margin: 0;	
 		padding: 0;
@@ -176,8 +346,51 @@
 	.list .list-postcode {
 		
 	}
-	
-	.list .list-order {
+	.search-form {
+		font-family: globerlight, helvetica, sans-serif;	
+		font-size: 1.2em;
+		padding: 0.5em;
+	}
+	.search-form input {
+		background: transparent;
+		border: none;	
+	}
+	.search-form-container {
+		min-height: 40px;
+		background: #fff;
+		z-index: 25;
+		margin: -25px;
+		margin-top: 28px;
+		border-bottom: 1px solid #bbb;
+	}
+	.search-ul {
+		padding: 0;	
+	}
+	.search-list {
+		text-align: center;
+		border-bottom: 1px solid #bbb;
+		list-style: none;
+	}
+	.search-list-img {
+		display: none;
+	}
+	.search-list a {
+		display: block;
+		height: 100%;	
+		padding: 1em;
+		
+		-moz-transition: background 1s ease;
+		-webkit-transition: background 1s ease;
+		transition: background 1s ease;
+	}
+	.search-list a:hover {
+		background: #ddd;
+		
+		-moz-transition: background 1s ease;
+		-webkit-transition: background 1s ease;
+		transition: background 1s ease;
+	}
+	.search-list-order {
 		display: block;
 		text-transform: uppercase;
 		-moz-border-radius: 5px;
@@ -185,8 +398,27 @@
 		border-radius: 5px;
 		background-color: #fff;
 		border: 1px solid #333;
-		margin: 8px 0px;
+		margin: 0 auto;
 		padding: 3px 24px;
+		font-size: 1.2em;
+	}
+	.s-icon {
+		background: url(../images/svg/search/search.svg) no-repeat;
+		background-size: cover;
+		height: 1.2em;
+		width: 1.2em;
+		display: inline-block;
+		margin-right: 10px;
+		position: relative;
+		top: 4px;
+		
+	}
+	.search-list-order:hover {
+		background-color: #333;
+		color: #fff;
+		
+		-webkit-transition: all 0.5s ease;
+		transition: all 0.5s ease;	
 	}
 	
 	/*** RESTAURANT LISTING ***/
@@ -200,28 +432,36 @@
 	}
 	
 	.rest-bio h2 {
-		margin-top: -20px;
+		margin-top: 0px;
 		margin-bottom: 0.5em;
 		text-transform: uppercase;
 		background-color: #ddd;
+		background: url(../images/_backgrounds/heading-bg-3.jpg);
+		background-size: cover;
+		background-position: center;
 		padding: 1em;
 		width: 100%;
 		position: absolute;
 		left: 0;
 		border-bottom: 1px solid #bbb;
+		font-size: 20px;
+		color: #fff;
 	}
 	
-	.rest-bio img {
+	.rest-bio .rest-img{
 		width: 90%;	
 		border: 1px solid #bbb;
 		padding: 1em;
+		margin: 0 auto;
 	}
-	
+	.rest-bio .rest-img img {
+		width: 100%;	
+	}
 	.rest-text {
 		width: 80%;
 		margin: 0 auto;	
 		padding-bottom: 1em;
-		padding-top: 93px;
+		padding-top: 105px;
 	}
 	
 	.out-content-inner {
@@ -234,7 +474,10 @@
 	
 	.out-header h2 {
 		margin: 0;
-		margin-bottom: 0.5em;
+		
+		text-transform: uppercase;
+		font-size: 20px;
+		padding: 1em;
 	}
 	
 	.out-content-inner label {
@@ -258,14 +501,21 @@
 		
 		padding: 3px 24px;
 	}
+	.order-main .order-main-submit {
+		font-size: 1.2em;
+		background-color: #ddd;
+		color: #333;
+		outline: none;
+		margin-top: 1em;
+	}
 	.list-description {
 		text-align: left;	
 		display: table-cell;
-		width: 80%;
+		width: 70%;
 	}
 	.list-price {
 		display: table-cell;
-		width: 10%;
+		width: 20%;
 		vertical-align: middle;
 	}
 	.list-add {
@@ -276,7 +526,7 @@
 	.list-add button {
 		-webkit-appearance: none;
 		-moz-appearance: none;
-		background: url(../images/svg/select-add-outline-graysprite.svg) no-repeat right;
+		background: url(../images/svg/select/select-add-outline-graysprite.svg) no-repeat right;
 		width: 30px;
 		height: 30px;
 		border: none;
@@ -303,18 +553,27 @@
 		font-family: globerlight, helvetica, sans-serif;	
 		margin: 0;
 		margin-bottom: 0.5em;
+		font-size: 20px;
 	}
 	
 	.rest-menu ul li {
 		list-style: none;
 		border-bottom: 1px solid #333;
-		margin-bottom: 1em;
-		padding: 1.5em 0;	
+		
+		padding: 1.5em 0 1em 0;
 		display: table;
 		width: 100%;
 		
 		-webkit-transition: background 0.3s ease;
 		transition: background 0.3s ease;
+	}
+	.rest-menu ul li.rest-menu-heading {
+		font-family: glober_regular, helvetica, sans-serif;
+		font-size: 1.2em;
+		background: #05BBAB;
+		padding: 1.5em;	
+		color: #fff;
+		text-transform: uppercase;
 	}
 	.rest-menu ul li:hover {
 		background: #ddd;	
@@ -327,27 +586,30 @@
 		width: 90%;	
 		margin: 0 auto;
 	}
-	
+	.rest-menu ul li.rest-menu-heading:hover {
+		background: #05BBAB;
+	}
 	/*** FORM ***/
 	#huckstart {
 		width: 80%;	
 		margin: 0 auto;
 		text-align: center;
 		padding: 20px 0 20px 0;
+		font-family: globerlight, helvetica, sans-serif;
+		font-size: 1em;
 	}
 	#huckstart input {
 		width: 90%;
 		height: 2.5em;
 		padding: 0 0.5em;
 		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;	
+		-moz-border-radius: 5px;
 		border-radius: 5px;
-    	border: 1px solid #333;
+		border: none;
 		text-align: center;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-		
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
 	}
@@ -356,29 +618,31 @@
 		outline: none;	
 	}
 	
-	#huckstart button {
-		width: 90%;
+	#huckstart a {
+		width: 60%;
 		height: 2.5em;
 		padding: 0 0.5em;
 		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;	
+		-moz-border-radius: 5px;
 		border-radius: 5px;
-    	border: 1px solid #333;
+		border: 2px solid #fff;
 		text-align: center;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 		margin-top: 15px;
-		background-color: #fff;
+		background-color: transparent;
 		text-transform: uppercase;
-		
-		-webkit-transition: width 0.5s ease;
-		transition: width 0.5s ease;	
-		
-	}
-	#huckstart button:hover {
-		background-color: #333;
 		color: #fff;
+		-webkit-transition: width 0.5s ease;
+		transition: width 0.5s ease;
+	}
+
+	
+	#huckstart a:hover {
+		background-color: #fff;
+		color: #222;
+		font-weight: bold;
 		
 		-webkit-transition: all 0.5s ease;
 		transition: all 0.5s ease;	
@@ -414,7 +678,10 @@
 		background-size: cover;
 	}
 	.order-main table tr {
-		height: 4em;	
+		min-height: 4em;	
+	}
+	.order-main table tfoot tr {
+		
 	}
 	.order-item-hover {
 		display: none;	
@@ -428,27 +695,30 @@
 	}
 	/*** CHECKOUT PAGE ***/
 	.out-content-inner {
-		width: 80%;
+		width: 100%;
 		margin: 0 auto;
 		padding: 0;
 	}
 	.out-header {
 		border-bottom: 1px solid #bbb;
-		background: #ddd;
+		background: url(../images/_backgrounds/heading-bg-3.jpg);
+		background-size: cover;
+		background-position: center;
+		color: #fff;
 		padding-top: 1em;
 		margin: 0;
-		position: absolute;
+		position: relative;
 		width: 100%;
 		left: 0;
 		clear: both;
 		top: 0;
 	}
 	.order-main {
-		margin-top: 80px;
 		position: relative;
 		padding-bottom: 4em;
-	    overflow-y: auto;
-	    height: 85%;
+		width: 88%;
+		margin: 0 auto;
+		margin-top: 40px;
 	}
 	
 	.checkout-input {
@@ -532,7 +802,7 @@
 		border: 1px solid #bbb;
 		font-size: 1em;
 		background-color: #fff;
-		background: url(../images/svg/select-arrow-gray.svg) no-repeat right;
+		background: url(../images/svg/select/select-arrow-gray.svg) no-repeat right;
 		min-width: 140px;
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -600,12 +870,60 @@
 	.order-item-price {
 		position: relative;	
 	}
+	.order-item-math {
+		display: block;
+		width: 6em;
+		text-align: left;
+	}
+	.order-item-add {
+		/*font-size: 1.6em;*/
+		background: #ddd;
+		/*padding: -3px;*/
+		border-radius: 2px;
+		margin: 4px;
+		/*display: block;*/
+		/*width: 16px;*/
+		text-align: center;
+		/*height: 16px;*/
+		line-height: 12px;
+		/*float: left;*/
+		cursor: pointer;
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+	}
+	.order-item-subtract {
+		/*font-size: 1.6em;*/
+		background: #ddd;
+		/*padding: -3px;*/
+		border-radius: 2px;
+		margin: 4px;
+		margin-top: 0;
+		/*display: block;*/
+		/*width: 16px;*/
+		text-align: center;
+		/*height: 16px;*/
+		line-height: 12px;
+		/*float: left;*/
+		cursor: pointer;
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+		margin-left: 0px;
+	}
 	.order-item-delete {
 		width: 20px;
-		position: absolute;
+		/*position: absolute;*/
 		top: 18px;
 		right: 8px;	
-		display: none;
+		/*display: none;*/
+		cursor: pointer;
 	}
 	tfoot tr td:first-child {
 		text-align: left;	
@@ -654,14 +972,22 @@
 		display: block;
 		clear: both;
 		bottom: 0px;
-		background-color: #FF3333;
-		color: #ffffff;
+		background-color: #FCC;
+		color: #C30E0E;
 		padding: 5px;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 		border: 1px solid #C30E0E;
 		border-top: none;
 	}
+	.error .fa {
+		margin-right: 0.4em;	
+	}
+	.error-order {
+		border: 1px solid #c30E0E;
+		border-radius: 0;
+		margin-top: 0.4em;	}
+	
 	.input-error {
 		border: 1px solid #C30E0E;
 	}
@@ -669,12 +995,24 @@
 @media all and (min-width: 751px) and (max-width: 960px) {
 	
 	/*** HEADER ***/
+	.header-home {
+		padding: 20px 0 20px 0;	
+	}
 	header {
 		margin: 0 auto;
 		text-align: center;
 		padding: 20px 0 20px 0;
 	}
-	
+	.logo-home {
+		display: block;
+		/* background-image: url(../images/logo_109px.jpg); */
+		background-size: cover;
+		height: 150px;
+		width: 150px;
+		margin: 0 auto;
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
 	.logo {
 		/*background-image: url(../images/logo_109px.jpg);*/
 		background-size: cover;
@@ -699,7 +1037,36 @@
 		height: 35px;
 		
 	}
-	/*** GALLERY ***/
+	.logo-type {
+		display: block;
+		/* background-image: url(../images/logotype_280px.jpg); */
+		background-size: cover;
+		width: 165px;
+		height: 60px;
+		margin: 0 auto;
+		top: 0;
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;	
+	}
+	
+	.heading-large {
+		width: 75%;
+		margin: 0 auto;
+		text-align: center;
+		font-family: globerlight, helvetica, sans-serif;
+		font-weight: 100;
+		font-size: 3em;
+		padding-top: 85px;
+		text-transform: uppercase;
+	}
+	.main-bar { 
+		margin-top: -121px;
+	}
+	.main-bar-main {
+		padding: 0;
+		margin-top: 121px;
+	}
+	/*** HOMEPAGE ***/
 	.gallery {
 		/*background-image: url(../images/CCD_alleyway_01gray-edit.jpg);	*/
 		background-size: cover;
@@ -715,34 +1082,54 @@
 		-webkit-transition: all 0.8s ease;
 		transition: all 0.8s ease;
 	}
-	/*** CONTENT ***/
-	.logo-type {
-		/*background-image: url(../images/logotype_280px.jpg);*/
-		background-size: cover;
-		width: 224px;
-		height: 76px;
-		margin: 0 auto;	
-		
-		-webkit-transition: all 0.8s ease;
-		transition: all 0.8s ease;
-		
+	.front-image {
+		height: 580px;
+	}	
+	
+	.white-line {
+		width: 145px;
+		margin-bottom: 30px;
 	}
+	#home-line-bottom {
+    	margin-top: 50px;
+	}
+	.sub-content-button h3 {
+		font-size: 2.8em;
+		padding: 0.2em;	
+	}
+	#restaurants-wanted {
+		min-height: 250px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-top: 40px;
+	}
+	
+	#riders-wanted {
+		min-height: 250px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-left: 2%;
+		margin-top: 40px;
+	
+	}
+
 	/*** FORM ***/
 	
 	#huckstart {
 		padding: 30px 0 30px 0;	
+		font-size: 1.4em;
 	}
 	
 	#huckstart input {
-		width: 75%;
-		
+		width: 85%;
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
 	}
 	
-	#huckstart button {
-		width: 75%;	
-		
+	#huckstart a {
+		width: 45%;
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
 	}
@@ -773,13 +1160,82 @@
 		margin-right: 2em;	
 		margin-top: -25px;
 	}
-	
-	/*** RESTAURANT LISTINGS ***/
-	.out-content-inner {
-		width: 80%;
-		margin: 0 auto;	
+	/*** SEARCH RESULTS PAGE ***/
+	.search-header {
+		margin-top: -184px;	
+	}
+	.search-content {
+		margin-top: 184px;
+	}
+	#search-results {
+		height: 100px;	
+	}
+	.search-form-container {
+		min-height: 60px;
+		border-bottom: 1px solid #bbb;	
+	}
+	#search-results input {
+		width: 65%;
+		height: 2em;
+		margin-top: 26px;
+		font-size: 1.4em;
+	}
+	.search-form {
+		font-size: 1.4em;
+		padding: 15px;	
+	}
+	.search-list {
+			
+	}
+	.search-list a {
+		display: table;
+		width: 100%;	
+	}
+	.search-list-img {
+		display: table-cell;
+		width: 100px;
+		height: 100px;
+		background-size: cover;
+	}
+	.search-list-info {
+		display: table-cell;
+		width: 80%;	
+		vertical-align: middle;
+		padding-left: 5%;
+	}
+	.search-list-info-heading {
+		display: table-cell;	
+	}
+	.list .list-image {
+		width: 20%;
+		min-height: 140px;	
 	}
 	
+	.list .list-title {
+		font-size: 1.4em;
+		padding-top: 1.6em;	
+	}
+	
+	.search-list-order {
+		float: right;
+		margin-right: 2em;	
+		margin-top: -25px;
+	}
+	
+	/*** RESTAURANT LISTINGS ***/
+	
+	.out-content-inner {
+		width: 100%;
+		margin: 0 auto;	
+	}
+	.out-header {
+		position: relative;
+	}
+	.order-main {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 40px;	
+	}
 	.rest-menu {
 		margin-top: 2em;
 	}
@@ -789,11 +1245,46 @@
 		margin: 0 auto;
 		padding: 0;	
 	}
-	.list-desecription {
+	
+	.list-description {
 		text-align: left;	
+		width: 80%;
 	}
-	.rest-bio img {
+	.list-price { 
+		width: 10%;
+	}
+	.rest-bio h2 {
+		font-size: 30px;	
+	}
+	.rest-bio .rest-img{
 		width: 80%;	
+	}
+	.rest-bio .rest-img img {
+		width: 100%;	
+	}
+	.order-item-math {
+		width: 6em;
+		display: block;
+		text-align: left;
+	}
+	.order-item-add {
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+	}
+	.order-item-subtract {
+		float: none;
+		display: inline-block;
+		font-size: 2em;
+		height: 30px;
+		width: 30px;
+		padding-top: 8px;
+	}
+	.out-header h2 {
+		font-size: 30px;	
 	}
 	/*** CHEKOUT PAGE ***/
 	
@@ -838,15 +1329,44 @@
 	}
 	
 }
+
+
 /* == DESKTOP DEVICES == (960px and ABOVE) ==*/
 @media all and (min-width: 960px) {
+	/*** HEADER ***/
+	.logo-home {
+		display: block;
+		background-size: cover;
+		height: 180px;
+		width: 180px;
+		margin: 0 auto;
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+	}
+	.logo-type {
+		display: block;
+		top: 0;
+		background-size: cover;
+		width: 195px;
+		height: 70px;
+		margin: 0 auto;
+		-webkit-transition: all 0.8s ease;
+		transition: all 0.8s ease;
+}	
 	/*** CONTENT WIDTHS***/
 	.main-bar {
 		position: fixed;
 		z-index: 999;
-		background: #fff;	
+		
 	}
-	
+	.home-content {
+		margin: 0;
+		width: 100%;
+		padding: 25px;
+		float: left;
+		text-align: left;
+		
+	}
 	.main-content {
 		margin: 0;
 		width: 75%;
@@ -854,6 +1374,16 @@
 		float: left;
 		text-align: left;
 		
+	}
+	.sub-content {
+		padding: 0;
+		margin: 0 auto;
+		float: none;
+	}
+	#home-main-content {
+		float: none;
+		text-align: inherit;	
+		margin: 0 auto;
 	}
 	.hckstr-modal {
 		margin: 0;
@@ -882,8 +1412,6 @@
 	}
 	.main-content-header {
 		position: relative;
-		color: #333;
-		background-color: #ddd;
 		width: 100%;
 		padding: 25px;
 		border-bottom: 1px solid #bbb;
@@ -893,6 +1421,11 @@
 		text-transform: uppercase;	
 	}
 	/*** HEADER ***/
+	.header-home {
+		margin: 0;
+		padding: 60px 0 20px 0;
+	
+	}
 	header {
 		margin: 0;
 		text-align: left;
@@ -925,7 +1458,11 @@
 	.mobile-lines {
 		display: none;	
 	}
-	/*** GALLERY ***/
+	.heading-large {
+		font-size: 4em;	
+	}
+	
+	/*** HOMEPAGE ***/
 	.gallery {
 		/*background-image: url(../images/CCD_alleyway_01gray-edit.jpg);	*/
 		background-size: cover;
@@ -935,32 +1472,43 @@
 		-webkit-transition: all 0.8s ease;
 		transition: all 0.8s ease;
 	}
-	.gallery.purple {
-		background-size: cover;
-		height: 460px;
-		
-		-webkit-transition: all 0.8s ease;
-		transition: all 0.8s ease;
+	.front-image {
+		height: 630px;
 	}
-	/*** CONTENT ***/
-	.logo-type {
-		/*background-image: url(../images/logotype_280px.jpg);*/
-		background-size: cover;
-		width: 280px;
-		height: 95px;
-		margin: 0 auto;	
-		
-		-webkit-transition: all 0.8s ease;
-		transition: all 0.8s ease;
+	.white-line {
+		width: 170px;
+		margin-bottom: 30px;
+	}
+	#home-line-bottom {
+		margin-top: 50px;	
+	}
+	.sub-content-button h3 {
+		margin: 0;
+		font-size: 3em;
+		padding: 1em 0.2em 0.4em 0.2em;
+	}
+	#restaurants-wanted {
+		min-height: 300px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-top: 30px;
 	}
 	
+	#riders-wanted {
+		min-height: 300px;
+		width: 48%;
+		float: left;
+		text-align: center;
+		margin-left: 2%;
 	
-	
+	}
 	/*** FORM ***/
 	
 	#huckstart {
-		
+		width: 100%;
 		padding: 20px 0 20px 0;
+		font-size: 1.4em;
 	}
 	
 	#huckstart input {
@@ -974,10 +1522,10 @@
 		transition: width 0.8s ease;
 	}
 	
-	#huckstart button {
-		width: 20%;
+	#huckstart a {
+		width: 40%;
 		display: inline-block;
-		margin-left: 1em;
+		/*margin-left: 1em;*/
 		height: 3em;
 		
 		-webkit-transition: width 0.8s ease;
@@ -1026,6 +1574,133 @@
 		margin-top: -25px;
 	}
 	
+	/*** SEARCH RESULTS PAGE ***/
+	.search-header {
+		width: 100%;
+	}
+	.search-form {
+		font-size: 1.4em;
+		
+		text-align: left;
+		padding: 0.5em;
+	}
+	.search-form-container {
+		min-height: 60px;	
+	}
+	.search-form input {
+		margin-top: 5px;
+		color: #222;
+		min-width: 500px;	
+	}
+	.search-form input:focus {
+		outline: none;
+	}
+	.search-form input::-webkit-input-placeholder {
+	   color: #bbb;
+	}
+	
+	.search-form input:-moz-placeholder { /* Firefox 18- */
+	  color: #bbb;
+	}
+	
+	.search-form input::-moz-placeholder {  /* Firefox 19+ */
+	   color: #bbb;
+	}
+	
+	.search-form input:-ms-input-placeholder {  
+	   color: #bbb;
+	}
+	.search-form-container {
+		border: none;	
+		border-top: 1px solid #bbb;
+	}
+	#search-results {
+		height: 148px;	
+	}
+	
+	#search-results input {
+		font-size: 1.8em;
+		width: 45%;
+		margin-top: 45px;	
+	}
+	
+	#results-list {
+		width: 80%;
+		margin: 0 auto;
+		padding: 3em;
+	}
+	
+	#results-list .list:first-child {
+		border-top: 1px solid #333;	
+	}
+	
+	#results-list .list {
+		border-bottom: 1px solid #333;
+		border-left: 1px solid #333;
+		border-right: 1px solid #333;	
+	}
+	
+	.list .list-image {
+		width: 150px;
+		height: 150px;	
+	}
+
+	.list .list-title {
+		font-size: 1.6em;
+		padding-top: 1.6em;
+	}
+	
+	
+	
+	.search {
+		width: 100%;
+		text-align: left;
+		margin-top: 174px;
+		position: absolute;
+	}
+	.search-ul {
+		-webkit-padding-start: 0;
+		-moz-padding-start: 0;
+		-o-padding-start: 0;
+		-ms-padding-start: 0;
+		margin: 0;
+		padding: 0;
+	}
+	.search-content {
+		width: 100%;
+	}
+	.search-list {
+		display: block;
+		width: 25%;
+		height: 320px;
+		float: left;
+		border: 1px solid #bbb;
+		border-right: none;
+		border-top: none;
+		text-align: left;
+	}
+	.search-list-img {
+		display: block;
+		height: 180px;
+		overflow: hidden;
+		background-size: cover;
+		background-position: center;
+	}
+	.search-list-img img {
+		width: 100%;	
+	}
+	.search-list-info {
+		
+	}
+	.search-list-info-heading {
+		font-size: 2em;
+	}
+	.search-list-order {
+		margin: 0;
+		margin-right: 2em;
+		margin-top: 1em;
+	}
+	
 	/*** RESTAURANTS LISTINGS ***/
 	
 	
@@ -1049,26 +1724,31 @@
 		height: 100%;
 		border-right: 1px solid #bbb;
 		border-bottom: 1px solid #bbb;
-		overflow: hidden;
+		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 	.rest-info h2 {
 		position: relative;
-		color: #333;
+		
 		background-color: #ddd;
 		margin-top: -1em;
 		margin-left: -1em;
 		width: 130%;
 		padding: 1em;
 		border-bottom: 1px solid #bbb;
+		font-size: 30px;
 	}
-	.rest-bio img {
+	.rest-bio .rest-img{
 		width: 67.1%;	
 		margin-left: 33%;
 		border: none; /*clears styles from previous media query*/
 		border-bottom: 1px solid #bbb;
 		padding: 1em;
+		min-height: 280px;
 	}
-	
+	.rest-bio .rest-img img {
+		width: 100%;	
+	}
 	.rest-text {
 		text-align: left;
 		margin: 0;	
@@ -1081,25 +1761,22 @@
 		margin-bottom: 0;
 		padding: 0;
 		width: 100%;
+		overflow: scroll;
 		
 	}
 	
 	.out-header {
 		padding: 25px;
-		color: #333;
 		height: 111px;
 		text-align: left;
-		background: #ddd;	
 		border-bottom: 1px solid #bbb;
 		margin-bottom: 25px;
 		position: relative;
 	}
 	.order-main {
-		padding: 25px;	
 		text-align: left;
 		margin-top: 0;
-        overflow-y: auto;
-	    height: 85%;
+		margin: 25px;
 	}
 	.order-main ul {
 		padding: 0;	
@@ -1108,10 +1785,19 @@
 		margin-bottom: 40px;
 		border-collapse: collapse;
 	}
+	.order-main tbody {
+			max-height: 220px;
+		display: block;
+		/* background: red; */
+		overflow-y: scroll;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
 	.order-main table tr {
 		list-style: none;
-		background: #fff;
-		height: 3em;
+		display: block;
+		margin-bottom: 1px;
 	}
 	.order-main tr:nth-child(even) {
 		/*background: #ddd;*/
@@ -1124,7 +1810,7 @@
 	}
 	.order-item-hover {
 		position: absolute;
-		background: url(../images/svg/quantity-bg-vert.svg) no-repeat;
+		background: url(../images/svg/quantity-background/quantity-bg-vert.svg) no-repeat;
 		background-size: contain;
 		width: 36px;
 		height: 44px;
@@ -1140,8 +1826,11 @@
 		left: -70px;
 
 	}
-	.order-item:hover div.order-item-hover {
+	.order-item-hover.show {
 		display: block;	
+	}
+	.order-item-math {
+		display: table-cell;
 	}
 	.order-item-subtract {
 		font-size: 1.6em;
@@ -1156,6 +1845,7 @@
 		height: 16px;
 		line-height: 12px;
 		float: left;
+		padding: 0;
 	}
 	.order-item-add {
 		font-size: 1.6em;
@@ -1169,6 +1859,7 @@
 		height: 16px;
 		line-height: 12px;
 		float: left;
+		padding: 0;
 		
 	}
 	.order-item-subtract:hover {
@@ -1180,7 +1871,7 @@
 		color: #fff;	
 	}
 	.order-item-delete {
-		position: absolute;
+		/*position: absolute;*/
 		color: #777;
 		margin: auto;
 		top: 0;
@@ -1191,10 +1882,10 @@
 		height: 25px;
 		right: -40px;
 		line-height: 24px;
-		display: none;
+		/*display: none;*/
 		font-size: 1.2em;
 	}
-	.order-item:hover .order-item-delete {
+	.order-item-delete.show {
 		display: block;	
 	}
 	.order-item-delete:hover {
@@ -1210,9 +1901,8 @@
 	}
 	
 	.order-main table tfoot tr {
-		
 		color: #333;
-		height: 2em;
+		min-height: 1.5em;
 	}
 	
 	.order-main .order-main-submit {
@@ -1220,6 +1910,7 @@
 		background-color: #ddd;
 		color: #333;
 		outline: none;
+		margin-top: 0;
 	}
 	.order-main .order-main-submit:hover {
 		background-color: #333;
@@ -1230,6 +1921,8 @@
 		line-height: 61px;	
 		text-transform: uppercase;
 		margin: 0;
+		margin-top: -20px;
+		font-size: 2em;
 	}
 	.rest-menu {
 		display: block;
@@ -1270,11 +1963,14 @@
 		width: 100%;
 		text-align: left;
 	}
+	.rest-menu h2 {
+		font-size: 30px;	
+	}
 	.select-order {
 		border: 1px solid #bbb;
 		font-size: 1em;
 		background-color: #fff;
-		background: url(../images/svg/select-arrow-gray.svg) no-repeat right;
+		background: url(../images/svg/select/select-arrow-gray.svg) no-repeat right;
 		min-width: 140px;
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -1295,12 +1991,9 @@
 	}
 	.main-content-header {
 		position: relative;
-		color: #333;
-		background-color: #ddd;
 		width: 100%;
 		padding: 25px;
 		border-bottom: 1px solid #bbb;
-		margin-top: -20px;
 	}
 	.main-content-header h2 {
 		text-transform: uppercase;	
@@ -1339,6 +2032,10 @@
 		width: 8%;
 		margin: 0;
 		margin-left: 2%;	
+	}
+	.first-small {
+		margin-left: 0;
+		margin-right: 2%;	
 	}
 	.middle-input {
 		
@@ -1403,6 +2100,14 @@
 		-webkit-transition: border 0.5s ease;	
 		transition: border 0.5s ease;	
 	}
+	.checkout-btn.clicked {
+		border: 1px solid #333;
+		
+		
+		-moz-transition: border 0.5s ease;	
+		-webkit-transition: border 0.5s ease;	
+		transition: border 0.5s ease;	
+	}
 	.checkout-btn i {
 		font-size: 2em;
 		display: block;	
@@ -1419,5 +2124,24 @@
 		margin-bottom: 4em;	
 	}
 }
-
+/* === TABLET DEVICE LANDSCAPE=== */
+/* ----------- iPad 3 and 4 ----------- */
+@media screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+	.main-content {
+		width: 65%;
+	}
+	.out-content {
+		width: 35%;	
+	}
+	.rest-info h2 {
+		width: 135%;	
+	}
+	.sub-content {
+		width: 75%;	
+	}
+}
 

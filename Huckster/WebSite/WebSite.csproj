@@ -246,30 +246,43 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\CCD_alleyway_01.2gray-edit.jpg" />
+    <Content Include="Images\CCD_alleyway_01gray-edit.jpg" />
     <Content Include="Images\CCD_alleyway_02purple-edit.jpg" />
+    <Content Include="Images\image-placeholder-rect.jpg" />
+    <Content Include="Images\image-placeholder.jpg" />
+    <Content Include="Images\loaders\ring-alt.gif" />
     <Content Include="Images\logotype_280px.jpg" />
     <Content Include="Images\logo_109px.jpg" />
     <Content Include="Images\svg\logo-01.svg" />
     <Content Include="Images\svg\logo-03.svg" />
-    <Content Include="Images\svg\quantity-bg-vert.svg" />
-    <Content Include="Images\svg\quantity-bg.svg" />
-    <Content Include="Images\svg\select-add %281%29.svg" />
-    <Content Include="Images\svg\select-add-outline-gray.svg" />
-    <Content Include="Images\svg\select-add-outline-graysprite.svg" />
-    <Content Include="Images\svg\select-add-outline.svg" />
-    <Content Include="Images\svg\select-add.svg" />
-    <Content Include="Images\svg\select-arrow-2.svg" />
-    <Content Include="Images\svg\select-arrow-gray.svg" />
-    <Content Include="Images\svg\select-arrow.svg" />
+    <Content Include="Images\svg\logo-white.svg" />
+    <Content Include="Images\svg\logo\white\HUC_branding-logo-white-06.svg" />
+    <Content Include="Images\svg\logo\white\HUC_branding-logo-white-07.svg" />
+    <Content Include="Images\svg\quantity-background\quantity-bg-vert.svg" />
+    <Content Include="Images\svg\quantity-background\quantity-bg.svg" />
+    <Content Include="Images\svg\search\search.svg" />
+    <Content Include="Images\svg\select\select-add-outline-gray.svg" />
+    <Content Include="Images\svg\select\select-add-outline-graysprite.svg" />
+    <Content Include="Images\svg\select\select-add-outline.svg" />
+    <Content Include="Images\svg\select\select-add.svg" />
+    <Content Include="Images\svg\select\select-arrow-2.svg" />
+    <Content Include="Images\svg\select\select-arrow-bluegreen.svg" />
+    <Content Include="Images\svg\select\select-arrow-gray.svg" />
+    <Content Include="Images\svg\select\select-arrow.svg" />
+    <Content Include="Images\_backgrounds\bricks.jpg" />
+    <Content Include="Images\_backgrounds\CCD_alleyway_home.jpg" />
+    <Content Include="Images\_backgrounds\heading-bg-3.jpg" />
+    <Content Include="Images\_backgrounds\home.jpg" />
+    <Content Include="Images\_buttons\restaurant.jpg" />
+    <Content Include="Images\_buttons\riders.jpg" />
+    <Content Include="Images\_fonda\MENU-2.jpg" />
+    <Content Include="Images\_restaurants\hellenic-republic.jpg" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glober_light-webfont.eot" />
     <Content Include="fonts\glober_light-webfont.ttf" />
     <Content Include="fonts\glober_light-webfont.woff" />
-    <Content Include="Images\favicon.psd" />
-    <Content Include="Images\logotype_280px.psd" />
-    <Content Include="Images\logo_109px.psd" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -348,6 +361,7 @@
     <Content Include="Views\Order\Complete.cshtml" />
     <Content Include="Views\Order\CustomerDetails.cshtml" />
     <Content Include="Views\Order\Checkout.cshtml" />
+    <Content Include="Views\Shared\_layoutHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

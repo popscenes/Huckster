@@ -52,3 +52,11 @@ BEGIN
 	ALTER TABLE [Order] ADD [DeliveryUserId] nvarchar(128) NULL
 	PRINT 'created column [DeliveryUserId] on table [dbo].[Order]'
 END
+
+
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'Order' and column_name = 'Surge')
+BEGIN
+	ALTER TABLE [Order] ADD [SurgePct] int NOT NULL DEFAULT(0)
+	PRINT 'created column [SurgePct] on table [dbo].[Order]'
+END
+GO

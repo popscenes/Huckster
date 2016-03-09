@@ -39,6 +39,12 @@ namespace WebSite
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      ///"~/Content/bootstrap.css",
+                      "~/Content/normalize.css",
+                      "~/Content/style.css",
+                      "~/fonts/stylesheet.css"));
+
+            bundles.Add(new StyleBundle("~/Content/cssWithBS").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/normalize.css",
                       "~/Content/style.css",

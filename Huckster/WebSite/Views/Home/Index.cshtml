@@ -1,25 +1,48 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_layoutHome.cshtml";
 }
 
-<header>
+<header class="header-home">
 
-    <div class="logo"></div>
+    <div class="logo-home"></div>
+    <div class="logo-type"></div>
 
 </header>
-<div class="gallery purple">
 
-</div>
-<section class="main-content">
-    <div class="logo-type"></div>
+<div class="front-image"></div>
+
+<section class="main-content" id="home-main-content">
+
+    <div class="white-line"></div>
 
     <form id="huckstart">
 
-        <input type="text" name="address" placeholder="Enter address, e.g. 55 Huckster Street, Hucksterville">
-
-        <button type="submit" form="huckstart" value="Submit">Get Food</button>
-
-        <a href="@Url.Action("Detail", "Restaurant", new {id = 4})">Test Restaurant</a>
+        <a href="@Url.Action("Detail", "Restaurant", new {id = 4})">Get Food</a>
+        
 
     </form>
+
+    <div class="white-line" id="home-line-bottom"></div>
+
+</section>
+
+<section class="full-width" id="home-sub-content">
+
+    <div class="main-content sub-content">
+
+        <div class="sub-content-button" id="restaurants-wanted">
+            <h3>Restaurants,<br /> increase your reach</h3>
+            <a class="join" href="mailto:hello@huckster.com.au">Enquire</a>
+        </div>
+
+        <div class="sub-content-button" id="riders-wanted">
+            <h3>Get involved!<br /> Riders wanted</h3>
+            <a class="join" href="mailto:hello@huckster.com.au">Enquire</a>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+
 </section>

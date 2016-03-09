@@ -145,7 +145,7 @@ namespace WebSite.Controllers
 
             // re assign price from server... to avoid client side hacking
             viewModel.orderItems.ForEach((oi) => { oi.Price = menuItems.FirstOrDefault(mi => mi.Id == oi.Id).Price; });
-            viewModel.order.SurgePct = restaurant.Restaurant.Surge ? restaurant.Restaurant.SurgePct : 0;
+            //viewModel.order.SurgePct = restaurant.Restaurant.Surge ? restaurant.Restaurant.SurgePct : 0;
 
 
             await _commandDispatcher.DispatchAsync(new PlaceOrderCommand()

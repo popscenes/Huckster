@@ -117,7 +117,7 @@ namespace WebSite.Controllers
         public async Task<ActionResult> Complete(Guid aggregateid)
         {
             
-            var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = aggregateid });
+            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = aggregateid });
             _messageBus.SendMessage(new OrderCompleteMessage() { OrderAggregateRootId = aggregateid });
             return View(order);
         }

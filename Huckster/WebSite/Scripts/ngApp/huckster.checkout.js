@@ -19,7 +19,7 @@
         $scope.orderData = angular.fromJson($("#orderData").val());
 
         $scope.paymentPaypal = false;
-        $scope.paymentCC = true;
+        $scope.paymentCC = false;
         $scope.deliveryFee = 5;
 
         $scope.deliveryDetailsSubmitted = false;

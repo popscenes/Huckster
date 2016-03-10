@@ -195,78 +195,68 @@
                     <h4 class="bold checkout-h4">3. Payment</h4>
 
                     <div class="main-content-info-row">
-                        <a href="javascript:void(0);" ng-click="showCC();">
-                            <div class="checkout-btn end-margin">
-                                <i class="fa fa-cc-amex"></i>
-                                <i class="fa fa-cc-mastercard"></i>
-                                <i class="fa fa-cc-visa"></i>
-                                <div class="clearfix"></div>
-                                <p>Credit Card</p>
-                            </div>
-                        </a>
-
-                        <a href="javascript:void(0);" ng-click="showPayPal();">
-                            <div class="checkout-btn">
+                        <a href="javascript:void(0);" ng-click="paypalPayment();">
+                            <div class="checkout-btn" id="paypal-btn">
                                 <i class="fa fa-paypal"></i>
                                 <p>Paypal</p>
                             </div>
                         </a>
 
                         
+                            <a href="javascript:void(0);" ng-click="showCC();">
+                                <div class="checkout-btn end-margin">
+                                    <i class="fa fa-cc-amex"></i>
+                                    <i class="fa fa-cc-mastercard"></i>
+                                    <i class="fa fa-cc-visa"></i>
+                                    <div class="clearfix"></div>
+                                    <p>Credit Card</p>
+                                </div>
+                            </a>
 
-                        <div ng-show="paymentPaypal">
-                            <div class="main-content-info-row">
-
-                                <div class="main-content-info-row-confirm-button">
-
-                                    <button class="checkout-continue-btn" id="chkBtnThreePayPal" type="button" ng-click="paypalPayment();">Paypal</button>
-
+                            <div ng-show="paymentCC">
+                                <div class="main-content-info-row">
+                                    <div class="form-column large-length">
+                                        <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardnumber.$invalid}" class="checkout-input large-input" type="text" placeholder="Card Number" name="cardnumber" required id="card-number" ng-model="creditCard.number" />
+                                        <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardnumber.$invalid">This field is required</span>
+                                    </div>
                                 </div>
 
+                                <div class="form-row flex-row">
+
+                                    <div class="form-column middle-length">
+                                        <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardexpiryYear.$invalid}" class="checkout-input" type="text" placeholder="YYYY" name="cardexpiryYear" required id="card-expiry-year" ng-model="creditCard.expiryYear" />
+                                        <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardexpiryYear.$invalid">This field is required</span>
+                                    </div>
+
+                                    <div class="form-column middle-length end-margin">
+                                        <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardexpiryMonth.$invalid}" class="checkout-input" type="text" placeholder="MM" name="cardexpiryMonth" required id="card-expiry-month" ng-model="creditCard.expiryMonth" />
+                                        <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardexpiryMonth.$invalid">This field is required</span>
+                                    </div>
+
+                                    <div class="form-column middle-length">
+                                        <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardcvc.$invalid}" class="checkout-input" type="text" placeholder="CVC" name="cardcvc" required id="card-cvc" ng-model="creditCard.cvc" />
+                                        <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardcvc.$invalid">This field is required</span>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="main-content-info-row">
+
+                                    <div class="main-content-info-row-confirm-button">
+
+                                        <button class="checkout-continue-btn" id="chkBtnThree" type="button" ng-click="getStripeToken();">Confirm</button>
+
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                        <div ng-show="paymentCC">
-                            <div class="main-content-info-row">
-                                <div class="form-column large-length">
-                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardnumber.$invalid}" class="checkout-input large-input" type="text" placeholder="Card Number" name="cardnumber" required id="card-number" ng-model="creditCard.number"/>
-                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardnumber.$invalid">This field is required</span>
-                                </div>
-                            </div>
-
-                            <div class="form-row flex-row">
-
-                                <div class="form-column middle-length">
-                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardexpiryYear.$invalid}" class="checkout-input" type="text" placeholder="YYYY" name="cardexpiryYear" required id="card-expiry-year" ng-model="creditCard.expiryYear"/>
-                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardexpiryYear.$invalid">This field is required</span>
-                                </div>
-
-                                <div class="form-column middle-length end-margin">
-                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardexpiryMonth.$invalid}" class="checkout-input" type="text" placeholder="MM" name="cardexpiryMonth" required id="card-expiry-month" ng-model="creditCard.expiryMonth"/>
-                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardexpiryMonth.$invalid">This field is required</span>
-                                </div>
-
-                                <div class="form-column middle-length">
-                                    <input ng-class="{'input-error': paymentDetailsSubmitted && paymentForm.cardcvc.$invalid}" class="checkout-input" type="text" placeholder="CVC" name="cardcvc" required id="card-cvc" ng-model="creditCard.cvc"/>
-                                    <span class="error" ng-show="paymentDetailsSubmitted && paymentForm.cardcvc.$invalid">This field is required</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <div class="main-content-info-row">
-
-                                <div class="main-content-info-row-confirm-button">
-
-                                    <button class="checkout-continue-btn" id="chkBtnThree" type="button" ng-click="getStripeToken();">Confirm</button>
-
-                                </div>
-
-                            </div>
-                        </div>
 
                         </div>
+
 
                     
+
                 </form>
             </div>
 
@@ -290,15 +280,10 @@
 
                                 <td class="order-item-quantity">
                                     {{orderItem.Quantity}} x
-                                    <div class="order-item-hover">
-                                        <span class="order-item-add" ng-click="addMenuItemQuantity($index);">+</span>
-                                        <span class="order-item-subtract" ng-click="removeMenuItemQuantity($index);">-</span>
-                                    </div>
                                 </td>
                                 <td class="order-item-description">{{orderItem.Name}}</td>
                                 <td class="order-item-price">
                                     ${{orderItem.Price * orderItem.Quantity}}
-                                    <div class="order-item-delete" ng-click="deleteMenuItem($index);">delete<i class="fa fa-times-circle"></i></div>
                                 </td>
 
 

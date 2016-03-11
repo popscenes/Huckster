@@ -610,6 +610,7 @@
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
+		-moz-transition: width 0.8s ease;
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
 	}
@@ -618,10 +619,12 @@
 		outline: none;	
 	}
 	
-	#huckstart button {
+	#huckstart a {
+		display: block;
+		margin: 0 auto;
 		width: 60%;
 		height: 2.5em;
-		padding: 0 0.5em;
+		padding: 0.5em;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
@@ -634,15 +637,16 @@
 		background-color: transparent;
 		text-transform: uppercase;
 		color: #fff;
+		-moz-transition: width 0.5s ease;
 		-webkit-transition: width 0.5s ease;
 		transition: width 0.5s ease;
 	}
 	
-	#huckstart button:hover {
+	#huckstart a:hover {
 		background-color: #fff;
 		color: #222;
 		font-weight: bold;
-		
+		-moz-transition: all 0.5s ease;
 		-webkit-transition: all 0.5s ease;
 		transition: all 0.5s ease;	
 	}
@@ -992,7 +996,9 @@
 	}
 /* == TABLET DEVICES == (750px and ABOVE) ==*/
 @media all and (min-width: 751px) and (max-width: 960px) {
-	
+	.main-content {
+		min-height: 250px;	
+	}
 	/*** HEADER ***/
 	.header-home {
 		padding: 20px 0 20px 0;	
@@ -1127,7 +1133,7 @@
 		transition: width 0.8s ease;
 	}
 	
-	#huckstart button {
+	#huckstart a {
 		width: 45%;
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
@@ -1521,11 +1527,12 @@
 		transition: width 0.8s ease;
 	}
 	
-	#huckstart button {
+	#huckstart a {
 		width: 40%;
 		display: inline-block;
 		/*margin-left: 1em;*/
 		height: 3em;
+		padding-top: 0.7em;
 		
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;

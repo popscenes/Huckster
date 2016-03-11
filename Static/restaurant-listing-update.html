@@ -726,7 +726,8 @@ Elegantly relaxed not flashy; smart yet casual. The Smith is perfect for all occ
                     </table>
 
                     <button class="list-order order-main-submit" ng-click="placeOrder()" ng-disabled="order.DeliveryTime=='' || order.DeliverySuburbId==''">Place Order</button>
-
+					
+                     <div class="loader" id="rest-order-loader" ></div>
 
 
                     <span class="error error-order" ng-show="order.DeliveryTime==''"><i class="fa fa-times-circle"></i>Delivery Time is required</span>

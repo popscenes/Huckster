@@ -283,6 +283,7 @@
 		height: 28px;
 		width: 28px;	
 		display: none;
+		margin-top: 17px;
 	}
 	#rest-order-loader {
 		float: right;	
@@ -2129,6 +2130,11 @@
 		min-height: 500px;
 		margin-bottom: 4em;	
 	}
+	
+/*=== LOADERS ===*/
+#rest-order-loader {
+	margin-top: 0;	
+}
 }
 /* === TABLET DEVICE LANDSCAPE=== */
 /* ----------- iPad 3 and 4 ----------- */

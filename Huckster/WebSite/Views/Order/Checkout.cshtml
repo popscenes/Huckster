@@ -108,8 +108,12 @@
                         </div>
 
                     </div><!-- .main-content-info-row -->
-
-                </form><!-- #one -->
+                    <div class="main-content-info-row" ng-show="serverErrorDelivery">
+                        <br/>
+                        <span class="error error-checkout">We're sorry an error occurred while processing your order.</span>
+                    </div>
+                        
+            </form><!-- #one -->
 
             </div><!-- .main-content-info -->
 
@@ -174,6 +178,10 @@
 
                     </div><!-- .main-content-info-row -->
 
+                    <div class="main-content-info-row" ng-show="serverErrorPersonal">
+                        <br />
+                        <span class="error error-checkout">We're sorry an error occurred while processing your order.</span>
+                    </div>
                 </form><!-- two -->
 
 
@@ -259,7 +267,10 @@
 
 
                     
-
+                    <div class="main-content-info-row" ng-show="serverErrorPayment">
+                        <br />
+                        <span class="error error-checkout">We're sorry an error occurred while processing your order.</span>
+                    </div>
                 </form>
             </div>
 
@@ -298,10 +309,6 @@
                             <tr>
                                 <td colspan="2">Subtotal</td>
                                 <td>${{subTotal()}}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Minimum Order</td>
-                                <td>${{minimumOrder}}</td>
                             </tr>
                             <tr class="dfee">
                                 <td colspan="2">Delivery Fee</td>

@@ -40,12 +40,22 @@ namespace Domain.Order
         public DateTime? PickUpTime { get; set; }
         public String DeliveryUserId { get; set; }
 
-        
+        public Decimal DeliveryFee { get; set; }
 
         public Guid AggregateRootId { get; set; }
         public String Status { get; set; }
         //public Address Address { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+
+        public Decimal OrderTotal {
+            get {
+                if (OrderItems == null)
+                {
+                    return 0.0m;
+                }
+                return OrderItems.Sum(_ => _.Price*_.Quantity) + DeliveryFee;
+            }
+        }
     }
 
     public class DeliveryUser
@@ -72,6 +82,8 @@ namespace Domain.Order
             Table("Order");
             //Map(m => m.Address).Ignore();
             Map(m => m.OrderItems).Ignore();
+            Map(m => m.OrderTotal).Ignore();
+            
             AutoMap();
         }
     }

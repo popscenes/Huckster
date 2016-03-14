@@ -20,7 +20,7 @@
 
         $scope.paymentPaypal = false;
         $scope.paymentCC = false;
-        $scope.deliveryFee = 5;
+        $scope.deliveryFee = $scope.orderData.Order.DeliveryFee;
 
         $scope.deliveryDetailsSubmitted = false;
         $scope.personalDetailsSubmitted = false;
@@ -30,6 +30,10 @@
         $scope.orderDeliveryLoader = false;
         $scope.orderDetailsLoader = false;
         $scope.orderCCLoader = false;
+
+        $scope.serverErrorDelivery = false;
+        $scope.serverErrorPersonal = false;
+        $scope.serverErrorPayment = false;
 
         //$scope.showPersonalDetails = false;
         //$scope.showPaymentDetails = false;
@@ -76,10 +80,11 @@
                 $('#step-three').removeClass('unstep');
                 $(window).scrollTo($('#step-three'), { duration: 800 });
                 $scope.orderDetailsLoader = false;
+                $scope.serverErrorPersonal = false;
             },
             function (error) {
                 $scope.orderDetailsLoader = false;
-                alert("error occured");
+                $scope.serverErrorPersonal = true;
             });
         };
 
@@ -96,11 +101,12 @@
                 $('#step-two').removeClass('unstep');
                 $(window).scrollTo($('#step-two'), { duration: 800 });
                 $scope.orderDeliveryLoader = false;
+                $scope.serverErrorDelivery = false;
             },
 
             function(error) {
                 $scope.orderDeliveryLoader = false;
-                alert("error occured");
+                $scope.serverErrorDelivery = true;
             });
         };
 
@@ -124,12 +130,14 @@
             $scope.orderPaypalLoader = true;
             Restangular.all('Payment/paypal-redirect').post({ OrderId: $scope.orderData.Order.AggregateRootId }).then(function (result) {
                 window.location = result;
+            }, function(error) {
+                $scope.serverErrorPayment = true;
             });
         };
 
         $scope.stripeResponseHandler = function (status, response) {
             if (response.error) {
-                alert(response.error.message);
+                $scope.serverErrorPayment = true;
                 $scope.orderCCLoader = false;
             } else {
 

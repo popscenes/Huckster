@@ -25,7 +25,8 @@ CREATE TABLE [dbo].[Order](
 	[CompanyName] nvarchar(256) NULL,
 	[Instructions] nvarchar(MAX) NULL,
 	[PickUpTime] [datetime2](7) NULL,
-	[DeliveryUserId] nvarchar(128) NULL
+	[DeliveryUserId] nvarchar(128) NULL,
+	[DeliveryFee] DECIMAL(8,2) NOT NULL DEFAULT(0.0)
 
 ) --ON [PRIMARY]
 END
@@ -58,5 +59,11 @@ if not exists (select column_name from INFORMATION_SCHEMA.columns where table_na
 BEGIN
 	ALTER TABLE [Order] ADD [SurgePct] int NOT NULL DEFAULT(0)
 	PRINT 'created column [SurgePct] on table [dbo].[Order]'
+END
+GO
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'Order' and column_name = 'Surge')
+BEGIN
+	ALTER TABLE [Order] ADD [DeliveryFee] DECIMAL(8,2) NOT NULL DEFAULT(0.0)
+	PRINT 'created column [DeliveryFee] on table [dbo].[Order]'
 END
 GO

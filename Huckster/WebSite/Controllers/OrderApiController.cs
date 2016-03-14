@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 using Application.Payment;
 using Domain.Customer;
 using Domain.Customer.Commands;
@@ -145,6 +146,7 @@ namespace WebSite.Controllers
 
             // re assign price from server... to avoid client side hacking
             viewModel.orderItems.ForEach((oi) => { oi.Price = menuItems.FirstOrDefault(mi => mi.Id == oi.Id).Price; });
+            viewModel.order.DeliveryFee = restaurant.Restaurant.DeliveryFee;
             //viewModel.order.SurgePct = restaurant.Restaurant.Surge ? restaurant.Restaurant.SurgePct : 0;
 
 
@@ -161,7 +163,7 @@ namespace WebSite.Controllers
         public async Task<IHttpActionResult> PaymentStripe(StripePaymentVieModel paymentModel)
         {
             var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = paymentModel.OrderId });
-            var payment = await _stripeService.CreateCharge(paymentModel.PaymentToken, order.OrderItems.Sum(_ => _.Quantity*_.Price), "Huckster Order");
+            var payment = await _stripeService.CreateCharge(paymentModel.PaymentToken, order.OrderTotal, "Huckster Order");
             await _commandDispatcher.DispatchAsync(new OrderPaymentSuccessCommand() {Order = order, Payment = payment});
             return Ok(order.AggregateRootId);
         }
@@ -175,7 +177,7 @@ namespace WebSite.Controllers
             var failUrl = String.Format(ConfigurationManager.AppSettings["PaypalFailurl"], order.AggregateRootId);
             var successUrl = String.Format(ConfigurationManager.AppSettings["PaypalSuccessurl"], order.AggregateRootId);
 
-            var redirectUrl = await _paypalService.GetRedirectUrl(order.OrderItems.Sum(_ => _.Quantity * _.Price), "Hickster Order", successUrl, failUrl);
+            var redirectUrl = await _paypalService.GetRedirectUrl(order.OrderTotal, "Huckster Order", successUrl, failUrl);
             return Ok(redirectUrl);
         }
     }

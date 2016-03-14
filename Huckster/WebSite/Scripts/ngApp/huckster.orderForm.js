@@ -21,6 +21,7 @@
         $scope.restaurantId = $("#restaurantId").val();
 
         $scope.orderLoading = false;
+        $scope.serverError = false;
 
         $scope.OrderItems = [];
         $scope.order = {
@@ -37,6 +38,10 @@
             if ($scope.OrderItems[index].Quantity <= 0) {
                 $scope.OrderItems.splice(index, 1);
             }
+        }
+
+        $scope.MinimumOrderMet = function() {
+            return $scope.subTotal() >= $scope.minimumOrder;
         }
         $scope.addMenuItemQuantity = function(index) {
             $scope.OrderItems[index].Quantity++;
@@ -77,7 +82,7 @@
             },
                 function(error) {
                     $scope.orderLoading = false;
-                    alert("error occured");
+                    $scope.serverError = true;
                 });
         }
     };

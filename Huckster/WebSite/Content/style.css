@@ -992,6 +992,13 @@
 		border: 1px solid #c30E0E;
 		border-radius: 0;
 		margin-top: 0.4em;	}
+
+    	.error-checkout {
+		border: 1px solid #c30E0E;
+		border-radius: 0;
+		margin-top: 0.4em;
+    	    width: 90%;
+    	}
 	
 	.input-error {
 		border: 1px solid #C30E0E;

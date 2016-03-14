@@ -20,6 +20,8 @@
         $scope.minimumOrder = $("#minimumOrder").val();
         $scope.restaurantId = $("#restaurantId").val();
 
+        $scope.orderLoading = false;
+
         $scope.OrderItems = [];
         $scope.order = {
             CustomerMobile: '',
@@ -69,10 +71,12 @@
         }
 
         $scope.placeOrder = function() {
-            Restangular.all('PlaceOrder').post({order : $scope.order, orderItems: $scope.OrderItems }).then(function (result) {
+            $scope.orderLoading = true;
+            Restangular.all('PlaceOrder').post({ order: $scope.order, orderItems: $scope.OrderItems }).then(function (result) {
                 window.location = "/order/checkout/" + result;
             },
                 function(error) {
+                    $scope.orderLoading = false;
                     alert("error occured");
                 });
         }

@@ -25,6 +25,11 @@
         $scope.deliveryDetailsSubmitted = false;
         $scope.personalDetailsSubmitted = false;
         $scope.paymentDetailsSubmitted = false;
+        $scope.orderPaypalLoader = false;
+
+        $scope.orderDeliveryLoader = false;
+        $scope.orderDetailsLoader = false;
+        $scope.orderCCLoader = false;
 
         //$scope.showPersonalDetails = false;
         //$scope.showPaymentDetails = false;
@@ -60,41 +65,52 @@
 
         $scope.setPersonalDetails = function () {
             $scope.personalDetailsSubmitted = true;
+            
             if (!$scope.checkoutTwo.$valid) {
                 return;
             }
+            $scope.orderDetailsLoader = true;
 
             Restangular.all('PersonalDetails').post($scope.personalDetails).then(function (result) {
                 //$scope.showPaymentDetails = true;
                 $('#step-three').removeClass('unstep');
                 $(window).scrollTo($('#step-three'), { duration: 800 });
+                $scope.orderDetailsLoader = false;
             },
             function (error) {
+                $scope.orderDetailsLoader = false;
                 alert("error occured");
             });
         };
 
         $scope.setDeliveryDetails = function () {
             $scope.deliveryDetailsSubmitted = true;
+            
             if (!$scope.deliverDetailsForm.$valid) {
                 return;
             }
+            $scope.orderDeliveryLoader = true;
 
             Restangular.all('DeliveryDetails').post($scope.deliveryDetails).then(function (result) {
                     //$scope.showPersonalDetails = true;
                 $('#step-two').removeClass('unstep');
                 $(window).scrollTo($('#step-two'), { duration: 800 });
-                },
+                $scope.orderDeliveryLoader = false;
+            },
+
             function(error) {
+                $scope.orderDeliveryLoader = false;
                 alert("error occured");
             });
         };
 
         $scope.getStripeToken = function () {
             $scope.paymentDetailsSubmitted = true;
+            
             if (!$scope.paymentForm.$valid) {
                 return;
             }
+            $scope.orderCCLoader = true;
 
             Stripe.card.createToken({
                 number: $scope.creditCard.number,
@@ -105,6 +121,7 @@
         }
 
         $scope.paypalPayment = function () {
+            $scope.orderPaypalLoader = true;
             Restangular.all('Payment/paypal-redirect').post({ OrderId: $scope.orderData.Order.AggregateRootId }).then(function (result) {
                 window.location = result;
             });
@@ -113,6 +130,7 @@
         $scope.stripeResponseHandler = function (status, response) {
             if (response.error) {
                 alert(response.error.message);
+                $scope.orderCCLoader = false;
             } else {
 
                 var token = response.id;

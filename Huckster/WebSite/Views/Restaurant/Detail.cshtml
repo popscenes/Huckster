@@ -201,7 +201,7 @@
 
                     </table>
                     <button class="list-order order-main-submit" ng-click="placeOrder()" ng-disabled="order.DeliveryTime=='' || order.DeliverySuburbId==''">Place Order</button>
-
+                    <div class="loader" ng-class="{loading: orderLoading}"  id="rest-order-loader"></div>
                     <span class="error error-order" ng-show="order.DeliveryTime==''">Delivery Time is required</span>
                     <span class="error error-order" ng-show="order.DeliverySuburbId==''">Delivery Suburb is required</span>
 

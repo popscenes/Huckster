@@ -283,8 +283,9 @@
 		height: 28px;
 		width: 28px;	
 		display: none;
+        margin-top: 17px;
 	}
-	#rest-order-loader {
+	#rest-order-loader, #rest-cc-loader, #rest-Detail-loader, #rest-paypal-loader {
 		float: right;	
 	}
 	/* Class triggered by javascript */
@@ -610,6 +611,7 @@
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
+        -moz-transition: width 0.8s ease;
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
 	}
@@ -619,9 +621,11 @@
 	}
 	
 	#huckstart a {
-		width: 60%;
+        display: block;
+		margin: 0 auto;
+        width: 60%;
 		height: 2.5em;
-		padding: 0 0.5em;
+		padding: 0.5em;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
@@ -634,6 +638,7 @@
 		background-color: transparent;
 		text-transform: uppercase;
 		color: #fff;
+        -moz-transition: width 0.5s ease;
 		-webkit-transition: width 0.5s ease;
 		transition: width 0.5s ease;
 	}
@@ -643,7 +648,7 @@
 		background-color: #fff;
 		color: #222;
 		font-weight: bold;
-		
+        -moz-transition: all 0.5s ease;
 		-webkit-transition: all 0.5s ease;
 		transition: all 0.5s ease;	
 	}
@@ -994,7 +999,10 @@
 /* == TABLET DEVICES == (750px and ABOVE) ==*/
 @media all and (min-width: 751px) and (max-width: 960px) {
 	
-	/*** HEADER ***/
+    .main-content {
+        min-height: 250px;	
+	}
+    /*** HEADER ***/
 	.header-home {
 		padding: 20px 0 20px 0;	
 	}
@@ -1527,7 +1535,7 @@
 		display: inline-block;
 		/*margin-left: 1em;*/
 		height: 3em;
-		
+		padding-top: 0.7em;
 		-webkit-transition: width 0.8s ease;
 		transition: width 0.8s ease;
 	}
@@ -2123,6 +2131,11 @@
 		min-height: 500px;
 		margin-bottom: 4em;	
 	}
+}
+	
+/*=== LOADERS ===*/
+#rest-order-loader {
+	margin-top: 0;	
 }
 /* === TABLET DEVICE LANDSCAPE=== */
 /* ----------- iPad 3 and 4 ----------- */

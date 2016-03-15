@@ -16,11 +16,18 @@ BEGIN
 		Name nvarchar(256) NOT NULL,
         Price decimal NOT NULL,
         Quantity int NOT NULL,
-        Notes nvarchar(max) NULL
+        Notes nvarchar(max) NULL,
+		[MenuItemKey] bigint null 
 ) --ON [PRIMARY]
 END
 ELSE
 BEGIN
     PRINT 'Skipped create table [dbo].[OrderItem]'
+END
+GO
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'OrderItem' and column_name = 'MenuItemKey')
+BEGIN
+    ALTER TABLE [OrderItem] ADD [MenuItemKey] bigint null 
+	PRINT 'created column [MenuItemKey] on table [dbo].[OrderItem]'
 END
 GO

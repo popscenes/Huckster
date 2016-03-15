@@ -18,7 +18,8 @@ BEGIN
 		[Description] nvarchar(max) null,
 		[Price]  decimal not null,
 		[Order] int null,
-		[UseEach] bit not null default(0)
+		[UseEach] bit not null default(0),
+		[Deleted] bit not null default(0)
 
 ) --ON [PRIMARY]
 END
@@ -32,5 +33,12 @@ if not exists (select column_name from INFORMATION_SCHEMA.columns where table_na
 BEGIN
     ALTER TABLE [MenuItem] ADD [UseEach] bit not null default(0)
 	PRINT 'created column [UseEach] on table [dbo].[MenuItem]'
+END
+GO
+
+if not exists (select column_name from INFORMATION_SCHEMA.columns where table_name = 'MenuItem' and column_name = 'Deleted')
+BEGIN
+    ALTER TABLE [MenuItem] ADD [Deleted] bit not null default(0)
+	PRINT 'created column [Deleted] on table [dbo].[MenuItem]'
 END
 GO

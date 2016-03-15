@@ -16,29 +16,66 @@
 
 
     function Checkout($scope, Restangular, $window) {
-        $scope.orderData = angular.fromJson($("#orderData").val());
 
-        $scope.paymentPaypal = false;
-        $scope.paymentCC = false;
-        $scope.deliveryFee = $scope.orderData.Order.DeliveryFee;
+        
 
-        $scope.deliveryDetailsSubmitted = false;
-        $scope.personalDetailsSubmitted = false;
-        $scope.paymentDetailsSubmitted = false;
-        $scope.orderPaypalLoader = false;
+        $scope.InitCheckout = function() {
+            Stripe.setPublishableKey('pk_test_e9OAHJzcasWjjnNbMNNQlMlL');
+            $scope.orderData = angular.fromJson($("#orderData").val());
 
-        $scope.orderDeliveryLoader = false;
-        $scope.orderDetailsLoader = false;
-        $scope.orderCCLoader = false;
+            $scope.paymentPaypal = false;
+            $scope.paymentCC = false;
+            $scope.deliveryFee = $scope.orderData.Order.DeliveryFee;
 
-        $scope.serverErrorDelivery = false;
-        $scope.serverErrorPersonal = false;
-        $scope.serverErrorPayment = false;
+            $scope.deliveryDetailsSubmitted = false;
+            $scope.personalDetailsSubmitted = false;
+            $scope.paymentDetailsSubmitted = false;
+            $scope.orderPaypalLoader = false;
 
-        //$scope.showPersonalDetails = false;
-        //$scope.showPaymentDetails = false;
+            $scope.orderDeliveryLoader = false;
+            $scope.orderDetailsLoader = false;
+            $scope.orderCCLoader = false;
 
-        Stripe.setPublishableKey('pk_test_e9OAHJzcasWjjnNbMNNQlMlL');
+            $scope.serverErrorDelivery = false;
+            $scope.serverErrorPersonal = false;
+            $scope.serverErrorPayment = false;
+
+            $scope.deliveryDetails = {
+                OrderId: $scope.orderData.Order.AggregateRootId,
+                Street: $scope.orderData.DeliverAddress == null ? "" : $scope.orderData.DeliverAddress.Street,
+                Number: $scope.orderData.DeliverAddress == null ? "" : $scope.orderData.DeliverAddress.Number,
+                Suburb: $scope.orderData.DeliverySuburb.Suburb,
+                State: $scope.orderData.DeliverySuburb.State,
+                Postcode: $scope.orderData.DeliverySuburb.Postcode
+            };
+
+            if ($scope.deliveryDetails.Street !== "" && $scope.deliveryDetails.Number !== "") {
+                $scope.showPersonalDetails();
+            }
+            var firstName = "";
+            var lastName = "";
+
+            if ($scope.orderData.Customer != null) {
+                var name = $scope.orderData.Customer.Name;
+                var nameArr = name.split(" ");
+                firstName = nameArr[0];
+                lastName = nameArr[1];
+            }
+            
+
+            $scope.personalDetails = {
+                OrderId: $scope.orderData.Order.AggregateRootId,
+                FirstName: firstName,
+                LastName: lastName,
+                Email: $scope.orderData.Customer == null ? "": $scope.orderData.Customer.Email,
+                Mobile: $scope.orderData.Customer == null ?"": $scope.orderData.Customer.Mobile,
+            };
+
+            if ($scope.personalDetails.FirstName !== "" && $scope.personalDetails.FirstName !== ""
+                && $scope.personalDetails.Email !== "" && $scope.personalDetails.Mobile !== "") {
+                $scope.showPaymentlDetails();
+            }
+        }
 
         $scope.showPayPal = function() {
             $scope.paymentPaypal = true;
@@ -50,22 +87,7 @@
             $scope.paymentCC = true;
         };
 
-        $scope.deliveryDetails = {
-            OrderId: $scope.orderData.Order.AggregateRootId,
-            Street: '',
-            Number: '',
-            Suburb: $scope.orderData.DeliverySuburb.Suburb,
-            State: $scope.orderData.DeliverySuburb.State,
-            Postcode: $scope.orderData.DeliverySuburb.Postcode
-        };
 
-        $scope.personalDetails = {
-            OrderId: $scope.orderData.Order.AggregateRootId,
-            FirstName: '',
-            LastName: '',
-            Email: '',
-            Mobile: '',
-        };
 
         $scope.setPersonalDetails = function () {
             $scope.personalDetailsSubmitted = true;
@@ -76,12 +98,8 @@
             $scope.orderDetailsLoader = true;
 
             Restangular.all('PersonalDetails').post($scope.personalDetails).then(function (result) {
-                //$scope.showPaymentDetails = true;
-                $('#step-three').removeClass('unstep');
-                $(window).scrollTo($('#step-three'), { duration: 800 });
-                $scope.orderDetailsLoader = false;
-                $scope.serverErrorPersonal = false;
-            },
+                    $scope.showPaymentlDetails();
+                },
             function (error) {
                 $scope.orderDetailsLoader = false;
                 $scope.serverErrorPersonal = true;
@@ -97,18 +115,28 @@
             $scope.orderDeliveryLoader = true;
 
             Restangular.all('DeliveryDetails').post($scope.deliveryDetails).then(function (result) {
-                    //$scope.showPersonalDetails = true;
-                $('#step-two').removeClass('unstep');
-                $(window).scrollTo($('#step-two'), { duration: 800 });
-                $scope.orderDeliveryLoader = false;
-                $scope.serverErrorDelivery = false;
-            },
+                    $scope.showPersonalDetails();
+                },
 
             function(error) {
                 $scope.orderDeliveryLoader = false;
                 $scope.serverErrorDelivery = true;
             });
         };
+
+        $scope.showPaymentlDetails = function () {
+            $('#step-three').removeClass('unstep');
+            $(window).scrollTo($('#step-three'), { duration: 800 });
+            $scope.orderDetailsLoader = false;
+            $scope.serverErrorPersonal = false;
+        }
+
+        $scope.showPersonalDetails = function () {
+            $('#step-two').removeClass('unstep');
+            $(window).scrollTo($('#step-two'), { duration: 800 });
+            $scope.orderDeliveryLoader = false;
+            $scope.serverErrorDelivery = false;
+        }
 
         $scope.getStripeToken = function () {
             $scope.paymentDetailsSubmitted = true;
@@ -159,6 +187,8 @@
         $scope.total = function () {
             return $scope.subTotal() + $scope.deliveryFee;
         };
+
+        $scope.InitCheckout();
     };
 
 }).call(this);

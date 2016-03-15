@@ -289,39 +289,40 @@
 
                         <tbody>
 
-                            <tr class="order-item" ng-repeat="orderItem in orderData.Order.OrderItems">
+                        <tr class="order-item" ng-repeat="orderItem in orderData.Order.OrderItems">
 
 
-                                <td class="order-item-quantity">
-                                    {{orderItem.Quantity}} x
-                                </td>
-                                <td class="order-item-description">{{orderItem.Name}}</td>
-                                <td class="order-item-price">
-                                    ${{orderItem.Price * orderItem.Quantity}}
-                                </td>
+                            <td class="order-item-quantity">
+                                {{orderItem.Quantity}} x
+                            </td>
+                            <td class="order-item-description">{{orderItem.Name}}</td>
+                            <td class="order-item-price">
+                                ${{orderItem.Price * orderItem.Quantity}}
+                            </td>
 
 
-                            </tr>
+                        </tr>
 
                         </tbody>
 
                         <tfoot>
-                            <tr>
-                                <td colspan="2">Subtotal</td>
-                                <td>${{subTotal()}}</td>
-                            </tr>
-                            <tr class="dfee">
-                                <td colspan="2">Delivery Fee</td>
-                                <td>${{deliveryFee}}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Total</td>
-                                <td>${{total()}}</td>
-                            </tr>
+                        <tr>
+                            <td colspan="2">Subtotal</td>
+                            <td>${{subTotal()}}</td>
+                        </tr>
+                        <tr class="dfee">
+                            <td colspan="2">Delivery Fee</td>
+                            <td>${{deliveryFee}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>${{total()}}</td>
+                        </tr>
 
                         </tfoot>
 
                     </table>
+                    <a class="list-order order-main-submit" id="chkBtnEdit" href="@Url.Action("Detail", "Restaurant", new {id = Model.Restaurant.Id, orderId = Model.Order.AggregateRootId})">Edit Order</a>
                 </div><!-- .order-main -->
             </div>
         </section><!-- end out-content -->

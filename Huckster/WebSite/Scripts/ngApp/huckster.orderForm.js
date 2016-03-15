@@ -23,6 +23,8 @@
         $scope.orderLoading = false;
         $scope.serverError = false;
 
+        
+
         $scope.OrderItems = [];
         $scope.order = {
             CustomerMobile: '',
@@ -30,7 +32,13 @@
             RestaurantId: $scope.restaurantId,
             DeliveryTime: '',
             DeliverySuburbId: ''
-    };
+        };
+
+        if ($("#orderData").val() !== "") {
+            $scope.orderData = angular.fromJson($("#orderData").val());
+            $scope.OrderItems = $scope.orderData.Order.OrderItems;
+            $scope.order = $scope.orderData.Order;
+        }
         
 
         $scope.removeMenuItemQuantity = function(index) {
@@ -72,18 +80,28 @@
                 }
             }
             if(!found)
-                $scope.OrderItems.push({Id:id, Name: name, Price: price, Quantity: quantity });
+                $scope.OrderItems.push({ MenuItemKey: id, Name: name, Price: price, Quantity: quantity });
         }
 
         $scope.placeOrder = function() {
             $scope.orderLoading = true;
-            Restangular.all('PlaceOrder').post({ order: $scope.order, orderItems: $scope.OrderItems }).then(function (result) {
-                window.location = "/order/checkout/" + result;
-            },
-                function(error) {
-                    $scope.orderLoading = false;
-                    $scope.serverError = true;
-                });
+            if ($scope.order.Id == undefined) {
+                Restangular.all('PlaceOrder').post({ order: $scope.order, orderItems: $scope.OrderItems }).then(function(result) {
+                        window.location = "/order/checkout/" + result;
+                    },
+                    function(error) {
+                        $scope.orderLoading = false;
+                        $scope.serverError = true;
+                    });
+            } else {
+                Restangular.all('UpdateOrder').post({ order: $scope.order, orderItems: $scope.OrderItems }).then(function (result) {
+                    window.location = "/order/checkout/" + result;
+                },
+                    function (error) {
+                        $scope.orderLoading = false;
+                        $scope.serverError = true;
+                    });
+            }
         }
     };
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Domain.Order.Queries;
 using Domain.Restaurant;
 using Domain.Restaurant.Queries;
 using infrastructure.CQRS;
@@ -22,9 +23,9 @@ namespace WebSite.Controllers
 
         [HttpGet]
         [Route("Restaurant/{id}")]
-        public async Task<ActionResult> Detail(int id)
+        public async Task<ActionResult> Detail(int id, Guid? orderId = null)
         {
-            var restaurantDetail = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery()
+            var restaurantDetail = await _queryChannel.QueryAsync(new GetRestaurantDetailWithValidHoursByIdQuery()
             {
                 Id = id
             }, new CacheOptions()
@@ -32,9 +33,15 @@ namespace WebSite.Controllers
                 CacheKey = $"GetRestaurantDetailByIdQuery{id}",
                 CacheForMinutes = 1
             });
-            var localDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
-                TimeZoneInfo.FindSystemTimeZoneById(restaurantDetail.Restaurant.TimeZoneId));
-            restaurantDetail.DeliveryHours = restaurantDetail.ValidDeliveryHours(localDateTime.DayOfWeek, localDateTime.AddMinutes(30).TimeOfDay);
+
+
+            if (orderId != null)
+            {
+                var orderDetail = await
+                    _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() {AggregateId = orderId.Value});
+                ViewBag.OrderDetail = orderDetail;
+            }
+
             return View(restaurantDetail);
         }
     }

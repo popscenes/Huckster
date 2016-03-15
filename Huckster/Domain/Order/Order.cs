@@ -73,6 +73,7 @@ namespace Domain.Order
         public String Notes { get; set; }
         public int Id { get; set; }
         public Guid ParentAggregateId { get; set; }
+        public int MenuItemKey { get; set; }
     }
 
     public class PersonMapper : ClassMapper<Order>

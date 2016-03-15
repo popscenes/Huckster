@@ -18,7 +18,8 @@ namespace Domain.Restaurant
         public int   Id { get; set; }
         public Guid   ParentAggregateId { get; set; }
         public List<MenuItem> MenuItems { get; set; }
-}
+        public bool Deleted { get; set; }
+    }
 
     public class MenuItem
     {
@@ -30,6 +31,7 @@ namespace Domain.Restaurant
         public decimal  Price { get; set; }
         public int      Order { get; set; }
         public bool     UseEach { get; set; }
+        public bool     Deleted { get; set; }
     }
 
     public class MenuMapper : ClassMapper<Menu>

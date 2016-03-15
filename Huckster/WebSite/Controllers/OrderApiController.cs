@@ -17,9 +17,11 @@ using Domain.Order.Commands;
 using Domain.Order.Queries;
 using Domain.Order.Queries.Models;
 using Domain.Restaurant.Queries;
+using Domain.Restaurant.Queries.Models;
 using Domain.Shared;
 using infrastructure.CQRS;
 using Omu.ValueInjecter;
+using MenuItem = Domain.Restaurant.MenuItem;
 
 namespace WebSite.Controllers
 {
@@ -134,28 +136,55 @@ namespace WebSite.Controllers
             return customer;
         }
 
+        [HttpPost]
+        [Route("api/Order/UpdateOrder")]
+        public async Task<IHttpActionResult> UpdateOrder(PlaceOrderVieModel viewModel)
+        {
+            await SetServerSideValues(viewModel);
+            await _commandDispatcher.DispatchAsync(new UpdateOrderAntOrderItemsCommand()
+            {
+                Order = viewModel.order,
+                OrderItems = viewModel.orderItems
+            });
+            return Ok(viewModel.order.AggregateRootId);
+        }
+
 
         [HttpPost]
         [Route("api/Order/PlaceOrder")]
         public async Task<IHttpActionResult> PlaceOrder(PlaceOrderVieModel viewModel)
         {
-            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByAggregateRootIdQuery() {AggregateRootId = viewModel.order.RestaurantId});
             viewModel.order.AggregateRootId = Guid.NewGuid();
-
-            var menuItems = restaurant.RestaurantMenu.SelectMany(_ => _.MenuItems);
-
             // re assign price from server... to avoid client side hacking
-            viewModel.orderItems.ForEach((oi) => { oi.Price = menuItems.FirstOrDefault(mi => mi.Id == oi.Id).Price; });
-            viewModel.order.DeliveryFee = restaurant.Restaurant.DeliveryFee;
-            //viewModel.order.SurgePct = restaurant.Restaurant.Surge ? restaurant.Restaurant.SurgePct : 0;
-
-
+            await SetServerSideValues(viewModel);
             await _commandDispatcher.DispatchAsync(new PlaceOrderCommand()
             {
                 Order = viewModel.order,
                 OrderItems = viewModel.orderItems
             });
             return Ok(viewModel.order.AggregateRootId);
+        }
+
+        private async Task SetServerSideValues(PlaceOrderVieModel viewModel)
+        {
+            var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByAggregateRootIdQuery()
+            {
+                GetDeletedmenuItems = true,
+                AggregateRootId = viewModel.order.RestaurantId
+            });
+            var menuItems = restaurant.RestaurantMenu.SelectMany(_ => _.MenuItems).ToList();
+            foreach (var orderItem in viewModel.orderItems)
+            {
+                var matchingMenuItem = menuItems.FirstOrDefault(mi => mi.Id == orderItem.MenuItemKey);
+                if (matchingMenuItem == null)
+                {
+                    throw new ApplicationException($"Cannot Match MenuItemKey {orderItem.MenuItemKey}, OrderId {viewModel.order.AggregateRootId}");
+                }
+                orderItem.Price = matchingMenuItem.Price;
+            }
+
+            viewModel.order.DeliveryFee = restaurant.Restaurant.DeliveryFee;
+            //viewModel.order.SurgePct = restaurant.Restaurant.Surge ? restaurant.Restaurant.SurgePct : 0;
         }
 
         [HttpPost]

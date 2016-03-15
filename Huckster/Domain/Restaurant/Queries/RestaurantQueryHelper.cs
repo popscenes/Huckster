@@ -12,7 +12,7 @@ namespace Domain.Restaurant.Queries
 {
     public class RestaurantQueryHelper
     {
-        public static RestaurantDetailsModel GetRestaurantDetails(IDbConnection context, Restaurant restaurant)
+        public static RestaurantDetailsModel GetRestaurantDetails(IDbConnection context, Restaurant restaurant, bool getDeletedMenuItems = false)
         {
             var address =
                 context.Query<Address>("Select * from [dbo].[Address] where ParentAggregateId = @ParentAggregateId",
@@ -35,6 +35,11 @@ namespace Domain.Restaurant.Queries
                 menu.MenuItems =
                     context.Query<MenuItem>("Select * from [dbo].[MenuItem] where MenuId = @MenuId", new { MenuId = menu.Id })
                         .ToList();
+
+                if (!getDeletedMenuItems)
+                {
+                    menu.MenuItems = menu.MenuItems.Where(_ => _.Deleted == false).ToList();
+                }
             }
 
             return new RestaurantDetailsModel()

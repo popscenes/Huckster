@@ -1,4 +1,5 @@
 ﻿@using Domain.Restaurant
+@using Newtonsoft.Json
 @model Domain.Restaurant.Queries.Models.RestaurantDetailsModel
 @{
     ViewBag.Title = "Detail";
@@ -18,9 +19,14 @@
         <input id="restaurantId" type="hidden" value="@Model.Restaurant.AggregateRootId" />
         <input id="surgePct" type="hidden" value="@Model.Restaurant.SurgeVal" />
         <input id="deliveryFee" type="hidden" value="@Model.Restaurant.DeliveryFee" />
-        <input id="minimumOrder" type="hidden" value="@Model.Restaurant.MinimumOrder" />
-        
-            <section class="main-content main-bar-main">
+        <input id="minimumOrder" type="hidden" value="@Model.Restaurant.MinimumOrder"/>
+
+        @{
+            var orderJSON = ViewBag.OrderDetail == null ? "" : JsonConvert.SerializeObject(ViewBag.OrderDetail);
+        }
+        <input id="orderData" type="hidden" value="@orderJSON" />
+
+        <section class="main-content main-bar-main">
                 <div class="container">
                     <div class="row rest">
                         <div class="rest-bio">
@@ -134,7 +140,7 @@
 
                     <label>Delivery Suburb</label>
 
-                    <select class="select-order" ng-model="order.DeliverySuburbId">
+                    <select class="select-order" ng-model="order.DeliverySuburbId" convert-to-number>
                         <option value="">Please select suburb...</option>
                         @foreach (var suburb in Model.DeliverySuburbs)
                         {

@@ -35,7 +35,7 @@ namespace Domain.Restaurant
             }
             return
                 DateTime.SpecifyKind(DateTime.Today.AddDays(daysToAdd).Add(OpenTime), DateTimeKind.Unspecified)
-                    .ToString("o");
+                    .ToString("yyyy-MM-ddTHH:mm:ss");
         }
 
         public string ToTimeString()

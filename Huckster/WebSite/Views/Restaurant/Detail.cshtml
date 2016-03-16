@@ -5,15 +5,6 @@
     ViewBag.Title = "Detail";
 }
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<header class="main-content main-bar">
-    <div class="container">
-        <a href="#">
-            <div class="logo"></div>
-        </a>
-
-        <div></div>
-    </div>
-</header>
 <div ng-app="hucksterApp">
     <div ng-controller="OrderFormController">
         <input id="restaurantId" type="hidden" value="@Model.Restaurant.AggregateRootId" />
@@ -210,7 +201,7 @@
                     <div class="loader" ng-class="{loading: orderLoading}"  id="rest-order-loader"></div>
                     <span class="error error-order" ng-show="order.DeliveryTime==''">Delivery time is required</span>
                     <span class="error error-order" ng-show="order.DeliverySuburbId==''">Delivery Suburb is required</span>
-                    <span class="error error-order" ng-show="!MinimumOrderMet()">Order value belw minimum order</span>
+                    <span class="error error-order" ng-show="!MinimumOrderMet()">Order value below minimum order</span>
                 
                     <span class="error error-order" ng-show="serverError">We're sorry an error occurred while processing your order.</span>
 

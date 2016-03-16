@@ -362,6 +362,7 @@
     <Content Include="Views\Order\CustomerDetails.cshtml" />
     <Content Include="Views\Order\Checkout.cshtml" />
     <Content Include="Views\Shared\_layoutHome.cshtml" />
+    <Content Include="Views\Order\Failed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

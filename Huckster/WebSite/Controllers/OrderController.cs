@@ -139,7 +139,13 @@ namespace WebSite.Controllers
             
             var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = aggregateid });
             await _commandDispatcher.DispatchAsync(new OrderPaymentFailCommand() { Order = order});
-            return RedirectToAction("Complete");
+            return RedirectToAction("Failed", new {aggregateid = aggregateid});
+        }
+
+        public async Task<ActionResult> Failed(Guid aggregateid)
+        {
+            var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = aggregateid });
+            return View(order);
         }
     }
 }

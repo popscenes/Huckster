@@ -83,6 +83,8 @@
     <Compile Include="Customer\Queries\GetCustomersQuery.cs" />
     <Compile Include="Customer\Queries\Models\CustomerDetailViewModel.cs" />
     <Compile Include="DomainNinjectModule.cs" />
+    <Compile Include="Enquiry\Commands\NewEnquiryCommand.cs" />
+    <Compile Include="Enquiry\Enquiry.cs" />
     <Compile Include="Order\Commands\InsertOrderAuditCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentFailCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentSuccessCommand.cs" />

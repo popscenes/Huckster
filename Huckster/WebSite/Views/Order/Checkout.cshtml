@@ -51,15 +51,17 @@
 
                         <h5 class="checkout-h5">Delivery Address</h5>
                         <div class="form-row">
+                            <div class="form-column small-length first-small">
+                                <input ng-class="{'input-error': deliveryDetailsSubmitted && deliverDetailsForm.streetnumber.$invalid}" class="checkout-input" type="text" placeholder="No." name="streetnumber" id="street-number" ng-model="deliveryDetails.Number" required/>
+                                <span class="error" ng-show="deliveryDetailsSubmitted && deliverDetailsForm.streetnumber.$invalid">Required</span>
+                            </div>
+
                             <div class="form-column default-length">
                                 <input ng-class="{'input-error': deliveryDetailsSubmitted && deliverDetailsForm.address.$invalid}" class="checkout-input" type="text" placeholder="Your address..." required name="address" id="address" ng-model="deliveryDetails.Street"/>
                                 <span class="error" ng-show="deliveryDetailsSubmitted && deliverDetailsForm.address.$invalid">Required</span>
                             </div>
 
-                            <div class="form-column small-length">
-                                <input ng-class="{'input-error': deliveryDetailsSubmitted && deliverDetailsForm.streetnumber.$invalid}" class="checkout-input" type="text" placeholder="No." name="streetnumber" id="street-number" ng-model="deliveryDetails.Number" required/>
-                                <span class="error" ng-show="deliveryDetailsSubmitted && deliverDetailsForm.streetnumber.$invalid">Required</span>
-                            </div>
+                            
 
 
                         </div>

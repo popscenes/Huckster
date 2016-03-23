@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Enquiry.Messages;
 using Domain.Order.Messages;
 using Domain.Order.Queries;
 using Domain.Shared;
@@ -87,7 +89,7 @@ namespace EmailWebJob
             await SendGridEmail(order.Customer.Email, "Your Huckster Order - Accepted", result);
         }
 
-        public async static void OrderCompleteMessageHandler([QueueTrigger("ordercomplete")] OrderCompleteMessage message, TextWriter log)
+        public static async Task OrderCompleteMessageHandler([QueueTrigger("ordercomplete")] OrderCompleteMessage message, TextWriter log)
         {
             var queryChannel = new SimpleQueryChannel();
             var order =  await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() {AggregateId = message.OrderAggregateRootId});
@@ -101,6 +103,13 @@ namespace EmailWebJob
                 });
 
             await SendGridEmail(order.Customer.Email, "Your Huckster Order - Completed", result);
+        }
+
+        public static async Task EnquiryMessageHandler([QueueTrigger("emailenquirymessage")] EmailEnquiryMessage message, TextWriter log)
+        {
+            var result = Engine.Razor.Run("Enquiry", null, message.Enquiry);
+            var emailaddress = ConfigurationManager.AppSettings["EnquiryEmailTo"];
+            await SendGridEmail(emailaddress, $"New Enquiry - {message.Enquiry.Subject}" , result);
         }
 
         protected static async Task SendGridEmail(string to, string subject, string body)

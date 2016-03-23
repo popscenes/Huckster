@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Customer.Queries;
+using Domain.Enquiry.Quiries;
 using infrastructure.CQRS;
 using infrastructure.Messaging;
 
@@ -41,6 +42,13 @@ namespace Admin.Controllers
             });
 
             return View(customerDetail);
+        }
+
+        public async Task<ActionResult> Enquiry()
+        {
+            var enquiries = await _queryChannel.QueryAsync(new GetEnquiriesQuery());
+
+            return View(enquiries);
         }
     }
 }

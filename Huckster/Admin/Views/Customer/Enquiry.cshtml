@@ -1,0 +1,48 @@
+﻿@model List<Domain.Enquiry.Enquiry>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Enquiries</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Subject
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Message
+        </th>
+    </tr>
+
+    @foreach (var enquiry in Model)
+    {
+        <tr>
+            <td>
+                @enquiry.Name
+            </td>
+            <td>
+                @enquiry.Subject
+            </td>
+            <td>
+                @enquiry.Email
+            </td>
+            <td>
+                @enquiry.Phone
+            </td>
+            <td>
+                @enquiry.Message
+            </td>
+        </tr>
+    }
+</table>

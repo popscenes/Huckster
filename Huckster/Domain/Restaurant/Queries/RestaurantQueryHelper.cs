@@ -17,9 +17,7 @@ namespace Domain.Restaurant.Queries
             var address =
                 context.Query<Address>("Select * from [dbo].[Address] where ParentAggregateId = @ParentAggregateId",
                     new { ParentAggregateId = restaurant.AggregateRootId }).FirstOrDefault();
-            var menus =
-                context.Query<Menu>("Select * from [dbo].[Menu] where ParentAggregateId = @ParentAggregateId",
-                    new { ParentAggregateId = restaurant.AggregateRootId }).ToList();
+            
             var deliverySuburbs =
                 context.Query<DeliverySuburb>(
                     "Select * from [dbo].[DeliverySuburb] where ParentAggregateId = @ParentAggregateId",
@@ -29,6 +27,15 @@ namespace Domain.Restaurant.Queries
                 context.Query<DeliveryHours>(
                     "Select * from [dbo].[DeliveryHours] where ParentAggregateId = @ParentAggregateId",
                     new { ParentAggregateId = restaurant.AggregateRootId }).ToList();
+
+            var menus =
+                context.Query<Menu>("Select * from [dbo].[Menu] where ParentAggregateId = @ParentAggregateId",
+                    new { ParentAggregateId = restaurant.AggregateRootId }).ToList();
+
+            if (!getDeletedMenuItems)
+            {
+                menus = menus.Where(_ => _.Deleted == false).ToList();
+            }
 
             foreach (var menu in menus)
             {

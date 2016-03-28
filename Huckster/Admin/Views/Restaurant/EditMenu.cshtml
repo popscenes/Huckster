@@ -35,6 +35,9 @@
                 <textarea ng-model="currentMenu.Description" class="form-control"></textarea>
             </div>
 
+            <a ng-show="currentMenu.Deleted == false" class="btn btn-danger" ng-click="deleteMenu(currentMenu);">Delete Menu</a>
+            <a ng-show="currentMenu.Deleted == true" class="btn btn-warning" ng-click="unDeleteMenu(currentMenu);">Undelete Menu</a>
+
             <a class="btn btn-primary" ng-click="addMenu();">Add New Menu</a>
         </form>
 

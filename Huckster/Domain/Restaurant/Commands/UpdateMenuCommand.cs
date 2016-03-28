@@ -26,21 +26,21 @@ namespace Domain.Restaurant.Commands
         {
             var dbMenus = context.Query<Menu>("Select * from [dbo].[Menu] where ParentAggregateId = @ParentAggregateId", new { ParentAggregateId = command.Id }).ToList();
 
-            var deleteMenus = dbMenus.Where(_ => !command.Menus.Select(m => m.Id).Contains(_.Id));
+            //var deleteMenus = dbMenus.Where(_ => !command.Menus.Select(m => m.Id).Contains(_.Id));
             var newMenus = command.Menus.Where(_ => !dbMenus.Select(m => m.Id).Contains(_.Id));
             var updatedMenus = command.Menus.Where(_ => dbMenus.Select(m => m.Id).Contains(_.Id));
 
-            foreach (var menu in deleteMenus)
-            {
-                menu.MenuItems = context.Query<MenuItem>("Select * from [dbo].[MenuItem] where MenuId = @MenuId", new { MenuId = menu.Id }).ToList();
-                menu.Deleted = true;
-                foreach (var menuItem in menu.MenuItems)
-                {
-                    menuItem.Deleted = true;
-                    context.Update(menuItem);
-                }
-                context.Update(menu);
-            }
+            //foreach (var menu in deleteMenus)
+            //{
+            //    menu.MenuItems = context.Query<MenuItem>("Select * from [dbo].[MenuItem] where MenuId = @MenuId", new { MenuId = menu.Id }).ToList();
+            //    menu.Deleted = true;
+            //    foreach (var menuItem in menu.MenuItems)
+            //    {
+            //        menuItem.Deleted = true;
+            //        context.Update(menuItem);
+            //    }
+            //    context.Update(menu);
+            //}
 
             foreach (var menu in newMenus)
             {

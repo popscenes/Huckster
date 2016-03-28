@@ -36,6 +36,13 @@
             $scope.currentMenu = newMenu;
         }
 
+        $scope.deleteMenu = function (menuToDelte) {
+            menuToDelte.Deleted = true;
+        }
+
+        $scope.unDeleteMenu = function (menuToDelte) {
+            menuToDelte.Deleted = false;
+        }
 
         $scope.addmenuItem = function() {
             $scope.currentMenu.MenuItems.push({Id: "", MenuId:"", Name:"", MenuGroup:"", Description:"", Price:"", Order:""});

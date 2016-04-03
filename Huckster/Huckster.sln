@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailWebJob", "EmailWebJob\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{B35B27FA-4EF9-45D8-AD30-D2E0D1A250A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantPortal", "RestaurantPortal\RestaurantPortal.csproj", "{8A87EBF2-82DA-43A3-A869-8D5B849139E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{B35B27FA-4EF9-45D8-AD30-D2E0D1A250A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B35B27FA-4EF9-45D8-AD30-D2E0D1A250A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B35B27FA-4EF9-45D8-AD30-D2E0D1A250A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A87EBF2-82DA-43A3-A869-8D5B849139E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A87EBF2-82DA-43A3-A869-8D5B849139E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A87EBF2-82DA-43A3-A869-8D5B849139E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A87EBF2-82DA-43A3-A869-8D5B849139E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

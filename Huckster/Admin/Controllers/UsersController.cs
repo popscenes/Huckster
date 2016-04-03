@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 
 namespace Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         // GET: Users

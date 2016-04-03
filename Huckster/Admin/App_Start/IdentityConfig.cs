@@ -121,7 +121,7 @@ namespace Admin
         }
     }
 
-    // Configure the application sign-in manager which is used in this application.
+    // Configure the application sign-in manager whichClass1.cs is used in this application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

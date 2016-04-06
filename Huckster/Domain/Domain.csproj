@@ -114,6 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant\Commands\AddRestaurantAddressCommand.cs" />
     <Compile Include="Restaurant\Commands\NewRestaurantCommand.cs" />
+    <Compile Include="Restaurant\Commands\SetRestaurantAccessCommand.cs" />
     <Compile Include="Restaurant\Commands\UpdateDeliveryHoursCommand.cs" />
     <Compile Include="Restaurant\Commands\UpdateMenuCommand.cs" />
     <Compile Include="Restaurant\Commands\UpdateRestaurantAddressCommand.cs" />
@@ -122,10 +123,13 @@
     <Compile Include="Restaurant\Commands\UpdateSuburbCommand.cs" />
     <Compile Include="Restaurant\DeliveryHours.cs" />
     <Compile Include="Restaurant\DeliverySuburb.cs" />
+    <Compile Include="Restaurant\Queries\GetRestaurantAccessForUserQuery.cs" />
+    <Compile Include="Restaurant\Queries\GetRestaurantAccessUsersQuery.cs" />
     <Compile Include="Restaurant\Queries\GetRestaurantDetailByIdQuery.cs" />
     <Compile Include="Restaurant\Queries\MasterSuburbSearchQuery.cs" />
     <Compile Include="Restaurant\Queries\Models\RestaurantDetailsModel.cs" />
     <Compile Include="Restaurant\Queries\RestaurantQueryHelper.cs" />
+    <Compile Include="Restaurant\RestaurantAccess.cs" />
     <Compile Include="Shared\Address.cs" />
     <Compile Include="Restaurant\Commands\AddRestaurantCommand.cs" />
     <Compile Include="Restaurant\Menu.cs" />

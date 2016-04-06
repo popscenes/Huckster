@@ -1,0 +1,16 @@
+﻿@model RestaurantPortal.Controllers.UsersController.RestaurantPortalUser
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Assign restaurant Access to User @Model.User.UserName</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(model => model.User.Id)
+    @Html.DropDownList("RestaurantAccessId", ((IEnumerable<SelectListItem>) ViewBag.Restaurants), "Assign Restaurant..")
+
+    <button type="submit">Submit</button>
+}

@@ -5,6 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Domain.Restaurant;
+using Domain.Restaurant.Commands;
+using Domain.Restaurant.Queries;
+using infrastructure.CQRS;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,6 +19,8 @@ namespace RestaurantPortal.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
+        private readonly IQueryChannel _queryChannel;
+        private readonly ICommandDispatcher _commandDispatcher;
         // GET: Users
         private ApplicationUserManager _userManager;
         private RoleManager<IdentityRole> _roleManager;
@@ -58,15 +64,30 @@ namespace RestaurantPortal.Controllers
             }
         }
 
-        public UsersController()
+        public UsersController(IQueryChannel queryChannel, ICommandDispatcher commandDispatcher)
         {
+            _queryChannel = queryChannel;
+            _commandDispatcher = commandDispatcher;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var users = UserManager.Users.ToList();
             ViewBag.Roles = RoleManager.Roles.ToList();
-            return View(users);
+            var restaurantAccess = await _queryChannel.QueryAsync(new GetRestaurantAccessUsersQuery());
+            var viewModel = users.Select(_ => new RestaurantPortalUser()
+            {
+                User = _,
+                RestaurantAccess = restaurantAccess.Where(ra => ra.UserId == _.Id).ToList()
+            });
+
+            return View(viewModel);
+        }
+
+        public class RestaurantPortalUser
+        {
+            public ApplicationUser User { get; set; }
+            public List<RestaurantAccess> RestaurantAccess { get; set; }
         }
 
         [HttpPost]
@@ -156,7 +177,7 @@ namespace RestaurantPortal.Controllers
             var user = new ApplicationUser();
             user.UserName = userEditModel.UserName;
             user.Email = userEditModel.Email;
-            await UserManager.CreateAsync(user, userEditModel.Password);
+            var identityResult = await UserManager.CreateAsync(user, userEditModel.Password);
 
             if (userEditModel.Roles == null)
                 userEditModel.Roles = new List<string>();
@@ -168,6 +189,43 @@ namespace RestaurantPortal.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<ActionResult> RestaurantAccess(string id, Guid restaurantAccessId)
+        {
+
+            await _commandDispatcher.DispatchAsync(command: new SetRestaurantAccessCommand()
+            {
+                UserId = id,
+                restaurantAggregateRoodId = restaurantAccessId
+            });
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> RestaurantAccess(string id)
+        {
+            var user = UserManager.Users.FirstOrDefault(_ => _.Id == id);
+            var restaurantAccess = await _queryChannel.QueryAsync(new GetRestaurantAccessForUserQuery() {UserId = user.Id});
+
+             var restaurants = await _queryChannel.QueryAsync(new GetRestaurantsQuery());
+            ViewBag.Restaurants = restaurants.Select(_ => new SelectListItem()
+            {
+                Text = _.Name,
+                Value = _.AggregateRootId.ToString(),
+                Selected = restaurantAccess.Select(ra => ra.RestaurantAggrgateRootId).Contains(_.AggregateRootId)
+            });
+
+            var restaurantPortalUser = new RestaurantPortalUser()
+            {
+                User = user,
+                RestaurantAccess = restaurantAccess
+            };
+
+            return View(restaurantPortalUser);
+        }
+
+        
     }
 
     public class UserEditViewModel

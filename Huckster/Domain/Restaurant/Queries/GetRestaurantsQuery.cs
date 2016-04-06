@@ -20,7 +20,7 @@ namespace Domain.Restaurant.Queries
 
     public class GetRestaurantsQueryHandler : AdoQueryHandler<GetRestaurantsQuery, IEnumerable<Restaurant>>
     {
-        protected async override Task<IEnumerable<Restaurant>> HandleSqlCommandAsync(IDbConnection context, GetRestaurantsQuery argument)
+        protected override async Task<IEnumerable<Restaurant>> HandleSqlCommandAsync(IDbConnection context, GetRestaurantsQuery argument)
         {
             var restaurants = context.GetList<Restaurant>();
             return restaurants;

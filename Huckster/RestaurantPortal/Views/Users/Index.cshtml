@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity.EntityFramework
-@model System.Collections.Generic.List<RestaurantPortal.Models.ApplicationUser>
+@model IEnumerable<RestaurantPortal.Controllers.UsersController.RestaurantPortalUser>
 
 @{
     ViewBag.Title = "title";
@@ -20,26 +20,35 @@
         <td>
             Roles
         </td>
+        <td>
+            Restaurant
+        </td>
         <td></td>
     </tr>
     @foreach (var user in Model)
     {
         <tr>
             <td>
-                @user.UserName
+                @user.User.UserName
             </td>
             <td>
-                @user.Email
+                @user.User.Email
             </td>
             <td>
                 @{
-                    var roleNames = ((List<IdentityRole>)ViewBag.Roles).Where(_ => user.Roles.Select(r => r.RoleId).Contains(_.Id)).Select(_ => _.Name);
+                    var roleNames = ((List<IdentityRole>) ViewBag.Roles).Where(_ => user.User.Roles.Select(r => r.RoleId).Contains(_.Id)).Select(_ => _.Name);
                 }
                 @String.Join(", ", roleNames)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = user.Id }) |
+                @if (user.RestaurantAccess != null && user.RestaurantAccess.Any())
+                {
+                    @user.RestaurantAccess.FirstOrDefault().Name
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = user.User.Id }) | @Html.ActionLink("Restaurant Access", "RestaurantAccess", new { id = user.User.Id })
             </td>
         </tr>
-                    }
+    }
 </table>

@@ -107,6 +107,7 @@
     <Compile Include="Order\Queries\GetOrderAdminDetailByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderDetailByAggregateId.cs" />
+    <Compile Include="Order\Queries\GetOrderDetailsByUserAndStatusQuery.cs" />
     <Compile Include="Order\Queries\GetOrderDetailsByStatusQuery.cs" />
     <Compile Include="Order\Queries\Models\OrderDetailsViewModel.cs" />
     <Compile Include="Order\Queries\OrderQueryHelper.cs" />

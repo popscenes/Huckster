@@ -23,8 +23,23 @@ namespace RestaurantPortal
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angularJs").Include(
+                "~/Scripts/lodash.js",
+                "~/Scripts/angular.js",
+                "~/Scripts/ngRoute.js",
+                "~/Scripts/restangular.js",
+                "~/Scripts/angular-drag-and-drop-lists.js",
+                "~/Scripts/ui-bootstrap-custom-0.14.3.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/core")
+           .Include("~/Scripts/ngApp/hucksterPortalApp.js",
+               "~/Scripts/ngApp/huckster.OrdersManager.js"
+               ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/jquery.timepicker.css",
                       "~/Content/site.css"));
         }
     }

@@ -27,7 +27,7 @@ namespace RestaurantPortal.Controllers
         public async Task<IHttpActionResult> GetOrders(string orderStatus = "PaymentSucccessful")
         {
             var userId = User.Identity.GetUserId();
-            var orders = await _queryChannel.QueryAsync(new GetOrderDetailsByStatusQuery() { Status = orderStatus, DeliveryUserId = "" }) ??
+            var orders = await _queryChannel.QueryAsync(new GetOrderDetailsByUserStatusQuery() { Status = orderStatus, UserId = userId }) ??
                          new List<OrderAdminDetailsViewModel>();
 
             return Ok(orders);

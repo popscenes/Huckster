@@ -8,6 +8,94 @@
 <h2>Restaurant Orders</h2>
 <div class="container" ng-app="hucksterPortalApp">
     <div ng-controller="ordersManagerController">
-    {{test}}
+        <div class="">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group alert alert-sm alert-info">
+                        <a class="btn btn-default" href="" ng-click="getOrders('PaymentSucccessful')">Awaiting Action</a>
+                        <a class="btn btn-default" href="" ng-click="getOrders('RestaurantAccepted')">Accepted Orders</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+
+                <tr>
+                    <th>
+                        Restaurant
+                    </th>
+                    <th>
+                        Requested Delivery Time
+                    </th>
+                    <th>
+                        PickUp Time
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                    <tr ng-repeat="order in orders">
+                        <td>
+                            {{order.Restaurant.Name}}
+                        </td>
+                        <td>
+                            {{order.Order.DeliveryTime | date : 'short'}}
+                        </td>
+                        <td>
+                            {{order.Order.PickUpTime| date : 'short'}}
+                        </td>
+
+                        <td>
+                            ${{order.Order.OrderTotal}}
+                        </td>
+                        <td>
+                            <a class="btn btn-default btn-primary" href="" ng-click="orderDetails(order)">Detail</a>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+
+        <div class="modal" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Requested Delivery Tiime - {{currentOrder.Order.DeliveryTime| date : 'short'}}
+                            <span ng-if="currentOrder.Order.Status=='PaymentSucccessful'" class="label label-warning pull-right">Awaiting Action</span>    
+                            <span ng-if="currentOrder.Order.Status=='RestaurantAccepted'" class="label label-success pull-right"">Accepted</span>    
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" ng-repeat="orderItem in currentOrder.Order.OrderItems">
+                            <div class="col-md-3">{{orderItem.Quantity}} x</div>
+                            <div class="col-md-6">{{orderItem.Name}}</div>
+                            <div class="col-md-3">${{orderItem.Price * orderItem.Quantity}}</div>
+                        </div>
+
+                        <hr />
+                        <div class="row">
+                            {{currentOrder.Order.Instructions}}
+                        </div>
+                    </div>
+
+                    <div ng-if="currentOrder.Order.Status=='PaymentSucccessful'">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <uib-timepicker ng-model="pickUpTime" show-meridian="true"></uib-timepicker>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success">Accept Order</button>
+                            </div>
+                        </div>        
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <button type="button" class="btn btn-primary">Print Docket</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

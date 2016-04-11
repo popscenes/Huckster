@@ -9,22 +9,37 @@
     }]);
 
     module.controller('ordersManagerController', ordersManager);
-    ordersManager.$inject = ['$scope', 'Restangular', '$window'];
+    ordersManager.$inject = ['$scope', 'Restangular', '$window', '$filter'];
 
 
-    function ordersManager($scope, Restangular, $window) {
+    function ordersManager($scope, Restangular, $window, $filter) {
         $scope.test = "test";
 
         $scope.orders = [];
         $scope.currentOrder = {};
         $scope.pickUpTime = null;
+        $scope.currentStatus = 'PaymentSucccessful'
 
         $scope.getOrders = function (status) {
+            $scope.currentStatus = status;
             Restangular.all('').getList({ orderStatus: status }).then(function (result) {
                 $scope.orders = result;
             }, function (error) {
                 alert(error);
             });
+
+            $scope.restaurantAccept = function()
+            {
+                var pickUpTime = $filter('date')($scope.pickUpTime, 'H:mm:ss');
+                Restangular.all('restaurantOrderAccept').post({ OrderId: $scope.currentOrder.Order.AggregateRootId, PickUpTime: pickUpTime }).then(function (result) {
+                    $('#orderDetailsModal').modal('toggle');
+                    $scope.currentOrder = [];
+                    $scope.pickUpTime = null;
+                    $scope.getOrders($scope.currentStatus);
+                },
+                function (error) {
+                });
+            }
         }
 
         $scope.orderDetails = function(order)

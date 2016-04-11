@@ -112,6 +112,28 @@ namespace EmailWebJob
             await SendGridEmail(emailaddress, $"New Enquiry - {message.Enquiry.Subject}" , result);
         }
 
+        public static async Task RestaurantOrderAcceptMessageHandler([QueueTrigger("restaurantaccept")] RestaurantOrderAcceptMessage message, TextWriter log)
+        {
+            var queryChannel = new SimpleQueryChannel();
+            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+
+            var emailaddress = ConfigurationManager.AppSettings["EnquiryEmailTo"];
+            var adminUrl = ConfigurationManager.AppSettings["AdminUrl"];
+
+            var result =
+                Engine.Razor.Run("RestaurantAcceptedOrder", null, new
+                {
+                    Time = order.Order.DeliveryTime.ToString(),
+                    Restaurant = order.Restaurant.Name,
+                    RestaurantAddress = order.RestaurantAddress.ToString(),
+                    Address = order.DeliverAddress.ToString(),
+                    PickupTime = order.Order.PickUpTime.ToString(),
+                    OrderUrl = $"{adminUrl}Orders/Detail?orderId={order.Order.AggregateRootId}"
+                });
+
+            await SendGridEmail(emailaddress, "Order Accepted By Restaurant", result);
+        }
+
         protected static async Task SendGridEmail(string to, string subject, string body)
         {
             var mail = new SendGridMessage { From = new MailAddress("no-reply@huckster.com.aum") };

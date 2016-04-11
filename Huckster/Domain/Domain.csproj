@@ -90,12 +90,14 @@
     <Compile Include="Order\Commands\InsertOrderAuditCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentFailCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentSuccessCommand.cs" />
+    <Compile Include="Order\Commands\RestaurantOrderAcceptCommand.cs" />
     <Compile Include="Order\Commands\SetDeliveryDetailsCommand.cs" />
     <Compile Include="Order\Commands\SetOrderStatusCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderAddressCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderCustomer.cs" />
     <Compile Include="Order\Commands\UpdateOrderCustomerAndAddress.cs" />
+    <Compile Include="Order\Messages\RestaurantAcceptOrderMessage.cs" />
     <Compile Include="Order\Messages\OrderAssignedMessage.cs" />
     <Compile Include="Order\Messages\OrderPickUpMessage.cs" />
     <Compile Include="Order\Messages\OrderDeclinedMessage.cs" />

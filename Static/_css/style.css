@@ -18,6 +18,12 @@
 	.clearfix {
 		clear: both;	
 	}
+	footer {
+		background-color: #17182A;
+		min-height: 200px;	
+		color: #fff;
+		border-top: 3px solid #00D9B7;
+	}
 	/*** LINKS ***/
 	a, a:visited, a:focus {
 		text-decoration: none;
@@ -56,6 +62,24 @@
 	.checkout-h5 {
 		font-family: glober_regular, helvetica, sans-serif;	
 		text-align: center;
+	}
+	footer h5 {
+		margin: 0;
+		font-family: glober_regular, helvetica sans-serif;
+		font-weight: normal;	
+		text-transform: uppercase;
+		font-size: 1em;
+		letter-spacing: 0.05em;
+	}
+	footer p .fa {
+		font-size: 3em;
+		margin-right: 3px;
+	}
+	footer p .fa:hover {
+		color: #00D9B7;
+		-moz-transition: color 0.5s linear;	
+		-webkit-transition: color 0.5s linear;	
+		transition: color 0.5s linear;
 	}
 	/*** HEADER ***/
 	header {
@@ -124,7 +148,41 @@
 		padding-top: 1em;
 		text-transform: uppercase;
 	}
-	
+	/*** FOOTER ***/
+	footer .footer-cell {
+		margin-top: 1em;
+	}
+	footer .footer-cell a {
+		display: block;
+		color: #fff;
+		font-family: globerlight, helvetica, sans-serif;	
+	}
+	footer .footer-cell a:hover {
+		color: #00D9B7;	
+		-moz-transition: color 0.5s linear;
+		-webkit-transition: color 0.5s linear;
+		transition: color 0.5s linear;
+	}
+	footer p .social-link {
+		display: inline-block;	
+	}
+	footer p .social-link:hover {
+		color: #00D9B7;	
+	}
+	#footer-newsletter-subscribe input {
+		background: transparent;
+		border: 2px solid #fff;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		height: 2.2em;
+		width: 65%;
+		margin-top: 19px;	
+		padding-left: 0.5em;
+	}
+	#footer-information {
+		
+	}
 	/*** HOMEPAGE ***/
 	.front-image {
 		background-image: url(../_images/_backgrounds/home.jpg);
@@ -218,6 +276,9 @@
 		margin: 0 auto;	
 		padding: 20px 0 20px 0;
 		text-align: center;
+	}
+	.footer-content {
+		margin: 0 auto;	
 	}
 	.main-bar {
 		background: url(../_images/_backgrounds/home.jpg);
@@ -1341,6 +1402,10 @@
 		width: 100%;	
 	}
 	
+	/*** FOOTER ***/
+	#footer-newsletter-subscribe input {
+		max-width: 50%;	
+	}
 }
 
 
@@ -1387,6 +1452,10 @@
 		float: left;
 		text-align: left;
 		
+	}
+	.footer-content {
+		margin: 0 auto;
+		float: none;
 	}
 	.sub-content {
 		padding: 0;
@@ -2137,7 +2206,14 @@
 		min-height: 500px;
 		margin-bottom: 4em;	
 	}
-	
+/*** FOOTER ***/
+.footer-cell {
+	float: left;
+	width: 25%;
+}
+#footer-newsletter-subscribe input {
+	width: 85%;
+}
 /*=== LOADERS ===*/
 #rest-order-loader {
 	margin-top: 0;	

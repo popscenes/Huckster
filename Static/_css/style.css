@@ -23,17 +23,32 @@
 		min-height: 200px;	
 		color: #fff;
 		border-top: 3px solid #00D9B7;
+		clear: both;
+		position: relative;
+		z-index: 999;
 	}
 	/*** LINKS ***/
 	a, a:visited, a:focus {
 		text-decoration: none;
 		color: #222;
 	}
-	 a:hover, a:hover > *, a:hover > * > *, a:hover > * > * > * {
+	/* a:hover, a:hover > *, a:hover > * > *, a:hover > * > * > * {
 		text-decoration: none;	 
 		color: #222;
+	 }*/
+	 .body-link {
+		text-decoration: none;	 
+		color: #222;
+		-moz-transition: color 0.3s linear;
+		-webkit-transition: color 0.3s linear;
+		transition: color 0.3s linear;
 	 }
-	 
+	 .body-link:hover {
+		color: #00D9B7;	 
+		-moz-transition: color 0.3s linear;
+		-webkit-transition: color 0.3s linear;
+		transition: color 0.3s linear;
+	 }
 	.mobile-lines {
 		width: 100%;
 		border-top: 1px solid #bbb;
@@ -80,6 +95,10 @@
 		-moz-transition: color 0.5s linear;	
 		-webkit-transition: color 0.5s linear;	
 		transition: color 0.5s linear;
+	}
+	.pp-h4 {
+		text-transform: uppercase;	
+		font-family: 'glober_regular', helvetica, sans-serif;
 	}
 	/*** HEADER ***/
 	header {
@@ -156,6 +175,10 @@
 		display: block;
 		color: #fff;
 		font-family: globerlight, helvetica, sans-serif;	
+		
+		-moz-transition: color 0.5s linear;
+		-webkit-transition: color 0.5s linear;
+		transition: color 0.5s linear;
 	}
 	footer .footer-cell a:hover {
 		color: #00D9B7;	
@@ -165,9 +188,16 @@
 	}
 	footer p .social-link {
 		display: inline-block;	
+		color: #fff;
 	}
 	footer p .social-link:hover {
 		color: #00D9B7;	
+	}
+	footer p .social-link:hover > * > *, footer p .social-link:hover > * > * > * {
+		color: #00D9B7;	
+	}
+	footer p .social-link:focus {
+		color: #00D9B7;
 	}
 	#footer-newsletter-subscribe input {
 		background: transparent;
@@ -183,6 +213,11 @@
 	#footer-information {
 		
 	}
+	/*** SIDEBAR ***/
+	.out-content ul li {
+		list-style: none;
+	}
+	
 	/*** HOMEPAGE ***/
 	.front-image {
 		background-image: url(../_images/_backgrounds/home.jpg);
@@ -323,6 +358,7 @@
 		display: block;
 		position: relative;	
 		border-top: 1px solid #bbb;
+		z-index: 99;
 	}
 	.main-content-info {
 		padding: 25px;	
@@ -1473,6 +1509,7 @@
 	}
 	.main-content-info {
 		padding: 25px;	
+		min-height: 480px;
 	}
 	.out-content {
 		display: block;

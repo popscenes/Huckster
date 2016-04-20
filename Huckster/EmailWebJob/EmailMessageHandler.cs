@@ -91,18 +91,27 @@ namespace EmailWebJob
 
         public static async Task OrderCompleteMessageHandler([QueueTrigger("ordercomplete")] OrderCompleteMessage message, TextWriter log)
         {
-            var queryChannel = new SimpleQueryChannel();
-            var order =  await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() {AggregateId = message.OrderAggregateRootId});
+            try
+            {
+                var queryChannel = new SimpleQueryChannel();
+                var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
 
-            var result =
-                Engine.Razor.Run("OrderComplete", null, new
-                {
-                    Time = order.Order.DeliveryTime.ToString(),
-                    Restaurant = order.Restaurant.Name,
-                    Address = ""
-                });
+                var result =
+                    Engine.Razor.Run("OrderComplete", null, new
+                    {
+                        Time = order.Order.DeliveryTime.ToString(),
+                        Restaurant = order.Restaurant.Name,
+                        Address = ""
+                    });
 
-            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Completed", result);
+                await SendGridEmail(order.Customer.Email, "Your Huckster Order - Completed", result);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            
         }
 
         public static async Task EnquiryMessageHandler([QueueTrigger("emailenquirymessage")] EmailEnquiryMessage message, TextWriter log)
@@ -114,24 +123,33 @@ namespace EmailWebJob
 
         public static async Task RestaurantOrderAcceptMessageHandler([QueueTrigger("restaurantaccept")] RestaurantOrderAcceptMessage message, TextWriter log)
         {
-            var queryChannel = new SimpleQueryChannel();
-            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+            try
+            {
+                var queryChannel = new SimpleQueryChannel();
+                var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
 
-            var emailaddress = ConfigurationManager.AppSettings["EnquiryEmailTo"];
-            var adminUrl = ConfigurationManager.AppSettings["AdminUrl"];
+                var emailaddress = ConfigurationManager.AppSettings["EnquiryEmailTo"];
+                var adminUrl = ConfigurationManager.AppSettings["AdminUrl"];
 
-            var result =
-                Engine.Razor.Run("RestaurantAcceptedOrder", null, new
-                {
-                    Time = order.Order.DeliveryTime.ToString(),
-                    Restaurant = order.Restaurant.Name,
-                    RestaurantAddress = order.RestaurantAddress.ToString(),
-                    Address = order.DeliverAddress.ToString(),
-                    PickupTime = order.Order.PickUpTime.ToString(),
-                    OrderUrl = $"{adminUrl}Orders/Detail?orderId={order.Order.AggregateRootId}"
-                });
+                var result =
+                    Engine.Razor.Run("RestaurantAcceptedOrder", null, new
+                    {
+                        Time = order.Order.DeliveryTime.ToString(),
+                        Restaurant = order.Restaurant.Name,
+                        RestaurantAddress = order.RestaurantAddress.ToString(),
+                        Address = order.DeliverAddress.ToString(),
+                        PickupTime = order.Order.PickUpTime.ToString(),
+                        OrderUrl = $"{adminUrl}Orders/Detail?orderId={order.Order.AggregateRootId}"
+                    });
 
-            await SendGridEmail(emailaddress, "Order Accepted By Restaurant", result);
+                await SendGridEmail(emailaddress, "Order Accepted By Restaurant", result);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            
         }
 
         protected static async Task SendGridEmail(string to, string subject, string body)

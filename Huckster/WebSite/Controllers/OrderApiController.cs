@@ -22,6 +22,7 @@ using Domain.Shared;
 using infrastructure.CQRS;
 using Omu.ValueInjecter;
 using MenuItem = Domain.Restaurant.MenuItem;
+using Application.Printer;
 
 namespace WebSite.Controllers
 {
@@ -31,6 +32,7 @@ namespace WebSite.Controllers
         private readonly IQueryChannel _queryChannel;
         private readonly StripeService _stripeService;
         private readonly PaypalService _paypalService;
+        
 
         public OrderApiController(ICommandDispatcher commandDispatcher, IQueryChannel queryChannel, StripeService stripeService, PaypalService paypalService)
         {
@@ -194,6 +196,10 @@ namespace WebSite.Controllers
             var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = paymentModel.OrderId });
             var payment = await _stripeService.CreateCharge(paymentModel.PaymentToken, order.OrderTotal, "Huckster Order");
             await _commandDispatcher.DispatchAsync(new OrderPaymentSuccessCommand() {Order = order, Payment = payment});
+
+            var orderPrinetRequest = PrinterHelper.OrderToPrintRequestXML(order);
+            await _commandDispatcher.DispatchAsync(new AddToPrintQueueCommand() { Order = order, OrderPrinetRequest = orderPrinetRequest });
+
             return Ok(order.AggregateRootId);
         }
 

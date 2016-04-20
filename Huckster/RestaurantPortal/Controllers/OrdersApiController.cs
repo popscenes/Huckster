@@ -12,6 +12,12 @@ using Microsoft.AspNet.Identity;
 using infrastructure.Messaging;
 using Domain.Order.Messages;
 using Domain.Order.Commands;
+using System.Text;
+using Domain.Order.Printer;
+using System.Xml.Serialization;
+using System.IO;
+using Domain.Order;
+using Domain.Order.Quries;
 
 namespace RestaurantPortal.Controllers
 {
@@ -27,6 +33,43 @@ namespace RestaurantPortal.Controllers
             _queryChannel = queryChannel;
             _commandDispatcher = commandDispatcher;
             _messageBus = messageBus;
+        }
+
+        [HttpGet]
+        [Route("api/orders/printqueue")]
+        [OverrideAuthorization]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> GetOrderPrintQueue(string id, string password)
+        {
+            return Ok();
+        }
+
+        public class MyParameters
+        {
+            public string ConnectionType { get; set; }
+            public string ID { get; set; }
+        }
+        [HttpPost]
+        [Route("api/orders/printqueue")]
+        [OverrideAuthorization]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> GetOrderPrintQueuePost([FromBody]MyParameters paramsaters)
+        {
+            var res = Request.CreateResponse(HttpStatusCode.OK);
+            var getRequest = paramsaters?.ConnectionType?.Equals("GetRequest", StringComparison.CurrentCultureIgnoreCase);
+            var setResponse = paramsaters?.ConnectionType?.Equals("SetResponse", StringComparison.CurrentCultureIgnoreCase);
+             
+            if (getRequest.HasValue && getRequest.Value)
+            {
+                var printItem = await _queryChannel.QueryAsync(new GetNextPrintItemForRestaurant() { RestaurantId = paramsaters.ID });
+                res.Content = new StringContent(printItem.PrintRequestXML, Encoding.UTF8, "text/xml");
+            }
+            else if (setResponse.HasValue && setResponse.Value)
+            {
+                await _commandDispatcher.DispatchAsync(new SetNextPrintItemDone() { RestaurantId = paramsaters.ID });
+            }
+
+            return res;
         }
 
         [HttpGet]
@@ -75,4 +118,6 @@ namespace RestaurantPortal.Controllers
 
 
     }
+
+
 }

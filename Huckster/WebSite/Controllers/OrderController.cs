@@ -18,6 +18,7 @@ using infrastructure.CQRS;
 using infrastructure.Messaging;
 using infrastructure.Messaging.Azure;
 using WebSite.Models;
+using Application.Printer;
 
 namespace WebSite.Controllers
 {
@@ -129,6 +130,10 @@ namespace WebSite.Controllers
             var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = aggregateid });
             var paymentEvent = await _paypalService.ExecutePayment(paymentId, PayerID);
             await _commandDispatcher.DispatchAsync(new OrderPaymentSuccessCommand() { Order = order, Payment = paymentEvent });
+
+            var orderPrinetRequest = PrinterHelper.OrderToPrintRequestXML(order);
+            await _commandDispatcher.DispatchAsync(new AddToPrintQueueCommand() { Order = order, OrderPrinetRequest = orderPrinetRequest });
+
             return RedirectToAction("Complete");
         }
 

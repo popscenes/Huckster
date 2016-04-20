@@ -128,6 +128,7 @@
     <Compile Include="Payment\PaypalService.cs" />
     <Compile Include="Payment\RefundOrderCommand.cs" />
     <Compile Include="Payment\StripeService.cs" />
+    <Compile Include="Printer\PrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

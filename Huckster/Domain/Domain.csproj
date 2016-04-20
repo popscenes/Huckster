@@ -87,11 +87,13 @@
     <Compile Include="Enquiry\Enquiry.cs" />
     <Compile Include="Enquiry\Messages\EmailEnquiryMessage.cs" />
     <Compile Include="Enquiry\Quiries\GetEnquiriesQuery.cs" />
+    <Compile Include="Order\Commands\AddToPrintQueue.cs" />
     <Compile Include="Order\Commands\InsertOrderAuditCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentFailCommand.cs" />
     <Compile Include="Order\Commands\OrderPaymentSuccessCommand.cs" />
     <Compile Include="Order\Commands\RestaurantOrderAcceptCommand.cs" />
     <Compile Include="Order\Commands\SetDeliveryDetailsCommand.cs" />
+    <Compile Include="Order\Commands\SetNextPrintItemDone.cs" />
     <Compile Include="Order\Commands\SetOrderStatusCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderAddressCommand.cs" />
     <Compile Include="Order\Commands\UpdateOrderCommand.cs" />
@@ -106,6 +108,8 @@
     <Compile Include="Order\Messages\OrderCompleteMessage.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\Commands\PlaceOrderCommand.cs" />
+    <Compile Include="Order\PrintQueue.cs" />
+    <Compile Include="Order\Queries\GetNextPrintItemForRestaurant.cs" />
     <Compile Include="Order\Queries\GetOrderAdminDetailByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderByAggregateId.cs" />
     <Compile Include="Order\Queries\GetOrderDetailByAggregateId.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Order\Queries\GetOrderDetailsByStatusQuery.cs" />
     <Compile Include="Order\Queries\Models\OrderDetailsViewModel.cs" />
     <Compile Include="Order\Queries\OrderQueryHelper.cs" />
+    <Compile Include="Order\epos-print-5_0_0.cs" />
     <Compile Include="Payment\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant\Commands\AddRestaurantAddressCommand.cs" />
@@ -148,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Order\Schema\epos-print-5.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

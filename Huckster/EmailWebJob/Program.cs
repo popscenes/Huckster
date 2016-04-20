@@ -56,7 +56,7 @@ namespace EmailWebJob
             CompileRazorView("EmailTemplates", "OrderPickup.cshtml", "OrderPickUp");
             CompileRazorView("EmailTemplates", "OrderAssigned.cshtml", "OrderAssigned");
             CompileRazorView("EmailTemplates", "Enquiry.cshtml", "Enquiry");
-            CompileRazorView("RestaurantAcceptedOrder", "RestaurantAcceptedOrder.cshtml", "Enquiry");
+            CompileRazorView("EmailTemplates", "RestaurantAcceptedOrder.cshtml", "RestaurantAcceptedOrder");
             
 
             CompileRazorView("EmailTemplates", "Layout.cshtml", "Layout.cshtml");

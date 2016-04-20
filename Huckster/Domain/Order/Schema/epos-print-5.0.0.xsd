@@ -1,0 +1,1666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+ePOS-Print XML (Printer)
+
+Version 5.0.0
+
+Copyright (C) SEIKO EPSON CORPORATION 2011. All rights reserved.
+
+-->
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.epson-pos.com/schemas/2011/03/epos-print" xmlns:tns="http://www.epson-pos.com/schemas/2011/03/epos-print" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Font -->
+  <xs:simpleType name="font">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="font_a">
+        <xs:annotation>
+          <xs:documentation>Font A</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="font_b">
+        <xs:annotation>
+          <xs:documentation>Font B</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="font_c">
+        <xs:annotation>
+          <xs:documentation>Font C</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="font_d">
+        <xs:annotation>
+          <xs:documentation>Font D (in Ver.3.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="font_e">
+        <xs:annotation>
+          <xs:documentation>Font E (in Ver.3.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="special_a">
+        <xs:annotation>
+          <xs:documentation>Special font A</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="special_b">
+        <xs:annotation>
+          <xs:documentation>Special font B</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Alignment -->
+  <xs:simpleType name="align">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="left">
+        <xs:annotation>
+          <xs:documentation>Alignment to the left</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="center">
+        <xs:annotation>
+          <xs:documentation>Alignment to the center</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="right">
+        <xs:annotation>
+          <xs:documentation>Alignment to the right</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Color -->
+  <xs:simpleType name="color">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none">
+        <xs:annotation>
+          <xs:documentation>Characters are not printed</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="color_1">
+        <xs:annotation>
+          <xs:documentation>First color</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="color_2">
+        <xs:annotation>
+          <xs:documentation>Second color</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="color_3">
+        <xs:annotation>
+          <xs:documentation>Third color</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="color_4">
+        <xs:annotation>
+          <xs:documentation>Fourth color</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Feed Position -->
+  <xs:simpleType name="feed-pos">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="peeling">
+        <xs:annotation>
+          <xs:documentation>Paper feed to the peeling position</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="cutting">
+        <xs:annotation>
+          <xs:documentation>Paper feed to the cutting position</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="current_tof">
+        <xs:annotation>
+          <xs:documentation>Paper feed to the head position of current label</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="next_tof">
+        <xs:annotation>
+          <xs:documentation>Paper feed to the head position of next label</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Image Mode -->
+  <xs:simpleType name="image-mode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="mono">
+        <xs:annotation>
+          <xs:documentation>Monochrome (two-tone)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gray16">
+        <xs:annotation>
+          <xs:documentation>Multiple tones (16-tone)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Bar Code Type -->
+  <xs:simpleType name="barcode-type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="upc_a">
+        <xs:annotation>
+          <xs:documentation>UPC-A</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="upc_e">
+        <xs:annotation>
+          <xs:documentation>UPC-E</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ean13">
+        <xs:annotation>
+          <xs:documentation>EAN13</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="jan13">
+        <xs:annotation>
+          <xs:documentation>JAN13</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ean8">
+        <xs:annotation>
+          <xs:documentation>EAN8</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="jan8">
+        <xs:annotation>
+          <xs:documentation>JAN8</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="code39">
+        <xs:annotation>
+          <xs:documentation>CODE39</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="itf">
+        <xs:annotation>
+          <xs:documentation>ITF</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="codabar">
+        <xs:annotation>
+          <xs:documentation>CODABAR</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="code93">
+        <xs:annotation>
+          <xs:documentation>CODE93</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="code128">
+        <xs:annotation>
+          <xs:documentation>CODE128</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_128">
+        <xs:annotation>
+          <xs:documentation>GS1-128</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_omnidirectional">
+        <xs:annotation>
+          <xs:documentation>GS1 DataBar Omnidirectional</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_truncated">
+        <xs:annotation>
+          <xs:documentation>GS1 DataBar Truncated</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_limited">
+        <xs:annotation>
+          <xs:documentation>GS1 DataBar Limited</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_expanded">
+        <xs:annotation>
+          <xs:documentation>GS1 Databar Expanded</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Bar Code HRI Position -->
+  <xs:simpleType name="barcode-hri">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none">
+        <xs:annotation>
+          <xs:documentation>HRI not printed</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="above">
+        <xs:annotation>
+          <xs:documentation>Above the bar code</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="below">
+        <xs:annotation>
+          <xs:documentation>Below the bar code</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="both">
+        <xs:annotation>
+          <xs:documentation>Both above and below the bar code</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- 2-D Symbol Type -->
+  <xs:simpleType name="symbol-type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pdf417_standard">
+        <xs:annotation>
+          <xs:documentation>Standard PDF417</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pdf417_truncated">
+        <xs:annotation>
+          <xs:documentation>Truncated PDF417</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="qrcode_model_1">
+        <xs:annotation>
+          <xs:documentation>QR Code Model 1</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="qrcode_model_2">
+        <xs:annotation>
+          <xs:documentation>QR Code Model 2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="qrcode_micro">
+        <xs:annotation>
+          <xs:documentation>Micro QR Code (in Ver.3.3 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maxicode_mode_2">
+        <xs:annotation>
+          <xs:documentation>MaxiCode Mode 2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maxicode_mode_3">
+        <xs:annotation>
+          <xs:documentation>MaxiCode Mode 3</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maxicode_mode_4">
+        <xs:annotation>
+          <xs:documentation>MaxiCode Mode 4</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maxicode_mode_5">
+        <xs:annotation>
+          <xs:documentation>MaxiCode Mode 5</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maxicode_mode_6">
+        <xs:annotation>
+          <xs:documentation>MaxiCode Mode 6</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_stacked">
+        <xs:annotation>
+          <xs:documentation>GS1 DataBar Stacked</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_stacked_omnidirectional">
+        <xs:annotation>
+          <xs:documentation>GS1 DataBar Stacked Omnidirectional</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gs1_databar_expanded_stacked">
+        <xs:annotation>
+          <xs:documentation>GS1 DataBar Expanded Stacked</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="azteccode_fullrange">
+        <xs:annotation>
+          <xs:documentation>Aztec Code Full-Range Mode (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="azteccode_compact">
+        <xs:annotation>
+          <xs:documentation>Aztec Code Compact Mode (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="datamatrix_square">
+        <xs:annotation>
+          <xs:documentation>DataMatrix ECC200 square (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="datamatrix_rectangle_8">
+        <xs:annotation>
+          <xs:documentation>DataMatrix ECC200 rectangle, 8 lines (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="datamatrix_rectangle_12">
+        <xs:annotation>
+          <xs:documentation>DataMatrix ECC200 rectangle, 12 lines (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="datamatrix_rectangle_16">
+        <xs:annotation>
+          <xs:documentation>DataMatrix ECC200 rectangle, 16 lines (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- 2-D Symbol Error Correction Level -->
+  <xs:simpleType name="symbol-level">
+    <xs:union memberTypes="tns:symbol-level-enum xs:unsignedByte">
+      <xs:annotation>
+        <xs:documentation>Aztec Code error correction level (in Ver.2.2 and later)</xs:documentation>
+      </xs:annotation>
+    </xs:union>
+  </xs:simpleType>
+
+  <xs:simpleType name="symbol-level-enum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="level_0">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 0</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_1">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 1</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_2">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 2</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_3">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 3</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_4">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 4</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_5">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 5</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_6">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 6</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_7">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 7</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_8">
+        <xs:annotation>
+          <xs:documentation>PDF417 error correction level 8</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_l">
+        <xs:annotation>
+          <xs:documentation>QR Code error correction level L</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_m">
+        <xs:annotation>
+          <xs:documentation>QR Code error correction level M</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_q">
+        <xs:annotation>
+          <xs:documentation>QR Code error correction level Q</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="level_h">
+        <xs:annotation>
+          <xs:documentation>QR Code error correction level H</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="default">
+        <xs:annotation>
+          <xs:documentation>Default level</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Line Style -->
+  <xs:simpleType name="line-style">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="thin">
+        <xs:annotation>
+          <xs:documentation>Solid line: Thin</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="medium">
+        <xs:annotation>
+          <xs:documentation>Solid line: Medium</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="thick">
+        <xs:annotation>
+          <xs:documentation>Solid line: Thick</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="thin_double">
+        <xs:annotation>
+          <xs:documentation>Double line: Thin</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="medium_double">
+        <xs:annotation>
+          <xs:documentation>Double line: Medium</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="thick_double">
+        <xs:annotation>
+          <xs:documentation>Double line: Thick</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Page Print Direction -->
+  <xs:simpleType name="page-dir">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="left_to_right">
+        <xs:annotation>
+          <xs:documentation>
+            Left to right
+            (No rotation. Data is printed from the top left corner to
+            the right.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="bottom_to_top">
+        <xs:annotation>
+          <xs:documentation>
+            Bottom to top
+            (Counterclockwise rotation by 90 degrees.
+            Data is printed from the bottom left corner to the top.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="right_to_left">
+        <xs:annotation>
+          <xs:documentation>
+            Right to left
+            (Rotation by 180 degrees. Data is printed from the bottom
+            right corner to the left.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="top_to_bottom">
+        <xs:annotation>
+          <xs:documentation>
+            Top to bottom
+            (Clockwise rotation by 90 degrees.
+            Data is printed from the top right corner to the bottom.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Cut Type -->
+  <xs:simpleType name="cut-type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="no_feed">
+        <xs:annotation>
+          <xs:documentation>
+            Cut without feeding
+            (The paper is cut without being fed.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="feed">
+        <xs:annotation>
+          <xs:documentation>
+            Feed cut
+            (The paper is fed to the cut position and then is cut.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="reserve">
+        <xs:annotation>
+          <xs:documentation>
+            Cut reservation
+            (Printing continues until the cut position is reached, at
+            which the paper is cut.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Drawer Kick-out Connector -->
+  <xs:simpleType name="pulse-drawer">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="drawer_1">
+        <xs:annotation>
+          <xs:documentation>Pin 2 of the drawer kick-out connector</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="drawer_2">
+        <xs:annotation>
+          <xs:documentation>Pin 5 of the drawer kick-out connector</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Drawer Kick-out Pulse -->
+  <xs:simpleType name="pulse-time">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pulse_100">
+        <xs:annotation>
+          <xs:documentation>100 ms</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pulse_200">
+        <xs:annotation>
+          <xs:documentation>200 ms</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pulse_300">
+        <xs:annotation>
+          <xs:documentation>300 ms</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pulse_400">
+        <xs:annotation>
+          <xs:documentation>400 ms</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pulse_500">
+        <xs:annotation>
+          <xs:documentation>500 ms</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Sound Pattern -->
+  <xs:simpleType name="sound-pattern">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none">
+        <xs:annotation>
+          <xs:documentation>Stop</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_0">
+        <xs:annotation>
+          <xs:documentation>Pattern 0 (in Ver.5.0 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_1">
+        <xs:annotation>
+          <xs:documentation>Pattern 1 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_2">
+        <xs:annotation>
+          <xs:documentation>Pattern 2 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_3">
+        <xs:annotation>
+          <xs:documentation>Pattern 3 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_4">
+        <xs:annotation>
+          <xs:documentation>Pattern 4 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_5">
+        <xs:annotation>
+          <xs:documentation>Pattern 5 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_6">
+        <xs:annotation>
+          <xs:documentation>Pattern 6 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_7">
+        <xs:annotation>
+          <xs:documentation>Pattern 7 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_8">
+        <xs:annotation>
+          <xs:documentation>Pattern 8 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_9">
+        <xs:annotation>
+          <xs:documentation>Pattern 9 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_10">
+        <xs:annotation>
+          <xs:documentation>Pattern 10 (in Ver.2.2 and later)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_a">
+        <xs:annotation>
+          <xs:documentation>Pattern A</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_b">
+        <xs:annotation>
+          <xs:documentation>Pattern B</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_c">
+        <xs:annotation>
+          <xs:documentation>Pattern C</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_d">
+        <xs:annotation>
+          <xs:documentation>Pattern D</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pattern_e">
+        <xs:annotation>
+          <xs:documentation>Pattern E</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="error">
+        <xs:annotation>
+          <xs:documentation>Error sound pattern</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="paper_end">
+        <xs:annotation>
+          <xs:documentation>Pattern when there is no paper</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Layout Type -->
+  <xs:simpleType name="layout-type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="receipt">
+        <xs:annotation>
+          <xs:documentation>Receipt (without black mark)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="receipt_bm">
+        <xs:annotation>
+          <xs:documentation>Receipt (with black mark)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="label">
+        <xs:annotation>
+          <xs:documentation>Die-cut label (without black mark)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="label_bm">
+        <xs:annotation>
+          <xs:documentation>Die-cut label (with black mark)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Text Scale -->
+  <xs:simpleType name="text-scale">
+    <xs:restriction base="xs:unsignedByte">
+      <xs:maxInclusive value="8" />
+      <xs:minInclusive value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Print Text -->
+  <xs:complexType name="text">
+    <xs:annotation>
+      <xs:documentation>
+        Prints a character string. Also, configure the string-related settings such as style, print position, and line feed
+        space.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:language">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the target language.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="align" type="tns:align">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the alignment.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="font" type="tns:font">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the character font.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="linespc" type="xs:unsignedByte">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the per-line paper feed amount in dots.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dw" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets the double-sized width.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dh" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets the double-sized height.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotate" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets rotated printing of text.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="reverse" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets the inversion of black and white parts of characters.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ul" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets underlining.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="em" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets emphasized printing.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="color" type="tns:color">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the character color.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="width" type="tns:text-scale">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the horizontal scale.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="height" type="tns:text-scale">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the vertical scale.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="smooth" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Sets smoothing. When smoothing is enabled, the print quality of characters will be
+              improved.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="x" type="xs:unsignedShort">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the print start position of the text in dots.
+              In page mode, this specification is the same as the specification for the horizontal print
+              position by the position element, but the print position in the horizontal direction only
+              will be moved.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="y" type="xs:unsignedShort">
+          <xs:annotation>
+            <xs:documentation>
+              In page mode, this specification is the same as the specification for the vertical print
+              position by the position element, but the print position in the vertical direction only
+              will be moved. (in Ver.3.0 and later)
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Feed Paper -->
+  <xs:complexType name="feed">
+    <xs:annotation>
+      <xs:documentation>
+        Feeds paper. Specifies the paper feed amount in dots or in lines. When no paper feed amount is specified,
+        performs single-line paper feed (line feed). In addition, the per-line line feed space can be set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="line" type="xs:unsignedByte">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the paper feed amount in lines.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="unit" type="xs:unsignedByte">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the paper feed amount in dots.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="linespc" type="xs:unsignedByte">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the per-line paper feed amount in dots.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pos" type="tns:feed-pos">
+      <xs:annotation>
+        <xs:documentation>
+          It specifies paper feed position of label paper/black mark paper. (in Ver.2.1 and later)
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Print Image (Raster Bit Image) -->
+  <xs:complexType name="image">
+    <xs:annotation>
+      <xs:documentation>
+        Print a raster graphic bit-image. (Data type xs:base64Binary)
+        Raster graphics refer to data generated by horizontally scanning the pixels of an image from the top left
+        corner of that image as the origin point.
+        Data is generated based on 1 bit per pixel for two-tone images, and 4 bits per pixel for 16-tone images,
+        starting with the upper bits of byte data. And zero-padding is performed so that scan data per line can be
+        treated on a byte basis.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attribute name="width" type="xs:unsignedShort" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the image width in dots.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="height" type="xs:unsignedShort" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the image height in dots.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="align" type="tns:align">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the print position.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="color" type="tns:color" default="color_1">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the character color.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mode" type="tns:image-mode" default="mono">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the color mode.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Print Logo (NV Bit Image) -->
+  <xs:complexType name="logo">
+    <xs:annotation>
+      <xs:documentation>
+        Prints a logo registered in the NV memory of the printer.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="key1" type="xs:unsignedByte" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the value of the key code 1 set at the time of NV logo registration.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="key2" type="xs:unsignedByte" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the value of the key code 2 set at the time of NV logo registration. Be sure to
+          specify this value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="align" type="tns:align">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the print position.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rotate" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the rotate printing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Print Bar Code -->
+  <xs:complexType name="barcode">
+    <xs:annotation>
+      <xs:documentation>
+        Prints a barcode.
+        Specifies the barcode data using a character string. (Data type xs:string)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="type" type="tns:barcode-type" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the barcode type.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="align" type="tns:align">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the print position.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hri" type="tns:barcode-hri">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the HRI position.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="font" type="tns:font">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the HRI font.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="width" type="xs:unsignedByte">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the width of each module in dots.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="height" type="xs:unsignedByte">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the barcode height in dots.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotate" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the rotate printing.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Print 2-D Symbol -->
+  <xs:complexType name="symbol">
+    <xs:annotation>
+      <xs:documentation>
+        Prints a two-dimensional symbol.
+        Specifies the two-dimensional symbol using a character string. (Data type xs:string)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="type" type="tns:symbol-type" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the two-dimensional symbol type.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="align" type="tns:align">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the print position.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="level" type="tns:symbol-level">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the error correction level.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="width" type="xs:unsignedByte">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the width of each module in dots.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="height" type="xs:unsignedByte">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the height of each module.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="size" type="xs:unsignedShort">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the two‐dimensional symbol maximum size.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotate" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies the rotate printing.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Draw Horizontal Line -->
+  <xs:complexType name="hline">
+    <xs:annotation>
+      <xs:documentation>
+        Draws horizontal lines.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x1" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the draw start position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="x2" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the draw end position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="style" type="tns:line-style" default="thin">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the line type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Draw Vertical Line -->
+  <xs:complexType name="vline-begin">
+    <xs:annotation>
+      <xs:documentation>
+        Starts to draw vertical lines.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the start position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="style" type="tns:line-style" default="thin">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the line type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- End Vertical Line -->
+  <xs:complexType name="vline-end">
+    <xs:annotation>
+      <xs:documentation>
+        Ends to draw vertical lines.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the end position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="style" type="tns:line-style" default="thin">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the line type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Page Mode -->
+  <xs:complexType name="page">
+    <xs:annotation>
+      <xs:documentation>
+        Changes the mode from standard mode to page mode.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="feed" type="tns:feed" />
+      <xs:element name="text" type="tns:text" />
+      <xs:element name="image" type="tns:image" />
+      <xs:element name="logo" type="tns:logo" />
+      <xs:element name="barcode" type="tns:barcode" />
+      <xs:element name="symbol" type="tns:symbol" />
+      <xs:element name="area" type="tns:area" />
+      <xs:element name="direction" type="tns:direction" />
+      <xs:element name="position" type="tns:position" />
+      <xs:element name="line" type="tns:line" />
+      <xs:element name="rectangle" type="tns:rectangle" />
+      <xs:element name="command" type="tns:command" />
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- Set Print Area -->
+  <xs:complexType name="area">
+    <xs:annotation>
+      <xs:documentation>
+        Specifies the page mode print area.
+        Specifies the origin point, width, and height based on the absolute origin point to set the print area. The
+        absolute origin point is a dot diagonally above the top left corner of the printable area.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the origin of the horizontal axis (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="y" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the origin of the vertical axis (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="width" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the width of the print area (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="height" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the height of the print area (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Set Print Direction -->
+  <xs:complexType name="direction">
+    <xs:annotation>
+      <xs:documentation>
+        Specifies the page mode print direction.
+        Specifies the print direction and rotates the print area. Following the rotation of the print area, the start point
+        of the print area moves.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="dir" type="tns:page-dir" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the rotation direction.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Set Print Position -->
+  <xs:complexType name="position">
+    <xs:annotation>
+      <xs:documentation>
+        Specifies the page mode print position.
+        Specifies the print position based on the start point of the print area. The start point of the print area moves
+        by following the rotation of the print area.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the origin of the horizontal axis (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="y" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the origin of the vertical axis (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Draw Line -->
+  <xs:complexType name="line">
+    <xs:annotation>
+      <xs:documentation>
+        Draws a line in page mode.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x1" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing start position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="y1" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing start position of the vertical line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="x2" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing end position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="y2" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing end position of the vertical line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="style" type="tns:line-style" default="thin">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the line type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Draw Rectangle -->
+  <xs:complexType name="rectangle">
+    <xs:annotation>
+      <xs:documentation>
+        Draws a rectangle in page mode.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="x1" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing start position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="y1" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing start position of the vertical line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="x2" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing end position of the horizontal line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="y2" type="xs:unsignedShort" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawing end position of the vertical line (in dots).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="style" type="tns:line-style" default="thin">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the line type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Cut Paper -->
+  <xs:complexType name="cut">
+    <xs:annotation>
+      <xs:documentation>
+        Sets paper cut.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="type" type="tns:cut-type" default="feed">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the paper cut type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Generate Pulse -->
+  <xs:complexType name="pulse">
+    <xs:annotation>
+      <xs:documentation>
+        Outputs signals to the drawer kick connector.
+        Depending on the model, a buzzer can be sounded.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="drawer" type="tns:pulse-drawer" default="drawer_1">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the drawer kick connector.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="time" type="tns:pulse-time" default="pulse_100">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the ON time of the drawer kick signal.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Sound Buzzer -->
+  <xs:complexType name="sound">
+    <xs:annotation>
+      <xs:documentation>
+        Sounds a buzzer.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="pattern" type="tns:sound-pattern" default="pattern_a">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the buzzer pattern.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="repeat" type="xs:unsignedByte" default="1">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the number of repeats.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="cycle" type="xs:unsignedShort" default="1000">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the buzzer sounding cycle. (in units of milliseconds) (in Ver.2.2 and later)
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Set Paper Layout -->
+  <xs:complexType name="layout">
+    <xs:annotation>
+      <xs:documentation>
+        Specifies paper layout. (in Ver.2.2 and later)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="type" type="tns:layout-type" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies the paper type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="width" type="xs:unsignedShort" default="580">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies paper width (in units of 0.1mm).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="height" type="xs:unsignedShort" default="0">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies paper height (in units of 0.1mm).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="margin-top" type="xs:short" default="0">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies top margin (in units of 0.1mm).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="margin-bottom" type="xs:short" default="0">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies bottom margin (in units of 0.1mm).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="offset-cut" type="xs:short" default="0">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies cut position (in units of 0.1mm).
+          In case of die cut label paper, it is a distance from the bottom of label.
+          When a paper has black mark, it is a distance from the beginning of black mark.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="offset-label" type="xs:short" default="0">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies label bottom position (in units of 0.1mm).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Recover From Error -->
+  <xs:complexType name="recovery">
+    <xs:annotation>
+      <xs:documentation>
+        If a printer recoverable error is generated, execute this function after removing the error cause,
+        and the TM printer recovers from the error. (in Ver.3.0 and later)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+  </xs:complexType>
+
+  <!-- Reset Printer -->
+  <xs:complexType name="reset">
+    <xs:annotation>
+      <xs:documentation>
+        Resets the printer. (in Ver.3.0 and later)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+  </xs:complexType>
+
+  <!-- Send Command -->
+  <xs:complexType name="command">
+    <xs:annotation>
+      <xs:documentation>
+        Insert the ESC/POS command.
+        ESC/POS command is specified in hexadecimal encoding. (data type xs:hexBinary)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:hexBinary" />
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- ePOS-Print Header -->
+  <xs:complexType name="parameter">
+    <xs:annotation>
+      <xs:documentation>
+        A SOAP Header to be sent from a host to a printer. (in Ver.4.1 and later)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="devid" type="xs:string" minOccurs="0" />
+      <xs:element name="timeout" type="xs:string" minOccurs="0" />
+      <xs:element name="printjobid" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="parameter" type="tns:parameter" />
+
+  <!-- ePOS-Print Request -->
+  <xs:complexType name="epos-print">
+    <xs:annotation>
+      <xs:documentation>
+        An XML document to be sent from a host to a printer.
+        This document requests the printer to execute the specified function and performs initialization when
+        printing starts.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="feed" type="tns:feed" />
+      <xs:element name="text" type="tns:text" />
+      <xs:element name="image" type="tns:image" />
+      <xs:element name="logo" type="tns:logo" />
+      <xs:element name="barcode" type="tns:barcode" />
+      <xs:element name="symbol" type="tns:symbol" />
+      <xs:element name="hline" type="tns:hline" />
+      <xs:element name="vline-begin" type="tns:vline-begin" />
+      <xs:element name="vline-end" type="tns:vline-end" />
+      <xs:element name="page" type="tns:page" />
+      <xs:element name="cut" type="tns:cut" />
+      <xs:element name="pulse" type="tns:pulse" />
+      <xs:element name="sound" type="tns:sound" />
+      <xs:element name="layout" type="tns:layout" />
+      <xs:element name="recovery" type="tns:recovery" />
+      <xs:element name="reset" type="tns:reset" />
+      <xs:element name="command" type="tns:command" />
+    </xs:choice>
+    <xs:attribute name="force" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the forced transmission. (in Ver.3.0 and later)
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="epos-print" type="tns:epos-print" />
+
+  <!-- ePOS-Print Response -->
+  <xs:complexType name="response">
+    <xs:annotation>
+      <xs:documentation>
+        An XML document, a printer returns to a host as a response.
+        This document sends the printer status after command execution.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+    <xs:attribute name="success" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Obtains the print result.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="code" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Obtains the error code.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="status" type="xs:unsignedInt">
+      <xs:annotation>
+        <xs:documentation>
+          Obtains the printer status.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="battery" type="xs:unsignedInt">
+      <xs:annotation>
+        <xs:documentation>
+          The battery status of the printer is obtained.
+          0 is indicated when the model doesn't have a battery installed. (in Ver.2.2 and later)
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="response" type="tns:response" />
+
+</xs:schema>

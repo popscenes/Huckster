@@ -10,6 +10,7 @@ namespace Admin
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/wickedpicker.js",
                         "~/Scripts/jquery.timepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -44,6 +45,7 @@ namespace Admin
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/jquery.timepicker.css",
+                      "~/Content/wickedpicker.css",
                       "~/Content/site.css"));
         }
     }

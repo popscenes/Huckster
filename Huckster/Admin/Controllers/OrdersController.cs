@@ -65,20 +65,20 @@ namespace Admin.Controllers
             return View(order);
         }
 
-        public async Task<ActionResult> SetDeliveryDetails(Guid orderId, string pickUpTime, string deliveryUser)
+        public async Task<ActionResult> SetDeliveryDetails(Guid orderId, string deliveryUser)
         {
             try
             {
-                var pickUpTimespan = DateTime.ParseExact(pickUpTime, "h:mmtt", CultureInfo.InvariantCulture);
+                //var pickUpTimespan = DateTime.ParseExact(pickUpTime, "h:mmtt", CultureInfo.InvariantCulture);
 
                 var order = await _queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = orderId });
 
-                var pickUpdatetime = order.Order.DeliveryTime.Date.Add(pickUpTimespan.TimeOfDay);
+                //var pickUpdatetime = order.Order.DeliveryTime.Date.Add(pickUpTimespan.TimeOfDay);
 
                 await _commandDispatcher.DispatchAsync(new SetDeliveryDetailsCommand()
                 {
                     OrderId = order.Order.Id,
-                    PickUpDateTime = pickUpdatetime,
+                    PickUpDateTime = order.Order.PickUpTime.Value,
                     DeliveryUserId = deliveryUser
                 });
                 _messageBus.SendMessage(new OrderAssignedMessage() { OrderAggregateRootId = order.Order.AggregateRootId, AssignedUserId =  deliveryUser});

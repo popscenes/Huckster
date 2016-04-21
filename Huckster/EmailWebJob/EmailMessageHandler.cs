@@ -28,6 +28,8 @@ namespace EmailWebJob
             var order = await queryChannel.QueryAsync(new GetOrderAdminDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
             var assignedUser = order.DeliveryUser;
 
+            var adminUrl = ConfigurationManager.AppSettings["AdminUrl"];
+
             var result =
                 Engine.Razor.Run("OrderAssigned", null, new
                 {
@@ -35,7 +37,8 @@ namespace EmailWebJob
                     Restaurant = order.Restaurant.Name,
                     RestaurantAddress = order.RestaurantAddress.ToString(),
                     Address = order.DeliverAddress.ToString(),
-                    PickupTime = order.Order.PickUpTime.ToString()
+                    PickupTime = order.Order.PickUpTime.ToString(),
+                    OrderUrl = $"{adminUrl}Orders/Detail?orderId={order.Order.AggregateRootId}"
                 });
 
             await SendGridEmail(assignedUser.Email, "Assigned Delivery", result);

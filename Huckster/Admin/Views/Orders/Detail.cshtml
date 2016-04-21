@@ -60,7 +60,7 @@
                         <small>Not Set</small>
                     }
                 </h3>
-                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#userAndPickupModal">Update</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userAndPickupModal">Assign Delivery</button>
                 <br/>
             </div>
         </div>
@@ -249,14 +249,9 @@
             @Html.Hidden("OrderId", Model.Order.AggregateRootId)
             <div class="modal-content">
                 <div class="modal-header">
-                    Set Delivery Details
+                    Assign Delivery Person
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>PickUp Time</label>
-                        <input type="text" id="pickUpTime" name="pickUpTime" class="timepicker form-control"/>
-                    </div>
-
                     <div class="form-group">
                         <label>Delivery User</label>
                         @Html.DropDownList("deliveryUser", (List<SelectListItem>)ViewBag.DeliveryUsers, new {@class = "form-control"})

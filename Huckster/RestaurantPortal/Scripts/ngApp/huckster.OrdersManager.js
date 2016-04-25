@@ -27,19 +27,25 @@
             }, function (error) {
                 alert(error);
             });
+        }
 
-            $scope.restaurantAccept = function()
-            {
-                var pickUpTime = $filter('date')($scope.pickUpTime, 'H:mm:ss');
-                Restangular.all('restaurantOrderAccept').post({ OrderId: $scope.currentOrder.Order.AggregateRootId, PickUpTime: pickUpTime }).then(function (result) {
-                    $('#orderDetailsModal').modal('toggle');
-                    $scope.currentOrder = [];
-                    $scope.pickUpTime = null;
-                    $scope.getOrders($scope.currentStatus);
-                },
-                function (error) {
-                });
-            }
+        $scope.restaurantAccept = function () {
+            var pickUpTime = $filter('date')($scope.pickUpTime, 'H:mm:ss');
+            Restangular.all('restaurantOrderAccept').post({ OrderId: $scope.currentOrder.Order.AggregateRootId, PickUpTime: pickUpTime }).then(function (result) {
+                $('#orderDetailsModal').modal('toggle');
+                $scope.currentOrder = [];
+                $scope.pickUpTime = null;
+                $scope.getOrders($scope.currentStatus);
+            },
+            function (error) {
+            });
+        }
+
+        $scope.printDocket = function () {
+            Restangular.all('addToPrintQueue').post({ OrderId: $scope.currentOrder.Order.AggregateRootId }).then(function (result) {
+            },
+            function (error) {
+            });
         }
 
         $scope.orderDetails = function(order)

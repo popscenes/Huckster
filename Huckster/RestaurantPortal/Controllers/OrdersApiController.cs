@@ -18,6 +18,7 @@ using System.Xml.Serialization;
 using System.IO;
 using Domain.Order;
 using Domain.Order.Quries;
+using Application.Printer;
 
 namespace RestaurantPortal.Controllers
 {
@@ -101,6 +102,20 @@ namespace RestaurantPortal.Controllers
 
             _messageBus.SendMessage(new RestaurantOrderAcceptMessage() { OrderAggregateRootId = requestModel.OrderId});
             Audit(requestModel.OrderId = requestModel.OrderId, "RestaurantOrderAccept");
+            return Ok();
+        }
+
+        public class AddToPrintQueueRequestModel
+        {
+            public Guid OrderId { get; set; }
+        }
+
+        [Route("api/orders/addToPrintQueue")]
+        public async Task<IHttpActionResult> AddToPrintQueue(AddToPrintQueueRequestModel requestModel)
+        {
+            var order = await _queryChannel.QueryAsync(new GetOrderByAggregateId() { AggregateId = requestModel.OrderId });
+            var orderPrinetRequest = PrinterHelper.OrderToPrintRequestXML(order);
+            await _commandDispatcher.DispatchAsync(new AddToPrintQueueCommand() { Order = order, OrderPrinetRequest = orderPrinetRequest });
             return Ok();
         }
 

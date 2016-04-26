@@ -365,6 +365,8 @@
     <Content Include="Views\Order\Failed.cshtml" />
     <Content Include="Views\Enquiry\Index.cshtml" />
     <Content Include="Views\Enquiry\EnquiryComplete.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

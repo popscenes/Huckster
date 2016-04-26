@@ -22,6 +22,39 @@
         </div>
     </header>
 @RenderBody()
+
+    <footer>
+        <div class="main-content footer-content">
+            <div class="footer-cell" id="footer-information">
+                <h5>Information</h5>
+                <p>
+                    <a href="@Url.Action("About", "Home")">About Us</a>
+                    <a href="@Url.Action("Terms", "Home")">Terms &amp; conditions</a>
+                    <a href="@Url.Action("Privacy", "Home")">Privacy policy</a>
+                </p>
+            </div>
+            <div class="footer-cell" id="footer-newsletter">
+                <h5>Join our newsletter</h5>
+                <form id="footer-newsletter-subscribe">
+                    <input type="email" placeholder="Subscribe..." />
+                </form>
+            </div>
+            <div class="footer-cell" id="footer-social">
+                <h5>Social</h5>
+                <p>
+                    <a href="https://www.instagram.com/hucksterfood/" target="_blank" class="social-link"><i class="fa fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/Huckster-1627944827492851/" target="_blank" class="social-link"><i class="fa fa-facebook-square"></i></a>
+                    <a href="https://twitter.com/hucksterfood" target="_blank" class="social-link"><i class="fa fa-twitter-square"></i></a>
+                    <a href="https://au.pinterest.com/hucksterfood/" target="_blank" class="social-link"><i class="fa fa-pinterest-square"></i></a>
+                </p>
+            </div>
+            <div class="footer-cell" id="footer-copyright">
+                <h5>
+                    ©2016 Huckster
+                </h5>
+            </div>
+        </div><!-- footer-content -->
+    </footer>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/angularJs")
 @Scripts.Render("~/bundles/core")

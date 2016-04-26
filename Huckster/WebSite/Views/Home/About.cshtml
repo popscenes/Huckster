@@ -1,7 +1,46 @@
 ﻿@{
     ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_layoutHome.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<section class="main-content main-bar-main" id="step-one">
+    <div class="main-content-header">
+        <h2>About Us</h2>
+    </div>
+
+    <div class="main-content-info">
+        Huckster works closely with a hand picked collection of premium restaurants to give customers the best of Melbourne’s cuisine in the convenience of their own homes and offices. <br />
+
+        Our on-demand delivery platform connects customers with local couriers, who deliver food from selected restaurants and stores in Melbourne.
+        <br />
+        We’re not only passionate about good food but also about leaving the smallest carbon footprint that we can.
+        <br /><br />
+        <h4 class="pp-h4">Mission Statement</h4>
+
+        To bring the best food in Melbourne into homes and offices across the city, and to give restaurants new ways to manage demand, adjust pricing and increase their profitability. <br /><br />
+
+        <h4 class="pp-h4">Our Team</h4>
+
+        Huckster is built by a passionate team of engineers, designers, operations and growth specialists, and is headquartered in Melbourne, Australia. The company was co-founded by James Huddle and Anthony Borg in August 2015.<br /><br />
+
+        <h4 class="pp-h4">Contact Us</h4>
+        <a class="body-link" href="mailto:hello@huckster.com.au">hello@huckster.com.au</a>
+
+
+    </div><!-- .main-content-info -->
+</section><!-- .main-content -->
+
+<section class="out-content">
+    <div class="out-content-inner">
+        <div class="out-header">
+            <h2>Information</h2>
+        </div>
+        <div class="order-main">
+            <ul>
+                <li><a href="@Url.Action("Terms", "Home")">Terms &amp; conditions</a></li>
+                <li><a href="@Url.Action("Privacy", "Home")">Privacy policy</a></li>
+            </ul>
+
+        </div><!-- .order-main -->
+    </div>
+</section><!-- end out-content -->

@@ -24,7 +24,7 @@ namespace RestaurantPortal.Controllers
 
         protected override async Task HandleSqlCommandAsync(IDbConnection context, RestaurantOrderAcceptCommand command)
         {
-            Order order = context.Query<Order>("Select * from [dbo].[Order] where AggregateRootId = @AggregateRootId", new { AggregateRootId = command.OrderAggregateRootId }).FirstOrDefault();
+            Order order = context.Query<Order>("Select * from [dbo].[Order] where AggregateRootId = @@AggregateRootId", new { AggregateRootId = command.OrderAggregateRootId }).FirstOrDefault();
             var pickUpDate = order.DeliveryTime.Date.Add(command.pickUpTime);
 
             order.Status = OrderStatus.RestaurantAccepted.ToString();

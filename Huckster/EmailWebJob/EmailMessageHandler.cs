@@ -144,7 +144,8 @@ namespace EmailWebJob
                         Restaurant = order.Restaurant.Name,
                         Address = order.DeliverAddress.ToString(),
                         OrderId = order.Order.Id,
-                        Mobile = order.Order.CustomerMobile
+                        Mobile = order.Order.CustomerMobile,
+                        TotalCost = order.Order.OrderTotal
                     });
 
                 await SendGridEmail(order.Customer.Email, "Your Huckster Order", result);

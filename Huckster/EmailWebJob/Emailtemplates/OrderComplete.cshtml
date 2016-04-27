@@ -1,39 +1,710 @@
-﻿@{
-    Layout = "Layout.cshtml";
-}
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- /*
+        --------------------------------------------------------
 
-<p>
-    Thanks for ordering with Huckster, your meal will be on its way to you soon.
-</p>
-<p>
-    To confirm your order here are the following details:
-</p>
+        Copyright Warning.
 
-<br />
-<br />
+        --------------------------------------------------------
 
-<p>
-    Order Confirmation Number @Model.OrderId
-</p>
-<p>
-    Your Delivery Address @Model.Address
-</p>
-<p>
-    Your Contact Number @Model.Mobile
-</p>
-<br />
-<br />
+        All content on this HTML email template is copyrighted,
+        No personal or commercial use is permitted without
+        a license.
 
-<p>
-    We’re constantly trying to improve the way we do things so if you’ve got any questions or feedback we’d love to hear them. Email us at XXX
-</p>    
-<p>
-    Enjoy your meal!
-</p>
+        This email template is sold exlusively on ThemeForest.
 
-<p>
-    The Huckster Crew
-</p>
+        No reproduction in whole or in part, of the content of
+        this email template in any form whatsoever is permitted,
+        whether made for commercial gain or otherwise.
+
+        --------------------------------------------------------
+        */ -->
+    <!-- /* TemplateColor01(buttons):    		 #05bbab */ -->
+    <!-- /* TemplateColor02(sloganBKG):    		 #15171a */ -->
+    <!-- /* BackgroundColor01(bright):    		 #ffffff */ -->
+    <!-- /* BackgroundColor02(semi bright):    	 #e9e9e9 */ -->
+    <!-- /* BackgroundColor03(dark):    		 #202327 */ -->
+    <!-- /* DarkBgImageAltColor(violet):   		 #52597d */ -->
+    <!-- /* BrightBgImageAltColor(light grey):   #e9e9e9 */ -->
+    <!-- /* smallText:   						 #A89054 */ -->
+    <!-- Define Charset -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- Responsive Meta Tag -->
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+    <!-- Facebook sharing information tags -->
+    <meta property="og:title" content="*|MC:SUBJECT|*">
+    <title>*|MC:SUBJECT|*</title>
+
+    <style type="text/css">
+		div,p,a,li,td{
+			-webkit-text-size-adjust:none;
+		}
+		.ReadMsgBody{
+			width:100%;
+			background-color:#ffffff;
+		}
+		.ExternalClass{
+			width:100%;
+			background-color:#ffffff;
+		}
+		body{
+			width:100%;
+			background-color:#ffffff;
+			margin:0;
+			padding:0;
+			-webkit-font-smoothing:antialiased;
+			text-align:left;
+		}
+		html{
+			width:100%;
+		}
+		img{
+			border:0px;
+			outline:none;
+			text-decoration:none;
+			display:block;
+		}
+	@@media only screen and (max-width: 900px){
+		td[class=headerBG]{
+			width:100%!important;
+			background-repeat:no-repeat!important;
+			background-size:900px!important;
+			background-position:center middle!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		body{
+			width:auto!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.BoxWrap{
+			width:440px !important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoHideMedium{
+			display:none !important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoShowMedium{
+			display:block !important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoCenterMedium{
+			text-align:center !important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoTitle{
+			font-size:16px !important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		td[class=headerBG]{
+			width:100%!important;
+			background-repeat:no-repeat!important;
+			background-size:800px!important;
+			background-position:center center!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneTo50W Img{
+			width:440px!important;
+			height:212px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneTo50{
+			width:440px!important;
+			height:212px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneTo50_P_W Img{
+			width:400px!important;
+			height:193px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneTo50_P{
+			width:400px!important;
+			height:193px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneTo75W Img{
+			width:440px!important;
+			height:335px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneTo75{
+			width:440px!important;
+			height:335px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneToOneW Img{
+			width:440px!important;
+			height:440px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_OneToOne{
+			width:440px!important;
+			height:440px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_70ToOneW Img{
+			width:440px!important;
+			height:628px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_70ToOne{
+			width:440px!important;
+			height:628px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_AvatarW Img{
+			width:50px!important;
+			height:50px!important;
+		}
+
+}	@@media only screen and (max-width: 640px){
+		.RespoImage_Avatar{
+			width:50px!important;
+			height:50px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		body{
+			width:auto!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.BoxWrap{
+			width:280px !important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoHideSmall{
+			display:none !important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoCenterSmall{
+			text-align:center !important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoTitle{
+			font-size:14px !important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneTo50W Img{
+			width:280px!important;
+			height:135px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneTo50{
+			width:280px!important;
+			height:135px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneTo50_P_W Img{
+			width:240px!important;
+			height:116px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneTo50_P{
+			width:240px!important;
+			height:116px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneTo75W Img{
+			width:280px!important;
+			height:213px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneTo75{
+			width:280px!important;
+			height:213px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneToOneW Img{
+			width:280px!important;
+			height:280px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_OneToOne{
+			width:280px!important;
+			height:280px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_70ToOneW Img{
+			width:280px!important;
+			height:400px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_70ToOne{
+			width:280px!important;
+			height:400px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_AvatarW Img{
+			width:40px!important;
+			height:40px!important;
+		}
+
+}	@@media only screen and (max-width: 479px){
+		.RespoImage_Avatar{
+			width:40px!important;
+			height:40px!important;
+		}
+
+}	/*
+	@@tab Background
+	@@tip Set the background color for your email's preheader block.
+	*/
+		.TemplateColor01{
+			/*@@editable*/background-color:#05bbab;
+		}
+	/*
+	@@tab Background
+	@@tip Set the background color for your email's body content blocks.
+	*/
+		.TemplateColor02{
+			/*@@editable*/background-color:#15171a;
+		}
+	/*
+	@@tab Backgrounds
+	@@tip Set the background color for your email's body content blocks.
+	*/
+		.BackgroundColor01{
+			/*@@editable*/background-color:#ffffff;
+		}
+	/*
+	@@tab Backgrounds
+	@@tip Set the background color for your email's body content blocks.
+	*/
+		.BackgroundColor02{
+			/*@@editable*/background-color:#e9e9e9;
+		}
+	/*
+	@@tab Backgrounds
+	@@tip Set the background color for your email's body content blocks.
+	*/
+		.BackgroundColor03{
+			/*@@editable*/background-color:#202327;
+		}
+		a img{
+			border:none;
+		}
+		a{
+			color:#373632;
+			text-decoration:none;
+		}
+		h1{
+			font-family:Myriad Pro, Helvetica, Arial, sans-serif;
+			font-size:40px;
+			font-weight:bold;
+			font-style:normal;
+			text-transform:uppercase;
+			color:#A89054;
+			line-height:45px;
+			text-align:left;
+			margin:25px 0 5px 0;
+		}
+		h2,.title{
+			font-family:Myriad Pro, Helvetica, Arial, sans-serif;
+			font-size:18px;
+			font-weight:normal;
+			font-style:normal;
+			text-transform:capitalize;
+			color:#323940;
+			line-height:28px;
+			text-align:left;
+		}
+		h3,.text{
+			font-family:Helvetica, Arial, sans-serif;
+			font-size:13px;
+			font-weight:normal;
+			color:#6d7074;
+			line-height:20px;
+			text-align:left;
+		}
+		h4,.smallText{
+			font-family:Helvetica, Arial, sans-serif;
+			font-size:11px;
+			font-weight:normal;
+			font-style:italic;
+			color:#A89054;
+			line-height:18px;
+			text-align:left;
+		}
+    </style>
+</head>
+<body>
+    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top">
+                <table width="100%" cellspacing="0" cellpadding="0">
+
+
+                    <!-- ********************************************************************************************************* -->
+                    <!-- Begin Module: ViewOnline -->
+                    <tr>
+                        <td valign="top" class="TemplateColor02" bgcolor="#15171a">
+                            <table class="BoxWrap" width="600" align="center" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <!-- _____________________________________________ -->
+                                    <tr>
+                                        <td height="20"></td>
+                                    </tr>
+                                    <!-- // Button & Text\\ -->
+                                    <tr>
+                                        <td height="20"></td>
+                                    </tr>
+                                    <!-- // Horizontal Spacer \\ -->
+                                    <!-- _____________________________________________ -->
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- End Module: ViewOnline -->
+                    <!-- ********************************************************************************************************* -->
+                    <!-- Begin Module: Header + Bg Image -->
+                    <tr>
+                        <td class="DarkBgImageAltColor" bgcolor="#52597d">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="clear:both;" background="https://huckster.blob.core.windows.net/email/header_bg02.jpg">
+                                <tbody>
+                                    <tr>
+                                        <td width="100%" valign="top" style="background-image: url(https://huckster.blob.core.windows.net/email/header_bg02.jpg); background-size: 100% auto; background-position: top center;" class="headerBG">
+                                            <table class="BoxWrap" width="600" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <!-- _____________________________________________ -->
+                                                    <tr>
+                                                        <td height="40"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <table class="BoxWrap" width="100%" align="left" cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="title" mc:edit="header_04" style="color:#ffffff; text-align:center;"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="smallText" mc:edit="header_03" style="color:#ffffff; text-align:center;"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td height="30"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="410" align="center" class="RespoImage_OneTo50W">
+                                                                            <a href="#" style="border: none;">
+                                                                                <img mc:edit="image_1" width="410" height="200" src="http://huckster.catchcrydesign.com.au/_images/_email/_images/label02.png" alt="" border="0" style="width: 410px; height: 200px; max-width: 410px; max-height: 200px; display: block;border:" class="RespoImage_OneTo50">
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td height="30"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text" mc:edit="header_02" style="color:#ffffff; text-align:center;"><span style="font-size:32px; line-height:40px">Thanks for ordering with Huckster, your meal will be on its way to you soon.</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td height="25"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="title" mc:edit="header_01" style="color:#ffffff; text-align:center;"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><u>TO CONFIRM YOUR ORDER HERE ARE THE FOLLOWING DETAILS:</u></span></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="60"></td>
+                                                    </tr>
+                                                    <!-- _____________________________________________ -->
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- End Module: Header + Bg Image -->
+                    <!-- ********************************************************************************************************* -->
+                    <!-- Begin Module: Statistics -->
+                    <tr mc:repeatable>
+                        <td valign="top" class="BackgroundColor01" bgcolor="#ffffff">
+                            <table class="BoxWrap" width="600" align="center" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td height="40"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title" mc:edit="statistics_txt_title"><strong>order Confirmation Number</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="smallText" mc:edit="statistics_txt_subtitle"><span style="color:#05bbab">@Model.OrderId</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100%" height="20"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100%" height="2" bgcolor="#dddddd"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table width="100%" cellpadding="10" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <h1 style="text-transform: uppercase; text-align:center;" mc:edit="statistics_txt_04"></h1>
+                                                            <h2 style="text-align:center;" mc:edit="statistics_txt_05">Your Delivery Address</h2>
+                                                            <h4 style="text-align:center;" mc:edit="statistics_txt_06"><span style="color:#05bbab">@Model.Address</span></h4>
+                                                        </td>
+                                                        <td class="RespoHideMedium">
+                                                            <h1 style="text-transform: uppercase; text-align:center;" mc:edit="statistics_txt_07"></h1>
+                                                            <h2 style="text-align:center;" mc:edit="statistics_txt_08">Your Contact Number</h2>
+                                                            <h4 style="text-align:center;" mc:edit="statistics_txt_09"><span style="color:#05bbab">@Model.Mobile</span></h4>
+                                                        </td>
+                                                        <td class="RespoHideSmall">
+                                                            <h1 style="text-transform: uppercase; text-align:center;" mc:edit="statistics_txt_10"></h1>
+                                                            <h2 style="text-align:center;" mc:edit="statistics_txt_11">Price Total</h2>
+                                                            <h4 style="text-align:center;" mc:edit="statistics_txt_12"><span style="color:#05bbab">$@Model.TotalCost</span></h4>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- End Module: Statistics -->
+                    <!-- ********************************************************************************************************* -->
+                    <!-- Begin Module: DarkThreeColumnServicesIcons -->
+                    <tr>
+                        <td valign="top" class="BackgroundColor03" bgcolor="#202327">
+                            <table class="BoxWrap" width="600" align="center" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td width="100%" height="40"></td>
+                                    </tr>
+                                    <!-- // Horizontal Spacer \\ -->
+                                    <!-- _____________________________________________ -->
+                                    <tr>
+                                        <td>
+                                            <!-- ************************** -->
+                                            <!-- Begin: 1st Column -->
+                                            <table class="BoxWrap" width="184" align="left" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>&nbsp; </td>
+                                                                        <td width="80" align="center" bgcolor="#05bbab" style="border-radius: 80px; height:80px;">
+                                                                            <img alt="" border="0" width="40" height="40" mc:edit="darkthreecolumnservicesicons_icon01" src="http://www.templatemine.net/themeForest/robbieWilliams/Note/assets/icon_s01.png" style="width: 40px; height: 40px; display: block;">
+                                                                        </td>
+                                                                        <td>&nbsp; </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="15"></td>
+                                                    </tr>
+                                                    <!-- // Horizontal Spacer \\ -->
+                                                    <tr>
+                                                        <td>
+                                                            <table cellpadding="0" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="title" mc:edit="darkthreecolumnservicesicons_title01" style="text-align:center; color:#ffffff">
+                                                                        <a href="#" style="color:#ffffff">Lorem Ipsum Arcus</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="15"></td>
+                                                                </tr>
+                                                                <!-- // Horizontal Spacer \\ -->
+                                                                <tr>
+                                                                    <td class="text" mc:edit="darkthreecolumnservicesicons_txt01" style="text-align:center;">Lorem ipsum neque iaculis, urna lorem in suspendisse lobortis himenaeos.</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="40"></td>
+                                                    </tr>
+                                                    <!-- // Horizontal Spacer \\ -->
+                                                </tbody>
+                                            </table>
+                                            <!-- End: 1st Column -->
+                                            <!-- ************************** -->
+                                            <!-- Padding + (Outlook) -->
+                                            <table class="RespoHideMedium" width="0" align="left" cellpadding="0" cellspacing="0" style="font-size: 0;line-height: 0;border-collapse: collapse;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="0" height="2" style="font-size: 0;line-height: 0;border-collapse: collapse;">
+                                                            <p style="padding-left: 20px;">&nbsp;</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- ************************** -->
+                                            <!-- Begin: 2nd Column -->
+                                            <table class="BoxWrap" width="184" align="left" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>&nbsp; </td>
+                                                                        <td width="80" align="center" bgcolor="#05bbab" style="border-radius: 80px; height:80px;">
+                                                                            <img alt="" border="0" width="40" height="40" mc:edit="darkthreecolumnservicesicons_icon02" src="http://www.templatemine.net/themeForest/robbieWilliams/Note/assets/icon_s02.png" style="width: 40px; height: 40px; display: block;">
+                                                                        </td>
+                                                                        <td>&nbsp; </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="15"></td>
+                                                    </tr>
+                                                    <!-- // Horizontal Spacer \\ -->
+                                                    <tr>
+                                                        <td>
+                                                            <table cellpadding="0" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="title" mc:edit="darkthreecolumnservicesicons_title02" style="text-align:center; color:#ffffff">
+                                                                        <a href="#" style="color:#ffffff">Lorem Ipsum Arcus</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="15"></td>
+                                                                </tr>
+                                                                <!-- // Horizontal Spacer \\ -->
+                                                                <tr>
+                                                                    <td class="text" mc:edit="darkthreecolumnservicesicons_txt02" style="text-align:center;">Lorem ipsum neque iaculis, urna lorem in suspendisse lobortis himenaeos.</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="40"></td>
+                                                    </tr>
+                                                    <!-- // Horizontal Spacer \\ -->
+                                                </tbody>
+                                            </table>
+                                            <!-- End: 2nd Column -->
+                                            <!-- ************************** -->
+                                            <!-- Padding + (Outlook) -->
+                                            <table class="RespoHideMedium" width="0" align="left" cellpadding="0" cellspacing="0" style="font-size: 0;line-height: 0;border-collapse: collapse;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="0" height="2" style="font-size: 0;line-height: 0;border-collapse: collapse;">
+                                                            <p style="padding-left: 20px;">&nbsp;</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- ************************** -->
+                                            <!-- Begin: 3rd Column -->
+                                            <table class="BoxWrap" width="184" align="right" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>&nbsp; </td>
+                                                                        <td width="80" align="center" bgcolor="#05bbab" style="border-radius: 80px; height:80px;">
+                                                                            <img alt="" border="0" width="40" height="40" mc:edit="darkthreecolumnservicesicons_icon03" src="http://www.templatemine.net/themeForest/robbieWilliams/Note/assets/icon_s03.png" style="width: 40px; height: 40px; display: block;">
+                                                                        </td>
+                                                                        <td>&nbsp; </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="15"></td>
+                                                    </tr>
+                                                    <!-- // Horizontal Spacer \\ -->
+                                                    <tr>
+                                                        <td>
+                                                            <table cellpadding="0" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="title" mc:edit="darkthreecolumnservicesicons_title03" style="text-align:center; color:#ffffff">
+                                                                        <a href="#" style="color:#ffffff">Lorem Ipsum Arcus</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="15"></td>
+                                                                </tr>
+                                                                <!-- // Horizontal Spacer \\ -->
+                                                                <tr>
+                                                                    <td class="text" mc:edit="darkthreecolumnservicesicons_txt03" style="text-align:center;">Lorem ipsum neque iaculis, urna lorem in suspendisse lobortis himenaeos.</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="40"></td>
+                                                    </tr>
+                                                    <!-- // Horizontal Spacer \\ -->
+                                                </tbody>
+                                            </table>
+                                            <!-- End: 3rd Column -->
+                                            <!-- ************************** -->
+                                        </td>
+                                    </tr>
+                                    <!-- _____________________________________________ -->
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- End Module: DarkThreeColumnServicesIcons -->
+                    <!-- ********************************************************************************************************* -->
+                    <!-- ********************************************************************************************************* -->
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!--Table End-->
+</body>
+</html>
+
 
 
 

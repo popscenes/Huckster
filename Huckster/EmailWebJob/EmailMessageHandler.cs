@@ -17,79 +17,117 @@ using RazorEngine;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
 using SendGrid;
+using NLog;
 
 namespace EmailWebJob
 {
     public class EmailMessageHandler
     {
+        private static Logger logger = LogManager.GetLogger("mail");
         public static async void OrderAssignedMessageHandler([QueueTrigger("orderassigned")] OrderAssignedMessage message, TextWriter log)
         {
-            var queryChannel = new SimpleQueryChannel();
-            var order = await queryChannel.QueryAsync(new GetOrderAdminDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
-            var assignedUser = order.DeliveryUser;
+            try
+            {
+                var queryChannel = new SimpleQueryChannel();
+                var order = await queryChannel.QueryAsync(new GetOrderAdminDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+                var assignedUser = order.DeliveryUser;
 
-            var adminUrl = ConfigurationManager.AppSettings["AdminUrl"];
+                var adminUrl = ConfigurationManager.AppSettings["AdminUrl"];
 
-            var result =
-                Engine.Razor.Run("OrderAssigned", null, new
-                {
-                    Time = order.Order.DeliveryTime.ToString(),
-                    Restaurant = order.Restaurant.Name,
-                    RestaurantAddress = order.RestaurantAddress.ToString(),
-                    Address = order.DeliverAddress.ToString(),
-                    PickupTime = order.Order.PickUpTime.ToString(),
-                    OrderUrl = $"{adminUrl}Orders/Detail?orderId={order.Order.AggregateRootId}"
-                });
+                var result =
+                    Engine.Razor.Run("OrderAssigned", null, new
+                    {
+                        Time = order.Order.DeliveryTime.ToString(),
+                        Restaurant = order.Restaurant.Name,
+                        RestaurantAddress = order.RestaurantAddress.ToString(),
+                        Address = order.DeliverAddress.ToString(),
+                        PickupTime = order.Order.PickUpTime.ToString(),
+                        OrderUrl = $"{adminUrl}Orders/Detail?orderId={order.Order.AggregateRootId}"
+                    });
 
-            await SendGridEmail(assignedUser.Email, "Assigned Delivery", result);
+                await SendGridEmail(assignedUser.Email, "Assigned Delivery", result);
+            }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
+            }
+            
         }
 
         public static async void OrderDeclinedMessageHandler([QueueTrigger("orderdeclined")] OrderDeclinedMessage message, TextWriter log)
         {
-            var queryChannel = new SimpleQueryChannel();
-            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+            try
+            {
+                var queryChannel = new SimpleQueryChannel();
+                var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
 
-            var result =
-                Engine.Razor.Run("OrderDeclined", null, new
-                {
-                    Time = order.Order.DeliveryTime.ToString(),
-                    Restaurant = order.Restaurant.Name,
-                    Address = ""
-                });
+                var result =
+                    Engine.Razor.Run("OrderDeclined", null, new
+                    {
+                        Time = order.Order.DeliveryTime.ToString(),
+                        Restaurant = order.Restaurant.Name,
+                        Address = ""
+                    });
 
-            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Declined", result);
+                await SendGridEmail(order.Customer.Email, "Your Huckster Order - Declined", result);
+            }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
+            }
+            
         }
 
         public static async void OrderPickUpMessageHandler([QueueTrigger("orderpickup")] OrderPickUpMessage message, TextWriter log)
         {
-            var queryChannel = new SimpleQueryChannel();
-            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+            try
+            {
+                var queryChannel = new SimpleQueryChannel();
+                var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
 
-            var result =
-                Engine.Razor.Run("OrderPickUp", null, new
-                {
-                    Time = order.Order.DeliveryTime.ToString(),
-                    Restaurant = order.Restaurant.Name,
-                    Address = ""
-                });
+                var result =
+                    Engine.Razor.Run("OrderPickUp", null, new
+                    {
+                        Time = order.Order.DeliveryTime.ToString(),
+                        Restaurant = order.Restaurant.Name,
+                        Address = ""
+                    });
 
-            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Picked Up", result);
+                await SendGridEmail(order.Customer.Email, "Your Huckster Order - Picked Up", result);
+            }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
+            }
+            
         }
 
         public static async void OrderAcceptedMessageHandler([QueueTrigger("orderaccepted")] OrderAcceptedMessage message, TextWriter log)
         {
-            var queryChannel = new SimpleQueryChannel();
-            var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
+            try
+            {
+                var queryChannel = new SimpleQueryChannel();
+                var order = await queryChannel.QueryAsync(new GetOrderDetailByAggregateId() { AggregateId = message.OrderAggregateRootId });
 
-            var result =
-                Engine.Razor.Run("OrderAccepted", null, new
-                {
-                    Time = order.Order.DeliveryTime.ToString(),
-                    Restaurant = order.Restaurant.Name,
-                    Address = ""
-                });
+                var result =
+                    Engine.Razor.Run("OrderAccepted", null, new
+                    {
+                        Time = order.Order.DeliveryTime.ToString(),
+                        Restaurant = order.Restaurant.Name,
+                        Address = ""
+                    });
 
-            await SendGridEmail(order.Customer.Email, "Your Huckster Order - Accepted", result);
+                await SendGridEmail(order.Customer.Email, "Your Huckster Order - Accepted", result);
+            }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
+            }
+            
         }
 
         public static async Task OrderCompleteMessageHandler([QueueTrigger("ordercomplete")] OrderCompleteMessage message, TextWriter log)
@@ -104,14 +142,16 @@ namespace EmailWebJob
                     {
                         Time = order.Order.DeliveryTime.ToString(),
                         Restaurant = order.Restaurant.Name,
-                        Address = ""
+                        Address = order.DeliverAddress.ToString(),
+                        OrderId = order.Order.Id,
+                        Mobile = order.Order.CustomerMobile
                     });
 
-                await SendGridEmail(order.Customer.Email, "Your Huckster Order - Completed", result);
+                await SendGridEmail(order.Customer.Email, "Your Huckster Order", result);
             }
             catch (Exception e)
             {
-
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
                 throw;
             }
             
@@ -119,9 +159,18 @@ namespace EmailWebJob
 
         public static async Task EnquiryMessageHandler([QueueTrigger("emailenquirymessage")] EmailEnquiryMessage message, TextWriter log)
         {
-            var result = Engine.Razor.Run("Enquiry", null, message.Enquiry);
-            var emailaddress = ConfigurationManager.AppSettings["EnquiryEmailTo"];
-            await SendGridEmail(emailaddress, $"New Enquiry - {message.Enquiry.Subject}" , result);
+            try
+            {
+                var result = Engine.Razor.Run("Enquiry", null, message.Enquiry);
+                var emailaddress = ConfigurationManager.AppSettings["EnquiryEmailTo"];
+                await SendGridEmail(emailaddress, $"New Enquiry - {message.Enquiry.Subject}", result);
+            }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
+                throw;
+            }
+            
         }
 
         public static async Task RestaurantOrderAcceptMessageHandler([QueueTrigger("restaurantaccept")] RestaurantOrderAcceptMessage message, TextWriter log)
@@ -149,7 +198,7 @@ namespace EmailWebJob
             }
             catch (Exception e)
             {
-
+                logger.Log(LogLevel.Error, e.ToString() + "\n" + e.StackTrace.ToString());
                 throw;
             }
             

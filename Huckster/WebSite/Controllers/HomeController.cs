@@ -1,5 +1,7 @@
-﻿using System;
+﻿using infrastructure.Utility;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +12,13 @@ namespace WebSite.Controllers
     {
         public ActionResult Index()
         {
+            var testRestaurantId = ConfigurationManager.AppSettings["TestRestaurantId"];
+            if (testRestaurantId.IsNullOrWhiteSpace())
+            {
+                testRestaurantId = "1";
+            }
+
+            ViewBag.TestRestaurantId = testRestaurantId;
             return View();
         }
 
@@ -31,6 +40,8 @@ namespace WebSite.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            
 
             return View();
         }

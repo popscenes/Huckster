@@ -8,7 +8,7 @@
 <div class="container">
 
     <h2>Edit Details</h2>
-
+    @Html.ActionLink("Back To Restaurant", "Detail", new { id = @ViewBag.RestaurantShortId })
     @using (Html.BeginForm())
     {
         @Html.HiddenFor(a => a.Id)

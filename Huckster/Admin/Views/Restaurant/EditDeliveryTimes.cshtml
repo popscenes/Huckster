@@ -10,7 +10,8 @@
 
 <h2>Delivery Hours</h2>
 
-<h2>Delivery Suburbs</h2>
+@Html.ActionLink("Back To Restaurant", "Detail", new { id = @ViewBag.RestaurantShortId })
+
 <div class="container" ng-app="hucksterAdminApp">
     @{
         var menuJSON = JsonConvert.SerializeObject(Model);

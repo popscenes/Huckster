@@ -73,6 +73,28 @@
 		font-family: glober_heavy, helvetica, sans-serif;
 		font-weight: bold;	
 	}
+    	b {
+		font-family: glober_heavy, helvetica, sans-serif;	
+	}
+	.text-underline {
+		text-decoration: underline;	
+	}
+	.text-ul {
+		padding: 1em;
+		list-style-type: none;
+	}
+	.text-li {
+		padding: 0.5em;	
+	}
+	.text-sub-ul {
+		
+	}
+	.text-sub-li {
+		padding: 0.5em;
+	}
+	.dotted {
+		list-style-type:circle;	
+	}
 	.checkout-h4 {
 		padding-bottom: 1em;	
 		text-align: center;

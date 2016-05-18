@@ -24,7 +24,7 @@ namespace infrastructure.CQRS
 
         public async Task HandleAsync(TCommand command)
         {
-            using (TransactionScope tran = new TransactionScope())
+            using (TransactionScope tran = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 using (var cn = _adoContext.GetDbConnection())
                 {

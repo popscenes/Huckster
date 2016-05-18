@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
-
-
+<h2>Edit Image</h2>
+<div>
+    @Html.ActionLink("Back To Restaurant", "Detail", new { id = @ViewBag.RestaurantShortId })
+</div>
 <img src="@Model.Restaurant.FullTileImageUrl"/>
 
 <form action="" method="post" enctype="multipart/form-data">

@@ -51,6 +51,7 @@ namespace Admin.Controllers
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
             ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            ViewBag.RestaurantShortId = restaurant.Restaurant.Id;
             return View(restaurant.RestaurantMenu);
         }
 
@@ -58,6 +59,7 @@ namespace Admin.Controllers
         public async Task<ActionResult> EditTileImage(int id)
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
+            ViewBag.RestaurantShortId = restaurant.Restaurant.Id;
             return View(restaurant);
         }
 
@@ -66,6 +68,7 @@ namespace Admin.Controllers
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
             ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            ViewBag.RestaurantShortId = restaurant.Restaurant.Id;
             return View(restaurant.RestauranAddress);
         }
 
@@ -74,6 +77,7 @@ namespace Admin.Controllers
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
             ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            ViewBag.RestaurantShortId = restaurant.Restaurant.Id;
             return View(restaurant.Restaurant);
         }
 
@@ -108,6 +112,7 @@ namespace Admin.Controllers
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
             ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            ViewBag.RestaurantShortId = restaurant.Restaurant.Id;
             return View(restaurant.DeliverySuburbs);
         }
 
@@ -116,6 +121,7 @@ namespace Admin.Controllers
         {
             var restaurant = await _queryChannel.QueryAsync(new GetRestaurantDetailByIdQuery() { Id = id });
             ViewBag.RestaurantId = restaurant.Restaurant.AggregateRootId;
+            ViewBag.RestaurantShortId = restaurant.Restaurant.Id;
             return View(restaurant.DeliveryHours);
         }
 
